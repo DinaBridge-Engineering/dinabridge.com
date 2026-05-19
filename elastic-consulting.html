@@ -18,12 +18,7 @@
 
 /* ================================================================
    STEP CARDS — Fix #2
-   Replaces the tiny teal label with a 44px blurple circle marker.
-   Adds a faint connector line between steps (hidden on tablet/mobile).
-   Overrides the global hard 3D pop hover with a soft vertical lift.
    ================================================================ */
-
-/* Circle marker — overrides global .step-number */
 .step-card .step-number {
   width: 44px;
   height: 44px;
@@ -40,15 +35,13 @@
   box-shadow: 0 6px 20px rgba(79,107,237,.28);
   flex-shrink: 0;
 }
-
-/* Connector line between step cards */
 .step-card {
   position: relative;
 }
 .step-card::after {
   content: "";
   position: absolute;
-  top: calc(var(--sp-32) + 22px); /* vertically centered on the circle */
+  top: calc(var(--sp-32) + 22px);
   left: calc(100% - var(--sp-20) / 2);
   width: calc(var(--sp-20) + 1px);
   height: 1px;
@@ -59,16 +52,64 @@
 .grid-4 > .step-card:last-child::after {
   display: none;
 }
-
-/* Override global hard 3D pop — soft vertical lift instead */
 .step-card.card-base.card:hover {
   transform: translateY(-4px);
   box-shadow: var(--card-shadow-hover);
   border-color: rgba(79,107,237,.22);
 }
-
 @media (max-width: 1024px) {
   .step-card::after { display: none; }
+}
+
+/* ================================================================
+   TRUST CARDS — Fix #3
+   Replaces 10px ghost diamond with a proper 40px icon circle.
+   Each of the 6 trust cards gets a unique teal/blurple/gold icon
+   so the grid has visual variety without breaking the neutral palette.
+   One card (.trust-card--featured) gets card-highlight treatment
+   to anchor the grid and give the eye a place to land.
+   ================================================================ */
+
+/* Icon container — 40px circle, sits above the heading */
+.trust-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin-bottom: var(--sp-4);
+  flex-shrink: 0;
+  /* default — overridden per card below */
+  background: rgba(0,110,107,.10);
+  color: var(--teal);
+  transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-slow) var(--ease);
+}
+.card-base:hover .trust-card-icon {
+  transform: scale(1.10);
+}
+
+/* Per-card icon color variants */
+.trust-card--engineer  .trust-card-icon { background: rgba(79,107,237,.12);  color: var(--blue);  box-shadow: 0 4px 14px rgba(79,107,237,.12); }
+.trust-card--scope     .trust-card-icon { background: rgba(99,102,241,.12);  color: var(--indigo); box-shadow: 0 4px 14px rgba(99,102,241,.12); }
+.trust-card--production .trust-card-icon { background: rgba(0,110,107,.11);  color: var(--teal);  box-shadow: 0 4px 14px rgba(0,110,107,.10); }
+.trust-card--comms     .trust-card-icon { background: rgba(198,146,45,.12);  color: var(--gold);  box-shadow: 0 4px 14px rgba(198,146,45,.10); }
+.trust-card--docs      .trust-card-icon { background: rgba(79,107,237,.12);  color: var(--blue);  box-shadow: 0 4px 14px rgba(79,107,237,.12); }
+.trust-card--response  .trust-card-icon { background: rgba(0,110,107,.11);  color: var(--teal);  box-shadow: 0 4px 14px rgba(0,110,107,.10); }
+
+/* On hover — icon glows stronger */
+.trust-card--engineer:hover  .trust-card-icon { box-shadow: 0 6px 20px rgba(79,107,237,.26); }
+.trust-card--scope:hover     .trust-card-icon { box-shadow: 0 6px 20px rgba(99,102,241,.26); }
+.trust-card--production:hover .trust-card-icon { box-shadow: 0 6px 20px rgba(0,110,107,.22); }
+.trust-card--comms:hover     .trust-card-icon { box-shadow: 0 6px 20px rgba(198,146,45,.24); }
+.trust-card--docs:hover      .trust-card-icon { box-shadow: 0 6px 20px rgba(79,107,237,.26); }
+.trust-card--response:hover  .trust-card-icon { box-shadow: 0 6px 20px rgba(0,110,107,.22); }
+
+/* Featured card — card-highlight treatment on the "Named engineer" card */
+/* Uses card-hierarchy.css card-highlight rules, just adding the modifier */
+.trust-card--featured {
+  grid-column: span 1;
 }
 
 /* ================================================================
@@ -237,36 +278,44 @@
         <p>Regardless of engagement type, these are the standards every DinaBridge project is held to.</p>
       </div>
       <div class="grid-3">
-        <div class="card-base card trust-card reveal reveal-delay-1">
-          <div class="trust-card-icon">&#9670;</div>
+
+        <!-- Featured card — card-highlight gives it visual weight as the anchor -->
+        <div class="card-base card-highlight trust-card trust-card--engineer trust-card--featured reveal reveal-delay-1">
+          <div class="trust-card-icon">&#128736;</div>
           <h3>Named senior engineer</h3>
           <p>You know who is doing the work before any contract is signed. The engineer is named, introduced, and accountable for the outcome from day one.</p>
         </div>
-        <div class="card-base card trust-card reveal reveal-delay-2">
-          <div class="trust-card-icon">&#9670;</div>
+
+        <div class="card-base card trust-card trust-card--scope reveal reveal-delay-2">
+          <div class="trust-card-icon">&#128196;</div>
           <h3>Defined scope document</h3>
           <p>Every engagement has a written scope &mdash; what is included, what is not, the timeline, and the definition of done. No verbal agreements, no scope drift.</p>
         </div>
-        <div class="card-base card trust-card reveal reveal-delay-3">
-          <div class="trust-card-icon">&#9670;</div>
+
+        <div class="card-base card trust-card trust-card--production reveal reveal-delay-3">
+          <div class="trust-card-icon">&#9881;</div>
           <h3>Production-grade work</h3>
           <p>We work in live environments, not staging sandboxes. Everything we build is tested against your actual production constraints before it is handed over.</p>
         </div>
-        <div class="card-base card trust-card reveal reveal-delay-1">
-          <div class="trust-card-icon">&#9670;</div>
+
+        <div class="card-base card trust-card trust-card--comms reveal reveal-delay-1">
+          <div class="trust-card-icon">&#128172;</div>
           <h3>Direct communication</h3>
           <p>No project managers, no account executives, no intermediary layer. You have direct access to the engineer throughout the engagement.</p>
         </div>
-        <div class="card-base card trust-card reveal reveal-delay-2">
-          <div class="trust-card-icon">&#9670;</div>
+
+        <div class="card-base card trust-card trust-card--docs reveal reveal-delay-2">
+          <div class="trust-card-icon">&#128221;</div>
           <h3>Documentation handoff</h3>
           <p>Every engagement closes with written documentation &mdash; architecture decisions, configuration rationale, runbooks, and recommendations for ongoing operations.</p>
         </div>
-        <div class="card-base card trust-card reveal reveal-delay-3">
-          <div class="trust-card-icon">&#9670;</div>
+
+        <div class="card-base card trust-card trust-card--response reveal reveal-delay-3">
+          <div class="trust-card-icon">&#9889;</div>
           <h3>Response within one day</h3>
           <p>We respond to every enquiry within one business day. Usually faster. No waiting for a sales team to route your message to someone who can actually help.</p>
         </div>
+
       </div>
     </div>
   </section>
