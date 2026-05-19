@@ -15,7 +15,65 @@
 <script src="/shared.js"></script>
 <script src="/scroll-reveal.js" defer></script>
 <style>
-/* ===== GEM SECTION — shared component v1 ===== */
+
+/* ================================================================
+   STEP CARDS — Fix #2
+   Replaces the tiny teal label with a 44px blurple circle marker.
+   Adds a faint connector line between steps (hidden on tablet/mobile).
+   Overrides the global hard 3D pop hover with a soft vertical lift.
+   ================================================================ */
+
+/* Circle marker — overrides global .step-number */
+.step-card .step-number {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-20);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--indigo) 100%);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 800;
+  letter-spacing: .04em;
+  box-shadow: 0 6px 20px rgba(79,107,237,.28);
+  flex-shrink: 0;
+}
+
+/* Connector line between step cards */
+.step-card {
+  position: relative;
+}
+.step-card::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--sp-32) + 22px); /* vertically centered on the circle */
+  left: calc(100% - var(--sp-20) / 2);
+  width: calc(var(--sp-20) + 1px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(79,107,237,.28), rgba(79,107,237,.04));
+  pointer-events: none;
+  z-index: 1;
+}
+.grid-4 > .step-card:last-child::after {
+  display: none;
+}
+
+/* Override global hard 3D pop — soft vertical lift instead */
+.step-card.card-base.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(79,107,237,.22);
+}
+
+@media (max-width: 1024px) {
+  .step-card::after { display: none; }
+}
+
+/* ================================================================
+   GEM SECTION — shared component v1
+   ================================================================ */
 .gem-section {
   position: relative;
   overflow: hidden;
@@ -161,10 +219,10 @@
         <p>A straightforward process. No discovery calls that go nowhere. No proposals that take two weeks to arrive and three weeks to negotiate.</p>
       </div>
       <div class="grid-4">
-        <div class="card-base card reveal reveal-delay-1"><div class="step-number">01</div><h3>Tell us what you need</h3><p>Fill out the contact form or email us directly. Describe your environment, what is broken, or what you want to build. No lengthy intake forms required.</p></div>
-        <div class="card-base card reveal reveal-delay-2"><div class="step-number">02</div><h3>We assess and scope</h3><p>A senior engineer reviews your situation and responds within one business day with a clear technical assessment and a proposed, bounded scope of work.</p></div>
-        <div class="card-base card reveal reveal-delay-3"><div class="step-number">03</div><h3>We agree on outcomes</h3><p>We align on the deliverable, timeline, and named engineer before any work begins. Every engagement starts with a signed scope. No ambiguity, no surprises.</p></div>
-        <div class="card-base card reveal reveal-delay-4"><div class="step-number">04</div><h3>We deliver and hand off</h3><p>The engineer builds, tests, and ships. Every engagement ends with documentation, a recorded walkthrough if needed, and a handoff your team can act on immediately.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-1"><div class="step-number">01</div><h3>Tell us what you need</h3><p>Fill out the contact form or email us directly. Describe your environment, what is broken, or what you want to build. No lengthy intake forms required.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-2"><div class="step-number">02</div><h3>We assess and scope</h3><p>A senior engineer reviews your situation and responds within one business day with a clear technical assessment and a proposed, bounded scope of work.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-3"><div class="step-number">03</div><h3>We agree on outcomes</h3><p>We align on the deliverable, timeline, and named engineer before any work begins. Every engagement starts with a signed scope. No ambiguity, no surprises.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-4"><div class="step-number">04</div><h3>We deliver and hand off</h3><p>The engineer builds, tests, and ships. Every engagement ends with documentation, a recorded walkthrough if needed, and a handoff your team can act on immediately.</p></div>
       </div>
     </div>
   </section>
