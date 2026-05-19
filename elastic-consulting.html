@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Elasticsearch consulting from DinaBridge. Senior-led engagements for advisory reviews and hands-on delivery in production Elastic environments." />
+<meta name="description" content="Senior Elasticsearch engineers from DinaBridge. Named engineer, fixed scope, no account managers. Response within one business day." />
 <title>Elastic Consulting | Senior Elasticsearch Engineers | DinaBridge</title>
 <link rel="canonical" href="https://dinabridge.com/elastic-consulting.html" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
@@ -13,16 +13,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/global.css">
 <script src="/shared.js"></script>
+<script src="/scroll-reveal.js" defer></script>
 <style>
 /* ===== GEM SECTION — shared component v1 ===== */
 .gem-section {
   position: relative;
   overflow: hidden;
-  margin: 80px auto;
-  padding: 100px 80px;
-  border-radius: 36px;
+  margin: var(--sp-80) auto;
+  padding: var(--sp-96) var(--sp-80);
+  border-radius: var(--radius-xl);
   background:
-    radial-gradient(circle at top left,  rgba(26,119,255,.35), transparent 35%),
+    radial-gradient(circle at top left,  rgba(79,107,237,.35), transparent 35%),
     radial-gradient(circle at top right, rgba(131,88,255,.18), transparent 30%),
     linear-gradient(135deg, #04142f 0%, #072249 45%, #082c57 100%);
   border: 1px solid rgba(255,255,255,.08);
@@ -67,7 +68,7 @@
   font-weight: 600;
 }
 .gem-title {
-  margin-top: 20px;
+  margin-top: var(--sp-20);
   font-family: "Playfair Display", serif;
   font-size: clamp(3rem, 5vw, 5rem);
   line-height: 1.05;
@@ -82,25 +83,25 @@
   font-size: 1.15rem;
   line-height: 1.9;
   max-width: 650px;
-  margin: 30px auto 60px;
+  margin: var(--sp-28) auto var(--sp-56);
   text-align: center;
 }
 .gem-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: var(--sp-28);
 }
 .gem-card {
   background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   backdrop-filter: blur(20px);
-  padding: 35px;
-  border-radius: 28px;
+  padding: var(--sp-32);
+  border-radius: var(--radius-lg);
   border: 1px solid rgba(255,255,255,.08);
   transition: .35s;
 }
 .gem-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(70,150,255,.45);
+  border-color: rgba(79,107,237,.45);
   box-shadow: 0 25px 50px rgba(0,0,0,.25);
 }
 .gem-card-icon {
@@ -110,15 +111,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
-  background: linear-gradient(135deg, #1f7bff, #8e5cff);
-  box-shadow: 0 0 35px rgba(80,120,255,.4);
+  margin-bottom: var(--sp-20);
+  background: linear-gradient(135deg, var(--blue), #8e5cff);
+  box-shadow: 0 0 35px rgba(79,107,237,.4);
   font-size: 1.5rem;
 }
 .gem-card h3 {
   color: white;
   font-size: 1.35rem;
-  margin-bottom: 18px;
+  margin-bottom: var(--sp-16);
   font-family: "Playfair Display", serif;
 }
 .gem-card p {
@@ -126,7 +127,7 @@
   line-height: 1.8;
 }
 @media (max-width: 768px) {
-  .gem-section { padding: 60px 28px; margin: 48px auto; border-radius: 24px; }
+  .gem-section { padding: var(--sp-56) var(--sp-28); margin: var(--sp-48) auto; border-radius: var(--radius-lg); }
   .gem-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -140,25 +141,30 @@
 
   <section class="section-hero">
     <div class="container">
-      <h1>Senior Elasticsearch engineers.<br>Direct. Scoped. Delivered.</h1>
-      <p class="hero-lead">Every engagement is senior-led, directly communicated, and built around a defined outcome. The engineer you speak to is the engineer doing the work &mdash; from first call to final handoff.</p>
+      <div class="eyebrow reveal">Elastic Consulting</div>
+      <h1 class="reveal reveal-delay-1">Senior Elasticsearch engineers.<br>Direct. Scoped. Delivered.</h1>
+      <p class="hero-lead reveal reveal-delay-2">Every engagement is senior-led, directly communicated, and built around a defined outcome. The engineer you speak to is the engineer doing the work &mdash; from first call to final handoff.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
+        <a href="#how-it-works" class="btn btn-secondary">How it works</a>
+      </div>
     </div>
   </section>
 
   <hr class="section-divider" />
 
-  <section class="section section-alt">
+  <section class="section section-tinted" id="how-it-works">
     <div class="container">
-      <div class="section-intro">
+      <div class="section-intro reveal">
         <span class="section-label">How it works</span>
         <h2>From first message to delivery.</h2>
         <p>A straightforward process. No discovery calls that go nowhere. No proposals that take two weeks to arrive and three weeks to negotiate.</p>
       </div>
       <div class="grid-4">
-        <div class="card-base card"><div class="step-number">01</div><h3>Tell us what you need</h3><p>Fill out the contact form or email us directly. Describe your environment, what is broken, or what you want to build. No lengthy intake forms required.</p></div>
-        <div class="card-base card"><div class="step-number">02</div><h3>We assess and scope</h3><p>A senior engineer reviews your situation and responds within one business day with a clear technical assessment and a proposed, bounded scope of work.</p></div>
-        <div class="card-base card"><div class="step-number">03</div><h3>We agree on outcomes</h3><p>We align on the deliverable, timeline, and named engineer before any work begins. Every engagement starts with a signed scope. No ambiguity, no surprises.</p></div>
-        <div class="card-base card"><div class="step-number">04</div><h3>We deliver and hand off</h3><p>The engineer builds, tests, and ships. Every engagement ends with documentation, a recorded walkthrough if needed, and a handoff your team can act on immediately.</p></div>
+        <div class="card-base card reveal reveal-delay-1"><div class="step-number">01</div><h3>Tell us what you need</h3><p>Fill out the contact form or email us directly. Describe your environment, what is broken, or what you want to build. No lengthy intake forms required.</p></div>
+        <div class="card-base card reveal reveal-delay-2"><div class="step-number">02</div><h3>We assess and scope</h3><p>A senior engineer reviews your situation and responds within one business day with a clear technical assessment and a proposed, bounded scope of work.</p></div>
+        <div class="card-base card reveal reveal-delay-3"><div class="step-number">03</div><h3>We agree on outcomes</h3><p>We align on the deliverable, timeline, and named engineer before any work begins. Every engagement starts with a signed scope. No ambiguity, no surprises.</p></div>
+        <div class="card-base card reveal reveal-delay-4"><div class="step-number">04</div><h3>We deliver and hand off</h3><p>The engineer builds, tests, and ships. Every engagement ends with documentation, a recorded walkthrough if needed, and a handoff your team can act on immediately.</p></div>
       </div>
     </div>
   </section>
@@ -167,38 +173,38 @@
 
   <section class="section">
     <div class="container">
-      <div class="section-intro">
+      <div class="section-intro reveal">
         <span class="section-label">What you get</span>
         <h2>What every engagement includes.</h2>
         <p>Regardless of engagement type, these are the standards every DinaBridge project is held to.</p>
       </div>
       <div class="grid-3">
-        <div class="card-base card trust-card">
+        <div class="card-base card trust-card reveal reveal-delay-1">
           <div class="trust-card-icon">&#9670;</div>
           <h3>Named senior engineer</h3>
           <p>You know who is doing the work before any contract is signed. The engineer is named, introduced, and accountable for the outcome from day one.</p>
         </div>
-        <div class="card-base card trust-card">
+        <div class="card-base card trust-card reveal reveal-delay-2">
           <div class="trust-card-icon">&#9670;</div>
           <h3>Defined scope document</h3>
           <p>Every engagement has a written scope &mdash; what is included, what is not, the timeline, and the definition of done. No verbal agreements, no scope drift.</p>
         </div>
-        <div class="card-base card trust-card">
+        <div class="card-base card trust-card reveal reveal-delay-3">
           <div class="trust-card-icon">&#9670;</div>
           <h3>Production-grade work</h3>
           <p>We work in live environments, not staging sandboxes. Everything we build is tested against your actual production constraints before it is handed over.</p>
         </div>
-        <div class="card-base card trust-card">
+        <div class="card-base card trust-card reveal reveal-delay-1">
           <div class="trust-card-icon">&#9670;</div>
           <h3>Direct communication</h3>
           <p>No project managers, no account executives, no intermediary layer. You have direct access to the engineer throughout the engagement.</p>
         </div>
-        <div class="card-base card trust-card">
+        <div class="card-base card trust-card reveal reveal-delay-2">
           <div class="trust-card-icon">&#9670;</div>
           <h3>Documentation handoff</h3>
           <p>Every engagement closes with written documentation &mdash; architecture decisions, configuration rationale, runbooks, and recommendations for ongoing operations.</p>
         </div>
-        <div class="card-base card trust-card">
+        <div class="card-base card trust-card reveal reveal-delay-3">
           <div class="trust-card-icon">&#9670;</div>
           <h3>Response within one day</h3>
           <p>We respond to every enquiry within one business day. Usually faster. No waiting for a sales team to route your message to someone who can actually help.</p>
@@ -213,21 +219,21 @@
   <div class="container">
     <section class="gem-section">
 
-      <div class="gem-label">HOW WE ENGAGE</div>
+      <div class="gem-label reveal">HOW WE ENGAGE</div>
 
-      <h2 class="gem-title">
+      <h2 class="gem-title reveal reveal-delay-1">
         Scope is not a formality.<br>
         It is the contract.
       </h2>
 
-      <p class="gem-description">
+      <p class="gem-description reveal reveal-delay-2">
         Three principles that govern every DinaBridge engagement &mdash;
         before a single hour of work begins.
       </p>
 
       <div class="gem-grid">
 
-        <div class="gem-card">
+        <div class="gem-card reveal reveal-delay-1">
           <div class="gem-card-icon">&#x1F4CB;</div>
           <h3>Named deliverable, not open retainer</h3>
           <p>
@@ -237,7 +243,7 @@
           </p>
         </div>
 
-        <div class="gem-card">
+        <div class="gem-card reveal reveal-delay-2">
           <div class="gem-card-icon">&#x1F9F1;</div>
           <h3>One engineer. No layers.</h3>
           <p>
@@ -247,7 +253,7 @@
           </p>
         </div>
 
-        <div class="gem-card">
+        <div class="gem-card reveal reveal-delay-3">
           <div class="gem-card-icon">&#x1F4C4;</div>
           <h3>Your team inherits the work</h3>
           <p>
@@ -266,12 +272,13 @@
 
   <section class="section">
     <div class="container">
-      <div class="cta-box">
+      <div class="cta-box reveal">
         <span class="section-label">Work with us</span>
         <h2>Let&rsquo;s talk about your Elasticsearch stack.</h2>
         <p>Tell us what you are working on. We will respond within one business day with a clear assessment &mdash; no sales pitch, no discovery call theatre.</p>
         <div class="cta-actions">
           <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
+          <a href="/elastic-search.html" class="btn btn-secondary">See our practice areas</a>
         </div>
       </div>
     </div>
