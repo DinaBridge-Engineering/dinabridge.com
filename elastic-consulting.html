@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Senior Elasticsearch engineers from DinaBridge. Named engineer, fixed scope, no account managers. Response within one business day." />
+<meta name="description" content="Senior Elasticsearch engineers from DinaBridge. We fix slow queries, cluster instability, upgrade failures, SIEM pipelines, and vector search. Named engineer. Fixed scope. One business day response." />
 <title>Elastic Consulting | Senior Elasticsearch Engineers | DinaBridge</title>
 <link rel="canonical" href="https://dinabridge.com/elastic-consulting.html" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
@@ -15,6 +15,98 @@
 <script src="/shared.js"></script>
 <script src="/scroll-reveal.js" defer></script>
 <style>
+
+/* ================================================================
+   HERO PROOF CHIPS
+   ================================================================ */
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-12);
+  margin-top: var(--sp-28);
+  justify-content: center;
+}
+.hero-proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+  padding: var(--sp-8) var(--sp-16);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(79,107,237,.22);
+  background: rgba(79,107,237,.07);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+.hero-proof-chip .chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   PROBLEMS SECTION
+   ================================================================ */
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-20);
+  margin-top: var(--sp-48);
+}
+.problem-chip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-16);
+  padding: var(--sp-24) var(--sp-28);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), transform var(--t-base) var(--ease-out);
+  cursor: default;
+}
+.problem-chip:hover {
+  border-color: rgba(79,107,237,.28);
+  box-shadow: 0 8px 28px rgba(79,107,237,.08);
+  transform: translateY(-2px);
+}
+.problem-chip-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  flex-shrink: 0;
+  background: rgba(79,107,237,.10);
+  color: var(--blue);
+}
+.problem-chip-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.problem-chip-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.problem-chip-sub {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .problems-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .problems-grid { grid-template-columns: 1fr; }
+}
 
 /* ================================================================
    STEP CARDS — Fix #2
@@ -63,14 +155,7 @@
 
 /* ================================================================
    TRUST CARDS — Fix #3
-   Replaces 10px ghost diamond with a proper 40px icon circle.
-   Each of the 6 trust cards gets a unique teal/blurple/gold icon
-   so the grid has visual variety without breaking the neutral palette.
-   One card (.trust-card--featured) gets card-highlight treatment
-   to anchor the grid and give the eye a place to land.
    ================================================================ */
-
-/* Icon container — 40px circle, sits above the heading */
 .trust-card-icon {
   width: 40px;
   height: 40px;
@@ -81,7 +166,6 @@
   font-size: 1rem;
   margin-bottom: var(--sp-4);
   flex-shrink: 0;
-  /* default — overridden per card below */
   background: rgba(0,110,107,.10);
   color: var(--teal);
   transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-slow) var(--ease);
@@ -89,28 +173,19 @@
 .card-base:hover .trust-card-icon {
   transform: scale(1.10);
 }
-
-/* Per-card icon color variants */
-.trust-card--engineer  .trust-card-icon { background: rgba(79,107,237,.12);  color: var(--blue);  box-shadow: 0 4px 14px rgba(79,107,237,.12); }
+.trust-card--engineer  .trust-card-icon { background: rgba(79,107,237,.12);  color: var(--blue);   box-shadow: 0 4px 14px rgba(79,107,237,.12); }
 .trust-card--scope     .trust-card-icon { background: rgba(99,102,241,.12);  color: var(--indigo); box-shadow: 0 4px 14px rgba(99,102,241,.12); }
-.trust-card--production .trust-card-icon { background: rgba(0,110,107,.11);  color: var(--teal);  box-shadow: 0 4px 14px rgba(0,110,107,.10); }
-.trust-card--comms     .trust-card-icon { background: rgba(198,146,45,.12);  color: var(--gold);  box-shadow: 0 4px 14px rgba(198,146,45,.10); }
-.trust-card--docs      .trust-card-icon { background: rgba(79,107,237,.12);  color: var(--blue);  box-shadow: 0 4px 14px rgba(79,107,237,.12); }
-.trust-card--response  .trust-card-icon { background: rgba(0,110,107,.11);  color: var(--teal);  box-shadow: 0 4px 14px rgba(0,110,107,.10); }
-
-/* On hover — icon glows stronger */
+.trust-card--production .trust-card-icon { background: rgba(0,110,107,.11); color: var(--teal);   box-shadow: 0 4px 14px rgba(0,110,107,.10); }
+.trust-card--comms     .trust-card-icon { background: rgba(198,146,45,.12);  color: var(--gold);   box-shadow: 0 4px 14px rgba(198,146,45,.10); }
+.trust-card--docs      .trust-card-icon { background: rgba(79,107,237,.12);  color: var(--blue);   box-shadow: 0 4px 14px rgba(79,107,237,.12); }
+.trust-card--response  .trust-card-icon { background: rgba(0,110,107,.11);  color: var(--teal);   box-shadow: 0 4px 14px rgba(0,110,107,.10); }
 .trust-card--engineer:hover  .trust-card-icon { box-shadow: 0 6px 20px rgba(79,107,237,.26); }
 .trust-card--scope:hover     .trust-card-icon { box-shadow: 0 6px 20px rgba(99,102,241,.26); }
 .trust-card--production:hover .trust-card-icon { box-shadow: 0 6px 20px rgba(0,110,107,.22); }
 .trust-card--comms:hover     .trust-card-icon { box-shadow: 0 6px 20px rgba(198,146,45,.24); }
 .trust-card--docs:hover      .trust-card-icon { box-shadow: 0 6px 20px rgba(79,107,237,.26); }
 .trust-card--response:hover  .trust-card-icon { box-shadow: 0 6px 20px rgba(0,110,107,.22); }
-
-/* Featured card — card-highlight treatment on the "Named engineer" card */
-/* Uses card-hierarchy.css card-highlight rules, just adding the modifier */
-.trust-card--featured {
-  grid-column: span 1;
-}
+.trust-card--featured { grid-column: span 1; }
 
 /* ================================================================
    GEM SECTION — shared component v1
@@ -126,34 +201,22 @@
     radial-gradient(circle at top right, rgba(131,88,255,.18), transparent 30%),
     linear-gradient(135deg, #04142f 0%, #072249 45%, #082c57 100%);
   border: 1px solid rgba(255,255,255,.08);
-  box-shadow:
-    0 30px 80px rgba(4,15,40,.25),
-    inset 0 1px 0 rgba(255,255,255,.08);
+  box-shadow: 0 30px 80px rgba(4,15,40,.25), inset 0 1px 0 rgba(255,255,255,.08);
 }
 .gem-section::before {
   content: "";
   position: absolute;
-  right: -120px;
-  top: -100px;
-  width: 500px;
-  height: 500px;
+  right: -120px; top: -100px;
+  width: 500px; height: 500px;
   border-radius: 50%;
-  background: repeating-radial-gradient(
-    circle,
-    rgba(255,255,255,.05) 0px,
-    rgba(255,255,255,.05) 2px,
-    transparent 20px,
-    transparent 40px
-  );
+  background: repeating-radial-gradient(circle, rgba(255,255,255,.05) 0px, rgba(255,255,255,.05) 2px, transparent 20px, transparent 40px);
   opacity: .4;
 }
 .gem-section::after {
   content: "";
   position: absolute;
-  left: 10%;
-  top: 25%;
-  width: 220px;
-  height: 220px;
+  left: 10%; top: 25%;
+  width: 220px; height: 220px;
   background: radial-gradient(rgba(50,200,255,.18), transparent 70%);
   filter: blur(50px);
 }
@@ -204,8 +267,7 @@
   box-shadow: 0 25px 50px rgba(0,0,0,.25);
 }
 .gem-card-icon {
-  width: 58px;
-  height: 58px;
+  width: 58px; height: 58px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -221,10 +283,7 @@
   margin-bottom: var(--sp-16);
   font-family: "Playfair Display", serif;
 }
-.gem-card p {
-  color: rgba(255,255,255,.72);
-  line-height: 1.8;
-}
+.gem-card p { color: rgba(255,255,255,.72); line-height: 1.8; }
 @media (max-width: 768px) {
   .gem-section { padding: var(--sp-56) var(--sp-28); margin: var(--sp-48) auto; border-radius: var(--radius-lg); }
   .gem-grid { grid-template-columns: 1fr; }
@@ -238,6 +297,9 @@
 
 <main>
 
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
   <section class="section-hero">
     <div class="container">
       <div class="eyebrow reveal">Elastic Consulting</div>
@@ -245,32 +307,114 @@
       <p class="hero-lead reveal reveal-delay-2">Every engagement is senior-led, directly communicated, and built around a defined outcome. The engineer you speak to is the engineer doing the work &mdash; from first call to final handoff.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
-        <a href="#how-it-works" class="btn btn-secondary">How it works</a>
+        <a href="#problems" class="btn btn-secondary">What we fix</a>
+      </div>
+      <!-- Proof chips -->
+      <div class="hero-proof reveal reveal-delay-4">
+        <span class="hero-proof-chip"><span class="chip-dot"></span>Production Elasticsearch only</span>
+        <span class="hero-proof-chip"><span class="chip-dot"></span>Named engineer from day one</span>
+        <span class="hero-proof-chip"><span class="chip-dot"></span>Response within one business day</span>
+        <span class="hero-proof-chip"><span class="chip-dot"></span>Fixed scope &mdash; no open retainers</span>
       </div>
     </div>
   </section>
 
   <hr class="section-divider" />
 
-  <section class="section section-tinted" id="how-it-works">
+  <!-- ============================================================
+       PROBLEMS WE SOLVE
+       ============================================================ -->
+  <section class="section" id="problems">
     <div class="container">
       <div class="section-intro reveal">
-        <span class="section-label">How it works</span>
-        <h2>From first message to delivery.</h2>
-        <p>A straightforward process. No discovery calls that go nowhere. No proposals that take two weeks to arrive and three weeks to negotiate.</p>
+        <span class="section-label">Problems we solve</span>
+        <h2>If any of these sound familiar, we can help.</h2>
+        <p>We work exclusively on production Elasticsearch environments. These are the problems we see most often &mdash; and solve fastest.</p>
       </div>
-      <div class="grid-4">
-        <div class="card-base card step-card reveal reveal-delay-1"><div class="step-number">01</div><h3>Tell us what you need</h3><p>Fill out the contact form or email us directly. Describe your environment, what is broken, or what you want to build. No lengthy intake forms required.</p></div>
-        <div class="card-base card step-card reveal reveal-delay-2"><div class="step-number">02</div><h3>We assess and scope</h3><p>A senior engineer reviews your situation and responds within one business day with a clear technical assessment and a proposed, bounded scope of work.</p></div>
-        <div class="card-base card step-card reveal reveal-delay-3"><div class="step-number">03</div><h3>We agree on outcomes</h3><p>We align on the deliverable, timeline, and named engineer before any work begins. Every engagement starts with a signed scope. No ambiguity, no surprises.</p></div>
-        <div class="card-base card step-card reveal reveal-delay-4"><div class="step-number">04</div><h3>We deliver and hand off</h3><p>The engineer builds, tests, and ships. Every engagement ends with documentation, a recorded walkthrough if needed, and a handoff your team can act on immediately.</p></div>
+      <div class="problems-grid">
+
+        <div class="problem-chip reveal reveal-delay-1">
+          <div class="problem-chip-icon">&#128269;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Slow queries &amp; search latency</span>
+            <span class="problem-chip-sub">p95 blowing out, mappings wrong, indices bloated, aggregations unbounded</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-2">
+          <div class="problem-chip-icon">&#9889;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Cluster instability &amp; OOM</span>
+            <span class="problem-chip-sub">Nodes crashing, heap pressure, shard imbalance, circuit breakers firing</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-3">
+          <div class="problem-chip-icon">&#128257;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Version upgrade failures</span>
+            <span class="problem-chip-sub">Stuck on a deprecated version, rolling upgrade risk, breaking API changes</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-1">
+          <div class="problem-chip-icon">&#128202;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Ingest pipeline &amp; data quality</span>
+            <span class="problem-chip-sub">Logstash bottlenecks, Beats misconfiguration, ECS normalisation, field explosion</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-2">
+          <div class="problem-chip-icon">&#128737;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">SIEM &amp; security data</span>
+            <span class="problem-chip-sub">Elastic Security tuning, detection rule performance, alert fatigue, ECS mapping</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-3">
+          <div class="problem-chip-icon">&#129302;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Vector search &amp; AI retrieval</span>
+            <span class="problem-chip-sub">kNN setup, dense vector indexing, hybrid BM25 + vector, RAG pipeline architecture</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-1">
+          <div class="problem-chip-icon">&#128200;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Cost &amp; storage runaway</span>
+            <span class="problem-chip-sub">ILM policy gaps, over-replicated indices, hot-warm-cold tier misconfiguration</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-2">
+          <div class="problem-chip-icon">&#128274;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Security &amp; access control</span>
+            <span class="problem-chip-sub">Role-based access, field-level security, TLS configuration, audit logging</span>
+          </div>
+        </div>
+
+        <div class="problem-chip reveal reveal-delay-3">
+          <div class="problem-chip-icon">&#127760;</div>
+          <div class="problem-chip-body">
+            <span class="problem-chip-title">Multi-cluster &amp; cross-region</span>
+            <span class="problem-chip-sub">CCR setup, CCS query routing, disaster recovery, geo-distributed architecture</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <hr class="section-divider" />
 
-  <section class="section">
+  <!-- ============================================================
+       WHAT YOU GET
+       ============================================================ -->
+  <section class="section section-tinted">
     <div class="container">
       <div class="section-intro reveal">
         <span class="section-label">What you get</span>
@@ -279,7 +423,6 @@
       </div>
       <div class="grid-3">
 
-        <!-- Featured card — card-highlight gives it visual weight as the anchor -->
         <div class="card-base card-highlight trust-card trust-card--engineer trust-card--featured reveal reveal-delay-1">
           <div class="trust-card-icon">&#128736;</div>
           <h3>Named senior engineer</h3>
@@ -322,7 +465,9 @@
 
   <hr class="section-divider" />
 
-  <!-- GEM SECTION — engagement principles -->
+  <!-- ============================================================
+       GEM SECTION — engagement principles
+       ============================================================ -->
   <div class="container">
     <section class="gem-section">
 
@@ -343,31 +488,19 @@
         <div class="gem-card reveal reveal-delay-1">
           <div class="gem-card-icon">&#x1F4CB;</div>
           <h3>Named deliverable, not open retainer</h3>
-          <p>
-            Every engagement closes around a specific outcome.
-            We do not start work until the deliverable, timeline,
-            and definition of done are in writing.
-          </p>
+          <p>Every engagement closes around a specific outcome. We do not start work until the deliverable, timeline, and definition of done are in writing.</p>
         </div>
 
         <div class="gem-card reveal reveal-delay-2">
           <div class="gem-card-icon">&#x1F9F1;</div>
           <h3>One engineer. No layers.</h3>
-          <p>
-            The engineer you speak to in the first conversation
-            is the engineer who ships. No hand-offs.
-            No junior layer beneath a senior face.
-          </p>
+          <p>The engineer you speak to in the first conversation is the engineer who ships. No hand-offs. No junior layer beneath a senior face.</p>
         </div>
 
         <div class="gem-card reveal reveal-delay-3">
           <div class="gem-card-icon">&#x1F4C4;</div>
           <h3>Your team inherits the work</h3>
-          <p>
-            Every project closes with documentation your engineers
-            can operate from. We build capability, not dependency.
-            Your stack stays yours.
-          </p>
+          <p>Every project closes with documentation your engineers can operate from. We build capability, not dependency. Your stack stays yours.</p>
         </div>
 
       </div>
@@ -377,6 +510,30 @@
 
   <hr class="section-divider" />
 
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="section-label">How it works</span>
+        <h2>From first message to delivery.</h2>
+        <p>A straightforward process. No discovery calls that go nowhere. No proposals that take two weeks to arrive and three weeks to negotiate.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card-base card step-card reveal reveal-delay-1"><div class="step-number">01</div><h3>Tell us what you need</h3><p>Fill out the contact form or email us directly. Describe your environment, what is broken, or what you want to build. No lengthy intake forms required.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-2"><div class="step-number">02</div><h3>We assess and scope</h3><p>A senior engineer reviews your situation and responds within one business day with a clear technical assessment and a proposed, bounded scope of work.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-3"><div class="step-number">03</div><h3>We agree on outcomes</h3><p>We align on the deliverable, timeline, and named engineer before any work begins. Every engagement starts with a signed scope. No ambiguity, no surprises.</p></div>
+        <div class="card-base card step-card reveal reveal-delay-4"><div class="step-number">04</div><h3>We deliver and hand off</h3><p>The engineer builds, tests, and ships. Every engagement ends with documentation, a recorded walkthrough if needed, and a handoff your team can act on immediately.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================================
+       CTA
+       ============================================================ -->
   <section class="section">
     <div class="container">
       <div class="cta-box reveal">
