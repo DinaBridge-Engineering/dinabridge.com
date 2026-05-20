@@ -16,28 +16,55 @@
 <script src="/scroll-reveal.js"></script>
 <style>
 /* =========================================================
-   ABOUT PAGE — v2.2.0
-   Design tokens: var(--blue)=#4f6bed, var(--teal), var(--gold)
+   ABOUT PAGE — v3.0.0
+   AI UI/UX redesign — May 2026
+   Design tokens: var(--blue)=#0b64dd, var(--teal), var(--gold)
    Section pattern: section-tinted (never section-alt)
-   Spacing: var(--sp-*) only — no raw px values
+   Spacing: var(--sp-*) only
    ========================================================= */
 
-/* ---------- HERO proof chips ---------- */
+/* ---------- HERO PROOF CHIPS ---------- */
 .hero-proof{display:flex;flex-wrap:wrap;gap:var(--sp-12);margin-top:var(--sp-32)}
-.hero-chip{display:inline-flex;align-items:center;gap:var(--sp-8);padding:var(--sp-8) var(--sp-16);border-radius:999px;background:rgba(79,107,237,.08);border:1px solid rgba(79,107,237,.18);font-size:var(--text-xs);font-weight:600;color:rgba(79,107,237,1);letter-spacing:.03em}
-.hero-chip-dot{width:6px;height:6px;border-radius:50%;background:rgba(79,107,237,1);flex-shrink:0}
+.hero-chip{display:inline-flex;align-items:center;gap:var(--sp-8);padding:var(--sp-8) var(--sp-16);border-radius:999px;background:rgba(11,100,221,.07);border:1px solid rgba(11,100,221,.18);font-size:var(--text-xs);font-weight:600;color:var(--blue);letter-spacing:.03em;transition:background var(--t-base) var(--ease),border-color var(--t-base) var(--ease),transform var(--t-base) var(--ease-out)}
+.hero-chip:hover{background:rgba(11,100,221,.13);border-color:rgba(11,100,221,.35);transform:translateY(-2px)}
+.hero-chip-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;animation:pulse-dot 2.4s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+
+/* ---------- METRICS TRUST-BAR ---------- */
+.about-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:var(--sp-56);border:1px solid rgba(11,100,221,.10);border-radius:var(--radius-lg);overflow:hidden;background:rgba(255,255,255,.72);backdrop-filter:blur(12px);box-shadow:var(--shadow-sm)}
+.about-metric{padding:var(--sp-32) var(--sp-28);text-align:center;border-right:1px solid rgba(11,100,221,.08);position:relative;transition:background var(--t-slow) var(--ease)}
+.about-metric:last-child{border-right:none}
+.about-metric:hover{background:rgba(11,100,221,.04)}
+.about-metric-value{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.03em;margin-bottom:var(--sp-8)}
+.about-metric-value span{font-size:.6em;color:var(--blue);vertical-align:super;letter-spacing:0}
+.about-metric-label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.10em;color:var(--ink-3)}
+
+/* ---------- ORIGIN STORY TIMELINE ---------- */
+.origin-section{padding:var(--sp-96) 0;position:relative;overflow:hidden}
+.origin-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 20% 50%,rgba(11,100,221,.04),transparent 60%),radial-gradient(ellipse 50% 40% at 80% 30%,rgba(0,139,135,.03),transparent 50%);pointer-events:none}
+.origin-inner{position:relative;max-width:760px;margin:0 auto}
+.origin-timeline{display:flex;flex-direction:column;gap:0;position:relative;margin-top:var(--sp-56)}
+.origin-timeline::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue),rgba(0,139,135,.4),transparent);opacity:.25}
+.origin-step{display:flex;gap:var(--sp-32);padding-bottom:var(--sp-48);position:relative}
+.origin-step:last-child{padding-bottom:0}
+.origin-node{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid rgba(11,100,221,.20);display:grid;place-items:center;flex-shrink:0;position:relative;z-index:1;box-shadow:0 2px 12px rgba(11,100,221,.10);transition:border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
+.origin-step:hover .origin-node{border-color:var(--blue);box-shadow:0 0 0 6px rgba(11,100,221,.08)}
+.origin-node-year{font-size:var(--text-xs);font-weight:800;color:var(--blue);letter-spacing:-.01em}
+.origin-content{flex:1;padding-top:var(--sp-8)}
+.origin-content h3{font-family:var(--serif);font-size:1.15rem;color:var(--navy);margin-bottom:var(--sp-8);letter-spacing:-.02em;line-height:1.25}
+.origin-content p{font-size:var(--text-base);color:var(--ink-2);line-height:1.88}
 
 /* ---------- FOUNDER SECTION ---------- */
 .founder-section{padding:var(--sp-80) 0 var(--sp-96);position:relative}
-.founder-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 15% 50%,rgba(79,107,237,.05),transparent 60%),radial-gradient(ellipse 50% 60% at 85% 20%,rgba(0,200,195,.03),transparent 55%);pointer-events:none}
+.founder-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 15% 50%,rgba(11,100,221,.05),transparent 60%),radial-gradient(ellipse 50% 60% at 85% 20%,rgba(0,139,135,.03),transparent 55%);pointer-events:none}
 .founder-inner{position:relative;max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:0}
 .founder-pullquote{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,3.5vw,3rem);line-height:1.18;color:var(--navy);letter-spacing:-.03em;margin-bottom:var(--sp-48);padding-bottom:var(--sp-40);border-bottom:1px solid var(--rule);position:relative}
-.founder-pullquote::before{content:"\201C";position:absolute;top:-.25em;left:-.05em;font-size:6em;line-height:1;color:rgba(79,107,237,.07);font-style:normal;pointer-events:none;z-index:0}
-.founder-pullquote em{font-style:italic;background:linear-gradient(135deg,rgba(79,107,237,1) 0%,rgba(0,200,195,.85) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
+.founder-pullquote::before{content:"\201C";position:absolute;top:-.25em;left:-.05em;font-size:6em;line-height:1;color:rgba(11,100,221,.07);font-style:normal;pointer-events:none;z-index:0}
+.founder-pullquote em{font-style:italic;background:linear-gradient(135deg,var(--blue) 0%,rgba(0,139,135,.85) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
 .founder-body{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--ink-2);line-height:1.9;margin-bottom:var(--sp-24)}
 .founder-body:last-of-type{margin-bottom:0}
-.founder-human{margin-top:var(--sp-40);padding:var(--sp-28) var(--sp-40);background:rgba(79,107,237,.05);border-left:3px solid rgba(79,107,237,.4);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-size:var(--text-lg);color:var(--ink-2);line-height:1.85;font-style:italic;transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
-.founder-human:hover{background:rgba(79,107,237,.09);border-color:rgba(79,107,237,.7)}
+.founder-human{margin-top:var(--sp-40);padding:var(--sp-28) var(--sp-40);background:rgba(11,100,221,.05);border-left:3px solid rgba(11,100,221,.4);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-size:var(--text-lg);color:var(--ink-2);line-height:1.85;font-style:italic;transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease)}
+.founder-human:hover{background:rgba(11,100,221,.09);border-color:rgba(11,100,221,.7)}
 
 /* ---------- TEAM ---------- */
 .team-tier-label{font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:.10em;color:var(--teal);margin-bottom:var(--sp-24);display:block}
@@ -49,36 +76,36 @@
 .team-grid--leadership .team-name{font-size:1.1rem}
 .team-grid--leadership .team-bio{font-size:var(--text-base);line-height:1.85}
 .team-card{background:rgba(255,255,255,.78);border:1px solid rgba(8,17,31,.09);border-radius:var(--radius-lg);padding:var(--sp-32);box-shadow:var(--card-shadow-rest);display:flex;flex-direction:column;gap:var(--sp-16);transition:box-shadow var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),background var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out);will-change:transform;position:relative;overflow:hidden}
-.team-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(79,107,237,.04),transparent 65%);opacity:0;transition:opacity var(--t-slow) var(--ease)}
-.team-card:hover{box-shadow:var(--card-shadow-hover);border-color:rgba(79,107,237,.16);background:rgba(255,255,255,.96);transform:translateY(-4px)}
+.team-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(11,100,221,.04),transparent 65%);opacity:0;transition:opacity var(--t-slow) var(--ease)}
+.team-card:hover{box-shadow:var(--card-shadow-hover);border-color:rgba(11,100,221,.16);background:rgba(255,255,255,.96);transform:translateY(-4px)}
 .team-card:hover::after{opacity:1}
 .team-card-header{display:flex;align-items:center;gap:var(--sp-16);position:relative;z-index:1}
-.team-avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.25rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--navy) 0%,rgba(79,107,237,1) 100%);flex-shrink:0;box-shadow:0 2px 8px rgba(79,107,237,.20),0 4px 14px rgba(79,107,237,.12);transition:box-shadow var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out);overflow:hidden}
+.team-avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.25rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);flex-shrink:0;box-shadow:0 2px 8px rgba(11,100,221,.20),0 4px 14px rgba(11,100,221,.12);transition:box-shadow var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out);overflow:hidden}
 .team-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.team-card:hover .team-avatar{box-shadow:0 4px 16px rgba(79,107,237,.28),0 8px 24px rgba(79,107,237,.14);transform:scale(1.06)}
+.team-card:hover .team-avatar{box-shadow:0 4px 16px rgba(11,100,221,.28),0 8px 24px rgba(11,100,221,.14);transform:scale(1.06)}
 .team-name{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--navy);letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--sp-4)}
 .team-role{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal)}
 .team-bio{font-size:var(--text-sm);color:var(--ink-2);line-height:1.82;flex:1;position:relative;z-index:1}
-.team-linkedin{font-size:var(--text-xs);font-weight:700;color:rgba(79,107,237,1);letter-spacing:.02em;position:relative;z-index:1;transition:opacity var(--t-base) var(--ease),color var(--t-base) var(--ease);display:inline-flex;align-items:center;gap:3px}
-.team-linkedin:hover{opacity:.75;color:rgba(60,88,200,1)}
+.team-linkedin{font-size:var(--text-xs);font-weight:700;color:var(--blue);letter-spacing:.02em;position:relative;z-index:1;transition:opacity var(--t-base) var(--ease),color var(--t-base) var(--ease);display:inline-flex;align-items:center;gap:3px}
+.team-linkedin:hover{opacity:.75;color:rgba(8,70,160,1)}
 
 /* ---------- MORE ENGINEERS ---------- */
-.more-engineers{margin-top:var(--sp-64);background:rgba(255,255,255,.60);backdrop-filter:blur(12px);border:1px dashed rgba(79,107,237,.18);border-radius:var(--radius-lg);padding:var(--sp-48);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-32);flex-wrap:wrap;box-shadow:var(--shadow-sm);transition:border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
-.more-engineers:hover{border-color:rgba(79,107,237,.28);box-shadow:var(--shadow-md)}
+.more-engineers{margin-top:var(--sp-64);background:rgba(255,255,255,.60);backdrop-filter:blur(12px);border:1px dashed rgba(11,100,221,.18);border-radius:var(--radius-lg);padding:var(--sp-48);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-32);flex-wrap:wrap;box-shadow:var(--shadow-sm);transition:border-color var(--t-slow) var(--ease),box-shadow var(--t-slow) var(--ease)}
+.more-engineers:hover{border-color:rgba(11,100,221,.28);box-shadow:var(--shadow-md)}
 .more-engineers-text h3{font-family:var(--serif);font-size:1.35rem;color:var(--navy);margin-bottom:var(--sp-8);letter-spacing:-.02em;line-height:1.2}
 .more-engineers-text p{font-size:var(--text-sm);color:var(--ink-3);line-height:1.8;max-width:500px}
 .more-engineers-badges{display:flex;flex-wrap:wrap;gap:var(--sp-8)}
 .more-engineers-badges span{padding:var(--sp-8) var(--sp-16);border-radius:999px;background:rgba(255,255,255,.85);border:1px solid rgba(8,17,31,.07);font-size:var(--text-xs);font-weight:700;color:var(--ink-2);box-shadow:0 1px 3px rgba(0,0,0,.04);transition:background var(--t-base) var(--ease),border-color var(--t-base) var(--ease),color var(--t-base) var(--ease),transform var(--t-base) var(--ease-out)}
-.more-engineers-badges span:hover{background:rgba(79,107,237,.07);border-color:rgba(79,107,237,.20);color:rgba(79,107,237,1);transform:translateY(-2px)}
+.more-engineers-badges span:hover{background:rgba(11,100,221,.07);border-color:rgba(11,100,221,.20);color:var(--blue);transform:translateY(-2px)}
 
-/* ---------- GEM SECTION — mirrors homepage .gem-section exactly ---------- */
+/* ---------- GEM SECTION ---------- */
 .gem-section{
   position:relative;overflow:hidden;
   margin:var(--sp-80) auto;
   padding:100px 80px;
   border-radius:36px;
   background:
-    radial-gradient(circle at top left,  rgba(79,107,237,.38),transparent 35%),
+    radial-gradient(circle at top left,  rgba(11,100,221,.38),transparent 35%),
     radial-gradient(circle at top right, rgba(131,88,255,.20),transparent 30%),
     radial-gradient(ellipse 60% 50% at 50% 100%,rgba(0,110,107,.14),transparent 55%),
     linear-gradient(135deg,#04142f 0%,#072249 45%,#082c57 100%);
@@ -102,41 +129,54 @@
 .gem-description{color:rgba(255,255,255,.72);font-size:1.1rem;line-height:1.9;max-width:600px;margin:24px auto 56px;text-align:center}
 .gem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-28);position:relative;z-index:1}
 .gem-card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));backdrop-filter:blur(20px);padding:35px;border-radius:28px;border:1px solid rgba(255,255,255,.09);transition:.38s}
-.gem-card:hover{transform:translateY(-6px);border-color:rgba(79,107,237,.50);box-shadow:0 28px 56px rgba(0,0,0,.28)}
-.gem-card-icon{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:22px;background:linear-gradient(135deg,var(--blue),#8e5cff);box-shadow:0 0 38px rgba(79,107,237,.44);font-size:1.4rem}
+.gem-card:hover{transform:translateY(-6px);border-color:rgba(11,100,221,.50);box-shadow:0 28px 56px rgba(0,0,0,.28)}
+.gem-card-icon{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:22px;background:linear-gradient(135deg,var(--blue),#8e5cff);box-shadow:0 0 38px rgba(11,100,221,.44);font-size:1.4rem}
 .gem-card h3{color:white;font-size:1.35rem;margin-bottom:18px;font-family:"Playfair Display",serif}
 .gem-card p{color:rgba(255,255,255,.72);line-height:1.8;font-size:var(--text-base)}
 .gem-card-tag{display:inline-block;font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:.10em;color:#21d4d4;margin-bottom:var(--sp-12)}
 
 /* ---------- WHY NAMED-ENGINEER ---------- */
 .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-24);margin-top:var(--sp-48)}
-.model-card{border-radius:var(--radius-lg);padding:var(--sp-32);border:1px solid rgba(79,107,237,.10);background:rgba(79,107,237,.03);transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out)}
-.model-card:hover{background:rgba(79,107,237,.06);border-color:rgba(79,107,237,.18);transform:translateY(-4px)}
+.model-card{border-radius:var(--radius-lg);padding:var(--sp-32);border:1px solid rgba(11,100,221,.10);background:rgba(11,100,221,.03);transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out)}
+.model-card:hover{background:rgba(11,100,221,.06);border-color:rgba(11,100,221,.18);transform:translateY(-4px)}
 .model-card-icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;margin-bottom:var(--sp-20);font-size:1.1rem}
-.model-card-icon--blue{background:rgba(79,107,237,.12)}
-.model-card-icon--teal{background:rgba(0,200,195,.12)}
-.model-card-icon--gold{background:rgba(230,180,60,.14)}
+.model-card-icon--blue{background:rgba(11,100,221,.12)}
+.model-card-icon--teal{background:rgba(0,139,135,.12)}
+.model-card-icon--gold{background:rgba(198,146,45,.14)}
 .model-card h3{font-family:var(--serif);font-size:1.05rem;color:var(--navy);margin-bottom:var(--sp-12);line-height:1.25}
 .model-card p{font-size:var(--text-sm);color:var(--ink-3);line-height:1.82}
 
 /* ---------- RESPONSIVE ---------- */
+@media(max-width:1024px){
+  .about-metrics{grid-template-columns:repeat(2,1fr)}
+  .about-metric:nth-child(2){border-right:none}
+  .about-metric:nth-child(3){border-top:1px solid rgba(11,100,221,.08)}
+  .about-metric:nth-child(4){border-top:1px solid rgba(11,100,221,.08);border-right:none}
+}
 @media(max-width:980px){
   .founder-inner{max-width:100%}
   .gem-section{padding:60px 28px;margin:var(--sp-48) auto;border-radius:24px}
   .gem-grid{grid-template-columns:1fr}
   .more-engineers{flex-direction:column;align-items:flex-start;padding:var(--sp-32)}
   .model-grid{grid-template-columns:1fr}
+  .origin-section{padding:var(--sp-56) 0}
 }
 @media(max-width:768px){
   .founder-pullquote{font-size:clamp(1.6rem,5vw,2rem)}
   .founder-pullquote::before{display:none}
   .team-grid--leadership{grid-template-columns:1fr}
   .team-grid--leadership .team-card{padding:var(--sp-32);min-height:unset}
+  .about-metrics{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:520px){
   .founder-section{padding:var(--sp-56) 0 var(--sp-64)}
   .founder-human{padding:var(--sp-20) var(--sp-24)}
   .more-engineers{padding:var(--sp-24)}
+  .about-metrics{grid-template-columns:1fr}
+  .about-metric{border-right:none!important;border-top:1px solid rgba(11,100,221,.08)}
+  .about-metric:first-child{border-top:none}
+  .origin-timeline::before{display:none}
+  .origin-step{gap:var(--sp-20)}
 }
 </style>
 </head>
@@ -163,6 +203,70 @@
         <span class="hero-chip"><span class="hero-chip-dot"></span>Senior engineers only</span>
         <span class="hero-chip"><span class="hero-chip-dot"></span>No account manager layer</span>
         <span class="hero-chip"><span class="hero-chip-dot"></span>Fixed scope engagements</span>
+      </div>
+      <!-- Metrics trust-bar -->
+      <div class="about-metrics reveal reveal-delay-4">
+        <div class="about-metric">
+          <div class="about-metric-value">100<span>%</span></div>
+          <div class="about-metric-label">Senior engineers</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-value">4</div>
+          <div class="about-metric-label">Practice areas</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-value">0</div>
+          <div class="about-metric-label">Junior relay layers</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-value">1<span>day</span></div>
+          <div class="about-metric-label">Response commitment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ===================== ORIGIN STORY ===================== -->
+  <section class="origin-section">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="section-label">How we got here</span>
+        <h2>The story behind the model.</h2>
+        <p>DinaBridge was not built in a boardroom. It was built from a pattern of frustration that repeated itself across enterprise engagements — until we decided to fix it.</p>
+      </div>
+      <div class="origin-inner">
+        <div class="origin-timeline">
+          <div class="origin-step reveal reveal-delay-1">
+            <div class="origin-node"><span class="origin-node-year">&#x2022;</span></div>
+            <div class="origin-content">
+              <h3>The problem becomes obvious</h3>
+              <p>Across every engagement, the same pattern: clients dealing with account managers and junior staff while senior engineers stayed invisible in the back room. The person who understood the technology was never in the room when decisions were made.</p>
+            </div>
+          </div>
+          <div class="origin-step reveal reveal-delay-2">
+            <div class="origin-node"><span class="origin-node-year">&#x2022;</span></div>
+            <div class="origin-content">
+              <h3>The named-engineer hypothesis</h3>
+              <p>What if the engineer who scopes the work is the engineer who does the work — and the same engineer who hands it off? No translation layer. No drift between intent and execution. Accountability with a name attached to it.</p>
+            </div>
+          </div>
+          <div class="origin-step reveal reveal-delay-3">
+            <div class="origin-node"><span class="origin-node-year">&#x2022;</span></div>
+            <div class="origin-content">
+              <h3>DinaBridge is founded</h3>
+              <p>We built the firm around one constraint: no junior layer. Every engagement receives senior attention because there is no one to push work down to. Small by design. Deliberate by conviction.</p>
+            </div>
+          </div>
+          <div class="origin-step reveal reveal-delay-4">
+            <div class="origin-node"><span class="origin-node-year">&#x2022;</span></div>
+            <div class="origin-content">
+              <h3>The roster takes shape</h3>
+              <p>We built a network of named engineers — each cleared on two bars: technical depth in Elasticsearch and the ability to lead a room. Four practice areas, one bar of quality across all of them.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -285,13 +389,25 @@
           <a href="https://www.linkedin.com/in/ahmedaziz1/" class="team-linkedin" target="_blank" rel="noopener">LinkedIn &rarr;</a>
         </div>
       </div>
-      <
+      <div class="more-engineers reveal">
+        <div class="more-engineers-text">
+          <h3>More engineers. More practices.</h3>
+          <p>Our roster extends across every Elasticsearch practice area. If your engagement requires additional depth or cross-practice coverage, we have the engineers to staff it without compromise.</p>
+        </div>
+        <div class="more-engineers-badges">
+          <span>Search</span>
+          <span>Observability</span>
+          <span>Security / SIEM</span>
+          <span>AI &amp; Vector</span>
+          <span>Cluster Ops</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <hr class="section-divider" />
 
   <!-- ===================== WHAT MAKES A GEM ===================== -->
-  <!-- Uses the exact .gem-section pattern from index.html -->
   <div class="container">
     <section class="gem-section reveal">
       <div class="gem-label">WHAT MAKES A GEM</div>
