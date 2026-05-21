@@ -554,29 +554,115 @@ img { display: block; max-width: 100%; }
 }
 
 /* ══════════════════════════════════════════════════════════════
-   8. CTA BOX
+   8. CTA BOX — v2 (atmospheric depth, shared visual language)
    ══════════════════════════════════════════════════════════════ */
 .cta-box {
-  background: rgba(255,255,255,.80);
-  border: 1px solid rgba(10,25,47,.11);
+  position: relative;
+  overflow: hidden;
   border-radius: var(--radius-xl);
   padding: var(--sp-48) var(--sp-56);
-  position: relative; overflow: hidden;
-  box-shadow: var(--card-shadow-rest);
+  /* Layered atmosphere: cool blue top-left, warm pink bottom-right, off-white blend */
+  background:
+    radial-gradient(ellipse 70% 65% at 0% 0%,   rgba(26,115,232,.07),   transparent 55%),
+    radial-gradient(ellipse 60% 55% at 100% 100%, rgba(226,68,146,.06),  transparent 52%),
+    radial-gradient(ellipse 90% 80% at 50% 50%,  rgba(155,81,224,.025), transparent 70%),
+    rgba(252,253,254,.96);
+  border: 1px solid rgba(26,115,232,.10);
+  /* Deeper ambient shadow */
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.03),
+    0 8px 24px rgba(10,25,47,.06),
+    0 20px 60px rgba(0,0,0,.08),
+    0 0 0 1px rgba(255,255,255,.60) inset;
 }
+
+/* Faint concentric rings — upper-right decorative layer */
 .cta-box::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: var(--pg-radial-corner); opacity: 1;
-  transition: var(--pg-transition);
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, transparent 38%, rgba(26,115,232,.03) 39%, transparent 41%),
+    radial-gradient(circle, transparent 50%, rgba(26,115,232,.025) 51%, transparent 53%),
+    radial-gradient(circle, transparent 62%, rgba(155,81,224,.02) 63%, transparent 65%),
+    radial-gradient(circle, transparent 74%, rgba(155,81,224,.015) 75%, transparent 77%),
+    radial-gradient(circle, transparent 86%, rgba(226,68,146,.01) 87%, transparent 89%);
+  opacity: 1;
+  z-index: 0;
 }
-.cta-box:hover::before { background: var(--pg-radial-corner-hover); }
-.cta-box .section-label { margin-bottom: var(--sp-12); }
+
+/* Warm pink ambient glow — bottom-right, transitions on hover */
+.cta-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 50% at 100% 100%, rgba(226,68,146,.07), transparent 58%);
+  opacity: 1;
+  transition: opacity var(--t-slow) var(--ease);
+  z-index: 0;
+}
+.cta-box:hover::after {
+  opacity: 1;
+  background: radial-gradient(ellipse 60% 55% at 100% 100%, rgba(226,68,146,.11), transparent 58%);
+}
+
+/* Ensure all content sits above decorative layers */
+.cta-box > * { position: relative; z-index: 1; }
+
+/* Typography tuning */
+.cta-box .section-label {
+  margin-bottom: var(--sp-16);
+  letter-spacing: .12em;
+}
 .cta-box h2 {
-  font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.7rem);
-  letter-spacing: -.035em; color: var(--navy); margin-bottom: var(--sp-12);
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  color: var(--navy);
+  margin-bottom: var(--sp-12);
 }
-.cta-box p { font-size: var(--text-lg); color: var(--ink-2); margin-bottom: var(--sp-32); line-height: 1.75; }
+.cta-box p {
+  font-size: var(--text-lg);
+  color: var(--ink-2);
+  margin-bottom: var(--sp-32);
+  line-height: 1.75;
+}
 .cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-12); }
+
+/* CTA context — stronger primary glow */
+.cta-box .btn-primary {
+  box-shadow:
+    0 2px 14px rgba(26,115,232,.32),
+    0 6px 28px rgba(155,81,224,.18);
+}
+.cta-box .btn-primary:hover {
+  filter: brightness(1.10);
+  box-shadow:
+    0 4px 32px rgba(26,115,232,.46),
+    0 10px 44px rgba(155,81,224,.28);
+  transform: translateY(-2px);
+}
+
+/* CTA context — softer secondary */
+.cta-box .btn-secondary {
+  background: rgba(255,255,255,.72);
+  border-color: rgba(26,115,232,.14);
+  box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 4px 14px rgba(26,115,232,.06);
+}
+.cta-box .btn-secondary:hover {
+  background: rgba(255,255,255,.96);
+  border-color: rgba(26,115,232,.26);
+  color: var(--blue);
+  box-shadow: 0 2px 8px rgba(0,0,0,.05), 0 8px 24px rgba(26,115,232,.12);
+  transform: translateY(-2px);
+}
 
 /* ══════════════════════════════════════════════════════════════
    9. FOOTER
@@ -990,4 +1076,4 @@ footer::before {
 /* ══════════════════════════════════════════════════════════════
    23. DESIGN SYSTEM VERSION TAG
    ══════════════════════════════════════════════════════════════ */
-/* v3.0.0 — Gemini Luxury Light — May 2026 */
+/* v3.1.0 — CTA Box atmospheric depth — May 2026 */
