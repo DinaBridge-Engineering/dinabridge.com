@@ -42,34 +42,6 @@
 }
 .section-hero > .container { position: relative; z-index: 1; }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 28px;
-  padding: 6px 14px 6px 8px;
-  background: rgba(0,110,107,.07);
-  border: 1px solid rgba(0,110,107,.18);
-  border-radius: 100px;
-}
-.hero-eyebrow-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 8px rgba(0,110,107,.55);
-  flex-shrink: 0;
-  animation: pulse-dot 2.4s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.55; transform: scale(0.85); }
-}
-
 .hero-headline {
   font-family: "Playfair Display", serif;
   font-size: clamp(2.8rem, 5.5vw, 5rem);
@@ -431,20 +403,16 @@
   <!-- 1. HERO -->
   <section class="section-hero">
     <div class="container">
-      <div class="hero-eyebrow reveal">
-        <span class="hero-eyebrow-dot" aria-hidden="true"></span>
-        Senior Elasticsearch Engineers
-      </div>
-      <h1 class="hero-headline reveal reveal-delay-1">
+      <h1 class="hero-headline reveal">
         We make Elasticsearch<br>
         <em>work</em> &mdash; end to end.
       </h1>
-      <p class="hero-lead reveal reveal-delay-2">Senior engineers only. Real production environments. No layers between you and the person doing the work.</p>
-      <div class="hero-actions reveal reveal-delay-3">
+      <p class="hero-lead reveal reveal-delay-1">Senior engineers only. Real production environments. No layers between you and the person doing the work.</p>
+      <div class="hero-actions reveal reveal-delay-2">
         <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
         <a href="/elastic-consulting.html" class="btn btn-secondary">How we engage</a>
       </div>
-      <div class="hero-trust-row reveal reveal-delay-4">
+      <div class="hero-trust-row reveal reveal-delay-3">
         <div class="hero-trust-item">
           <span class="hero-trust-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span>
           Senior engineers only
