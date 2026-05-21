@@ -17,10 +17,6 @@
 <style>
 /* =========================================================
    ABOUT PAGE — v3.0.0
-   AI UI/UX redesign — May 2026
-   Design tokens: var(--blue)=#0b64dd, var(--teal), var(--gold)
-   Section pattern: section-tinted (never section-alt)
-   Spacing: var(--sp-*) only
    ========================================================= */
 
 /* ---------- HERO PROOF CHIPS ---------- */
@@ -135,17 +131,6 @@
 .gem-card p{color:rgba(255,255,255,.72);line-height:1.8;font-size:var(--text-base)}
 .gem-card-tag{display:inline-block;font-size:var(--text-xs);font-weight:800;text-transform:uppercase;letter-spacing:.10em;color:#21d4d4;margin-bottom:var(--sp-12)}
 
-/* ---------- WHY NAMED-ENGINEER ---------- */
-.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-24);margin-top:var(--sp-48)}
-.model-card{border-radius:var(--radius-lg);padding:var(--sp-32);border:1px solid rgba(11,100,221,.10);background:rgba(11,100,221,.03);transition:background var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out)}
-.model-card:hover{background:rgba(11,100,221,.06);border-color:rgba(11,100,221,.18);transform:translateY(-4px)}
-.model-card-icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;margin-bottom:var(--sp-20);font-size:1.1rem}
-.model-card-icon--blue{background:rgba(11,100,221,.12)}
-.model-card-icon--teal{background:rgba(0,139,135,.12)}
-.model-card-icon--gold{background:rgba(198,146,45,.14)}
-.model-card h3{font-family:var(--serif);font-size:1.05rem;color:var(--navy);margin-bottom:var(--sp-12);line-height:1.25}
-.model-card p{font-size:var(--text-sm);color:var(--ink-3);line-height:1.82}
-
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:1024px){
   .about-metrics{grid-template-columns:repeat(2,1fr)}
@@ -158,7 +143,6 @@
   .gem-section{padding:60px 28px;margin:var(--sp-48) auto;border-radius:24px}
   .gem-grid{grid-template-columns:1fr}
   .more-engineers{flex-direction:column;align-items:flex-start;padding:var(--sp-32)}
-  .model-grid{grid-template-columns:1fr}
   .origin-section{padding:var(--sp-56) 0}
 }
 @media(max-width:768px){
@@ -283,36 +267,6 @@
         <p class="founder-body reveal reveal-delay-2">We specialize in Elasticsearch because depth matters. Observability pipelines, relevance tuning, SIEM detection engineering, AI search &mdash; each of these requires years of production experience, not certifications and surface knowledge. We built a firm around that belief.</p>
         <div class="founder-human reveal reveal-delay-3">
           We are a small firm by design. Every engagement gets senior attention because there is no junior layer to absorb the work. That is the constraint that keeps us honest.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ===================== WHY THE MODEL WORKS ===================== -->
-  <section class="section-tinted">
-    <div class="container">
-      <div class="section-intro reveal">
-        <span class="section-label">The named-engineer model</span>
-        <h2>Why we built it this way.</h2>
-        <p>The consulting industry defaults to a relay model. We don&rsquo;t. Here is what changes when the same senior engineer scopes, builds, and ships your engagement.</p>
-      </div>
-      <div class="model-grid">
-        <div class="model-card reveal reveal-delay-1">
-          <div class="model-card-icon model-card-icon--blue">&#9679;</div>
-          <h3>No translation layer</h3>
-          <p>Your requirements go directly to the person writing the mapping. No PM relaying notes, no spec documents drifting from reality. The engineer heard it, owns it, delivers it.</p>
-        </div>
-        <div class="model-card reveal reveal-delay-2">
-          <div class="model-card-icon model-card-icon--teal">&#9679;</div>
-          <h3>Accountability is visible</h3>
-          <p>You know exactly who is responsible. When something needs a decision or a fix, there is a named engineer who answers for it &mdash; not a rotation or an alias.</p>
-        </div>
-        <div class="model-card reveal reveal-delay-3">
-          <div class="model-card-icon model-card-icon--gold">&#9679;</div>
-          <h3>Senior attention, every time</h3>
-          <p>Our firm has no junior layer. There is no one to push work down to. Every engagement gets the senior capacity that was scoped &mdash; because that is all we have.</p>
         </div>
       </div>
     </div>
