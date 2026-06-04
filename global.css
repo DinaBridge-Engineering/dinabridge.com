@@ -1077,3 +1077,182 @@ footer::before {
    23. DESIGN SYSTEM VERSION TAG
    ══════════════════════════════════════════════════════════════ */
 /* v3.1.0 — CTA Box atmospheric depth — May 2026 */
+
+/* ══════════════════════════════════════════════════════════════
+   24. REUSABLE UTILITY CLASSES — v3.2.0
+   ══════════════════════════════════════════════════════════════
+   These classes are drop-in building blocks fully aligned
+   to the DinaBridge Gemini Luxury Light design system.
+   Usage: compose freely with existing .section, .grid-*, .btn
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── .page-container ──────────────────────────────────────────
+   Full-width page wrapper. Centers content, enforces max-width,
+   and applies horizontal padding. Drop this on <main> or any
+   top-level wrapper that needs to be content-constrained.
+   ─────────────────────────────────────────────────────────── */
+.page-container {
+  width: 100%;
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--sp-32);
+  padding-right: var(--sp-32);
+}
+@media (max-width: 768px) {
+  .page-container {
+    padding-left: var(--sp-20);
+    padding-right: var(--sp-20);
+  }
+}
+
+/* ── .section-container ──────────────────────────────────────
+   Combines vertical section rhythm with the page-container
+   centering. Use as a direct replacement for .section +
+   .container when both are always needed together.
+   ─────────────────────────────────────────────────────────── */
+.section-container {
+  width: 100%;
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--sp-56) var(--sp-32);
+}
+@media (max-width: 768px) {
+  .section-container {
+    padding: var(--sp-40) var(--sp-20);
+  }
+}
+
+/* ── .content-grid ───────────────────────────────────────────
+   Responsive auto-fill grid for content cards. Collapses
+   gracefully from multi-column to single-column on mobile.
+   Default: 3-up at desktop, 2-up at tablet, 1-up at mobile.
+   Pair with .gem-card children.
+   ─────────────────────────────────────────────────────────── */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--sp-24);
+}
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-16);
+  }
+}
+
+/* ── .gem-card ───────────────────────────────────────────────
+   Premium surface card. Glass-light background, refined
+   border, atmospheric box-shadow. The standard card unit
+   for the Gemini Luxury Light system.
+   ─────────────────────────────────────────────────────────── */
+.gem-card {
+  background: rgba(255,255,255,.80);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-32);
+  box-shadow: var(--card-shadow-rest);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── .gem-card-hover ─────────────────────────────────────────
+   Applies the signature DinaBridge lift-and-glow hover state
+   to any .gem-card. Add alongside .gem-card — never alone.
+   Inherits the Gemini Flare border and elevated shadow on hover.
+   ─────────────────────────────────────────────────────────── */
+.gem-card-hover {
+  transition:
+    transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-slow) var(--ease),
+    border-color var(--t-slow) var(--ease),
+    background var(--t-slow) var(--ease);
+  will-change: transform;
+}
+.gem-card-hover:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,.96);
+  border-color: rgba(26,115,232,.22);
+  box-shadow:
+    var(--card-shadow-hover),
+    0 0 0 1px rgba(26,115,232,.08);
+}
+
+/* ── .gem-heading ────────────────────────────────────────────
+   Serif display heading — maps to h2-level visual weight.
+   Gemini gradient fill. Use for section titles, card headers,
+   or any headline that needs premium presence.
+   ─────────────────────────────────────────────────────────── */
+.gem-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.55rem, 2.8vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, var(--indigo) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── .gem-subheading ─────────────────────────────────────────
+   Sans-serif supporting heading — maps to h3-level weight.
+   Navy with tighter letter-spacing. Use directly below
+   .gem-heading or as a standalone card/section sub-title.
+   ─────────────────────────────────────────────────────────── */
+.gem-subheading {
+  font-family: var(--sans);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -.015em;
+  color: var(--navy);
+}
+
+/* ── .gem-button ─────────────────────────────────────────────
+   Full Gemini Flare CTA button. Identical visual language
+   to .btn.btn-primary but self-contained — no need to
+   combine two classes. Use wherever a single class is cleaner.
+   ─────────────────────────────────────────────────────────── */
+.gem-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-12) var(--sp-24);
+  border-radius: var(--radius-full);
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--gemini-flare);
+  border: 1px solid transparent;
+  box-shadow:
+    0 2px 12px rgba(26,115,232,.28),
+    0 4px 22px rgba(155,81,224,.14);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    filter var(--t-base) var(--ease),
+    box-shadow var(--t-slow) var(--ease),
+    transform var(--t-base) var(--ease-out);
+  will-change: transform;
+}
+.gem-button:hover {
+  filter: brightness(1.10);
+  box-shadow:
+    0 4px 28px rgba(26,115,232,.40),
+    0 8px 38px rgba(155,81,224,.22);
+  transform: translateY(-2px);
+}
+.gem-button:active {
+  filter: brightness(0.97);
+  transform: translateY(0);
+}
+
+/* v3.2.0 — Reusable utility classes — June 2026 */
