@@ -67,6 +67,10 @@
   --serif: 'Playfair Display', Georgia, serif;
   --sans:  'Figtree', system-ui, sans-serif;
 
+  /* — Typography aliases (canonical, used in utility classes) — */
+  --font-heading: "Playfair Display", serif;
+  --font-body:    "Figtree", sans-serif;
+
   /* — Type scale — */
   --text-xs:   0.75rem;
   --text-sm:   0.9375rem;
@@ -158,7 +162,7 @@ body {
     radial-gradient(ellipse 50%  35% at 50%  50%,  rgba(26,115,232,.018), transparent 65%),
     var(--paper);
   color: var(--ink);
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
@@ -218,12 +222,12 @@ img { display: block; max-width: 100%; }
 }
 .brand {
   display: flex; align-items: center; gap: var(--sp-12);
-  font-weight: 800; letter-spacing: -.02em; font-family: var(--sans);
+  font-weight: 800; letter-spacing: -.02em; font-family: var(--font-body);
 }
 .brand-mark {
   width: 38px; height: 38px; border-radius: 50%;
   display: grid; place-items: center;
-  font-family: var(--serif); font-size: 17px; color: #fff;
+  font-family: var(--font-heading); font-size: 17px; color: #fff;
   background: var(--gemini-flare);
   box-shadow: 0 2px 8px rgba(26,115,232,.30), 0 4px 18px rgba(155,81,224,.18);
   flex-shrink: 0;
@@ -443,7 +447,7 @@ img { display: block; max-width: 100%; }
    ══════════════════════════════════════════════════════════════ */
 .section-hero { padding: var(--sp-64) 0 var(--sp-56); }
 .section-hero h1 {
-  font-family: var(--serif); font-size: var(--h1-size); line-height: 1.03;
+  font-family: var(--font-heading); font-size: var(--h1-size); line-height: 1.03;
   letter-spacing: -.04em; margin-bottom: var(--sp-24); color: var(--navy);
   width: 100%;
 }
@@ -458,7 +462,7 @@ img { display: block; max-width: 100%; }
 }
 .section-intro { margin-bottom: var(--sp-32); width: 100%; }
 .section-intro h2 {
-  font-family: var(--serif); font-size: var(--h2-size); line-height: 1.05;
+  font-family: var(--font-heading); font-size: var(--h2-size); line-height: 1.05;
   letter-spacing: -.03em; margin-bottom: var(--sp-12); color: var(--navy); width: 100%;
 }
 .section-intro p { font-size: var(--text-lg); color: var(--ink-2); line-height: 1.75; width: 100%; }
@@ -525,7 +529,7 @@ img { display: block; max-width: 100%; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: var(--sp-12) var(--sp-24); border-radius: 999px;
-  font-family: var(--sans); font-size: var(--text-sm); font-weight: 700;
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
   border: 1px solid transparent; cursor: pointer; white-space: nowrap;
   transition: box-shadow var(--t-slow) var(--ease),
     transform var(--t-base) var(--ease-out), filter var(--t-base) var(--ease),
@@ -561,14 +565,12 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   border-radius: var(--radius-xl);
   padding: var(--sp-48) var(--sp-56);
-  /* Layered atmosphere: cool blue top-left, warm pink bottom-right, off-white blend */
   background:
     radial-gradient(ellipse 70% 65% at 0% 0%,   rgba(26,115,232,.07),   transparent 55%),
     radial-gradient(ellipse 60% 55% at 100% 100%, rgba(226,68,146,.06),  transparent 52%),
     radial-gradient(ellipse 90% 80% at 50% 50%,  rgba(155,81,224,.025), transparent 70%),
     rgba(252,253,254,.96);
   border: 1px solid rgba(26,115,232,.10);
-  /* Deeper ambient shadow */
   box-shadow:
     0 2px 4px rgba(0,0,0,.03),
     0 8px 24px rgba(10,25,47,.06),
@@ -576,7 +578,6 @@ img { display: block; max-width: 100%; }
     0 0 0 1px rgba(255,255,255,.60) inset;
 }
 
-/* Faint concentric rings — upper-right decorative layer */
 .cta-box::before {
   content: "";
   position: absolute;
@@ -596,7 +597,6 @@ img { display: block; max-width: 100%; }
   z-index: 0;
 }
 
-/* Warm pink ambient glow — bottom-right, transitions on hover */
 .cta-box::after {
   content: "";
   position: absolute;
@@ -612,16 +612,14 @@ img { display: block; max-width: 100%; }
   background: radial-gradient(ellipse 60% 55% at 100% 100%, rgba(226,68,146,.11), transparent 58%);
 }
 
-/* Ensure all content sits above decorative layers */
 .cta-box > * { position: relative; z-index: 1; }
 
-/* Typography tuning */
 .cta-box .section-label {
   margin-bottom: var(--sp-16);
   letter-spacing: .12em;
 }
 .cta-box h2 {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3vw, 2.7rem);
   line-height: 1.08;
   letter-spacing: -.035em;
@@ -636,7 +634,6 @@ img { display: block; max-width: 100%; }
 }
 .cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-12); }
 
-/* CTA context — stronger primary glow */
 .cta-box .btn-primary {
   box-shadow:
     0 2px 14px rgba(26,115,232,.32),
@@ -650,7 +647,6 @@ img { display: block; max-width: 100%; }
   transform: translateY(-2px);
 }
 
-/* CTA context — softer secondary */
 .cta-box .btn-secondary {
   background: rgba(255,255,255,.72);
   border-color: rgba(26,115,232,.14);
@@ -686,7 +682,7 @@ footer::before {
   display: flex; flex-direction: column; align-items: center; gap: var(--sp-12);
 }
 .footer-brand-block .brand {
-  font-size: 1.1rem; font-family: var(--serif); font-weight: 800;
+  font-size: 1.1rem; font-family: var(--font-heading); font-weight: 800;
   letter-spacing: -.025em; color: var(--navy);
 }
 .footer-brand-block .brand-mark {
@@ -712,7 +708,7 @@ footer::before {
 }
 .footer-legal { font-size: var(--text-xs); color: var(--ink-3); }
 .footer-gem {
-  font-family: var(--serif); font-style: italic; font-size: 1.05rem; font-weight: 700;
+  font-family: var(--font-heading); font-style: italic; font-size: 1.05rem; font-weight: 700;
   letter-spacing: -.01em; color: var(--navy); opacity: .68;
   position: relative; display: inline-block; padding: var(--sp-4) var(--sp-16);
   transition: opacity var(--t-slow) var(--ease);
@@ -740,7 +736,7 @@ footer::before {
   padding: var(--sp-12) var(--sp-16);
   border: 1px solid var(--rule-strong); border-radius: var(--radius);
   background: rgba(255,255,255,.92);
-  font-family: var(--sans); font-size: var(--text-base); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--text-base); color: var(--ink);
   transition: border-color var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), background var(--t-base) var(--ease);
   outline: none; width: 100%;
 }
@@ -819,7 +815,7 @@ footer::before {
 .card-featured:hover { border-color: rgba(226,68,146,.16); }
 .card-featured:hover::after { background: var(--pg-radial-hover); }
 .card-featured h3 {
-  font-family: var(--serif); font-size: 1.45rem;
+  font-family: var(--font-heading); font-size: 1.45rem;
   letter-spacing: -.025em; color: var(--navy); margin-bottom: var(--sp-12);
 }
 .card-featured p { color: var(--ink-2); font-size: var(--text-base); line-height: 1.75; margin-bottom: var(--sp-16); }
@@ -843,7 +839,7 @@ footer::before {
 }
 .trust-stat { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-4); flex: 1; min-width: 120px; }
 .trust-num {
-  font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-family: var(--font-heading); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
   font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1;
 }
 .trust-label { font-size: var(--text-sm); font-weight: 500; color: var(--ink-2); line-height: 1.5; }
@@ -963,13 +959,13 @@ footer::before {
 .team-avatar {
   width: 48px; height: 48px; border-radius: 50%;
   display: grid; place-items: center;
-  font-family: var(--serif); font-size: 1.25rem; font-weight: 800; color: #fff;
+  font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff;
   background: var(--gemini-flare);
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(26,115,232,.24), 0 4px 18px rgba(155,81,224,.13);
 }
 .team-name {
-  font-family: var(--serif); font-size: 1rem; font-weight: 700;
+  font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
   color: var(--navy); letter-spacing: -.01em; line-height: 1.2; margin-bottom: var(--sp-4);
 }
 .team-role { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); }
@@ -1188,7 +1184,7 @@ footer::before {
    or any headline that needs premium presence.
    ─────────────────────────────────────────────────────────── */
 .gem-heading {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.55rem, 2.8vw, 2.4rem);
   font-weight: 800;
   line-height: 1.08;
@@ -1206,7 +1202,7 @@ footer::before {
    .gem-heading or as a standalone card/section sub-title.
    ─────────────────────────────────────────────────────────── */
 .gem-subheading {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: var(--text-lg);
   font-weight: 700;
   line-height: 1.35;
@@ -1225,7 +1221,7 @@ footer::before {
   justify-content: center;
   padding: var(--sp-12) var(--sp-24);
   border-radius: var(--radius-full);
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 700;
   color: #ffffff;
@@ -1255,4 +1251,4 @@ footer::before {
   transform: translateY(0);
 }
 
-/* v3.2.0 — Reusable utility classes — June 2026 */
+/* v3.2.1 — --font-heading / --font-body aliases + global propagation — June 2026 */
