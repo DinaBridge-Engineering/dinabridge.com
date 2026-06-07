@@ -16,40 +16,7 @@
 </head>
 <body>
 
-<nav class="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="/" class="brand">
-        <div class="brand-mark">D</div>
-        <span>DinaBridge</span>
-      </a>
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/elastic-consulting.html" class="active">Elastic Consulting</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/blog.html">Blog</a>
-      </div>
-      <a href="/contact.html" class="nav-cta">Start a Conversation</a>
-      <button class="nav-burger" aria-label="Open menu" aria-expanded="false" id="navBurger">
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
-      </button>
-    </div>
-  </div>
-</nav>
-<div class="nav-drawer" id="navDrawer">
-  <div class="drawer-links">
-    <a href="/">Home</a>
-    <a href="/elastic-consulting.html" class="active">Elastic Consulting</a>
-    <a href="/about.html">About</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/contact.html" class="nav-cta btn btn-primary" style="margin-top:var(--sp-12);width:100%;justify-content:center;">Start a Conversation</a>
-  </div>
-</div>
-<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav"></nav>
 
 <main>
 
@@ -141,46 +108,7 @@
 
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand-block">
-        <a href="/" class="brand">
-          <div class="brand-mark">D</div>
-          <span>DinaBridge</span>
-        </a>
-      </div>
-      <p class="footer-tagline">Senior Elasticsearch engineering for observability, search, security, and advanced search.</p>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="/">Home</a>
-        <a href="/elastic-consulting.html">Elastic Consulting</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/blog.html">Blog</a>
-      </nav>
-      <div class="footer-divider"></div>
-      <p class="footer-legal">&copy; 2026 DinaBridge LLC &mdash; All rights reserved</p>
-      <span class="footer-gem">Senior Elasticsearch Engineering</span>
-    </div>
-  </div>
-</footer>
+<footer></footer>
 
-<script>
-(function(){
-  var burger=document.getElementById('navBurger');
-  var drawer=document.getElementById('navDrawer');
-  var overlay=document.getElementById('navOverlay');
-  function toggle(open){
-    burger.classList.toggle('is-open',open);
-    drawer.classList.toggle('is-open',open);
-    overlay.classList.toggle('is-visible',open);
-    burger.setAttribute('aria-expanded',open);
-  }
-  burger.addEventListener('click',function(){toggle(!burger.classList.contains('is-open'));});
-  overlay.addEventListener('click',function(){toggle(false);});
-  document.addEventListener('keydown',function(e){if((e.key==='Escape'||e.key==='Esc')&&burger.classList.contains('is-open'))toggle(false);});
-  window.addEventListener('resize',function(){if(window.innerWidth>980&&burger.classList.contains('is-open'))toggle(false);});
-})();
-</script>
 </body>
 </html>

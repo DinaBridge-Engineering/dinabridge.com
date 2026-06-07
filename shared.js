@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v1.4.0
+/* DinaBridge Shared Components — v1.4.1
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -13,13 +13,13 @@
 (function () {
   'use strict';
 
-  /* ── JSON-LD ─────────────────────────────────────────── */
+  /* ── JSON-LD ─────────────────────────────────────────────── */
   var schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "DinaBridge",
     "url": "https://dinabridge.com",
-    "description": "Senior Elasticsearch engineering consultancy for observability, search, security, and AI. Production-focused, senior engineers only.",
+    "description": "Senior Elasticsearch engineering consultancy for observability, search, and security. Production-focused, senior engineers only.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Colorado",
@@ -31,11 +31,11 @@
     "serviceType": [
       "Elasticsearch Consulting","Managed Services","Migration Projects",
       "Kibana Dashboard Customization","Observability Implementation",
-      "Security SIEM","AI Search"
+      "Security SIEM","Advanced Search"
     ],
     "knowsAbout": [
       "Elasticsearch","Kibana","Logstash","Elastic Stack",
-      "Observability","APM","SIEM","Vector Search","ELSER"
+      "Observability","APM","SIEM","Vector Search"
     ]
   };
   var schemaTag = document.createElement('script');
@@ -43,7 +43,7 @@
   schemaTag.text = JSON.stringify(schema, null, 2);
   document.head.appendChild(schemaTag);
 
-  /* ── Nav link definitions ────────────────────────────── */
+  /* ── Nav link definitions ────────────────────────────────── */
   var NAV_LINKS = [
     { href: '/',                        label: 'Home' },
     { href: '/elastic-consulting.html', label: 'Elastic Consulting' },
@@ -60,14 +60,14 @@
     return path === href || path.indexOf(href) === 0;
   }
 
-  function buildLinks(forDrawer) {
+  function buildLinks() {
     return NAV_LINKS.map(function (l) {
       var cls = isActive(l.href) ? ' class="active"' : '';
       return '<a href="' + l.href + '"' + cls + '>' + l.label + '</a>';
     }).join('\n        ');
   }
 
-  /* ── DOM injection ───────────────────────────────────── */
+  /* ── DOM injection ───────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
 
     /* NAV */
@@ -92,11 +92,11 @@
         '  </div>\n' +
         '</div>';
 
-      /* DRAWER — insert immediately after nav */
+      /* DRAWER */
       var drawerHTML =
         '<div class="nav-drawer" id="navDrawer">\n' +
         '  <div class="drawer-links">\n        ' +
-        buildLinks(true) +
+        buildLinks() +
         '\n    <a href="/contact.html" class="nav-cta btn btn-primary" style="margin-top:var(--sp-12);width:100%;justify-content:center;">Start a Conversation</a>\n' +
         '  </div>\n' +
         '</div>\n' +
@@ -117,6 +117,12 @@
       }
       burger.addEventListener('click',  function () { toggle(!burger.classList.contains('is-open')); });
       overlay.addEventListener('click', function () { toggle(false); });
+      document.addEventListener('keydown', function (e) {
+        if ((e.key === 'Escape' || e.key === 'Esc') && burger.classList.contains('is-open')) toggle(false);
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 980 && burger.classList.contains('is-open')) toggle(false);
+      });
     }
 
     /* FOOTER */
