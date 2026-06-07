@@ -1,13 +1,19 @@
-/* DinaBridge Shared Components — v1.3.3
+/* DinaBridge Shared Components — v1.4.0
    Single source of truth for:
-   - Global nav (header)
+   - Global nav (header + drawer + overlay + burger)
    - Global footer
    - JSON-LD schema (ProfessionalService)
+   - Scroll-reveal
+
+   Nav is injected into <nav class="nav"> on every page.
+   Active link is auto-detected from window.location.pathname.
+   No nav HTML should exist in individual HTML files.
 */
 
 (function () {
   'use strict';
 
+  /* ── JSON-LD ─────────────────────────────────────────── */
   var schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -23,25 +29,21 @@
     "areaServed": { "@type": "Country", "name": "United States" },
     "priceRange": "$$",
     "serviceType": [
-      "Elasticsearch Consulting",
-      "Managed Services",
-      "Migration Projects",
-      "Kibana Dashboard Customization",
-      "Observability Implementation",
-      "Security SIEM",
-      "AI Search"
+      "Elasticsearch Consulting","Managed Services","Migration Projects",
+      "Kibana Dashboard Customization","Observability Implementation",
+      "Security SIEM","AI Search"
     ],
     "knowsAbout": [
       "Elasticsearch","Kibana","Logstash","Elastic Stack",
       "Observability","APM","SIEM","Vector Search","ELSER"
     ]
   };
-
   var schemaTag = document.createElement('script');
   schemaTag.type = 'application/ld+json';
   schemaTag.text = JSON.stringify(schema, null, 2);
   document.head.appendChild(schemaTag);
 
+  /* ── Nav link definitions ────────────────────────────── */
   var NAV_LINKS = [
     { href: '/',                        label: 'Home' },
     { href: '/elastic-consulting.html', label: 'Elastic Consulting' },
@@ -58,48 +60,104 @@
     return path === href || path.indexOf(href) === 0;
   }
 
-  function buildNavLinks() {
+  function buildLinks(forDrawer) {
     return NAV_LINKS.map(function (l) {
       var cls = isActive(l.href) ? ' class="active"' : '';
       return '<a href="' + l.href + '"' + cls + '>' + l.label + '</a>';
-    }).join('\n      ');
+    }).join('\n        ');
   }
 
-  function buildFooterLinks() {
-    return NAV_LINKS.map(function (l) {
-      return '<a href="' + l.href + '">' + l.label + '</a>';
-    }).join('\n      ');
-  }
-
+  /* ── DOM injection ───────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
 
+    /* NAV */
     var navEl = document.querySelector('nav.nav');
     if (navEl) {
       navEl.innerHTML =
-        '<div class="container nav-inner">\n' +
-        '  <a class="brand" href="/"><span class="brand-mark">D</span><span>DinaBridge</span></a>\n' +
-        '  <nav class="nav-links">\n      ' +
-        buildNavLinks() +
-        '\n  </nav>\n' +
-        '  <a class="nav-cta" href="/contact.html">Get help with your stack</a>\n' +
+        '<div class="container">\n' +
+        '  <div class="nav-inner">\n' +
+        '    <a href="/" class="brand">\n' +
+        '      <div class="brand-mark">D</div>\n' +
+        '      <span>DinaBridge</span>\n' +
+        '    </a>\n' +
+        '    <div class="nav-links">\n        ' +
+        buildLinks() +
+        '\n    </div>\n' +
+        '    <a href="/contact.html" class="nav-cta">Start a Conversation</a>\n' +
+        '    <button class="nav-burger" aria-label="Open menu" aria-expanded="false" id="navBurger">\n' +
+        '      <span class="burger-bar"></span>\n' +
+        '      <span class="burger-bar"></span>\n' +
+        '      <span class="burger-bar"></span>\n' +
+        '    </button>\n' +
+        '  </div>\n' +
+        '</div>';
+
+      /* DRAWER — insert immediately after nav */
+      var drawerHTML =
+        '<div class="nav-drawer" id="navDrawer">\n' +
+        '  <div class="drawer-links">\n        ' +
+        buildLinks(true) +
+        '\n    <a href="/contact.html" class="nav-cta btn btn-primary" style="margin-top:var(--sp-12);width:100%;justify-content:center;">Start a Conversation</a>\n' +
+        '  </div>\n' +
+        '</div>\n' +
+        '<div class="nav-overlay" id="navOverlay"></div>';
+
+      navEl.insertAdjacentHTML('afterend', drawerHTML);
+
+      /* BURGER LOGIC */
+      var burger  = document.getElementById('navBurger');
+      var drawer  = document.getElementById('navDrawer');
+      var overlay = document.getElementById('navOverlay');
+
+      function toggle(open) {
+        burger.classList.toggle('is-open', open);
+        drawer.classList.toggle('is-open', open);
+        overlay.classList.toggle('is-visible', open);
+        burger.setAttribute('aria-expanded', String(open));
+      }
+      burger.addEventListener('click',  function () { toggle(!burger.classList.contains('is-open')); });
+      overlay.addEventListener('click', function () { toggle(false); });
+    }
+
+    /* FOOTER */
+    var footerEl = document.querySelector('footer');
+    if (footerEl) {
+      var footerLinks = NAV_LINKS.map(function (l) {
+        return '<a href="' + l.href + '">' + l.label + '</a>';
+      }).join('\n        ');
+
+      footerEl.innerHTML =
+        '<div class="container">\n' +
+        '  <div class="footer-inner">\n' +
+        '    <div class="footer-brand-block">\n' +
+        '      <a href="/" class="brand">\n' +
+        '        <div class="brand-mark">D</div>\n' +
+        '        <span>DinaBridge</span>\n' +
+        '      </a>\n' +
+        '    </div>\n' +
+        '    <p class="footer-tagline">Senior Elasticsearch engineering for observability, search, security, and advanced search.</p>\n' +
+        '    <nav class="footer-nav" aria-label="Footer navigation">\n        ' +
+        footerLinks +
+        '\n    </nav>\n' +
+        '    <div class="footer-divider"></div>\n' +
+        '    <p class="footer-legal">&copy; 2026 DinaBridge LLC &mdash; All rights reserved</p>\n' +
+        '    <span class="footer-gem">Senior Elasticsearch Engineering</span>\n' +
+        '  </div>\n' +
         '</div>';
     }
 
-    var footerEl = document.querySelector('footer');
-    if (footerEl) {
-      footerEl.innerHTML =
-        '<div class="container footer-inner">\n' +
-        '  <div class="footer-brand-block">\n' +
-        '    <a class="brand" href="/"><span class="brand-mark">D</span><span>DinaBridge</span></a>\n' +
-        '    <p class="footer-tagline">Senior Elasticsearch engineering for observability, search, security, and AI.</p>\n' +
-        '  </div>\n' +
-        '  <nav class="footer-nav">\n      ' +
-        buildFooterLinks() +
-        '\n  </nav>\n' +
-        '  <div class="footer-divider"></div>\n' +
-        '  <p class="footer-legal">&copy; DinaBridge LLC &middot; All rights reserved</p>\n' +
-        '  <p class="footer-gem">put the gem in the room.</p>\n' +
-        '</div>';
+    /* SCROLL REVEAL */
+    var revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      revealEls.forEach(function (el) { io.observe(el); });
     }
 
   });
