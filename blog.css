@@ -1,0 +1,187 @@
+/* ============================================================
+   DinaBridge Blog Component System — v1.2.1
+   Scope: blog.html only
+   ─────────────────────────────────────────────────────────
+   Fixes:
+   — .blog-grid: proper single-column feed layout
+   — .blog-card: full-width white card with elevation
+   — .blog-card--featured: prominent first-post treatment
+   — .blog-card-meta, .blog-card-title, .blog-card-excerpt,
+     .blog-card-cta, .blog-card-date: type hierarchy
+   ============================================================ */
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG GRID — single-column feed
+   Ensures cards stack vertically with healthy gap between posts.
+   ────────────────────────────────────────────────────────────── */
+.blog-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-24);
+  width: 100%;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG CARD — base post card
+   Each card is a full-width white island. Text lives entirely
+   inside the card. No overflow, no collapse.
+   ────────────────────────────────────────────────────────────── */
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(10, 25, 47, 0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-32);
+  box-shadow: var(--card-shadow-rest);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    box-shadow   var(--t-slow) var(--ease),
+    border-color var(--t-slow) var(--ease),
+    transform    var(--t-base) var(--ease-out),
+    background   var(--t-slow) var(--ease);
+  will-change: transform;
+}
+
+.blog-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(26, 115, 232, 0.18);
+  background: rgba(255, 255, 255, 0.98);
+  transform: translateY(-3px);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG CARD — FEATURED (first post)
+   Slightly tinted surface and stronger top border accent
+   to visually distinguish the lead article.
+   ────────────────────────────────────────────────────────────── */
+.blog-card--featured {
+  background:
+    radial-gradient(ellipse 70% 60% at 100% 0%, rgba(26, 115, 232, 0.05), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 100%, rgba(155, 81, 224, 0.03), transparent 52%),
+    rgba(255, 255, 255, 0.92);
+  border-color: rgba(26, 115, 232, 0.14);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 12px 32px rgba(26, 115, 232, 0.09),
+    0 24px 56px rgba(10, 25, 47, 0.06);
+}
+
+.blog-card--featured::before {
+  content: "";
+  position: absolute;
+  top: 0; left: var(--sp-32); right: var(--sp-32);
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: var(--gemini-flare);
+  opacity: 0.70;
+}
+
+.blog-card--featured:hover {
+  border-color: rgba(26, 115, 232, 0.26);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.05),
+    0 20px 48px rgba(26, 115, 232, 0.14),
+    0 40px 72px rgba(10, 25, 47, 0.08);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG CARD META — category label + date row
+   ────────────────────────────────────────────────────────────── */
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+  flex-wrap: wrap;
+}
+
+/* Category label inherits .section-label from global.css
+   (font-size: xs, font-weight: 800, uppercase, teal, letter-spacing)
+   Re-enforce here to guarantee it renders at correct contrast. */
+.blog-card-meta .section-label {
+  margin-bottom: 0;
+  color: var(--teal);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+}
+
+.blog-card-date {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG CARD TITLE
+   ────────────────────────────────────────────────────────────── */
+.blog-card-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin: 0;
+  transition: color var(--t-base) var(--ease);
+}
+
+.blog-card--featured .blog-card-title {
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+}
+
+.blog-card:hover .blog-card-title {
+  color: var(--blue);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG CARD EXCERPT
+   ────────────────────────────────────────────────────────────── */
+.blog-card-excerpt {
+  font-size: var(--text-base);
+  color: var(--ink-2);
+  line-height: 1.80;
+  margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG CARD CTA
+   ────────────────────────────────────────────────────────────── */
+.blog-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--sp-8);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--blue);
+  transition:
+    gap    var(--t-base) var(--ease),
+    opacity var(--t-base) var(--ease);
+}
+
+.blog-card:hover .blog-card-cta {
+  gap: 8px;
+  opacity: 0.80;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .blog-card {
+    padding: var(--sp-24);
+  }
+  .blog-card--featured .blog-card-title {
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+  }
+}
+
+/* v1.2.1 — Blog card component system introduced — June 2026 */
