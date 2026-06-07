@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v3.1.0
+   DinaBridge Global Design System — v3.1.1
    ============================================================
    GEMINI LUXURY LIGHT — inspired by Google Marketing Live
    ─────────────────────────────────────────────────────────
@@ -220,9 +220,11 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--sp-24); padding: var(--sp-12) 0;
 }
+/* v3.1.1 — Lock brand/logo left alignment flush to container edge on every page */
 .brand {
   display: flex; align-items: center; gap: var(--sp-12);
   font-weight: 800; letter-spacing: -.02em; font-family: var(--font-body);
+  margin-left: 0; padding-left: 0;
 }
 .brand-mark {
   width: 38px; height: 38px; border-radius: 50%;
@@ -1369,3 +1371,4 @@ footer::before {
 }
 
 /* v1.4.4 — About page components promoted to global.css — June 2026 */
+/* v3.1.1 — Lock brand/logo left alignment flush to container edge on every page — June 2026 */
