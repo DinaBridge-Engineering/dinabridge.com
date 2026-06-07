@@ -15,16 +15,16 @@
 <link rel="stylesheet" href="/card-hierarchy.css">
 <script src="/shared.js"></script>
 <style>
-/* elastic-consulting.html — Engagement Cards v1.4.1 */
+/* elastic-consulting.html — Engagement Cards v1.4.2 */
 .card-engagement{background:#ffffff;border:1px solid rgba(13,43,94,.11);border-radius:var(--radius-lg);padding:var(--sp-40);box-shadow:0 1px 3px rgba(0,0,0,.04),0 6px 20px rgba(13,43,94,.07),0 20px 40px rgba(13,43,94,.04);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow var(--t-slow) var(--ease),border-color var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out);will-change:transform;}
 .card-engagement:hover{box-shadow:0 4px 8px rgba(0,0,0,.05),0 20px 48px rgba(13,43,94,.11),0 40px 72px rgba(13,43,94,.06);border-color:rgba(26,115,232,.22);transform:translateY(-3px);}
 .card-engagement::before{content:"";position:absolute;top:0;left:var(--sp-40);right:var(--sp-40);height:2px;border-radius:0 0 2px 2px;background:linear-gradient(90deg,#1A73E8,#9B51E0);opacity:.55;transition:opacity var(--t-slow) var(--ease);}
 .card-engagement:hover::before{opacity:1;}
 .card-engagement .engage-label{display:block;font-size:0.6875rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:#1A73E8;margin-bottom:var(--sp-12);}
-.card-engagement h3{font-size:clamp(1.3rem,2vw,1.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:#0F172A;margin-bottom:var(--sp-16);}
-.card-engagement p{font-size:var(--text-base);line-height:1.78;color:#475569;margin-bottom:0;}
+.card-engagement h3{font-size:clamp(1.3rem,2vw,1.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--navy);margin-bottom:var(--sp-16);}
+.card-engagement p{font-size:var(--text-base);line-height:1.78;color:var(--ink-2);margin-bottom:0;}
 .card-engagement .clean-list{margin-top:var(--sp-20);margin-bottom:0;}
-.card-engagement .clean-list li{font-size:var(--text-sm);line-height:1.7;color:#475569;}
+.card-engagement .clean-list li{font-size:var(--text-sm);line-height:1.7;color:var(--ink-2);}
 .card-engagement .clean-list li::before{background:#1A73E8;opacity:.75;}
 .card-engagement .btn-engage{display:inline-flex;align-items:center;justify-content:center;margin-top:var(--sp-28);padding:var(--sp-12) var(--sp-24);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:700;letter-spacing:.01em;color:#ffffff;background:linear-gradient(135deg,#1A73E8 0%,#9B51E0 52%,#E24492 100%);border:1px solid transparent;box-shadow:0 1px 3px rgba(0,0,0,.10),0 4px 14px rgba(26,115,232,.22);cursor:pointer;white-space:nowrap;text-decoration:none;align-self:flex-start;transition:filter var(--t-base) var(--ease),box-shadow var(--t-slow) var(--ease),transform var(--t-base) var(--ease-out);will-change:transform;}
 .card-engagement .btn-engage:hover{filter:brightness(1.08);box-shadow:0 2px 6px rgba(0,0,0,.12),0 8px 24px rgba(26,115,232,.30),0 16px 36px rgba(155,81,224,.16);transform:translateY(-2px);}
