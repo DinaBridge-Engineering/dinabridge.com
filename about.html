@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>About DinaBridge | Senior Elasticsearch Engineers</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="DinaBridge is a named-engineer Elasticsearch consultancy. Senior engineers only — directly involved in every engagement. No account managers, no junior relay. Search, Observability, Security, Advanced Search." />
+<meta name="description" content="DinaBridge is a named-engineer Elasticsearch consultancy. Senior engineers only — directly involved in every engagement. Search, Observability, Security, Advanced Search." />
 <link rel="canonical" href="https://dinabridge.com/about.html" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
@@ -13,6 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/global.css" />
 <script src="/shared.js"></script>
+<style>
+.value-icon svg,.practice-row-icon svg{width:18px;height:18px;display:block;}
+</style>
 </head>
 <body>
 <nav class="nav"></nav>
@@ -52,7 +55,7 @@
       <div class="stat-bar reveal">
         <div class="stat-item">
           <span class="stat-num">Senior</span>
-          <span class="stat-label">Engineers only &mdash; no juniors, no relay</span>
+          <span class="stat-label">Engineers only &mdash; every engagement</span>
         </div>
         <div class="stat-item">
           <span class="stat-num">1-day</span>
@@ -106,22 +109,41 @@
       </div>
       <div class="values-grid">
         <div class="value-card card-base reveal reveal-delay-1">
-          <div class="value-icon value-icon--1"></div>
+          <div class="value-icon value-icon--1" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="8" r="4"/>
+              <path d="M3 18c0-3.3 3.1-6 7-6s7 2.7 7 6"/>
+            </svg>
+          </div>
           <h3>Named engineers only</h3>
           <p>You know who is doing the work before the engagement starts. The engineer on the call is the engineer in your cluster.</p>
         </div>
         <div class="value-card card-base reveal reveal-delay-2">
-          <div class="value-icon value-icon--2">&#9632;</div>
+          <div class="value-icon value-icon--2" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="14" height="14" rx="2"/>
+              <path d="M7 10l2.5 2.5L13 7"/>
+            </svg>
+          </div>
           <h3>Scoped and documented</h3>
           <p>Every engagement has a defined scope, a deliverables list, and a written handoff. Work ends when the scope is complete.</p>
         </div>
         <div class="value-card card-base reveal reveal-delay-3">
-          <div class="value-icon value-icon--3">&#9651;</div>
+          <div class="value-icon value-icon--3" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/>
+            </svg>
+          </div>
           <h3>Production-first thinking</h3>
           <p>We design for the environment your cluster actually runs in &mdash; real data volumes, real query patterns, real constraints.</p>
         </div>
         <div class="value-card card-base reveal reveal-delay-4">
-          <div class="value-icon value-icon--4">&#9711;</div>
+          <div class="value-icon value-icon--4" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 17l4-4m0 0l2-6 2 6m0 0l4 4"/>
+              <path d="M8 13h4"/>
+            </svg>
+          </div>
           <h3>Working deliverables only</h3>
           <p>Outputs are configurations, runbooks, and architecture docs &mdash; things your team can use the day we hand them over.</p>
         </div>
@@ -141,7 +163,12 @@
       <div class="practices-wrapper reveal">
         <a href="/elastic-consulting.html" class="practice-row reveal reveal-delay-1">
           <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--search">&#9740;</div>
+            <div class="practice-row-icon practice-row-icon--search" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8.5" cy="8.5" r="5.5"/>
+                <path d="M15 15l-3-3"/>
+              </svg>
+            </div>
             <div class="practice-row-text">
               <h3>Elasticsearch Consulting</h3>
               <p>Architecture reviews, performance audits, cluster optimization, and migration planning.</p>
@@ -151,7 +178,12 @@
         </a>
         <a href="/elastic-observability.html" class="practice-row reveal reveal-delay-2">
           <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--obs">&#9780;</div>
+            <div class="practice-row-icon practice-row-icon--obs" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="10" r="8"/>
+                <path d="M10 6v4l2.5 2.5"/>
+              </svg>
+            </div>
             <div class="practice-row-text">
               <h3>Observability</h3>
               <p>APM, distributed tracing, log pipelines, and Kibana dashboards for production Elastic environments.</p>
@@ -161,7 +193,11 @@
         </a>
         <a href="/elastic-security.html" class="practice-row reveal reveal-delay-3">
           <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--sec">&#9673;</div>
+            <div class="practice-row-icon practice-row-icon--sec" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 2l6 2.5v5c0 4-3 7-6 8-3-1-6-4-6-8v-5L10 2z"/>
+              </svg>
+            </div>
             <div class="practice-row-text">
               <h3>SIEM &amp; Security</h3>
               <p>Custom detection rule engineering, Elastic Security implementation, and compliance-ready deployments.</p>
@@ -171,7 +207,12 @@
         </a>
         <a href="/elastic-ai.html" class="practice-row reveal reveal-delay-4">
           <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--ai">&#9670;</div>
+            <div class="practice-row-icon practice-row-icon--ai" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10h4M13 10h4M10 3v4M10 13v4"/>
+                <circle cx="10" cy="10" r="3"/>
+              </svg>
+            </div>
             <div class="practice-row-text">
               <h3>Advanced Search</h3>
               <p>Semantic vector search, dense vector indexing, and search retrieval architecture built on Elasticsearch&rsquo;s native platform features.</p>
