@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge — Card Visual Hierarchy Patch  v2.7.9c
+   DinaBridge — Card Visual Hierarchy Patch  v2.8.0
    RULE: All cards must feel equally intentional regardless
    of text length. Short-statement cards must anchor visually.
 
@@ -10,6 +10,8 @@
    — .card-base h3        → card headline weight
    — .card-base p (solo)  → standalone paragraph prominence
    — .clean-list          → global bullet list (all containers)
+
+   v2.8.0 — Replace legacy var(--serif) with canonical var(--font-heading)
    ============================================================ */
 
 /* ──────────────────────────────────────────────────────────────
@@ -75,7 +77,7 @@
    All card headlines sit at the same visible weight.
    ────────────────────────────────────────────────────────────── */
 .card-base h3 {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: var(--h3-size);
   font-weight: 700;
   letter-spacing: -.02em;
@@ -147,9 +149,9 @@
     0 28px 56px rgba(16,42,67,.08);
 }
 
-/* Headline inside .card-highlight — h2 gets serif weight */
+/* Headline inside .card-highlight — h2 gets heading font */
 .card-highlight h2 {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 800;
   letter-spacing: -.03em;
@@ -217,7 +219,7 @@
   transform: translateY(-3px);
 }
 .card-stat .stat-number {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
   letter-spacing: -.04em;
