@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v3.0.0
+   DinaBridge Global Design System — v3.1.0
    ============================================================
    GEMINI LUXURY LIGHT — inspired by Google Marketing Live
    ─────────────────────────────────────────────────────────
@@ -14,7 +14,7 @@
      --paper-2    → #F0F4FA  (was #edf1f9)
      --navy       → #0A192F  (was #0f2240)
      --ink        → #0A192F  (was #08111f)
-     --ink-2      → #1E3A5F  (was #22324a)
+     --ink-2      → #2C5282  (lightened from #1E3A5F — mid Gemini blue, v1.3.7)
      --ink-3      → #4A6080  (was #5c6d86)
      --blue       → #1A73E8  (Gemini Blue — was blurple #4f6bed)
      --blue-dark  → #1557B0  (was #3a52c4)
@@ -35,7 +35,7 @@
   --paper-2:   #F0F4FA;
   --navy:      #0A192F;
   --ink:       #0A192F;
-  --ink-2:     #1E3A5F;
+  --ink-2:     #2C5282;
   --ink-3:     #4A6080;
   --rule:      rgba(10,25,47,.07);
   --rule-strong: rgba(10,25,47,.13);
@@ -1082,11 +1082,6 @@ footer::before {
    Usage: compose freely with existing .section, .grid-*, .btn
    ══════════════════════════════════════════════════════════════ */
 
-/* ── .page-container ──────────────────────────────────────────
-   Full-width page wrapper. Centers content, enforces max-width,
-   and applies horizontal padding. Drop this on <main> or any
-   top-level wrapper that needs to be content-constrained.
-   ─────────────────────────────────────────────────────────── */
 .page-container {
   width: 100%;
   max-width: var(--max);
@@ -1102,11 +1097,6 @@ footer::before {
   }
 }
 
-/* ── .section-container ──────────────────────────────────────
-   Combines vertical section rhythm with the page-container
-   centering. Use as a direct replacement for .section +
-   .container when both are always needed together.
-   ─────────────────────────────────────────────────────────── */
 .section-container {
   width: 100%;
   max-width: var(--max);
@@ -1120,12 +1110,6 @@ footer::before {
   }
 }
 
-/* ── .content-grid ───────────────────────────────────────────
-   Responsive auto-fill grid for content cards. Collapses
-   gracefully from multi-column to single-column on mobile.
-   Default: 3-up at desktop, 2-up at tablet, 1-up at mobile.
-   Pair with .gem-card children.
-   ─────────────────────────────────────────────────────────── */
 .content-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1138,11 +1122,6 @@ footer::before {
   }
 }
 
-/* ── .gem-card ───────────────────────────────────────────────
-   Premium surface card. Glass-light background, refined
-   border, atmospheric box-shadow. The standard card unit
-   for the Gemini Luxury Light system.
-   ─────────────────────────────────────────────────────────── */
 .gem-card {
   background: rgba(255,255,255,.80);
   border: 1px solid var(--rule-strong);
@@ -1156,11 +1135,6 @@ footer::before {
   overflow: hidden;
 }
 
-/* ── .gem-card-hover ─────────────────────────────────────────
-   Applies the signature DinaBridge lift-and-glow hover state
-   to any .gem-card. Add alongside .gem-card — never alone.
-   Inherits the Gemini Flare border and elevated shadow on hover.
-   ─────────────────────────────────────────────────────────── */
 .gem-card-hover {
   transition:
     transform var(--t-base) var(--ease-out),
@@ -1178,11 +1152,6 @@ footer::before {
     0 0 0 1px rgba(26,115,232,.08);
 }
 
-/* ── .gem-heading ────────────────────────────────────────────
-   Serif display heading — maps to h2-level visual weight.
-   Gemini gradient fill. Use for section titles, card headers,
-   or any headline that needs premium presence.
-   ─────────────────────────────────────────────────────────── */
 .gem-heading {
   font-family: var(--font-heading);
   font-size: clamp(1.55rem, 2.8vw, 2.4rem);
@@ -1196,11 +1165,6 @@ footer::before {
   background-clip: text;
 }
 
-/* ── .gem-subheading ─────────────────────────────────────────
-   Sans-serif supporting heading — maps to h3-level weight.
-   Navy with tighter letter-spacing. Use directly below
-   .gem-heading or as a standalone card/section sub-title.
-   ─────────────────────────────────────────────────────────── */
 .gem-subheading {
   font-family: var(--font-body);
   font-size: var(--text-lg);
@@ -1210,11 +1174,6 @@ footer::before {
   color: var(--navy);
 }
 
-/* ── .gem-button ─────────────────────────────────────────────
-   Full Gemini Flare CTA button. Identical visual language
-   to .btn.btn-primary but self-contained — no need to
-   combine two classes. Use wherever a single class is cleaner.
-   ─────────────────────────────────────────────────────────── */
 .gem-button {
   display: inline-flex;
   align-items: center;
@@ -1252,3 +1211,4 @@ footer::before {
 }
 
 /* v3.2.1 — --font-heading / --font-body aliases + global propagation — June 2026 */
+/* v1.3.7 — --ink-2 lightened #1E3A5F → #2C5282 (mid Gemini blue) — June 2026 */
