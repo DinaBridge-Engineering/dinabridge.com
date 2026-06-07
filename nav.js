@@ -1,20 +1,47 @@
-/* DinaBridge Mobile Navigation — v2.0
-   Hamburger toggle + slide-down drawer + overlay.
-   Drawer appended to <body>, not inside sticky nav,
-   so it is never clipped by overflow or stacking context.
-   No dependencies. Pure vanilla JS. */
+/* DinaBridge Mobile Navigation — v2.1 (NEUTERED)
+   All dynamic HTML injection logic is disabled.
+   Pages now use hard-coded canonical nav markup:
+     <nav class="nav"> ... </nav>
+     <div class="nav-drawer" id="navDrawer"> ... </div>
+     <div class="nav-overlay" id="navOverlay"></div>
+   with an inline <script> burger wiring on every page.
+
+   This file is retained for reference and future compatibility.
+   It performs an early-exit check: if #navBurger, #navDrawer,
+   and #navOverlay already exist in the DOM, the script exits
+   immediately — zero risk of ghost duplicate layers. */
 
 (function () {
   'use strict';
 
   document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── EARLY EXIT GUARD ──────────────────────────────────────────
+       If the page already has the canonical hard-coded nav elements,
+       do nothing. All injection logic below is skipped entirely.
+    ────────────────────────────────────────────────────────────── */
+    if (
+      document.getElementById('navBurger') &&
+      document.getElementById('navDrawer') &&
+      document.getElementById('navOverlay')
+    ) {
+      return; // canonical nav already present — exit immediately
+    }
+
+    /* ── LEGACY FALLBACK (disabled — retained for reference only) ──
+       The following injection code previously ran on pages that used
+       the empty <nav class="nav"></nav> shell pattern. All pages now
+       use the canonical hard-coded nav, so this block never executes.
+    ────────────────────────────────────────────────────────────── */
+
+    /*
     var navEl = document.querySelector('nav.nav');
     if (!navEl) return;
 
     var navInner = navEl.querySelector('.nav-inner');
     if (!navInner) return;
 
-    // ── Hamburger button ──
+    // Hamburger button
     var burger = document.createElement('button');
     burger.className = 'nav-burger';
     burger.setAttribute('aria-label', 'Open navigation menu');
@@ -26,7 +53,7 @@
       '<span class="burger-bar"></span>';
     navInner.appendChild(burger);
 
-    // ── Drawer (appended to body, NOT inside nav) ──
+    // Drawer (appended to body)
     var drawer = document.createElement('div');
     drawer.className = 'nav-drawer';
     drawer.setAttribute('role', 'dialog');
@@ -34,7 +61,6 @@
     drawer.setAttribute('aria-label', 'Navigation menu');
     drawer.setAttribute('aria-hidden', 'true');
 
-    // Copy desktop nav links
     var desktopLinks = navEl.querySelector('.nav-links');
     var drawerLinks = document.createElement('div');
     drawerLinks.className = 'drawer-links';
@@ -45,7 +71,6 @@
       }
     }
 
-    // CTA in drawer
     var desktopCta = navEl.querySelector('.nav-cta');
     if (desktopCta) {
       var ctaClone = desktopCta.cloneNode(true);
@@ -56,12 +81,12 @@
     drawer.appendChild(drawerLinks);
     document.body.appendChild(drawer);
 
-    // ── Overlay ──
+    // Overlay
     var overlay = document.createElement('div');
     overlay.className = 'nav-overlay';
     document.body.appendChild(overlay);
 
-    // ── State ──
+    // Toggle logic
     var isOpen = false;
 
     function openMenu() {
@@ -73,7 +98,6 @@
       drawer.setAttribute('aria-hidden', 'false');
       overlay.classList.add('is-visible');
       document.body.style.overflow = 'hidden';
-      // Trap focus: move to first link
       var firstLink = drawer.querySelector('a, button');
       if (firstLink) firstLink.focus();
     }
@@ -96,20 +120,19 @@
 
     overlay.addEventListener('click', closeMenu);
 
-    // Close on any drawer link click
     var drawerAnchors = drawer.querySelectorAll('a');
     for (var j = 0; j < drawerAnchors.length; j++) {
       drawerAnchors[j].addEventListener('click', closeMenu);
     }
 
-    // Keyboard: Escape closes
     document.addEventListener('keydown', function (e) {
       if ((e.key === 'Escape' || e.key === 'Esc') && isOpen) closeMenu();
     });
 
-    // Close if resized past breakpoint
     window.addEventListener('resize', function () {
       if (window.innerWidth > 980 && isOpen) closeMenu();
     });
+    */
+
   });
 }());
