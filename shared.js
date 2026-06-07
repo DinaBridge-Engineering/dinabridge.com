@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v1.3.2
+/* DinaBridge Shared Components — v1.3.3
    Single source of truth for:
    - Global nav (header)
    - Global footer
@@ -46,8 +46,8 @@
     { href: '/',                        label: 'Home' },
     { href: '/elastic-consulting.html', label: 'Elastic Consulting' },
     { href: '/about.html',              label: 'About' },
-    { href: '/blog.html',               label: 'Blog' },
-    { href: '/contact.html',            label: 'Contact' }
+    { href: '/contact.html',            label: 'Contact' },
+    { href: '/blog.html',               label: 'Blog' }
   ];
 
   var path = window.location.pathname;
