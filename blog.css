@@ -1,8 +1,13 @@
 /* ============================================================
-   DinaBridge Blog Component System — v1.2.1
+   DinaBridge Blog Component System — v1.2.2
    Scope: blog.html only
    ─────────────────────────────────────────────────────────
-   Fixes:
+   v1.2.2 PATCH — polish pass
+   — Tighter card vertical padding (sp-24 top/bottom)
+   — CTA link boosted to font-weight 800 + brighter blue
+   — Blog grid gap widened to sp-32 for clear card separation
+
+   v1.2.1 FOUNDATION
    — .blog-grid: proper single-column feed layout
    — .blog-card: full-width white card with elevation
    — .blog-card--featured: prominent first-post treatment
@@ -12,19 +17,19 @@
 
 /* ──────────────────────────────────────────────────────────────
    BLOG GRID — single-column feed
-   Ensures cards stack vertically with healthy gap between posts.
+   gap: sp-32 (2rem) — clear visual separation between cards
    ────────────────────────────────────────────────────────────── */
 .blog-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-24);
+  gap: var(--sp-32);
   width: 100%;
 }
 
 /* ──────────────────────────────────────────────────────────────
    BLOG CARD — base post card
-   Each card is a full-width white island. Text lives entirely
-   inside the card. No overflow, no collapse.
+   padding: sp-24 vertical / sp-28 horizontal
+   Compact but not cramped — removes inflated whitespace.
    ────────────────────────────────────────────────────────────── */
 .blog-card {
   display: flex;
@@ -34,7 +39,7 @@
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(10, 25, 47, 0.10);
   border-radius: var(--radius-lg);
-  padding: var(--sp-32);
+  padding: var(--sp-24) var(--sp-28);
   box-shadow: var(--card-shadow-rest);
   position: relative;
   overflow: hidden;
@@ -57,8 +62,7 @@
 
 /* ──────────────────────────────────────────────────────────────
    BLOG CARD — FEATURED (first post)
-   Slightly tinted surface and stronger top border accent
-   to visually distinguish the lead article.
+   Gemini-tinted surface + Gemini Flare top border accent.
    ────────────────────────────────────────────────────────────── */
 .blog-card--featured {
   background:
@@ -75,7 +79,7 @@
 .blog-card--featured::before {
   content: "";
   position: absolute;
-  top: 0; left: var(--sp-32); right: var(--sp-32);
+  top: 0; left: var(--sp-28); right: var(--sp-28);
   height: 2px;
   border-radius: 0 0 2px 2px;
   background: var(--gemini-flare);
@@ -100,9 +104,6 @@
   flex-wrap: wrap;
 }
 
-/* Category label inherits .section-label from global.css
-   (font-size: xs, font-weight: 800, uppercase, teal, letter-spacing)
-   Re-enforce here to guarantee it renders at correct contrast. */
 .blog-card-meta .section-label {
   margin-bottom: 0;
   color: var(--teal);
@@ -149,39 +150,52 @@
   color: var(--ink-2);
   line-height: 1.80;
   margin: 0;
+  font-weight: 400;
 }
 
 /* ──────────────────────────────────────────────────────────────
-   BLOG CARD CTA
+   BLOG CARD CTA — v1.2.2
+   Boosted to font-weight 800 and a brighter blue so it reads
+   as a distinct interactive affordance, not body copy.
+   A thin top separator rule provides additional visual break.
    ────────────────────────────────────────────────────────────── */
 .blog-card-cta {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   margin-top: var(--sp-8);
+  padding-top: var(--sp-12);
+  border-top: 1px solid rgba(10, 25, 47, 0.07);
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--blue);
+  letter-spacing: 0.01em;
   transition:
-    gap    var(--t-base) var(--ease),
-    opacity var(--t-base) var(--ease);
+    gap     var(--t-base) var(--ease),
+    filter  var(--t-base) var(--ease),
+    color   var(--t-base) var(--ease);
 }
 
 .blog-card:hover .blog-card-cta {
-  gap: 8px;
-  opacity: 0.80;
+  gap: 9px;
+  filter: brightness(1.15);
+  color: var(--blue);
 }
 
 /* ──────────────────────────────────────────────────────────────
    RESPONSIVE
    ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .blog-grid {
+    gap: var(--sp-20);
+  }
   .blog-card {
-    padding: var(--sp-24);
+    padding: var(--sp-20) var(--sp-20);
   }
   .blog-card--featured .blog-card-title {
     font-size: clamp(1.3rem, 5vw, 1.7rem);
   }
 }
 
+/* v1.2.2 — Polish pass: tighter card padding, CTA contrast boost, wider grid gap — June 2026 */
 /* v1.2.1 — Blog card component system introduced — June 2026 */
