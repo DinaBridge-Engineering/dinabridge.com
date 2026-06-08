@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v3.1.1
+   DinaBridge Global Design System — v3.1.2
    ============================================================
    GEMINI LUXURY LIGHT — inspired by Google Marketing Live
    ─────────────────────────────────────────────────────────
@@ -526,7 +526,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* ══════════════════════════════════════════════════════════════
-   7. BUTTONS — Gemini Flare primary
+   7. BUTTONS — Gemini Flare primary + Gemini Luxury secondary
    ══════════════════════════════════════════════════════════════ */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -549,14 +549,19 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 4px 28px rgba(26,115,232,.40), 0 8px 38px rgba(155,81,224,.22);
   transform: translateY(-2px);
 }
+/* v3.1.2 — btn-secondary: flat neutral gray pill, Gemini Luxury unification */
 .btn-secondary {
-  background: rgba(255,255,255,.90); color: var(--ink-2);
-  border-color: var(--rule-strong);
-  box-shadow: var(--shadow-sm);
+  background: #F4F4F5;
+  color: #18181B;
+  border-color: transparent;
+  box-shadow: none;
 }
 .btn-secondary:hover {
-  background: rgba(255,255,255,1); border-color: rgba(26,115,232,.22);
-  color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-2px);
+  background: #E4E4E7;
+  color: #18181B;
+  border-color: transparent;
+  box-shadow: none;
+  transform: translateY(-2px);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -841,7 +846,8 @@ footer::before {
 }
 .trust-stat { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-4); flex: 1; min-width: 120px; }
 .trust-num {
-  font-family: var(--font-heading); font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
   font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1;
 }
 .trust-label { font-size: var(--text-sm); font-weight: 500; color: var(--ink-2); line-height: 1.5; }
@@ -1372,3 +1378,4 @@ footer::before {
 
 /* v1.4.4 — About page components promoted to global.css — June 2026 */
 /* v3.1.1 — Lock brand/logo left alignment flush to container edge on every page — June 2026 */
+/* v3.1.2 — btn-secondary flat neutral gray pill (#F4F4F5 / #18181B) — Gemini Luxury unification — June 2026 */
