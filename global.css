@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v3.1.2
+   DinaBridge Global Design System — v3.1.3
    ============================================================
    GEMINI LUXURY LIGHT — inspired by Google Marketing Live
    ─────────────────────────────────────────────────────────
@@ -264,12 +264,13 @@ img { display: block; max-width: 100%; }
   padding: var(--sp-8) 22px; border-radius: 999px;
   font-size: var(--text-sm); font-weight: 700;
   background: var(--gemini-flare);
-  color: #fff; border: 1px solid transparent;
+  color: #ffffff !important; border: 1px solid transparent;
   box-shadow: 0 2px 12px rgba(26,115,232,.28), 0 4px 22px rgba(155,81,224,.14);
   white-space: nowrap;
   transition: box-shadow var(--t-slow) var(--ease), transform var(--t-base) var(--ease-out), filter var(--t-base) var(--ease);
 }
 .nav-cta:hover {
+  color: #ffffff !important;
   filter: brightness(1.10);
   box-shadow: 0 4px 28px rgba(26,115,232,.40), 0 8px 36px rgba(155,81,224,.22);
   transform: translateY(-1px);
@@ -539,16 +540,30 @@ img { display: block; max-width: 100%; }
     color var(--t-slow) var(--ease);
   will-change: transform;
 }
-.btn-primary {
+
+/* v3.1.3 — GRADIENT CONTRAST RULE
+   All buttons rendered over a dark-pink / purple gradient background
+   MUST carry stark white text. color: inherit / var(--ink) must never
+   bleed onto these surfaces. font-weight: 600 minimum for legibility. */
+.btn-primary,
+.btn-primary:link,
+.btn-primary:visited,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
   background: var(--gemini-flare);
-  color: #fff; border-color: transparent;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-color: transparent;
   box-shadow: 0 2px 12px rgba(26,115,232,.28), 0 4px 22px rgba(155,81,224,.14);
+  -webkit-text-fill-color: #ffffff !important;
 }
 .btn-primary:hover {
   filter: brightness(1.10);
   box-shadow: 0 4px 28px rgba(26,115,232,.40), 0 8px 38px rgba(155,81,224,.22);
   transform: translateY(-2px);
 }
+
 /* v3.1.2 — btn-secondary: flat neutral gray pill, Gemini Luxury unification */
 .btn-secondary {
   background: #F4F4F5;
@@ -562,6 +577,22 @@ img { display: block; max-width: 100%; }
   border-color: transparent;
   box-shadow: none;
   transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   7b. GRADIENT BUTTON GLOBAL CONTRAST LOCK — v3.1.3
+   Applies to every button variant that uses the Gemini Flare
+   gradient. Prevents color: inherit / cascade from rendering
+   dark navy text over a dark-pink / purple gradient surface.
+   ══════════════════════════════════════════════════════════════ */
+.btn-primary,
+.nav-cta,
+.gem-button,
+.btn-engage,
+.btn-gradient {
+  color: #ffffff !important;
+  font-weight: 600;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -642,6 +673,8 @@ img { display: block; max-width: 100%; }
 .cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-12); }
 
 .cta-box .btn-primary {
+  color: #ffffff !important;
+  font-weight: 600;
   box-shadow:
     0 2px 14px rgba(26,115,232,.32),
     0 6px 28px rgba(155,81,224,.18);
@@ -1190,8 +1223,9 @@ footer::before {
   border-radius: var(--radius-full);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: 600;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
   background: var(--gemini-flare);
   border: 1px solid transparent;
   box-shadow:
@@ -1207,6 +1241,8 @@ footer::before {
   will-change: transform;
 }
 .gem-button:hover {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
   filter: brightness(1.10);
   box-shadow:
     0 4px 28px rgba(26,115,232,.40),
@@ -1379,3 +1415,4 @@ footer::before {
 /* v1.4.4 — About page components promoted to global.css — June 2026 */
 /* v3.1.1 — Lock brand/logo left alignment flush to container edge on every page — June 2026 */
 /* v3.1.2 — btn-secondary flat neutral gray pill (#F4F4F5 / #18181B) — Gemini Luxury unification — June 2026 */
+/* v3.1.3 — Gradient contrast rule: #ffffff + fw-600 locked on btn-primary, btn-engage, nav-cta, gem-button — June 2026 */
