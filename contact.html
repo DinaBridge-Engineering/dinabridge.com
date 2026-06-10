@@ -27,18 +27,6 @@
 .contact-form-card:focus-within{box-shadow:var(--card-shadow-hover);}
 .contact-form-card form{display:flex;flex-direction:column;gap:var(--sp-20);flex:1;position:relative;z-index:1;}
 
-/* ── Step 1 — "No Sales Pitch" badge ── */
-.no-pitch-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  margin-bottom:var(--sp-12);align-self:flex-start;
-  padding:5px 13px;border-radius:999px;
-  font-size:.75rem;font-weight:700;letter-spacing:.03em;
-  color:var(--blue);border:1.5px solid rgba(11,100,221,.28);
-  background:rgba(11,100,221,.06);
-  user-select:none;
-}
-.no-pitch-badge svg{flex-shrink:0;}
-
 /* ── Fields ── */
 .field{display:flex;flex-direction:column;gap:var(--sp-8);}
 .field label{font-size:var(--text-sm);font-weight:700;color:var(--ink-2);letter-spacing:.01em;}
@@ -164,7 +152,7 @@
   <section class="section-hero">
     <div class="container">
       <h1>Let&rsquo;s talk about your Elasticsearch stack.</h1>
-      <p class="hero-lead">Tell us what you are working on. We will respond within one business day with a clear assessment &mdash; no sales pitch.</p>
+      <p class="hero-lead">Tell us what you are working on. We will respond within one business day with a clear assessment.</p>
     </div>
   </section>
   <hr class="section-divider" />
@@ -174,14 +162,6 @@
 
         <!-- ── Form card ── -->
         <div class="contact-form-card">
-
-          <!-- Step 1 — No Sales Pitch badge -->
-          <span class="no-pitch-badge" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 6.5L4.5 9L10 3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            No sales pitch. Ever.
-          </span>
 
           <!-- Form (fades out on success) -->
           <form id="contact-form" action="https://formspree.io/f/xpwzgkze" method="POST">
@@ -242,7 +222,7 @@
             <p>We respond to every enquiry within one business day. Usually faster.</p>
           </div>
 
-          <!-- Step 3 — 3-step visual timeline replaces plain paragraph -->
+          <!-- Step 3 — 3-step visual timeline -->
           <div class="aside-block">
             <div class="aside-block-header"><span class="aside-block-accent" aria-hidden="true"></span><h4>What Happens Next</h4></div>
             <div class="what-next-timeline">
@@ -264,7 +244,7 @@
                 <div class="timeline-node">3</div>
                 <div class="timeline-text">
                   <strong>You receive a clear assessment</strong>
-                  <span>No sales pitch. Just an honest, actionable response.</span>
+                  <span>An honest, actionable technical response within one business day.</span>
                 </div>
               </div>
             </div>
