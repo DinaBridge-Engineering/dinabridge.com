@@ -1,7 +1,12 @@
 /* ============================================================
-   DinaBridge Blog Component System — v1.2.2
-   Scope: blog.html only
+   DinaBridge Blog Component System — v2.0.0
+   Scope: blog.html + all blog/* article pages
    ─────────────────────────────────────────────────────────
+   v2.0.0 — Consolidation
+   — Moved all article layout styles here from inline <style>
+     blocks in individual post files. Single source of truth.
+   — Added .blog-faq component (enterprise-search post)
+
    v1.2.2 PATCH — polish pass
    — Tighter card vertical padding (sp-24 top/bottom)
    — CTA link boosted to font-weight 800 + brighter blue
@@ -16,8 +21,7 @@
    ============================================================ */
 
 /* ──────────────────────────────────────────────────────────────
-   BLOG GRID — single-column feed
-   gap: sp-32 (2rem) — clear visual separation between cards
+   BLOG INDEX — card grid
    ────────────────────────────────────────────────────────────── */
 .blog-grid {
   display: flex;
@@ -26,11 +30,6 @@
   width: 100%;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   BLOG CARD — base post card
-   padding: sp-24 vertical / sp-28 horizontal
-   Compact but not cramped — removes inflated whitespace.
-   ────────────────────────────────────────────────────────────── */
 .blog-card {
   display: flex;
   flex-direction: column;
@@ -60,10 +59,6 @@
   transform: translateY(-3px);
 }
 
-/* ──────────────────────────────────────────────────────────────
-   BLOG CARD — FEATURED (first post)
-   Gemini-tinted surface + Gemini Flare top border accent.
-   ────────────────────────────────────────────────────────────── */
 .blog-card--featured {
   background:
     radial-gradient(ellipse 70% 60% at 100% 0%, rgba(26, 115, 232, 0.05), transparent 55%),
@@ -94,9 +89,6 @@
     0 40px 72px rgba(10, 25, 47, 0.08);
 }
 
-/* ──────────────────────────────────────────────────────────────
-   BLOG CARD META — category label + date row
-   ────────────────────────────────────────────────────────────── */
 .blog-card-meta {
   display: flex;
   align-items: center;
@@ -120,9 +112,6 @@
   letter-spacing: 0.02em;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   BLOG CARD TITLE
-   ────────────────────────────────────────────────────────────── */
 .blog-card-title {
   font-family: var(--font-heading);
   font-size: clamp(1.25rem, 2.2vw, 1.65rem);
@@ -142,9 +131,6 @@
   color: var(--blue);
 }
 
-/* ──────────────────────────────────────────────────────────────
-   BLOG CARD EXCERPT
-   ────────────────────────────────────────────────────────────── */
 .blog-card-excerpt {
   font-size: var(--text-base);
   color: var(--ink-2);
@@ -153,12 +139,6 @@
   font-weight: 400;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   BLOG CARD CTA — v1.2.2
-   Boosted to font-weight 800 and a brighter blue so it reads
-   as a distinct interactive affordance, not body copy.
-   A thin top separator rule provides additional visual break.
-   ────────────────────────────────────────────────────────────── */
 .blog-card-cta {
   display: inline-flex;
   align-items: center;
@@ -183,19 +163,289 @@
 }
 
 /* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — hero
+   ────────────────────────────────────────────────────────────── */
+.blog-article-hero { padding: var(--sp-80) 0 var(--sp-48); }
+
+.blog-article-hero .article-label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+  margin-bottom: var(--sp-24);
+}
+.blog-article-hero .article-label .section-label { margin: 0; }
+.blog-article-hero .article-label .label-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  display: inline-block;
+}
+.blog-article-hero .article-label time {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  font-family: var(--font-body);
+}
+
+.blog-article-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  max-width: 820px;
+  margin-bottom: var(--sp-24);
+}
+
+.blog-article-hero .article-lead {
+  font-size: var(--text-lg);
+  color: var(--ink-3);
+  max-width: 680px;
+  line-height: 1.7;
+}
+
+.blog-article-hero .article-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+  margin-top: var(--sp-32);
+  padding-top: var(--sp-32);
+  border-top: 1px solid var(--rule);
+}
+
+.article-meta-author {
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  color: var(--navy);
+  font-weight: 600;
+}
+.article-meta-role {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  font-family: var(--font-body);
+}
+.article-meta-sep { color: var(--rule); }
+
+.article-tags { display: flex; gap: var(--sp-8); flex-wrap: wrap; }
+.article-tag {
+  font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(26,115,232,.08);
+  border: 1px solid rgba(26,115,232,.18);
+  border-radius: 4px;
+  padding: 3px 10px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — body layout
+   ────────────────────────────────────────────────────────────── */
+.blog-article-body { padding: var(--sp-48) 0 var(--sp-80); }
+
+.blog-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--sp-48);
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media(max-width:900px) { .blog-layout { grid-template-columns: 1fr; } }
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — table of contents
+   ────────────────────────────────────────────────────────────── */
+.blog-toc { position: sticky; top: 88px; }
+.blog-toc nav {
+  background: rgba(255,255,255,.80);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-24) var(--sp-20);
+}
+.blog-toc-title {
+  font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-16);
+  display: block;
+}
+.blog-toc ol {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+.blog-toc ol li a {
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  color: var(--ink-3);
+  text-decoration: none;
+  line-height: 1.4;
+  display: block;
+  padding-left: var(--sp-8);
+  border-left: 2px solid transparent;
+  transition: all .18s;
+}
+.blog-toc ol li a:hover { color: var(--blue); border-left-color: var(--blue); }
+@media(max-width:900px) { .blog-toc { display: none; } }
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — prose
+   ────────────────────────────────────────────────────────────── */
+.blog-prose h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin: var(--sp-48) 0 var(--sp-16);
+  padding-top: var(--sp-48);
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 96px;
+}
+.blog-prose h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+
+.blog-prose h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: var(--sp-32) 0 var(--sp-12);
+  scroll-margin-top: 96px;
+}
+
+.blog-prose p {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--ink-3);
+  line-height: 1.8;
+  margin-bottom: var(--sp-20);
+}
+.blog-prose strong { color: var(--navy); font-weight: 600; }
+
+.blog-prose ul,
+.blog-prose ol {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--ink-3);
+  line-height: 1.8;
+  margin: 0 0 var(--sp-24) var(--sp-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+.blog-prose li { padding-left: var(--sp-8); }
+
+.blog-prose code {
+  font-family: monospace;
+  font-size: .92em;
+  background: rgba(10,25,47,.06);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--navy);
+}
+
+.blog-prose a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(26,115,232,.3);
+  transition: border-color .18s;
+}
+.blog-prose a:hover { border-bottom-color: var(--blue); }
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — pull quote
+   ────────────────────────────────────────────────────────────── */
+.blog-pullquote {
+  border-left: 3px solid var(--blue);
+  padding: var(--sp-20) var(--sp-24);
+  background: rgba(255,255,255,.80);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin: var(--sp-32) 0;
+}
+.blog-pullquote p {
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.7;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — FAQ block
+   ────────────────────────────────────────────────────────────── */
+.blog-faq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-20);
+  margin: var(--sp-24) 0;
+}
+.faq-item {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: var(--sp-20) var(--sp-24);
+  background: rgba(255,255,255,.80);
+}
+.faq-item h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 var(--sp-8);
+}
+.faq-item p {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BLOG ARTICLE — CTA strip
+   ────────────────────────────────────────────────────────────── */
+.blog-cta-strip {
+  background: rgba(255,255,255,.80);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-40);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-24);
+  flex-wrap: wrap;
+  margin-top: var(--sp-64);
+}
+.blog-cta-strip h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 var(--sp-8);
+}
+.blog-cta-strip p {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  margin: 0;
+  line-height: 1.6;
+}
+.blog-cta-strip .blog-cta-actions { display: flex; gap: var(--sp-12); flex-wrap: wrap; }
+
+/* ──────────────────────────────────────────────────────────────
    RESPONSIVE
    ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .blog-grid {
-    gap: var(--sp-20);
-  }
-  .blog-card {
-    padding: var(--sp-20) var(--sp-20);
-  }
-  .blog-card--featured .blog-card-title {
-    font-size: clamp(1.3rem, 5vw, 1.7rem);
-  }
+  .blog-grid { gap: var(--sp-20); }
+  .blog-card { padding: var(--sp-20); }
+  .blog-card--featured .blog-card-title { font-size: clamp(1.3rem, 5vw, 1.7rem); }
+  .blog-cta-strip { padding: var(--sp-28) var(--sp-24); }
 }
 
-/* v1.2.2 — Polish pass: tighter card padding, CTA contrast boost, wider grid gap — June 2026 */
-/* v1.2.1 — Blog card component system introduced — June 2026 */
+/* v2.0.0 — Article styles consolidated from per-post inline blocks — June 2026 */
+/* v1.2.2 — Polish pass — June 2026 */
+/* v1.2.1 — Blog card component system — June 2026 */

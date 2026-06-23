@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Why Elasticsearch Alerts Lie (And How to Fix Them) | DinaBridge</title>
+<title>Why Elasticsearch Alerts Lie | DinaBridge</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Why Elasticsearch alerts fire when they shouldn't, miss events they should catch, and how to build detection rules that actually work in production environments." />
+<meta name="description" content="Alert fatigue and false positives in Elasticsearch monitoring — what causes them and how to build detection rules that hold up in production." />
 <link rel="canonical" href="https://dinabridge.com/blog/why-elasticsearch-alerts-lie.html" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
@@ -12,10 +12,10 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Why Elasticsearch Alerts Lie (And How to Fix Them)",
-  "description": "Why Elasticsearch alerts fire when they shouldn't, miss events they should catch, and how to build detection rules that actually work in production.",
-  "datePublished": "2026-05-01",
-  "dateModified": "2026-05-01",
+  "headline": "Why Elasticsearch Alerts Lie",
+  "description": "Alert fatigue and false positives in Elasticsearch monitoring — what causes them and how to build detection rules that hold up in production.",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-01",
   "author": {"@type": "Organization", "name": "DinaBridge Engineering", "url": "https://dinabridge.com"},
   "publisher": {"@type": "Organization", "name": "DinaBridge", "url": "https://dinabridge.com"},
   "mainEntityOfPage": {"@type": "WebPage", "@id": "https://dinabridge.com/blog/why-elasticsearch-alerts-lie.html"}
@@ -25,54 +25,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/global.css" />
+<link rel="stylesheet" href="/blog.css" />
 <script src="/shared.js"></script>
-<style>
-/* ── Blog Article Layout — v1.1.1 (color patch: Gemini Blue + font-heading) ── */
-.blog-article-hero{padding:var(--sp-80) 0 var(--sp-48);}
-.blog-article-hero .article-label{display:flex;align-items:center;gap:var(--sp-12);margin-bottom:var(--sp-24);}
-.blog-article-hero .article-label .section-label{margin:0;}
-.blog-article-hero .article-label .label-dot{width:4px;height:4px;border-radius:50%;background:var(--ink-3);display:inline-block;}
-.blog-article-hero .article-label time{font-size:var(--text-sm);color:var(--ink-3);font-family:var(--font-body);}
-.blog-article-hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.15;max-width:820px;margin-bottom:var(--sp-24);}
-.blog-article-hero .article-lead{font-size:var(--text-lg);color:var(--ink-3);max-width:680px;line-height:1.7;}
-.blog-article-hero .article-meta{display:flex;align-items:center;gap:var(--sp-16);margin-top:var(--sp-32);padding-top:var(--sp-32);border-top:1px solid var(--rule);}
-.article-meta-author{font-size:var(--text-sm);font-family:var(--font-body);color:var(--navy);font-weight:600;}
-.article-meta-role{font-size:var(--text-sm);color:var(--ink-3);font-family:var(--font-body);}
-.article-meta-sep{color:var(--rule);}
-.article-tags{display:flex;gap:var(--sp-8);flex-wrap:wrap;}
-.article-tag{font-size:11px;font-family:var(--font-body);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:rgba(26,115,232,.08);border:1px solid rgba(26,115,232,.18);border-radius:4px;padding:3px 10px;}
-.blog-article-body{padding:var(--sp-48) 0 var(--sp-80);}
-.blog-layout{display:grid;grid-template-columns:220px 1fr;gap:var(--sp-48);align-items:start;max-width:1100px;margin:0 auto;}
-@media(max-width:900px){.blog-layout{grid-template-columns:1fr;}}
-.blog-toc{position:sticky;top:88px;}
-.blog-toc nav{background:rgba(255,255,255,.80);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--sp-24) var(--sp-20);}
-.blog-toc-title{font-size:11px;font-family:var(--font-body);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--sp-16);display:block;}
-.blog-toc ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--sp-8);}
-.blog-toc ol li a{font-size:var(--text-sm);font-family:var(--font-body);color:var(--ink-3);text-decoration:none;line-height:1.4;display:block;padding-left:var(--sp-8);border-left:2px solid transparent;transition:all .18s;}
-.blog-toc ol li a:hover{color:var(--blue);border-left-color:var(--blue);}
-@media(max-width:900px){.blog-toc{display:none;}}
-.blog-prose{}
-.blog-prose h2{font-family:var(--font-heading);font-size:clamp(1.35rem,2.5vw,1.75rem);font-weight:700;color:var(--navy);margin:var(--sp-48) 0 var(--sp-16);margin-left:0;padding-top:var(--sp-48);border-top:1px solid var(--rule);scroll-margin-top:96px;}
-.blog-prose h2:first-of-type{margin-top:0;padding-top:0;border-top:none;}
-.blog-prose h3{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--navy);margin:var(--sp-32) 0 var(--sp-12);margin-left:0;scroll-margin-top:96px;}
-.blog-prose p{font-family:var(--font-body);font-size:var(--text-base);color:var(--ink-3);line-height:1.8;margin-bottom:var(--sp-20);margin-left:0;}
-.blog-prose strong{color:var(--navy);font-weight:600;}
-.blog-prose ul,.blog-prose ol{font-family:var(--font-body);font-size:var(--text-base);color:var(--ink-3);line-height:1.8;margin:0 0 var(--sp-24) var(--sp-20);display:flex;flex-direction:column;gap:var(--sp-8);}
-.blog-prose li{padding-left:var(--sp-8);}
-.blog-prose a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(26,115,232,.3);transition:border-color .18s;}
-.blog-prose a:hover{border-bottom-color:var(--blue);}
-.blog-pullquote{border-left:3px solid var(--blue);padding:var(--sp-20) var(--sp-24);background:rgba(255,255,255,.80);border-radius:0 var(--radius-md) var(--radius-md) 0;margin:var(--sp-32) 0;}
-.blog-pullquote p{color:var(--navy);font-size:1.05rem;font-weight:500;line-height:1.7;margin:0;font-family:var(--font-body);}
-.blog-faq{display:flex;flex-direction:column;gap:var(--sp-20);margin:var(--sp-24) 0;}
-.faq-item{border:1px solid var(--rule);border-radius:var(--radius-md);padding:var(--sp-20) var(--sp-24);background:rgba(255,255,255,.80);}
-.faq-item h3{font-family:var(--font-body);font-size:var(--text-base);font-weight:600;color:var(--navy);margin:0 0 var(--sp-8);}
-.faq-item p{font-family:var(--font-body);font-size:var(--text-sm);color:var(--ink-3);line-height:1.7;margin:0;}
-.blog-cta-strip{background:rgba(255,255,255,.80);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--sp-40) var(--sp-40);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-24);flex-wrap:wrap;margin-top:var(--sp-64);}
-.blog-cta-strip h3{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--navy);margin:0 0 var(--sp-8);}
-.blog-cta-strip p{font-family:var(--font-body);font-size:var(--text-sm);color:var(--ink-3);margin:0;line-height:1.6;}
-.blog-cta-strip .blog-cta-actions{display:flex;gap:var(--sp-12);flex-wrap:wrap;}
-/* v1.1.1 — Gemini Blue tokens + --font-heading — PATCH June 2026 */
-</style>
 </head>
 <body>
 <nav class="nav"></nav>
@@ -84,10 +38,10 @@
       <div class="article-label">
         <span class="section-label">Observability</span>
         <span class="label-dot"></span>
-        <time datetime="2026-05-01">May 2026</time>
+        <time datetime="2026-04-01">April 2026</time>
       </div>
-      <h1 class="reveal">Why Elasticsearch Alerts Lie (And How to Fix Them)</h1>
-      <p class="article-lead reveal reveal-delay-1">Elasticsearch alerting can fire when it should not, miss events it should catch, and degrade silently without warning. Here is why it happens and how to build detection rules that actually work in production.</p>
+      <h1 class="reveal">Why Elasticsearch Alerts Lie</h1>
+      <p class="article-lead reveal reveal-delay-1">Alert fatigue and false positives in Elasticsearch monitoring &mdash; what causes them and how to build detection rules that hold up in production.</p>
       <div class="article-meta reveal reveal-delay-2">
         <div>
           <div class="article-meta-author">DinaBridge Engineering</div>
@@ -97,7 +51,7 @@
         <div class="article-tags">
           <span class="article-tag">Alerting</span>
           <span class="article-tag">Observability</span>
-          <span class="article-tag">SIEM</span>
+          <span class="article-tag">Detection Engineering</span>
         </div>
       </div>
     </div>
@@ -113,12 +67,10 @@
           <nav aria-label="Table of contents">
             <span class="blog-toc-title">Contents</span>
             <ol>
-              <li><a href="#problem">The Core Problem</a></li>
-              <li><a href="#false-positives">False Positives</a></li>
-              <li><a href="#false-negatives">False Negatives</a></li>
-              <li><a href="#silent-failure">Silent Failure</a></li>
-              <li><a href="#fixes">How to Fix It</a></li>
-              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#problem">The Problem with Alerts</a></li>
+              <li><a href="#why-lie">Why Alerts Lie</a></li>
+              <li><a href="#detection">Building Better Detection Rules</a></li>
+              <li><a href="#tuning">Tuning for Production</a></li>
               <li><a href="#dinabridge">Why DinaBridge</a></li>
             </ol>
           </nav>
@@ -126,73 +78,40 @@
 
         <article class="blog-prose">
 
-          <h2 id="problem">The Core Problem with Elasticsearch Alerting</h2>
-          <p>Elasticsearch alerting is powerful, but it operates on indexed data &mdash; which means it is only as reliable as the data pipeline feeding it. When ingestion is delayed, when field mappings are inconsistent, or when detection rules are written against data that does not always arrive in the expected format, alerts become unreliable in ways that are difficult to diagnose.</p>
-          <p>The result is a common pattern: teams invest significant effort in building detection rules, then progressively lose confidence in them as false positives accumulate and real events go undetected. Alert fatigue sets in, thresholds get raised, and the monitoring system becomes less sensitive over time &mdash; often just as the environment it is monitoring becomes more complex.</p>
+          <h2 id="problem">The Problem with Elasticsearch Alerts</h2>
+          <p>Most Elasticsearch alert configurations start with good intentions and end with ignored dashboards. The team enables a set of default detection rules, gets flooded with notifications in the first week, and quietly disables them one by one until what remains is either too broad to be useful or too narrow to catch anything real.</p>
+          <p>Alert fatigue is not a people problem. It is a configuration problem &mdash; and it has specific, fixable causes.</p>
 
-          <h2 id="false-positives">Why False Positives Happen</h2>
-          <p>False positive alerts &mdash; alerts that fire when no real event has occurred &mdash; typically stem from one of three sources:</p>
+          <h2 id="why-lie">Why Elasticsearch Alerts Lie</h2>
+          <p>The most common sources of alert noise in Elasticsearch environments:</p>
           <ul>
-            <li><strong>Threshold rules set against noisy metrics.</strong> A CPU alert that fires at 80% will produce false positives in environments where 80% utilization is normal during batch processing windows. Without time-of-day context or baseline comparison, threshold rules cannot distinguish signal from noise.</li>
-            <li><strong>Missing field handling.</strong> When a detection rule queries a field that is sometimes absent from documents, the rule behaviour depends on how Elasticsearch handles missing values &mdash; which can produce unexpected matches depending on the query type.</li>
-            <li><strong>Index pattern overlap.</strong> Rules targeting broad index patterns may match data from sources the rule was not designed for, generating alerts on irrelevant events.</li>
-          </ul>
-
-          <h2 id="false-negatives">Why False Negatives Happen</h2>
-          <p>False negatives &mdash; real events that should trigger alerts but do not &mdash; are more dangerous than false positives because they are invisible. Common causes include:</p>
-          <ul>
-            <li><strong>Ingestion lag.</strong> If data arrives at Elasticsearch with a delay, time-window-based detection rules may evaluate before the relevant events have been indexed, missing the detection window entirely.</li>
-            <li><strong>Field mapping inconsistencies.</strong> When the same event type is ingested from multiple sources with different field names or data types, a detection rule written for one source will silently miss the others.</li>
-            <li><strong>Rule schedule misalignment.</strong> Detection rules that run on a schedule shorter than the data latency will consistently miss late-arriving events.</li>
+            <li><strong>Threshold-only rules without baseline context.</strong> A rule that fires when CPU exceeds 80% will fire every time a scheduled job runs. Without understanding what normal looks like for this host, the threshold has no meaning.</li>
+            <li><strong>Missing data treated as activity.</strong> When a data source stops sending logs, absence-based rules may fire or fail silently depending on how they were written. Neither outcome is what you want.</li>
+            <li><strong>Rules copied from documentation without tuning.</strong> Default rule sets are starting points, not production configurations. They are written to catch broad categories of behavior, not the specific patterns in your environment.</li>
+            <li><strong>Time window mismatches.</strong> A rule with a 5-minute window will behave very differently at 2am than at 9am. Rules that do not account for temporal patterns generate noise when traffic is low and miss signals when traffic is high.</li>
+            <li><strong>Duplicate alerts from the same root cause.</strong> A single upstream failure can trigger dozens of downstream alerts simultaneously. Without correlation logic, your engineers investigate ten alerts that are all pointing at the same broken service.</li>
           </ul>
 
           <div class="blog-pullquote">
-            <p>An alerting system that teams have stopped trusting is worse than no alerting system at all. It creates the illusion of coverage without the reality.</p>
+            <p>An alert that fires every day stops being an alert. It becomes wallpaper &mdash; and the day it matters, nobody looks at it.</p>
           </div>
 
-          <h2 id="silent-failure">Silent Failure Modes</h2>
-          <p>The most dangerous alerting problems are the ones that produce no visible error. Elasticsearch detection rules can degrade silently when:</p>
-          <ul>
-            <li>The index pattern the rule targets no longer matches any indices, because a naming convention changed</li>
-            <li>The rule query times out under heavy cluster load but the timeout is not surfaced as an alert failure</li>
-            <li>A pipeline change altered the field structure that the rule depends on</li>
-            <li>The rule was disabled manually during an incident response and never re-enabled</li>
-          </ul>
-          <p>None of these produce an error in the obvious sense &mdash; they just stop working. Without systematic rule health monitoring, silent failures can persist for weeks or months.</p>
+          <h2 id="detection">Building Better Detection Rules</h2>
+          <p>Reliable detection rules share a common structure: they are specific, they have documented intent, and they have been tested against real data before being promoted to production.</p>
+          <p>For threshold-based rules, the threshold should be derived from observed baseline behavior, not guessed. For anomaly-based rules, the baseline window should be long enough to account for weekly and monthly traffic cycles. For correlation rules, the time window and aggregation logic should reflect the actual behavior pattern you are trying to detect, not a generic approximation of it.</p>
+          <p>Every rule should have a runbook entry that answers three questions: what triggered this, what is the expected impact, and what is the first step to investigate. A rule without a runbook is not a production rule.</p>
 
-          <h2 id="fixes">How to Build Alerts That Actually Work</h2>
-          <p>Reliable Elasticsearch alerting requires treating detection rules as production code, not configuration. The practices that distinguish reliable alerting from unreliable alerting are consistent:</p>
-          <ul>
-            <li><strong>Test rules against historical data</strong> before deploying to production, using representative event sets that include both positive and negative cases</li>
-            <li><strong>Monitor rule execution health</strong> explicitly &mdash; alert on rule failures, timeouts, and zero-result executions that are unexpected</li>
-            <li><strong>Use field existence checks</strong> in detection queries to handle documents where the target field is absent</li>
-            <li><strong>Align rule schedules with data latency</strong> &mdash; if your ingestion pipeline has a 90-second lag, detection rules with a 60-second window will consistently miss events</li>
-            <li><strong>Version and document detection rules</strong> so that changes are tracked and the intent of each rule is clear to whoever maintains it next</li>
-          </ul>
-
-          <h2 id="faq">FAQ</h2>
-          <div class="blog-faq">
-            <div class="faq-item">
-              <h3>Why do my Elasticsearch alerts fire constantly even when nothing is wrong?</h3>
-              <p>Persistent false positives usually indicate that alert thresholds are set without baseline context, or that the detection query is matching data it was not designed for. Review the index pattern scope and compare threshold values against normal operating baselines for the specific time windows being evaluated.</p>
-            </div>
-            <div class="faq-item">
-              <h3>How do I know if my Elasticsearch detection rules are silently failing?</h3>
-              <p>The most reliable approach is to build a synthetic event injection process &mdash; periodically sending known test events through your pipeline and verifying that the expected alerts fire. Without this, silent failures are effectively invisible until a real incident reveals them.</p>
-            </div>
-            <div class="faq-item">
-              <h3>What is the relationship between ingestion lag and alert reliability?</h3>
-              <p>Detection rules that query time windows shorter than your ingestion lag will systematically miss events that arrive after the rule has already evaluated. Align your rule schedule and look-back window to account for the actual latency in your data pipeline, not the theoretical latency.</p>
-            </div>
-          </div>
+          <h2 id="tuning">Tuning Your Existing Alert Configuration</h2>
+          <p>If you already have a noisy alert environment, the fastest path to improvement is to run a 30-day alert audit. Pull every alert that fired in the last 30 days. For each one, record whether any human action was taken as a result. Alerts with no associated human action in 30 days are candidates for suppression, tuning, or removal.</p>
+          <p>This audit will typically surface a small number of rules generating the majority of the noise. Fixing those rules &mdash; adjusting thresholds, adding baseline context, narrowing time windows &mdash; has an immediate impact on the signal-to-noise ratio for the entire alerting environment.</p>
 
           <h2 id="dinabridge">Why Organizations Choose DinaBridge</h2>
-          <p>DinaBridge works with engineering and security teams to audit Elasticsearch detection rule coverage, fix false positive and false negative patterns, and build the monitoring infrastructure needed to keep alerting reliable as environments change. We scope engagements clearly and assign named senior engineers to every project.</p>
+          <p>DinaBridge builds and tunes detection rule sets for production Elasticsearch environments. We audit existing configurations, identify the sources of noise, and rebuild the rules that matter with proper baselines, runbooks, and validation against real data.</p>
 
           <div class="blog-cta-strip">
             <div>
-              <h3>Is your Elasticsearch alerting reliable enough to trust?</h3>
-              <p>Tell us where your stack is struggling. We will scope it clearly and be direct about whether we are the right fit.</p>
+              <h3>Is your team ignoring alerts because there are too many?</h3>
+              <p>Tell us where your detection environment is breaking down. We will scope the problem clearly and be direct about what is fixable.</p>
             </div>
             <div class="blog-cta-actions">
               <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
