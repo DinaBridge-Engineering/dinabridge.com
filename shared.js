@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v1.5.0
+/* DinaBridge Shared Components — v1.6.0
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -37,13 +37,15 @@
       "Kafka Consulting",
       "Kubernetes Consulting",
       "Elasticsearch Consulting",
-      "ScienceLogic SL1 Consulting"
+      "ScienceLogic SL1 Consulting",
+      "Elastic Migration Consulting"
     ],
     "knowsAbout": [
       "Elasticsearch", "Kibana", "Elastic Stack",
       "Apache Kafka", "Kubernetes", "ScienceLogic SL1",
       "Observability", "APM", "Distributed Tracing",
-      "SIEM", "Detection Engineering", "Vector Search"
+      "SIEM", "Detection Engineering", "Vector Search",
+      "Splunk Migration", "Datadog Migration", "LogRhythm Migration"
     ]
   };
   var schemaTag = document.createElement('script');
@@ -53,11 +55,12 @@
 
   /* ── Nav link definitions ────────────────────────────────── */
   var NAV_LINKS = [
-    { href: '/',                        label: 'Home' },
-    { href: '/elastic-consulting.html', label: 'How We Work' },
-    { href: '/about.html',              label: 'About' },
-    { href: '/contact.html',            label: 'Contact' },
-    { href: '/blog.html',               label: 'Blog' }
+    { href: '/',                         label: 'Home' },
+    { href: '/elastic-consulting.html',  label: 'How We Work' },
+    { href: '/elastic-migration.html',   label: 'Migration' },
+    { href: '/about.html',               label: 'About' },
+    { href: '/contact.html',             label: 'Contact' },
+    { href: '/blog.html',                label: 'Blog' }
   ];
 
   var path = window.location.pathname;
