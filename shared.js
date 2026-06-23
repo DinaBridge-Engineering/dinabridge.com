@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v1.4.1
+/* DinaBridge Shared Components — v1.5.0
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -19,23 +19,31 @@
     "@type": "ProfessionalService",
     "name": "DinaBridge",
     "url": "https://dinabridge.com",
-    "description": "Senior Elasticsearch engineering consultancy for observability, search, and security. Production-focused, senior engineers only.",
+    "description": "Senior engineering consultancy for production data systems — observability, search, security, and platform infrastructure. Hands-on delivery across Elastic, Kafka, Kubernetes, and ScienceLogic.",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Colorado",
-      "addressRegion": "CO",
+      "addressLocality": "Chicago",
+      "addressRegion": "IL",
       "addressCountry": "USA"
     },
     "areaServed": { "@type": "Country", "name": "United States" },
     "priceRange": "$$",
     "serviceType": [
-      "Elasticsearch Consulting","Managed Services","Migration Projects",
-      "Kibana Dashboard Customization","Observability Implementation",
-      "Security SIEM","Advanced Search"
+      "Production Data Systems Consulting",
+      "Observability Engineering",
+      "Search & Retrieval Engineering",
+      "Security SIEM & Detection Engineering",
+      "Platform & Delivery Engineering",
+      "Kafka Consulting",
+      "Kubernetes Consulting",
+      "Elasticsearch Consulting",
+      "ScienceLogic SL1 Consulting"
     ],
     "knowsAbout": [
-      "Elasticsearch","Kibana","Logstash","Elastic Stack",
-      "Observability","APM","SIEM","Vector Search"
+      "Elasticsearch", "Kibana", "Elastic Stack",
+      "Apache Kafka", "Kubernetes", "ScienceLogic SL1",
+      "Observability", "APM", "Distributed Tracing",
+      "SIEM", "Detection Engineering", "Vector Search"
     ]
   };
   var schemaTag = document.createElement('script');
@@ -46,7 +54,7 @@
   /* ── Nav link definitions ────────────────────────────────── */
   var NAV_LINKS = [
     { href: '/',                        label: 'Home' },
-    { href: '/elastic-consulting.html', label: 'Elastic Consulting' },
+    { href: '/elastic-consulting.html', label: 'How We Work' },
     { href: '/about.html',              label: 'About' },
     { href: '/contact.html',            label: 'Contact' },
     { href: '/blog.html',               label: 'Blog' }
@@ -141,13 +149,13 @@
         '        <span>DinaBridge</span>\n' +
         '      </a>\n' +
         '    </div>\n' +
-        '    <p class="footer-tagline">Senior Elasticsearch engineering for observability, search, security, and advanced search.</p>\n' +
+        '    <p class="footer-tagline">Senior engineering for production data systems &mdash; observability, search, security, and platform infrastructure.</p>\n' +
         '    <nav class="footer-nav" aria-label="Footer navigation">\n        ' +
         footerLinks +
         '\n    </nav>\n' +
         '    <div class="footer-divider"></div>\n' +
         '    <p class="footer-legal">&copy; 2026 DinaBridge LLC &mdash; All rights reserved</p>\n' +
-        '    <span class="footer-gem">Senior Elasticsearch Engineering</span>\n' +
+        '    <span class="footer-gem">Senior Production Data Systems Engineering</span>\n' +
         '  </div>\n' +
         '</div>';
     }
