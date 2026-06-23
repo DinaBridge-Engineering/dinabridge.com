@@ -2,72 +2,91 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>About DinaBridge | Senior Elasticsearch Engineers</title>
+<title>About DinaBridge | Senior Production Data Systems Engineers</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="DinaBridge is a named-engineer Elasticsearch consultancy. Senior engineers only — directly involved in every engagement. Search, Observability, Security, Advanced Search." />
+<meta name="description" content="DinaBridge is a named-engineer consultancy for production data systems. Senior engineers only — directly involved in every engagement across Elastic, Kafka, Kubernetes, and ScienceLogic." />
 <link rel="canonical" href="https://dinabridge.com/about.html" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/global.css" />
+<link rel="stylesheet" href="/global.css">
 <script src="/shared.js"></script>
 <style>
-.value-icon svg,.practice-row-icon svg{width:18px;height:18px;display:block;}
+/* ── Firm gradient headline ── */
+.firm-gradient{background:linear-gradient(105deg,var(--blue) 0%,var(--magenta) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 </style>
 </head>
 <body>
-<nav class="nav"></nav>
+
+<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="DinaBridge home">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#0B64DD"/><path d="M10 30 L10 10 L22 10 C28 10 32 14 32 20 C32 26 28 30 22 30 Z" fill="none" stroke="white" stroke-width="3.5" stroke-linejoin="round"/><path d="M10 20 L28 20" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+      <span>DinaBridge</span>
+    </a>
+    <div class="nav-links">
+      <a href="/elastic-consulting.html">Services</a>
+      <a href="/industries.html">Industries</a>
+      <a href="/about.html" class="is-active">About</a>
+      <a href="/blog.html">Blog</a>
+    </div>
+    <a href="/contact.html" class="nav-cta btn btn-primary">Start a project</a>
+    <button class="nav-burger" id="navBurger" aria-label="Open navigation menu" aria-expanded="false" type="button">
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+  <div class="drawer-links">
+    <a href="/elastic-consulting.html">Services</a>
+    <a href="/industries.html">Industries</a>
+    <a href="/about.html" class="is-active">About</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html" class="btn btn-primary drawer-cta">Start a project</a>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay"></div>
+<script>
+(function(){
+  var burger=document.getElementById('navBurger'),drawer=document.getElementById('navDrawer'),overlay=document.getElementById('navOverlay'),open=false;
+  function openMenu(){open=true;burger.classList.add('is-open');burger.setAttribute('aria-expanded','true');drawer.classList.add('is-open');drawer.setAttribute('aria-hidden','false');overlay.classList.add('is-visible');document.body.style.overflow='hidden';}
+  function closeMenu(){open=false;burger.classList.remove('is-open');burger.setAttribute('aria-expanded','false');drawer.classList.remove('is-open');drawer.setAttribute('aria-hidden','true');overlay.classList.remove('is-visible');document.body.style.overflow='';}
+  burger.addEventListener('click',function(){open?closeMenu():openMenu();});
+  overlay.addEventListener('click',closeMenu);
+  drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu);});
+  document.addEventListener('keydown',function(e){if((e.key==='Escape'||e.key==='Esc')&&open)closeMenu();});
+  window.addEventListener('resize',function(){if(window.innerWidth>980&&open)closeMenu();});
+}());
+</script>
 
 <main>
 
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
   <section class="section-hero">
     <div class="container">
-      <div class="about-hero-inner reveal">
-        <h1>Senior engineers.<br>No shortcuts.</h1>
-        <p class="hero-lead">DinaBridge was built around one idea: the people who do consulting work should actually know the work. That shapes everything about how we operate.</p>
+      <div class="practices-label-wrap">
+        <span class="practices-label-accent" aria-hidden="true"></span>
+        <span class="practices-label">About DinaBridge</span>
       </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <section class="section">
-    <div class="container">
-      <div class="about-firm-grid">
-        <div class="about-firm-left reveal">
-          <span class="section-label">The firm</span>
-          <h2><span class="firm-gradient">Built for depth,</span><br>not volume.</h2>
-        </div>
-        <div class="about-firm-right">
-          <p class="reveal reveal-delay-1">DinaBridge is a boutique consultancy for production data systems. We work on a named-engineer model &mdash; the senior engineers you speak with during scoping are the engineers who do the work. You will not be handed off to someone more junior once the contract is signed.</p>
-          <p class="reveal reveal-delay-2">We keep our bench deliberately small. Every engagement gets senior attention, documented delivery, and a direct line to the engineer running it. That is the only model we operate.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <section class="section-tinted">
-    <div class="container">
-      <div class="stat-bar reveal">
+      <h1>Senior engineers.<br>No shortcuts.</h1>
+      <p class="hero-lead">DinaBridge is a senior engineering consultancy for production data systems. We work directly with companies — no account managers, no hand-offs — across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
+      <div class="stat-bar">
         <div class="stat-item">
-          <span class="stat-num">Senior</span>
-          <span class="stat-label">Engineers only &mdash; every engagement</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">1-day</span>
-          <span class="stat-label">Technical assessment turnaround</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">4</span>
+          <span class="stat-number">4</span>
           <span class="stat-label">Practice areas across Elastic, Kafka, Kubernetes, and ScienceLogic</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">Zero</span>
-          <span class="stat-label">Vendor lock-in &mdash; every handoff is yours to own</span>
+          <span class="stat-number">1</span>
+          <span class="stat-label">Named senior engineer on every engagement — no hand-offs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Remote-first, distributed team of independent specialists</span>
         </div>
       </div>
     </div>
@@ -75,26 +94,76 @@
 
   <hr class="section-divider" />
 
+  <!-- ─── FIRM STORY ────────────────────────────────────────── -->
   <section class="section">
     <div class="container">
-      <div class="section-intro reveal">
-        <span class="section-label">The team</span>
-        <h2>Who does the work.</h2>
-        <p>Every engagement is run by a named senior engineer. The person in the scoping call is the person in your cluster.</p>
+      <div class="section-intro">
+        <div class="practices-label-wrap">
+          <span class="practices-label-accent" aria-hidden="true"></span>
+          <span class="practices-label">The Firm</span>
+        </div>
+        <h2><span class="firm-gradient">Built for depth,</span><br>not volume.</h2>
       </div>
-      <div class="card-base team-principle-box reveal">
-        <h3>The engineer on the call is the engineer doing the work.</h3>
-        <p>Elasticsearch specialization is what makes this possible. Observability pipelines, relevance tuning, SIEM detection engineering, Kafka event streams, Kubernetes orchestration, ScienceLogic SL1 &mdash; each of these takes years of production experience to do well. Surface-level knowledge and certifications do not move a struggling cluster. We built a firm around people who have done the work before they arrived.</p>
-        <p>Every engagement is assigned to a named senior engineer before any work begins. That engineer scopes it, builds it, documents it, and hands it off.</p>
-        <div class="expertise-tags">
-          <span class="expertise-tag">Elasticsearch Architecture</span>
-          <span class="expertise-tag">Observability</span>
-          <span class="expertise-tag">SIEM &amp; Security</span>
+      <div class="two-col">
+        <div>
+          <p>DinaBridge was built around a simple observation: most consulting firms are too broad to be useful when a production system is failing. They staff generalists, add management layers, and charge for coordination. The engineers who actually understand the system are rarely the ones in the room.</p>
+          <p>We built the opposite. Every engagement is led by a named senior engineer who works directly inside your environment. No project managers between you and the technical work. No junior resources ramping up on your timeline. Just the right expert, scoped to your exact problem.</p>
+        </div>
+        <div>
+          <p>Elasticsearch specialization is what makes this possible. Observability pipelines, relevance tuning, SIEM detection engineering, Kafka event streams, Kubernetes orchestration, ScienceLogic SL1 — each of these takes years of production experience to do well. Surface-level knowledge and certifications do not move a struggling cluster. We built a firm around people who have done the work before they arrived.</p>
+          <p>The result is a consultancy that operates more like a specialist practice than a staffing agency. Narrow by design. Senior by default. Accountable to outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ─── WHO DOES THE WORK ─────────────────────────────────── -->
+  <section class="section-tinted">
+    <div class="container">
+      <div class="section-intro">
+        <div class="practices-label-wrap">
+          <span class="practices-label-accent" aria-hidden="true"></span>
+          <span class="practices-label">Our Engineers</span>
+        </div>
+        <h2>Who does the work.</h2>
+        <p>Every engineer in the DinaBridge network has worked in production environments at scale. They are independent specialists — not employees — which means they take on work because it matches their expertise, not because they were assigned to a bench.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card-base">
+          <h3>Senior-only</h3>
+          <p>No juniors. No mid-level engineers learning on your project. Every engagement is staffed with someone who has shipped production work in this exact stack.</p>
+        </div>
+        <div class="card-base">
+          <h3>Specialist, not generalist</h3>
+          <p>Each engineer has a defined practice area. Observability, Search, Security, Platform &amp; Delivery, Kafka, or ScienceLogic SL1. Deep expertise, not broad familiarity.</p>
+        </div>
+        <div class="card-base">
+          <h3>Direct and accountable</h3>
+          <p>You speak to the engineer doing the work. Status updates come from the source. Problems surface immediately, not after a management chain filters them.</p>
+        </div>
+      </div>
+      <div style="margin-top:var(--sp-32);">
+        <div class="practices-label-wrap">
+          <span class="practices-label-accent" aria-hidden="true"></span>
+          <span class="practices-label">Expertise coverage</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sp-8);margin-top:var(--sp-12);">
+          <span class="expertise-tag">Elasticsearch</span>
+          <span class="expertise-tag">Kibana</span>
+          <span class="expertise-tag">Elastic APM</span>
+          <span class="expertise-tag">Logstash &amp; Beats</span>
+          <span class="expertise-tag">OpenTelemetry</span>
+          <span class="expertise-tag">Elastic SIEM</span>
+          <span class="expertise-tag">Detection Rules</span>
           <span class="expertise-tag">Kafka &amp; Event Streams</span>
           <span class="expertise-tag">Kubernetes</span>
           <span class="expertise-tag">ScienceLogic SL1</span>
+          <span class="expertise-tag">ILM &amp; Snapshot</span>
           <span class="expertise-tag">Cluster Performance</span>
-          <span class="expertise-tag">Kibana</span>
+          <span class="expertise-tag">Relevance Tuning</span>
+          <span class="expertise-tag">Index Architecture</span>
         </div>
       </div>
     </div>
@@ -102,126 +171,98 @@
 
   <hr class="section-divider" />
 
+  <!-- ─── OPERATING PRINCIPLES ─────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <div class="practices-label-wrap">
+          <span class="practices-label-accent" aria-hidden="true"></span>
+          <span class="practices-label">How We Work</span>
+        </div>
+        <h2>The operating principles.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card-base">
+          <h3>Named engineer, always</h3>
+          <p>Every engagement has one named senior engineer. You know who is doing the work. They are reachable directly. There is no rotation, no hand-off, no mystery about who owns what.</p>
+        </div>
+        <div class="card-base">
+          <h3>Scoped and bounded</h3>
+          <p>We define what we are doing, how long it will take, and what done looks like before we start. No open-ended retainers that drift. No scope creep without explicit agreement.</p>
+        </div>
+        <div class="card-base">
+          <h3>Documented and handed off</h3>
+          <p>Every engagement ends with documentation your team owns. Runbooks, architecture decisions, configuration rationale. You should not need us again for the same problem.</p>
+        </div>
+        <div class="card-base">
+          <h3>No lock-in</h3>
+          <p>We do not build dependencies. Our goal is to leave your team more capable than we found it. If that means we are not needed again, that is a successful engagement.</p>
+        </div>
+        <div class="card-base">
+          <h3>Outcomes over hours</h3>
+          <p>We measure success by what is working in production, not by hours logged. Engagements are scoped to deliverables. Time is a budget constraint, not a billing mechanism.</p>
+        </div>
+        <div class="card-base">
+          <h3>Honest assessment first</h3>
+          <p>Advisory reviews are designed to give you an accurate picture before you commit to hands-on work. If the problem is not one we can solve, we will tell you that.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ─── PRACTICE AREAS ────────────────────────────────────── -->
   <section class="section-tinted">
     <div class="container">
-      <div class="section-intro reveal">
-        <span class="section-label">How we work</span>
-        <h2>The operating principles.</h2>
-        <p>Four things that are true of every engagement, regardless of size or practice area.</p>
-      </div>
-      <div class="values-grid">
-        <div class="value-card card-base reveal reveal-delay-1">
-          <div class="value-icon value-icon--1" aria-hidden="true">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="10" cy="8" r="4"/>
-              <path d="M3 18c0-3.3 3.1-6 7-6s7 2.7 7 6"/>
-            </svg>
-          </div>
-          <h3>Named engineers only</h3>
-          <p>You know who is doing the work before the engagement starts. The engineer on the call is the engineer in your cluster.</p>
+      <div class="section-intro">
+        <div class="practices-label-wrap">
+          <span class="practices-label-accent" aria-hidden="true"></span>
+          <span class="practices-label">Practice Areas</span>
         </div>
-        <div class="value-card card-base reveal reveal-delay-2">
-          <div class="value-icon value-icon--2" aria-hidden="true">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="14" height="14" rx="2"/>
-              <path d="M7 10l2.5 2.5L13 7"/>
-            </svg>
-          </div>
-          <h3>Scoped and documented</h3>
-          <p>Every engagement has a defined scope, a deliverables list, and a written handoff. Work ends when the scope is complete.</p>
-        </div>
-        <div class="value-card card-base reveal reveal-delay-3">
-          <div class="value-icon value-icon--3" aria-hidden="true">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3L7 10 3 7h5z"/>
-            </svg>
-          </div>
-          <h3>Production-first thinking</h3>
-          <p>We design for the environment your cluster actually runs in &mdash; real data volumes, real query patterns, real constraints.</p>
-        </div>
-        <div class="value-card card-base reveal reveal-delay-4">
-          <div class="value-icon value-icon--4" aria-hidden="true">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 17l4-4m0 0l2-6 2 6m0 0l4 4"/>
-              <path d="M8 13h4"/>
-            </svg>
-          </div>
-          <h3>Working deliverables only</h3>
-          <p>Outputs are configurations, runbooks, and architecture docs &mdash; things your team can use the day we hand them over.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <section class="section">
-    <div class="container">
-      <div class="section-intro reveal">
-        <span class="section-label">Practice areas</span>
         <h2>Where we work.</h2>
-        <p>Senior engineering across the four core practices &mdash; production-ready, clearly scoped, senior-led from first conversation to final handoff.</p>
+        <p>Four focused practice areas. Each is staffed by engineers who have worked in that domain at production scale — not generalists who cover everything at surface level.</p>
       </div>
-      <div class="practices-wrapper reveal">
+      <div class="practices-wrapper">
         <a href="/elastic-observability.html" class="practice-row reveal reveal-delay-1">
-          <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--obs" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="10" cy="10" r="8"/>
-                <path d="M10 6v4l2.5 2.5"/>
-              </svg>
-            </div>
-            <div class="practice-row-text">
-              <h3>Observability</h3>
-              <p>APM instrumentation, distributed tracing, event ingestion pipelines, and Kibana dashboards for production Elastic environments.</p>
-            </div>
+          <div class="practice-row-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
           </div>
-          <span class="practice-row-arrow">Learn more &rarr;</span>
+          <div class="practice-row-content">
+            <h3>Observability</h3>
+            <p>APM instrumentation, distributed tracing, event ingestion pipeline architecture, and observability engineering across Elastic, Kafka-connected telemetry flows, and ScienceLogic SL1.</p>
+          </div>
+          <span class="practice-row-arrow" aria-hidden="true">&rarr;</span>
         </a>
-        <a href="/elastic-consulting.html" class="practice-row reveal reveal-delay-2">
-          <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--search" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8.5" cy="8.5" r="5.5"/>
-                <path d="M15 15l-3-3"/>
-              </svg>
-            </div>
-            <div class="practice-row-text">
-              <h3>Search</h3>
-              <p>Relevance tuning, index architecture, cluster performance engineering, and migration planning for enterprise Elasticsearch deployments.</p>
-            </div>
+        <a href="/elastic-search.html" class="practice-row reveal reveal-delay-2">
+          <div class="practice-row-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </div>
-          <span class="practice-row-arrow">Learn more &rarr;</span>
+          <div class="practice-row-content">
+            <h3>Search</h3>
+            <p>Relevance tuning, index architecture, cluster performance engineering, and migration planning for production Elasticsearch deployments at any scale.</p>
+          </div>
+          <span class="practice-row-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a href="/elastic-security.html" class="practice-row reveal reveal-delay-3">
-          <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--sec" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 2l6 2.5v5c0 4-3 7-6 8-3-1-6-4-6-8v-5L10 2z"/>
-              </svg>
-            </div>
-            <div class="practice-row-text">
-              <h3>Security</h3>
-              <p>SIEM deployment, custom detection rule engineering, and telemetry pipeline implementation for compliance and production threat detection.</p>
-            </div>
+          <div class="practice-row-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <span class="practice-row-arrow">Learn more &rarr;</span>
+          <div class="practice-row-content">
+            <h3>Security</h3>
+            <p>SIEM deployment, custom detection rule engineering, and Elastic Security implementation for compliance, fraud detection, and production threat operations.</p>
+          </div>
+          <span class="practice-row-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a href="/platform-delivery.html" class="practice-row reveal reveal-delay-4">
-          <div class="practice-row-left">
-            <div class="practice-row-icon practice-row-icon--ai" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="16" height="4" rx="1"/>
-                <rect x="2" y="9" width="16" height="4" rx="1"/>
-                <rect x="2" y="15" width="16" height="2" rx="1"/>
-              </svg>
-            </div>
-            <div class="practice-row-text">
-              <h3>Platform &amp; Delivery</h3>
-              <p>Kubernetes cluster engineering, deployment architecture, and infrastructure orchestration for teams running production data systems at scale.</p>
-            </div>
+          <div class="practice-row-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
-          <span class="practice-row-arrow">Learn more &rarr;</span>
+          <div class="practice-row-content">
+            <h3>Platform &amp; Delivery</h3>
+            <p>Kubernetes cluster engineering, deployment architecture, and infrastructure orchestration for teams running production data systems at scale.</p>
+          </div>
+          <span class="practice-row-arrow" aria-hidden="true">&rarr;</span>
         </a>
       </div>
     </div>
@@ -229,12 +270,13 @@
 
   <hr class="section-divider" />
 
+  <!-- ─── CTA ───────────────────────────────────────────────── -->
   <section class="section">
     <div class="container">
-      <div class="cta-box reveal">
+      <div class="cta-box">
         <span class="section-label">Work with us</span>
         <h2>Ready to work with senior engineers?</h2>
-        <p>Tell us what you are building or where your stack is struggling. We will scope it clearly and be straight with you about whether we are the right fit.</p>
+        <p>Tell us what you are working on. We will respond within one business day with a clear technical assessment. No sales pitch, no discovery theatre.</p>
         <div class="cta-actions">
           <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
           <a href="/elastic-consulting.html" class="btn btn-secondary">How we engage</a>
