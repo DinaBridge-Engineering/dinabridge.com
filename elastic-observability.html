@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Elasticsearch observability consulting from DinaBridge. APM, distributed tracing, log pipelines, and infrastructure monitoring for production Elastic environments." />
-<title>Elastic Observability | DinaBridge</title>
+<meta name="description" content="Observability engineering from DinaBridge. APM instrumentation, distributed tracing, telemetry pipelines, and Kibana dashboards for production-scale Elastic environments." />
+<title>Observability Engineering | DinaBridge</title>
 <link rel="canonical" href="https://dinabridge.com/elastic-observability.html" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/global.css">
+<link rel="stylesheet" href="/v4.css">
 <script src="/shared.js"></script>
+<script src="/scroll-reveal.js" defer></script>
 </head>
 <body>
 
@@ -20,87 +22,170 @@
 
 <main>
 
-  <section class="section-hero">
-    <div class="container">
-      <span class="eyebrow">Elastic Observability</span>
-      <h1>Full-stack visibility.<br>Built on Elastic.</h1>
-      <p class="hero-lead">APM, distributed tracing, log pipelines, and infrastructure monitoring &mdash; engineered for production-scale Elastic environments by senior engineers.</p>
-      <div class="hero-actions">
-        <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
-      </div>
-      <div class="hero-proof">
-        <span>Elastic APM</span>
-        <span>OpenTelemetry</span>
-        <span>Log pipelines</span>
-        <span>Kibana dashboards</span>
+  <!-- HERO -->
+  <section class="v4-hero">
+    <div class="v4-container">
+      <div class="v4-hero-inner">
+        <div class="v4-hero-text">
+          <p class="v4-section-number">Practice &mdash; Observability</p>
+          <h1 class="v4-h1">Know what your system is doing.<br>At all times.</h1>
+          <p class="v4-hero-lead">APM instrumentation, distributed tracing, telemetry pipelines, and Kibana dashboards &mdash; engineered for production-scale environments by senior engineers who have seen what breaks at 3am.</p>
+          <div class="v4-hero-actions">
+            <a href="/contact.html" class="v4-btn-primary">Start a conversation</a>
+            <a href="/elastic-consulting.html" class="v4-btn-secondary">All practices</a>
+          </div>
+        </div>
+        <div class="v4-hero-diagram" aria-hidden="true">
+          <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Telemetry pipeline architecture diagram">
+            <rect width="480" height="300" fill="#F8FAFC" rx="4"/>
+            <text x="24" y="26" font-family="'Courier New', monospace" font-size="10" fill="#6B7C93" letter-spacing="0.06em">TELEMETRY PIPELINE</text>
+            <line x1="24" y1="34" x2="456" y2="34" stroke="#E2E8F0" stroke-width="1"/>
+
+            <!-- Stage boxes -->
+            <!-- Agent -->
+            <rect x="20" y="100" width="80" height="36" rx="3" fill="#fff" stroke="#3D5166" stroke-width="1"/>
+            <text x="60" y="113" font-family="'Courier New', monospace" font-size="9" fill="#6B7C93" text-anchor="middle">AGENT</text>
+            <text x="60" y="126" font-family="'Courier New', monospace" font-size="9" fill="#0A192F" text-anchor="middle">OTel / APM</text>
+
+            <!-- Collector -->
+            <rect x="140" y="100" width="80" height="36" rx="3" fill="#fff" stroke="#3D5166" stroke-width="1"/>
+            <text x="180" y="113" font-family="'Courier New', monospace" font-size="9" fill="#6B7C93" text-anchor="middle">COLLECTOR</text>
+            <text x="180" y="126" font-family="'Courier New', monospace" font-size="9" fill="#0A192F" text-anchor="middle">Logstash</text>
+
+            <!-- Buffer -->
+            <rect x="260" y="100" width="80" height="36" rx="3" fill="#fff" stroke="#3D5166" stroke-width="1"/>
+            <text x="300" y="113" font-family="'Courier New', monospace" font-size="9" fill="#6B7C93" text-anchor="middle">BUFFER</text>
+            <text x="300" y="126" font-family="'Courier New', monospace" font-size="9" fill="#0A192F" text-anchor="middle">Kafka</text>
+
+            <!-- Index -->
+            <rect x="380" y="100" width="80" height="36" rx="3" fill="#fff" stroke="#0A192F" stroke-width="1.5"/>
+            <text x="420" y="113" font-family="'Courier New', monospace" font-size="9" fill="#6B7C93" text-anchor="middle">INDEX</text>
+            <text x="420" y="126" font-family="'Courier New', monospace" font-size="9" fill="#0A192F" text-anchor="middle">Elastic</text>
+
+            <!-- Arrows between stages -->
+            <line x1="100" y1="118" x2="138" y2="118" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr)"/>
+            <line x1="220" y1="118" x2="258" y2="118" stroke="#CBD5E1" stroke-width="1" marker-end="url(#arr)"/>
+            <line x1="340" y1="118" x2="378" y2="118" stroke="#1A73E8" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+            <!-- Labels under arrows -->
+            <text x="119" y="112" font-family="'Courier New', monospace" font-size="8" fill="#6B7C93" text-anchor="middle">push</text>
+            <text x="239" y="112" font-family="'Courier New', monospace" font-size="8" fill="#6B7C93" text-anchor="middle">stream</text>
+            <text x="359" y="112" font-family="'Courier New', monospace" font-size="8" fill="#1A73E8" text-anchor="middle">index</text>
+
+            <!-- Output branches from Elastic -->
+            <line x1="420" y1="136" x2="420" y2="170" stroke="#CBD5E1" stroke-width="1"/>
+            <line x1="340" y1="170" x2="460" y2="170" stroke="#CBD5E1" stroke-width="1"/>
+
+            <rect x="320" y="178" width="64" height="28" rx="3" fill="rgba(10,25,47,.06)" stroke="#3D5166" stroke-width="0.75"/>
+            <text x="352" y="196" font-family="'Courier New', monospace" font-size="8" fill="#3D5166" text-anchor="middle">Kibana</text>
+
+            <rect x="396" y="178" width="64" height="28" rx="3" fill="rgba(26,115,232,.08)" stroke="#1A73E8" stroke-width="0.75"/>
+            <text x="428" y="196" font-family="'Courier New', monospace" font-size="8" fill="#1A73E8" text-anchor="middle">Alerts</text>
+
+            <!-- App sources on left -->
+            <text x="20" y="70" font-family="'Courier New', monospace" font-size="8" fill="#6B7C93">app-01</text>
+            <line x1="52" y1="72" x2="52" y2="100" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="48" y="86" font-family="'Courier New', monospace" font-size="7" fill="#6B7C93" text-anchor="middle">traces</text>
+
+            <text x="66" y="70" font-family="'Courier New', monospace" font-size="8" fill="#6B7C93">app-02</text>
+            <line x1="76" y1="72" x2="76" y2="100" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="72" y="86" font-family="'Courier New', monospace" font-size="7" fill="#6B7C93" text-anchor="middle">logs</text>
+
+            <!-- Legend -->
+            <line x1="24" y1="252" x2="44" y2="252" stroke="#1A73E8" stroke-width="1.5"/>
+            <text x="50" y="256" font-family="'Courier New', monospace" font-size="8" fill="#6B7C93">primary data path</text>
+            <line x1="160" y1="252" x2="180" y2="252" stroke="#CBD5E1" stroke-width="1"/>
+            <text x="186" y="256" font-family="'Courier New', monospace" font-size="8" fill="#6B7C93">secondary path</text>
+
+            <defs>
+              <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#CBD5E1"/>
+              </marker>
+              <marker id="arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#1A73E8"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
 
-  <hr class="section-divider" />
-
-  <section class="section">
-    <div class="container">
-      <div class="section-intro">
-        <span class="section-label">What we deliver</span>
-        <h2>Observability engineering for production Elastic.</h2>
-        <p>We build the observability layer your team needs to understand what is happening in production &mdash; and respond to it faster.</p>
+  <!-- 01 WHAT WE DELIVER -->
+  <section class="v4-section">
+    <div class="v4-container">
+      <div class="v4-section-header reveal">
+        <span class="v4-section-number">01 &mdash; What We Deliver</span>
+        <h2 class="v4-h2">Observability engineering for production Elastic.</h2>
+        <p class="v4-section-intro">We build the observability layer your team needs to understand what is happening in production &mdash; and respond faster when something goes wrong.</p>
       </div>
-      <div class="grid-3">
-        <div class="card-base card">
-          <div class="step-number">APM</div>
-          <h3>Application performance monitoring</h3>
-          <p>Elastic APM instrumentation, agent configuration, and tuning for distributed applications. Traces, spans, and error tracking that surface real production issues.</p>
-          <ul class="clean-list"><li>APM agent setup and configuration</li><li>Custom instrumentation for critical paths</li><li>Trace correlation with logs and metrics</li></ul>
+      <div class="v4-practices-table reveal">
+        <div class="v4-practice-row" style="cursor:default;">
+          <span class="v4-practice-num">01</span>
+          <span class="v4-practice-name">APM</span>
+          <span class="v4-practice-desc">Elastic APM instrumentation, agent configuration, and tuning for distributed applications. Traces, spans, and error tracking that surface real production issues.</span>
+          <span class="v4-practice-stack">Elastic APM &middot; OpenTelemetry &middot; Jaeger</span>
+          <span class="v4-practice-arrow"></span>
         </div>
-        <div class="card-base card">
-          <div class="step-number">Pipelines</div>
-          <h3>Ingest pipeline architecture</h3>
-          <p>Logstash, Fleet, and Beats pipelines designed for scale. We architect the ingestion layer so data arrives clean, structured, and queryable from day one.</p>
-          <ul class="clean-list"><li>Logstash pipeline design and optimization</li><li>Fleet and Elastic Agent policy management</li><li>Structured log normalization and enrichment</li></ul>
+        <div class="v4-practice-row" style="cursor:default;">
+          <span class="v4-practice-num">02</span>
+          <span class="v4-practice-name">Pipelines</span>
+          <span class="v4-practice-desc">Logstash, Fleet, and Beats pipelines designed for scale. Data that arrives clean, structured, and queryable from day one.</span>
+          <span class="v4-practice-stack">Logstash &middot; Fleet &middot; Beats &middot; Kafka</span>
+          <span class="v4-practice-arrow"></span>
         </div>
-        <div class="card-base card">
-          <div class="step-number">Alerting</div>
-          <h3>Alert fatigue reduction</h3>
-          <p>We tune alerting thresholds, build SLO/SLA dashboards in Kibana, and reduce the noise that pulls engineers into false alarms at 3am.</p>
-          <ul class="clean-list"><li>SLO and SLA dashboard engineering</li><li>Threshold tuning and alert consolidation</li><li>Runbook integration and escalation flows</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-intro">
-        <span class="section-label">OpenTelemetry</span>
-        <h2>OTel-native or Elastic-native. Both.</h2>
-        <p>We work with teams migrating to OpenTelemetry and those staying on native Elastic APM agents. Either way, the outcome is the same: full visibility.</p>
-      </div>
-      <div class="grid-2">
-        <div class="card-base card">
-          <h3>OpenTelemetry migration</h3>
-          <p>Planning and executing migrations from vendor-native agents to OpenTelemetry collectors, with Elastic as the backend. We handle the collector configuration, data mapping, and zero-downtime cutover.</p>
-        </div>
-        <div class="card-base card">
-          <h3>Elastic APM at scale</h3>
-          <p>For teams running native Elastic APM agents, we tune sampling rates, storage policies, and index lifecycle management to keep costs predictable as data volumes grow.</p>
+        <div class="v4-practice-row" style="cursor:default;">
+          <span class="v4-practice-num">03</span>
+          <span class="v4-practice-name">Alerting</span>
+          <span class="v4-practice-desc">SLO/SLA dashboards, threshold tuning, and alert consolidation that reduce the noise pulling engineers into false alarms at 3am.</span>
+          <span class="v4-practice-stack">Kibana &middot; Elastic Alerting &middot; PagerDuty</span>
+          <span class="v4-practice-arrow"></span>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="section-divider" />
+  <!-- 02 OTEL -->
+  <section class="v4-section v4-section--tinted">
+    <div class="v4-container">
+      <div class="v4-section-header reveal">
+        <span class="v4-section-number">02 &mdash; OpenTelemetry</span>
+        <h2 class="v4-h2">OTel-native or Elastic-native. Both.</h2>
+        <p class="v4-section-intro">We work with teams migrating to OpenTelemetry and those staying on native Elastic APM agents. Either way, the outcome is full visibility with predictable storage costs.</p>
+      </div>
+      <div class="v4-engage-grid reveal" style="grid-template-columns: repeat(2,1fr);">
+        <div class="v4-engage-card">
+          <span class="v4-engage-mode">// MIGRATION</span>
+          <h3 class="v4-h3">OpenTelemetry migration</h3>
+          <ul class="v4-engage-list">
+            <li>Vendor-native agents to OTel collectors with Elastic backend</li>
+            <li>Collector configuration and data mapping</li>
+            <li>Zero-downtime cutover strategy</li>
+          </ul>
+        </div>
+        <div class="v4-engage-card">
+          <span class="v4-engage-mode">// SCALE</span>
+          <h3 class="v4-h3">Elastic APM at scale</h3>
+          <ul class="v4-engage-list">
+            <li>Sampling rate and storage policy tuning</li>
+            <li>Index lifecycle management for cost control</li>
+            <li>Performance at high event volume</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="cta-box">
-        <span class="section-label">Work with us</span>
-        <h2>Let&rsquo;s fix your observability stack.</h2>
-        <p>Tell us what you are working on. We will respond within one business day with a clear assessment &mdash; no sales pitch.</p>
-        <div class="cta-actions">
-          <a href="/contact.html" class="btn btn-primary">Start a conversation</a>
+  <!-- CTA -->
+  <section class="v4-section">
+    <div class="v4-container">
+      <div class="v4-cta reveal">
+        <span class="v4-section-number">Work With Us</span>
+        <h2 class="v4-h2">Let&rsquo;s fix your observability stack.</h2>
+        <p class="v4-cta-desc">Tell us what you are working on. A senior engineer responds within one business day with a clear assessment &mdash; not a sales pitch.</p>
+        <div class="v4-cta-actions">
+          <a href="/contact.html" class="v4-btn-primary">Start a conversation &rarr;</a>
+          <a href="/elastic-consulting.html" class="v4-btn-secondary">All practices</a>
         </div>
       </div>
     </div>
