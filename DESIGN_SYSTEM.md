@@ -1,168 +1,196 @@
-# DinaBridge Design System — v4.0.0
-> **Version:** 4.0.0 · **Status:** ACTIVE
-> Philosophy: Emil Kowalski · Linear · Vercel · Stripe Docs
-> Tone: quiet, premium, architectural, engineered.
-> Design relies on typography, spacing, alignment, grid, hierarchy — not visual effects.
+# DinaBridge Design System — v4.1.0
+
+Last updated: 2026-07-04  
+Branch: `redesign/v4-engineering-minimal`
 
 ---
 
-## LAYER A — Design System (NEVER changes without explicit SYSTEM REDESIGN instruction)
+## Philosophy
 
-### Design Principles
-- No gradients anywhere
-- No glassmorphism (no backdrop-filter blur)
-- No glowing borders or colored shadows on cards
-- No decorative ::before / ::after atmospheric layers
-- No hover transforms on cards (translateY, scale, hard pop)
-- Motion: opacity fade + small translateY (10px) only
-- Every visual element must explain something or serve the layout
+Design earns attention through **typography and layout**, not effects.
+The site communicates engineering competence by being precise, not decorative.
 
-### Color Tokens
-| Token | Value | Role |
+Every decision should pass this test:
+> Does this help the visitor understand what DinaBridge does, who it's for, why it's different, or how to engage? If not, remove it.
+
+---
+
+## Tokens (v4.css `:root`)
+
+| Token | Value | Use |
 |---|---|---|
-| `--paper` | `#FCFDFE` | Page background |
-| `--paper-2` | `#F0F4FA` | Tinted sections (one max) |
-| `--navy` | `#0A192F` | Headings, primary text, buttons |
-| `--ink` | `#0A192F` | Body text (same as navy) |
-| `--ink-2` | `#3D5166` | Body copy, card text |
-| `--ink-3` | `#6B7C93` | Labels, captions, footer, muted |
-| `--rule` | `rgba(10,25,47,.07)` | Dividers, internal borders |
-| `--rule-strong` | `rgba(10,25,47,.12)` | Card borders, stronger dividers |
-| `--blue` | `#1A73E8` | Links, subtle tints only (≤10% opacity) |
-| `--blue-mid` | `rgba(26,115,232,.08)` | Badge backgrounds |
-| `--teal` | `#006e6b` | Legacy alias only — do not use for new UI |
+| `--v4-navy` | `#0A192F` | Headings, primary text, buttons |
+| `--v4-navy-2` | `#3D5166` | Body text |
+| `--v4-ink-3` | `#6B7C93` | Labels, small text, monospace |
+| `--v4-blue` | `#1A73E8` | Single accent — diagram lines, links |
+| `--v4-paper` | `#FCFDFE` | Default page background |
+| `--v4-paper-2` | `#F0F4FA` | One tinted section (How We Engage) |
+| `--v4-rule` | `rgba(10,25,47,.08)` | Row dividers |
+| `--v4-rule-strong` | `rgba(10,25,47,.14)` | Card borders, section borders |
 
-**Removed in v4:** `--gemini-flare`, `--pink`, `--pink-soft`, `--indigo`, `--magenta`, `--gold`, all `--pg-*` variables.
+---
 
-### Typography
-| Role | Font | Weight |
-|---|---|---|
-| Headings | `Inter` | 600 |
-| Body / UI | `Inter` | 400, 500 |
+## Typography
 
-Google Fonts load: `Inter:wght@400;500;600`
+- **Font**: Inter 400/500/600 only. Never 700+.
+- **Headings**: `font-weight: 600`, negative `letter-spacing`.
+- **Body**: `font-weight: 400`, `line-height: 1.75`, `color: var(--v4-navy-2)`.
+- **Labels/mono**: `font-family: 'Courier New'`, `font-size: 0.75rem`, `color: var(--v4-ink-3)`.
+- **Max line width**: `65ch` for all body paragraphs.
+- No gradient text. No italic except `For: ...` audience lines.
 
 ### Type Scale
-```
---text-xs:   0.75rem
---text-sm:   0.9375rem
---text-base: 1rem
---text-lg:   1.125rem
---h1-size:   clamp(2.6rem, 5vw, 4.2rem)   weight 600  tracking -0.03em
---h2-size:   clamp(1.6rem, 3vw, 2.4rem)   weight 600  tracking -0.025em
---h3-size:   1rem                          weight 600  tracking -0.01em
-```
-
-### Spacing Scale (8px grid — strict)
-```
---sp-4 through --sp-128
-```
-Section vertical padding: `var(--sp-80)` standard · Hero: `var(--sp-96)` top · Tight: `var(--sp-48)`
-
-### Grid System
-| Class | Columns | Gap |
-|---|---|---|
-| `.grid-1` | 1 col | sp-32 |
-| `.grid-2` | 2 col | sp-32 |
-| `.grid-3` | 3 col | sp-32 |
-| `.grid-4` | 4 col → 2 col at 1024px → 1 col at 768px | sp-32 |
-| `.team-grid` | `auto-fill minmax(260px, 1fr)` | sp-24 |
-
-### Shadow System
-```
---shadow-sm: 0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(10,25,47,.06)
---shadow-md: 0 1px 4px rgba(0,0,0,.05), 0 8px 24px rgba(10,25,47,.08)
-```
-No colored shadows. No blue/pink glow shadows on cards.
-
-### Radius System
-```
---radius:    4px   (all cards, inputs, buttons)
---radius-md: 4px
---radius-lg: 4px
---radius-xl: 4px
---radius-full: 999px  (pill shapes only — discouraged)
-```
-
-### Button Rules
-- `.btn-primary`: `background: #0A192F; color: #fff;` — no gradient
-- `.btn-secondary`: `background: transparent; border: 1px solid var(--rule-strong);` — no gradient
-- No hover transform on buttons
-- No glow shadow on buttons
-
-### Card Rules
-- Cards: `border: 1px solid var(--rule-strong); background: #fff;`
-- Hover: `border-color` darkens only — no transform, no shadow color, no glow
-- No ::before / ::after decorative layers
-- No gradient tops or bars
-
-### Motion Rules
-- `.reveal`: `opacity 0→1 + translateY(10px)→0` over `0.45s`
-- No bouncing, scaling, or dramatic animations
-- No `will-change: transform` on cards
-- Card hover: border color change only
-
-### Navigation Rules
-- No backdrop-filter blur
-- Brand mark: solid `#0A192F` square, no gradient
-- Nav CTA: outlined button, fills on hover
-- No gradient underline on links
-
-### Component Inventory (must always exist in global.css)
-- `.nav` + `.nav-inner` + `.nav-links` + `.nav-cta` + `.nav-burger` + `.nav-drawer`
-- `.btn` + `.btn-primary` + `.btn-secondary`
-- `.section` + `.section-tinted` + `.section-hero` + `.section-divider`
-- `.card-base` + `.card-featured` + `.practice-card` + `.team-card` + `.trust-card`
-- `.how-inner` + `.cta-box` + `.diff-stack`
-- `.trust-bar` + `.trust-stat`
-- `footer` + `.footer-inner` + `.footer-brand-block` + `.footer-nav`
-- `.eyebrow` + `.badge-blue` + `.section-label`
-- `.reveal` + `.reveal-delay-1/2/3/4`
+| Class | Size | Weight | Use |
+|---|---|---|---|
+| `.v4-h1` | `clamp(2.4rem, 4.5vw, 4rem)` | 600 | Page hero |
+| `.v4-h2` | `clamp(1.6rem, 2.8vw, 2.25rem)` | 600 | Section headers |
+| `.v4-h3` | `1rem` | 600 | Card titles |
+| `.v4-section-number` | `0.72rem` | 500 | Editorial section labels |
 
 ---
 
-## LAYER B — Page Content (can change freely)
-- Text, headings, paragraphs, section copy
-- Team bios, names, titles
-- CTA button labels
-- Blog posts and case studies
-- Meta descriptions and page titles
+## Numbered Section Header Pattern
 
-## LAYER C — Page Behavior Rules (controlled updates only)
-- CTA hover states
-- Responsive breakpoints
-- Animation timing
-- Scroll behavior
+Every major section uses a two-part editorial header:
+
+```html
+<span class="v4-section-number">01 — What We Do</span>
+<h2 class="v4-h2">Section headline.</h2>
+```
+
+Rules:
+- Number format: `NN — Title Case`
+- `v4-section-number`: `0.72rem`, `font-weight: 500`, `letter-spacing: 0.06em`, `text-transform: uppercase`, `color: var(--v4-ink-3)`
+- No decorative pills, borders, or lines around the number.
+- Number and h2 live in the same `.v4-section-header` container.
 
 ---
 
-## Page Structure Inventory
+## Practices Table Pattern
 
-| Page | Required Sections |
+Replaces card grids. Use for listing services/practices.
+
+```html
+<div class="v4-practices-table">
+  <a href="/page.html" class="v4-practice-row">
+    <span class="v4-practice-num">01</span>
+    <span class="v4-practice-name">Practice Name</span>
+    <span class="v4-practice-desc">One-line description.</span>
+    <span class="v4-practice-stack">Tool A · Tool B · Tool C</span>
+    <span class="v4-practice-arrow">→</span>
+  </a>
+</div>
+```
+
+Rules:
+- Border: `1px solid var(--v4-rule-strong)`, `border-radius: 4px`
+- Row hover: `background: rgba(10,25,47,.02)` only — no transform
+- Stack tags: monospace, `0.75rem`, `--v4-ink-3`
+- Arrow shifts `3px` on hover — the only motion on this element
+
+---
+
+## Three Engagement Card Pattern
+
+Three equal-width cards for Direct / White-label / Embedded engagement modes.
+
+```html
+<div class="v4-engage-grid">
+  <div class="v4-engage-card">
+    <span class="v4-engage-mode">// DIRECT</span>
+    <p class="v4-engage-for">For: in-house engineering teams</p>
+    <h3 class="v4-h3">Card Title</h3>
+    <ul class="v4-engage-list">...</ul>
+  </div>
+</div>
+```
+
+Rules:
+- Mode label: monospace, `0.75rem`, `--v4-ink-3`
+- For line: italic, `0.8125rem`, `--v4-ink-3`
+- No CTA button inside the card
+- Hover: border darkens only (`rgba(10,25,47,.28)`) — no transform
+- No gradient borders, glow effects, or `::before` decorative lines
+
+---
+
+## Inline SVG Illustration Rules
+
+All illustrations must be inline SVG. No image files for diagrams.
+
+Allowed elements: `rect`, `line`, `polyline`, `path`, `circle`, `text`  
+Allowed colors:
+- `#0A192F` — primary structure
+- `#3D5166` — secondary structure
+- `rgba(10,25,47,.08)` — fill tints
+- `#1A73E8` — one accent line per diagram (client request, primary shard, etc.)
+
+Forbidden:
+- Gradients (`linearGradient`, `radialGradient`)
+- Filters (`filter`, `feBlur`, `feDropShadow`)
+- Decorative blobs or rounded shapes with no semantic meaning
+
+Font inside SVG: `'Courier New', monospace`, `8–11px`, `fill: var(--v4-ink-3)` or `var(--v4-navy)`
+
+The diagram must explain something real: a pipeline, a topology, a flow. It should look like it belongs in an engineering RFC.
+
+---
+
+## Section Backgrounds
+
+- Default: `var(--v4-paper)` — `#FCFDFE`
+- **One section only** may use `var(--v4-paper-2)` (`#F0F4FA`): the process/how-we-engage section.
+- No `section-dark`. No full-bleed gradients. No alternating background colors.
+
+---
+
+## Cards
+
+- Background: `#ffffff`
+- Border: `1px solid var(--v4-rule-strong)`
+- Border-radius: `4px`
+- Padding: `32px` (desktop), `20px` (mobile)
+- Hover: border-color darkens only
+- No: `box-shadow` layers, `transform: translateY`, gradient `::before` accents, glow
+
+---
+
+## Buttons
+
+| Class | Style |
 |---|---|
-| `index.html` | Hero · Practice cards · How we engage · How it works · Why DinaBridge · CTA |
-| `elastic-consulting.html` | Hero · Practice areas · How section · CTA |
-| `about.html` | Hero · Firm section · Stat bar · Team grid · Values · CTA |
-| `contact.html` | Hero · Contact form + aside · CTA |
-| `industries.html` | Hero · Industry cards · CTA |
-| `elastic-migration.html` | Hero · Process · CTA |
+| `.v4-btn-primary` | Navy fill, white text, 4px radius, 9/20px padding |
+| `.v4-btn-secondary` | Transparent, navy border, navy text, 4px radius |
+
+Hover: color/border-color transition only. No `transform`. No shadow change.
 
 ---
 
-## Removed in v4.0.0 (Do Not Restore)
-- Playfair Display (replaced by Inter)
-- `--gemini-flare` gradient and all usages
-- Pink glow system (`--pg-*` variables and all ::after atmospheric layers)
-- `section-dark` variant
-- `backdrop-filter: blur` on nav
-- `transform: translateY` hover on cards
-- Hard 3D pop hover (`translate(-4px,-4px)` + colored shadow)
-- Gradient text on h1/h2
-- Decorative eyebrow pills with gradient borders
-- `.footer-gem` italic ornament
-- `.hero-proof` pill badges
-- `.badge-pink` component
+## Motion
 
-*Maintained by DinaBridge Engineering. Any change to Layer A requires explicit `SYSTEM REDESIGN` instruction.*
+- Only `.reveal`: `opacity 0→1` + `translateY(10px)→0`, `0.45s ease`
+- No bounce, scale, rotate, or parallax
+- Interactive elements: `color` and `border-color` transition at `200ms` only
+- The best animation is one visitors barely notice
 
-*v4.0.0 — Engineering Minimal — July 2026*
+---
+
+## Removed (v4.0.0 → v4.1.0)
+
+These patterns are permanently removed from the design system:
+
+- `linearGradient` / `radialGradient` fills on UI elements
+- `.engage-headline-gradient` (gradient headline text)
+- `.why-headline-depth` (gradient headline text)
+- Glassmorphism (`backdrop-filter`, `background: rgba(...,.72)`)
+- Glow `box-shadow` on cards and icons
+- `::before` gradient accent bars on cards
+- `transform: translateY` on card hover
+- Circular timeline (`timeline`, `timeline-num`) with connector lines
+- 4-up practice card grid with colored icon circles
+- Fake SaaS dashboard illustrations
+- Oversized `font-weight: 800` headings
+- Decorative `practices-label-accent` bar
+- Two-card engagement grid (Advisory/Delivery only)
+- `section-dark` backgrounds
+- Photography or people imagery
