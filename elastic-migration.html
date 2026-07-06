@@ -16,7 +16,9 @@
 <script src="/shared.js"></script>
 <script src="/scroll-reveal.js" defer></script>
 <style>
-/* elastic-migration.html — v4.1 local additions */
+/* elastic-migration.html — v4.2 local additions */
+
+/* ─ Hero stat bar ──────────────────────────────────────────── */
 .v4-stat-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -47,6 +49,10 @@
   color: #6B7C93;
   line-height: 1.55;
 }
+@media(max-width:768px) { .v4-stat-bar { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px) { .v4-stat-bar { grid-template-columns: 1fr; } }
+
+/* ─ Platform tags ───────────────────────────────────────────── */
 .v4-platform-tags {
   display: flex;
   flex-wrap: wrap;
@@ -63,83 +69,87 @@
   padding: 4px 10px;
   white-space: nowrap;
 }
-@media(max-width:768px) { .v4-stat-bar { grid-template-columns: 1fr 1fr; } }
-@media(max-width:480px) { .v4-stat-bar { grid-template-columns: 1fr; } }
 
-/* ── Section 02 Phase Cards ─────────────────────────────────── */
-.v4-phase-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(10,25,47,.1);
-  border: 1px solid rgba(10,25,47,.1);
-  border-radius: 6px;
-  overflow: hidden;
+/* ─ Section 02: Phase pipeline ──────────────────────────────── */
+.v4-phase-pipeline {
   margin-top: 48px;
+  border: 1px solid rgba(10,25,47,.14);
+  border-radius: 4px;
+  overflow: hidden;
 }
-.v4-phase-card {
+
+/* SVG progress strip */
+.v4-phase-strip {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid rgba(10,25,47,.14);
   background: #ffffff;
-  padding: 36px 32px 40px;
+}
+
+/* Each phase row */
+.v4-phase-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  border-bottom: 1px solid rgba(10,25,47,.08);
+  background: #ffffff;
+  transition: background 200ms;
+}
+.v4-phase-row:last-child {
+  border-bottom: none;
+}
+.v4-phase-row:hover {
+  background: rgba(10,25,47,.02);
+}
+
+/* Left: phase index cell */
+.v4-phase-index {
+  padding: 28px 0 28px 32px;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  position: relative;
-  transition: background 0.18s ease;
+  gap: 4px;
+  border-right: 1px solid rgba(10,25,47,.08);
 }
-.v4-phase-card:hover {
-  background: #F7F9FC;
-}
-.v4-phase-index {
+.v4-phase-index-num {
   font-family: 'Courier New', monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #A0AEBB;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.v4-phase-index::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(10,25,47,.08);
-}
-.v4-phase-num {
-  font-family: 'Courier New', monospace;
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
-  font-weight: 700;
-  color: #0A192F;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  margin-bottom: 16px;
-}
-.v4-phase-title {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #0A192F;
-  line-height: 1.35;
-  margin-bottom: 14px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.v4-phase-index-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6B7C93;
+  line-height: 1;
+}
+
+/* Right: phase body */
+.v4-phase-body {
+  padding: 28px 32px;
+}
+.v4-phase-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0A192F;
+  margin: 0 0 8px;
+  line-height: 1.3;
 }
 .v4-phase-desc {
   font-size: 0.875rem;
   color: #3D5166;
   line-height: 1.8;
-  flex: 1;
+  margin: 0;
+  max-width: 65ch;
 }
 
-/* connector line between rows */
-.v4-phase-grid .v4-phase-card:nth-child(3n+1):not(:nth-last-child(-n+3)) {
-  border-bottom: 1px solid rgba(10,25,47,.08);
-}
-
-@media(max-width:900px) {
-  .v4-phase-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media(max-width:560px) {
-  .v4-phase-grid { grid-template-columns: 1fr; }
-  .v4-phase-card { padding: 28px 24px 32px; }
+@media(max-width:600px) {
+  .v4-phase-row { grid-template-columns: 64px 1fr; }
+  .v4-phase-index { padding: 20px 0 20px 20px; }
+  .v4-phase-index-num { font-size: 1.125rem; }
+  .v4-phase-body { padding: 20px 20px; }
 }
 </style>
 </head>
@@ -234,51 +244,109 @@
         <h2 class="v4-h2">Six phases. Every one documented.</h2>
         <p class="v4-section-intro">We do not skip phases to ship faster. The technical migration is only one part &mdash; stakeholder enablement, runbook creation, and validation gates are built into the plan from the start.</p>
       </div>
-      <div class="v4-phase-grid reveal">
 
-        <div class="v4-phase-card">
-          <span class="v4-phase-index">Phase 01</span>
-          <span class="v4-phase-num">01</span>
-          <span class="v4-phase-title">Discovery &amp; Inventory</span>
-          <span class="v4-phase-desc">We map every data source, pipeline, alert rule, dashboard, and integration in your current environment. Nothing is assumed &mdash; we document what is actually running, not what the vendor told you was running.</span>
+      <div class="v4-phase-pipeline reveal">
+
+        <!--
+          Inline SVG: six-node pipeline strip
+          Shows phases as connected nodes across a horizontal rail.
+          Accent node (blue) = Phase 04 Validation gate — the critical go/no-go.
+        -->
+        <svg class="v4-phase-strip" viewBox="0 0 900 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- base rail -->
+          <line x1="60"  y1="32" x2="840" y2="32" stroke="rgba(10,25,47,.12)" stroke-width="1"/>
+          <!-- segment fills -->
+          <line x1="60"  y1="32" x2="204" y2="32" stroke="rgba(10,25,47,.18)" stroke-width="1"/>
+          <line x1="204" y1="32" x2="348" y2="32" stroke="rgba(10,25,47,.18)" stroke-width="1"/>
+          <line x1="348" y1="32" x2="492" y2="32" stroke="rgba(10,25,47,.18)" stroke-width="1"/>
+          <line x1="492" y1="32" x2="636" y2="32" stroke="#1A73E8"           stroke-width="1"/>
+          <line x1="636" y1="32" x2="780" y2="32" stroke="rgba(10,25,47,.18)" stroke-width="1"/>
+          <!-- nodes -->
+          <circle cx="60"  cy="32" r="5" fill="#ffffff" stroke="rgba(10,25,47,.3)"  stroke-width="1.5"/>
+          <circle cx="204" cy="32" r="5" fill="#ffffff" stroke="rgba(10,25,47,.3)"  stroke-width="1.5"/>
+          <circle cx="348" cy="32" r="5" fill="#ffffff" stroke="rgba(10,25,47,.3)"  stroke-width="1.5"/>
+          <circle cx="492" cy="32" r="5" fill="#ffffff" stroke="#1A73E8"            stroke-width="1.5"/>
+          <circle cx="636" cy="32" r="5" fill="#ffffff" stroke="rgba(10,25,47,.3)"  stroke-width="1.5"/>
+          <circle cx="780" cy="32" r="5" fill="#0A192F" stroke="#0A192F"            stroke-width="1.5"/>
+          <!-- node labels -->
+          <text x="60"  y="54" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#6B7C93">DISCOVER</text>
+          <text x="204" y="54" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#6B7C93">DESIGN</text>
+          <text x="348" y="54" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#6B7C93">CONVERT</text>
+          <text x="492" y="54" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#1A73E8">VALIDATE</text>
+          <text x="636" y="54" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#6B7C93">CUTOVER</text>
+          <text x="780" y="54" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#0A192F">HANDOFF</text>
+          <!-- gate marker above validate node -->
+          <text x="492" y="18" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#1A73E8">&#9654; gate</text>
+        </svg>
+
+        <!-- Phase rows -->
+        <div class="v4-phase-row">
+          <div class="v4-phase-index">
+            <span class="v4-phase-index-num">01</span>
+            <span class="v4-phase-index-label">Discover</span>
+          </div>
+          <div class="v4-phase-body">
+            <p class="v4-phase-title">Discovery &amp; Inventory</p>
+            <p class="v4-phase-desc">We map every data source, pipeline, alert rule, dashboard, and integration in your current environment. Nothing is assumed &mdash; we document what is actually running, not what the vendor told you was running.</p>
+          </div>
         </div>
 
-        <div class="v4-phase-card">
-          <span class="v4-phase-index">Phase 02</span>
-          <span class="v4-phase-num">02</span>
-          <span class="v4-phase-title">Target Architecture Design</span>
-          <span class="v4-phase-desc">We design the Elastic cluster architecture, index strategy, ILM policy, shard topology, and ingestion pipeline layout for your specific data volumes, retention requirements, and query patterns.</span>
+        <div class="v4-phase-row">
+          <div class="v4-phase-index">
+            <span class="v4-phase-index-num">02</span>
+            <span class="v4-phase-index-label">Design</span>
+          </div>
+          <div class="v4-phase-body">
+            <p class="v4-phase-title">Target Architecture Design</p>
+            <p class="v4-phase-desc">We design the Elastic cluster architecture, index strategy, ILM policy, shard topology, and ingestion pipeline layout for your specific data volumes, retention requirements, and query patterns.</p>
+          </div>
         </div>
 
-        <div class="v4-phase-card">
-          <span class="v4-phase-index">Phase 03</span>
-          <span class="v4-phase-num">03</span>
-          <span class="v4-phase-title">Content Conversion</span>
-          <span class="v4-phase-desc">Detection rules, saved searches, dashboards, and queries are translated from the source platform&rsquo;s syntax into Elastic equivalents. We use proven conversion tooling customized for your environment &mdash; not manual rewrites.</span>
+        <div class="v4-phase-row">
+          <div class="v4-phase-index">
+            <span class="v4-phase-index-num">03</span>
+            <span class="v4-phase-index-label">Convert</span>
+          </div>
+          <div class="v4-phase-body">
+            <p class="v4-phase-title">Content Conversion</p>
+            <p class="v4-phase-desc">Detection rules, saved searches, dashboards, and queries are translated from the source platform&rsquo;s syntax into Elastic equivalents. We use proven conversion tooling customized for your environment &mdash; not manual rewrites.</p>
+          </div>
         </div>
 
-        <div class="v4-phase-card">
-          <span class="v4-phase-index">Phase 04</span>
-          <span class="v4-phase-num">04</span>
-          <span class="v4-phase-title">Parallel Running &amp; Validation</span>
-          <span class="v4-phase-desc">Before cutover, both systems run in parallel. We validate alert parity, data fidelity, and dashboard accuracy against defined acceptance criteria. Cutover only happens when the gate passes.</span>
+        <div class="v4-phase-row" style="background: rgba(26,115,232,.03);">
+          <div class="v4-phase-index" style="border-right-color: rgba(26,115,232,.2);">
+            <span class="v4-phase-index-num" style="color:#1A73E8;">04</span>
+            <span class="v4-phase-index-label" style="color:#1A73E8;">Validate</span>
+          </div>
+          <div class="v4-phase-body">
+            <p class="v4-phase-title">Parallel Running &amp; Validation</p>
+            <p class="v4-phase-desc">Before cutover, both systems run in parallel. We validate alert parity, data fidelity, and dashboard accuracy against defined acceptance criteria. Cutover only happens when the gate passes.</p>
+          </div>
         </div>
 
-        <div class="v4-phase-card">
-          <span class="v4-phase-index">Phase 05</span>
-          <span class="v4-phase-num">05</span>
-          <span class="v4-phase-title">Cutover &amp; Stabilisation</span>
-          <span class="v4-phase-desc">We manage the production cutover, monitor cluster health in the critical first period, and address any issues that surface under real load. We stay engaged through stabilisation &mdash; not just until go-live.</span>
+        <div class="v4-phase-row">
+          <div class="v4-phase-index">
+            <span class="v4-phase-index-num">05</span>
+            <span class="v4-phase-index-label">Cutover</span>
+          </div>
+          <div class="v4-phase-body">
+            <p class="v4-phase-title">Cutover &amp; Stabilisation</p>
+            <p class="v4-phase-desc">We manage the production cutover, monitor cluster health in the critical first period, and address any issues that surface under real load. We stay engaged through stabilisation &mdash; not just until go-live.</p>
+          </div>
         </div>
 
-        <div class="v4-phase-card">
-          <span class="v4-phase-index">Phase 06</span>
-          <span class="v4-phase-num">06</span>
-          <span class="v4-phase-title">Team Enablement &amp; Handoff</span>
-          <span class="v4-phase-desc">Your engineering and stakeholder teams are trained on the new environment. Every pipeline, rule, and dashboard is documented. We hand off capability &mdash; not a dependency on us.</span>
+        <div class="v4-phase-row">
+          <div class="v4-phase-index">
+            <span class="v4-phase-index-num">06</span>
+            <span class="v4-phase-index-label">Handoff</span>
+          </div>
+          <div class="v4-phase-body">
+            <p class="v4-phase-title">Team Enablement &amp; Handoff</p>
+            <p class="v4-phase-desc">Your engineering and stakeholder teams are trained on the new environment. Every pipeline, rule, and dashboard is documented. We hand off capability &mdash; not a dependency on us.</p>
+          </div>
         </div>
 
-      </div>
+      </div><!-- /v4-phase-pipeline -->
     </div>
   </section>
 
