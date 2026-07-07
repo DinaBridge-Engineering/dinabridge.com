@@ -10,78 +10,484 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/global.css">
 <link rel="stylesheet" href="/v4.css">
 <script src="/shared.js"></script>
 <script src="/scroll-reveal.js" defer></script>
 <style>
-/* about.html — v4.1 local additions */
-.v4-stat-bar {
+/* ============================================================
+   about.html — v5 redesign
+   ============================================================ */
+
+/* HERO ACCENT BAR */
+.ab-hero-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,120,255,.07);
+  border: 1px solid rgba(0,120,255,.18);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0078FF;
+  margin-bottom: 24px;
+}
+.ab-hero-accent::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0078FF;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.4; transform:scale(.7); }
+}
+
+/* STAT BAR */
+.ab-stat-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(10,25,47,.1);
+  gap: 0;
   border: 1px solid rgba(10,25,47,.1);
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 48px;
+  box-shadow: 0 2px 16px rgba(10,25,47,.06);
 }
-.v4-stat-item {
-  background: #ffffff;
+.ab-stat-item {
+  background: #fff;
   padding: 28px 32px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  border-right: 1px solid rgba(10,25,47,.08);
+  transition: background .2s;
 }
-.v4-stat-number {
+.ab-stat-item:last-child { border-right: none; }
+.ab-stat-item:hover { background: #f8faff; }
+.ab-stat-number {
   font-family: 'Courier New', monospace;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 600;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 700;
   color: #0A192F;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
-.v4-stat-label {
+.ab-stat-number span {
+  font-size: 55%;
+  color: #0078FF;
+  vertical-align: super;
+  letter-spacing: 0;
+}
+.ab-stat-label {
   font-size: 0.8125rem;
   color: #6B7C93;
   line-height: 1.55;
+  max-width: 200px;
 }
-.v4-two-col {
+
+/* DIVIDER LINE */
+.ab-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(10,25,47,.12) 20%, rgba(10,25,47,.12) 80%, transparent);
+  margin: 0;
+}
+
+/* MISSION BLOCK */
+.ab-mission {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  margin-top: 8px;
+  gap: 64px;
+  align-items: start;
 }
-.v4-two-col p {
+.ab-mission-quote {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.55;
+  color: #0A192F;
+  border-left: 3px solid #0078FF;
+  padding-left: 24px;
+  margin: 0 0 28px;
+}
+.ab-mission-body p {
   font-size: 0.9375rem;
-  line-height: 1.8;
+  line-height: 1.85;
   color: #3D5166;
+  margin-bottom: 18px;
+}
+.ab-mission-body p:last-child { margin-bottom: 0; }
+.ab-mission-side {
+  position: relative;
+}
+.ab-founder-card {
+  background: #0A192F;
+  border-radius: 10px;
+  padding: 36px 32px;
+  color: #fff;
+}
+.ab-founder-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
   margin-bottom: 20px;
 }
-.v4-two-col p:last-child { margin-bottom: 0; }
-.v4-expertise-tags {
+.ab-founder-quote {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,.85);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.ab-founder-byline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ab-founder-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,120,255,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #7bb8ff;
+  flex-shrink: 0;
+}
+.ab-founder-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #fff;
+}
+.ab-founder-title {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,.45);
+}
+.ab-values-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ab-value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #3D5166;
+}
+.ab-value-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0,120,255,.1);
+  border: 1px solid rgba(0,120,255,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  font-size: 0.6rem;
+  color: #0078FF;
+}
+
+/* ENGINEER CARDS */
+.ab-eng-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.ab-eng-card {
+  background: #fff;
+  border: 1px solid rgba(10,25,47,.09);
+  border-radius: 10px;
+  padding: 28px 24px;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.ab-eng-card:hover {
+  border-color: rgba(0,120,255,.3);
+  box-shadow: 0 6px 24px rgba(0,120,255,.08);
+  transform: translateY(-2px);
+}
+.ab-eng-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(0,120,255,.08);
+  border: 1px solid rgba(0,120,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+.ab-eng-mode {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6875rem;
+  color: #0078FF;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ab-eng-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0A192F;
+  margin-bottom: 10px;
+}
+.ab-eng-body {
+  font-size: 0.875rem;
+  color: #3D5166;
+  line-height: 1.75;
+}
+
+/* EXPERTISE TAGS */
+.ab-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 36px;
 }
-.v4-expertise-tag {
+.ab-tag {
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
   color: #3D5166;
-  background: rgba(10,25,47,.04);
-  border: 1px solid rgba(10,25,47,.12);
-  border-radius: 3px;
-  padding: 4px 10px;
+  background: rgba(10,25,47,.03);
+  border: 1px solid rgba(10,25,47,.11);
+  border-radius: 4px;
+  padding: 5px 11px;
+  white-space: nowrap;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ab-tag:hover {
+  background: rgba(0,120,255,.07);
+  border-color: rgba(0,120,255,.25);
+  color: #0A192F;
+}
+
+/* PRINCIPLES TABLE */
+.ab-principles {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(10,25,47,.09);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+.ab-principle-row {
+  display: grid;
+  grid-template-columns: 48px 220px 1fr;
+  gap: 0;
+  padding: 24px 28px;
+  align-items: start;
+  border-bottom: 1px solid rgba(10,25,47,.07);
+  background: #fff;
+  transition: background .15s;
+}
+.ab-principle-row:last-child { border-bottom: none; }
+.ab-principle-row:hover { background: #f8faff; }
+.ab-principle-num {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #0078FF;
+  padding-top: 2px;
+  font-weight: 600;
+}
+.ab-principle-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0A192F;
+  padding-right: 24px;
+  padding-top: 1px;
+}
+.ab-principle-desc {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: #3D5166;
+}
+
+/* PRACTICE AREA CARDS */
+.ab-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.ab-practice-card {
+  display: block;
+  background: #fff;
+  border: 1px solid rgba(10,25,47,.09);
+  border-radius: 10px;
+  padding: 28px 24px;
+  text-decoration: none;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+  position: relative;
+  overflow: hidden;
+}
+.ab-practice-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0078FF, #00C2FF);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.ab-practice-card:hover {
+  border-color: rgba(0,120,255,.25);
+  box-shadow: 0 8px 28px rgba(0,120,255,.09);
+  transform: translateY(-2px);
+}
+.ab-practice-card:hover::before { opacity: 1; }
+.ab-practice-num {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6875rem;
+  color: #0078FF;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.ab-practice-name {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #0A192F;
+  margin-bottom: 10px;
+}
+.ab-practice-desc {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: #3D5166;
+  margin-bottom: 14px;
+}
+.ab-practice-stack {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #6B7C93;
+}
+.ab-practice-arrow {
+  position: absolute;
+  top: 28px; right: 24px;
+  font-size: 1.1rem;
+  color: rgba(0,120,255,.35);
+  transition: transform .2s, color .2s;
+}
+.ab-practice-card:hover .ab-practice-arrow {
+  transform: translate(3px, -1px);
+  color: #0078FF;
+}
+
+/* CTA STRIP */
+.ab-cta {
+  background: linear-gradient(135deg, #0A192F 0%, #0d2240 100%);
+  border-radius: 12px;
+  padding: 56px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.ab-cta::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,120,255,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ab-cta-text {}
+.ab-cta-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 12px;
+}
+.ab-cta-heading {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.ab-cta-sub {
+  font-size: 0.9375rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.65;
+  max-width: 460px;
+}
+.ab-cta-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.ab-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0078FF;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 13px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
   white-space: nowrap;
 }
-@media(max-width:768px) {
-  .v4-stat-bar { grid-template-columns: 1fr 1fr; }
-  .v4-two-col { grid-template-columns: 1fr; gap: 0; }
+.ab-btn-primary:hover { background: #005fd4; transform: translateY(-1px); }
+.ab-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background .2s;
+  white-space: nowrap;
 }
-@media(max-width:480px) {
-  .v4-stat-bar { grid-template-columns: 1fr; }
+.ab-btn-secondary:hover { background: rgba(255,255,255,.13); }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .ab-mission { grid-template-columns: 1fr; gap: 36px; }
+  .ab-eng-grid { grid-template-columns: 1fr 1fr; }
+  .ab-practice-grid { grid-template-columns: 1fr; }
+  .ab-cta { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
+  .ab-principle-row { grid-template-columns: 40px 1fr; }
+  .ab-principle-name { grid-column: 2; }
+  .ab-principle-desc { grid-column: 2; }
+}
+@media(max-width:640px) {
+  .ab-stat-bar { grid-template-columns: 1fr 1fr; }
+  .ab-stat-item { border-right: none; border-bottom: 1px solid rgba(10,25,47,.08); }
+  .ab-eng-grid { grid-template-columns: 1fr; }
+  .ab-cta-actions { flex-direction: column; width: 100%; }
+  .ab-btn-primary, .ab-btn-secondary { justify-content: center; }
+}
+@media(max-width:420px) {
+  .ab-stat-bar { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -91,99 +497,136 @@
 
 <main>
 
-  <!-- HERO -->
+  <!-- ===== HERO ===== -->
   <section class="v4-hero v4-hero--narrow">
     <div class="v4-container">
-      <div class="v4-hero-text" style="max-width:680px;">
-        <p class="v4-section-number">DinaBridge &mdash; About</p>
-        <h1 class="v4-h1">Senior engineers.<br>No shortcuts.</h1>
-        <p class="v4-hero-lead">DinaBridge is a senior engineering consultancy for production data systems. We work directly with companies &mdash; no account managers, no hand-offs &mdash; across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
-        <div class="v4-stat-bar">
-          <div class="v4-stat-item">
-            <span class="v4-stat-number">4</span>
-            <span class="v4-stat-label">Practice areas across Elastic, Kafka, Kubernetes, and ScienceLogic</span>
+      <div class="v4-hero-text" style="max-width:720px;">
+        <div class="ab-hero-accent">About DinaBridge</div>
+        <h1 class="v4-h1">Senior engineers.<br>No shortcuts.<br>No hand-offs.</h1>
+        <p class="v4-hero-lead">DinaBridge is a named-engineer consultancy for production data systems. We work directly with your team &mdash; no account managers, no junior ramp-up, no black-box status updates &mdash; across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
+
+        <div class="ab-stat-bar">
+          <div class="ab-stat-item">
+            <span class="ab-stat-number">4<span>+</span></span>
+            <span class="ab-stat-label">Practice areas: Elastic, Kafka, Kubernetes, ScienceLogic</span>
           </div>
-          <div class="v4-stat-item">
-            <span class="v4-stat-number">1</span>
-            <span class="v4-stat-label">Named senior engineer on every engagement &mdash; no hand-offs</span>
+          <div class="ab-stat-item">
+            <span class="ab-stat-number">1:1</span>
+            <span class="ab-stat-label">Named senior engineer on every engagement &mdash; no hand-offs</span>
           </div>
-          <div class="v4-stat-item">
-            <span class="v4-stat-number">100%</span>
-            <span class="v4-stat-label">Remote-first, distributed team of independent specialists</span>
+          <div class="ab-stat-item">
+            <span class="ab-stat-number">100<span>%</span></span>
+            <span class="ab-stat-label">Remote-first, distributed team of independent specialists</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 01 THE FIRM -->
+  <div class="ab-divider"></div>
+
+  <!-- ===== 01 THE FIRM ===== -->
   <section class="v4-section">
     <div class="v4-container">
       <div class="v4-section-header reveal">
         <span class="v4-section-number">01 &mdash; The Firm</span>
         <h2 class="v4-h2">Built for depth, not volume.</h2>
       </div>
-      <div class="v4-two-col reveal">
-        <div>
-          <p>DinaBridge was built around a simple observation: most consulting firms are too broad to be useful when a production system is failing. They staff generalists, add management layers, and charge for coordination. The engineers who actually understand the system are rarely the ones in the room.</p>
-          <p>We built the opposite. Every engagement is led by a named senior engineer who works directly inside your environment. No project managers between you and the technical work. No junior resources ramping up on your timeline. Just the right expert, scoped to your exact problem.</p>
+      <div class="ab-mission reveal">
+        <div class="ab-mission-body">
+          <p class="ab-mission-quote">&ldquo;Most firms are too broad to be useful when a production system is failing.&rdquo;</p>
+          <p>They staff generalists, add management layers, and charge for coordination. The engineers who actually understand the system are rarely the ones in the room. DinaBridge was built to fix that.</p>
+          <p>Every engagement is led by a named senior engineer working directly inside your environment. No project managers between you and the technical work. No junior resources ramping up on your timeline. Just the right expert, scoped to your exact problem.</p>
+          <p>Elasticsearch specialization is what makes this possible. Observability pipelines, relevance tuning, SIEM detection engineering, Kafka event streams, Kubernetes orchestration &mdash; each takes years of production experience to do well. Surface-level certifications do not move a struggling cluster.</p>
+
+          <div class="ab-values-list">
+            <div class="ab-value-item">
+              <span class="ab-value-icon">&#10003;</span>
+              Narrow by design. Senior by default.
+            </div>
+            <div class="ab-value-item">
+              <span class="ab-value-icon">&#10003;</span>
+              Accountable to outcomes &mdash; not hours logged.
+            </div>
+            <div class="ab-value-item">
+              <span class="ab-value-icon">&#10003;</span>
+              Every engagement ends with documentation your team owns.
+            </div>
+          </div>
         </div>
-        <div>
-          <p>Elasticsearch specialization is what makes this possible. Observability pipelines, relevance tuning, SIEM detection engineering, Kafka event streams, Kubernetes orchestration, ScienceLogic SL1 &mdash; each of these takes years of production experience to do well. Surface-level knowledge and certifications do not move a struggling cluster.</p>
-          <p>The result is a consultancy that operates more like a specialist practice than a staffing agency. Narrow by design. Senior by default. Accountable to outcomes.</p>
+
+        <div class="ab-mission-side">
+          <div class="ab-founder-card">
+            <div class="ab-founder-label">// From the Founder</div>
+            <p class="ab-founder-quote">&ldquo;I built DinaBridge because I kept seeing companies pay premium rates for junior work wrapped in senior packaging. We do the opposite &mdash; every engineer we put on a project has shipped production Elastic infrastructure and stands behind the work personally.&rdquo;</p>
+            <div class="ab-founder-byline">
+              <div class="ab-founder-avatar">DB</div>
+              <div>
+                <div class="ab-founder-name">DinaBridge Founder</div>
+                <div class="ab-founder-title">Elasticsearch Architect &amp; Principal Engineer</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 02 OUR ENGINEERS -->
+  <div class="ab-divider"></div>
+
+  <!-- ===== 02 OUR ENGINEERS ===== -->
   <section class="v4-section v4-section--tinted">
     <div class="v4-container">
       <div class="v4-section-header reveal">
         <span class="v4-section-number">02 &mdash; Our Engineers</span>
         <h2 class="v4-h2">Who does the work.</h2>
-        <p class="v4-section-intro">Every engineer in the DinaBridge network has worked in production environments at scale. Independent specialists &mdash; not employees &mdash; who take on work because it matches their expertise.</p>
+        <p class="v4-section-intro">Every engineer in the DinaBridge network has worked in production environments at scale. Independent specialists &mdash; not employees &mdash; who take on work because it matches their expertise, not because they need to fill a bench.</p>
       </div>
-      <div class="v4-engage-grid reveal" style="grid-template-columns: repeat(3,1fr);">
-        <div class="v4-engage-card">
-          <span class="v4-engage-mode">// SENIORITY</span>
-          <h3 class="v4-h3">Senior-only</h3>
-          <p style="font-size:.875rem;color:#3D5166;line-height:1.75;">No juniors. No mid-level engineers learning on your project. Every engagement is staffed with someone who has shipped production work in this exact stack.</p>
+
+      <div class="ab-eng-grid reveal">
+        <div class="ab-eng-card">
+          <div class="ab-eng-icon">&#127942;</div>
+          <div class="ab-eng-mode">// Seniority</div>
+          <div class="ab-eng-title">Senior-only, always</div>
+          <p class="ab-eng-body">No juniors. No mid-level engineers learning on your project. Every engagement is staffed with someone who has shipped production work in this exact stack.</p>
         </div>
-        <div class="v4-engage-card">
-          <span class="v4-engage-mode">// DEPTH</span>
-          <h3 class="v4-h3">Specialist, not generalist</h3>
-          <p style="font-size:.875rem;color:#3D5166;line-height:1.75;">Each engineer has a defined practice area: Observability, Search, Security, Platform &amp; Delivery, Kafka, or ScienceLogic SL1. Deep expertise, not broad familiarity.</p>
+        <div class="ab-eng-card">
+          <div class="ab-eng-icon">&#128269;</div>
+          <div class="ab-eng-mode">// Depth</div>
+          <div class="ab-eng-title">Specialist, not generalist</div>
+          <p class="ab-eng-body">Each engineer has a defined practice area: Observability, Search, Security, Platform &amp; Delivery, Kafka, or ScienceLogic SL1. Deep expertise, not broad familiarity.</p>
         </div>
-        <div class="v4-engage-card">
-          <span class="v4-engage-mode">// ACCESS</span>
-          <h3 class="v4-h3">Direct and accountable</h3>
-          <p style="font-size:.875rem;color:#3D5166;line-height:1.75;">You speak to the engineer doing the work. Status updates come from the source. Problems surface immediately, not after a management chain filters them.</p>
+        <div class="ab-eng-card">
+          <div class="ab-eng-icon">&#128101;</div>
+          <div class="ab-eng-mode">// Access</div>
+          <div class="ab-eng-title">Direct and accountable</div>
+          <p class="ab-eng-body">You speak directly to the engineer doing the work. Problems surface immediately &mdash; not after a management chain filters them through three layers of translation.</p>
         </div>
       </div>
-      <div class="reveal" style="margin-top:32px;">
-        <p class="v4-section-number" style="margin-bottom:12px;">Expertise coverage</p>
-        <div class="v4-expertise-tags">
-          <span class="v4-expertise-tag">Elasticsearch</span>
-          <span class="v4-expertise-tag">Kibana</span>
-          <span class="v4-expertise-tag">Elastic APM</span>
-          <span class="v4-expertise-tag">Logstash &amp; Beats</span>
-          <span class="v4-expertise-tag">OpenTelemetry</span>
-          <span class="v4-expertise-tag">Elastic SIEM</span>
-          <span class="v4-expertise-tag">Detection Rules (EQL/KQL)</span>
-          <span class="v4-expertise-tag">Kafka &amp; Event Streams</span>
-          <span class="v4-expertise-tag">Kubernetes</span>
-          <span class="v4-expertise-tag">ScienceLogic SL1</span>
-          <span class="v4-expertise-tag">ILM &amp; Snapshot</span>
-          <span class="v4-expertise-tag">Cluster Performance</span>
-          <span class="v4-expertise-tag">Relevance Tuning</span>
-          <span class="v4-expertise-tag">Index Architecture</span>
+
+      <div class="reveal" style="margin-top:8px;">
+        <p class="v4-section-number" style="margin-bottom:14px;">Expertise coverage</p>
+        <div class="ab-tags">
+          <span class="ab-tag">Elasticsearch</span>
+          <span class="ab-tag">Kibana</span>
+          <span class="ab-tag">Elastic APM</span>
+          <span class="ab-tag">Logstash &amp; Beats</span>
+          <span class="ab-tag">OpenTelemetry</span>
+          <span class="ab-tag">Elastic SIEM</span>
+          <span class="ab-tag">Detection Rules (EQL/KQL)</span>
+          <span class="ab-tag">Kafka &amp; Event Streams</span>
+          <span class="ab-tag">Kubernetes</span>
+          <span class="ab-tag">ScienceLogic SL1</span>
+          <span class="ab-tag">ILM &amp; Snapshot</span>
+          <span class="ab-tag">Cluster Performance</span>
+          <span class="ab-tag">Relevance Tuning</span>
+          <span class="ab-tag">Index Architecture</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 03 OPERATING PRINCIPLES -->
+  <!-- ===== 03 OPERATING PRINCIPLES ===== -->
   <section class="v4-section">
     <div class="v4-container">
       <div class="v4-section-header reveal">
@@ -191,104 +634,94 @@
         <h2 class="v4-h2">The operating principles.</h2>
         <p class="v4-section-intro">Every engagement is structured the same way: one named senior engineer, a defined scope, and a documented handoff. These are not aspirations &mdash; they are the conditions under which we take on work.</p>
       </div>
-      <div class="v4-practices-table reveal">
-        <div class="v4-practice-row" style="cursor:default;">
-          <span class="v4-practice-num">01</span>
-          <span class="v4-practice-name">Named engineer, always</span>
-          <span class="v4-practice-desc">Every engagement has one named senior engineer. You know who is doing the work. They are reachable directly. There is no rotation, no hand-off, no mystery about who owns what.</span>
-          <span class="v4-practice-stack"></span>
-          <span class="v4-practice-arrow"></span>
+      <div class="ab-principles reveal">
+        <div class="ab-principle-row">
+          <span class="ab-principle-num">01</span>
+          <span class="ab-principle-name">Named engineer, always</span>
+          <span class="ab-principle-desc">Every engagement has one named senior engineer. You know who is doing the work. They are reachable directly. There is no rotation, no hand-off, no mystery about who owns what.</span>
         </div>
-        <div class="v4-practice-row" style="cursor:default;">
-          <span class="v4-practice-num">02</span>
-          <span class="v4-practice-name">Scoped and bounded</span>
-          <span class="v4-practice-desc">We define what we are doing, how long it will take, and what done looks like before we start. No open-ended retainers. No scope creep without explicit agreement.</span>
-          <span class="v4-practice-stack"></span>
-          <span class="v4-practice-arrow"></span>
+        <div class="ab-principle-row">
+          <span class="ab-principle-num">02</span>
+          <span class="ab-principle-name">Scoped and bounded</span>
+          <span class="ab-principle-desc">We define what we are doing, how long it will take, and what done looks like before we start. No open-ended retainers. No scope creep without explicit agreement.</span>
         </div>
-        <div class="v4-practice-row" style="cursor:default;">
-          <span class="v4-practice-num">03</span>
-          <span class="v4-practice-name">Documented and handed off</span>
-          <span class="v4-practice-desc">Every engagement ends with documentation your team owns. Runbooks, architecture decisions, configuration rationale. You should not need us again for the same problem.</span>
-          <span class="v4-practice-stack"></span>
-          <span class="v4-practice-arrow"></span>
+        <div class="ab-principle-row">
+          <span class="ab-principle-num">03</span>
+          <span class="ab-principle-name">Documented and handed off</span>
+          <span class="ab-principle-desc">Every engagement ends with documentation your team owns. Runbooks, architecture decisions, configuration rationale. You should not need us again for the same problem.</span>
         </div>
-        <div class="v4-practice-row" style="cursor:default;">
-          <span class="v4-practice-num">04</span>
-          <span class="v4-practice-name">Outcomes over hours</span>
-          <span class="v4-practice-desc">We measure success by what is working in production, not by hours logged. Engagements are scoped to deliverables. Time is a budget constraint, not a billing mechanism.</span>
-          <span class="v4-practice-stack"></span>
-          <span class="v4-practice-arrow"></span>
+        <div class="ab-principle-row">
+          <span class="ab-principle-num">04</span>
+          <span class="ab-principle-name">Outcomes over hours</span>
+          <span class="ab-principle-desc">We measure success by what is working in production, not by hours logged. Engagements are scoped to deliverables. Time is a budget constraint, not a billing mechanism.</span>
         </div>
-        <div class="v4-practice-row" style="cursor:default;">
-          <span class="v4-practice-num">05</span>
-          <span class="v4-practice-name">No lock-in</span>
-          <span class="v4-practice-desc">We do not build dependencies. Our goal is to leave your team more capable than we found it. If that means we are not needed again, that is a successful engagement.</span>
-          <span class="v4-practice-stack"></span>
-          <span class="v4-practice-arrow"></span>
+        <div class="ab-principle-row">
+          <span class="ab-principle-num">05</span>
+          <span class="ab-principle-name">No lock-in</span>
+          <span class="ab-principle-desc">We do not build dependencies. Our goal is to leave your team more capable than we found it. If that means we are not needed again, that is a successful engagement.</span>
         </div>
-        <div class="v4-practice-row" style="cursor:default;">
-          <span class="v4-practice-num">06</span>
-          <span class="v4-practice-name">Honest assessment first</span>
-          <span class="v4-practice-desc">Advisory reviews are designed to give you an accurate picture before you commit to hands-on work. If the problem is not one we can solve, we will tell you that.</span>
-          <span class="v4-practice-stack"></span>
-          <span class="v4-practice-arrow"></span>
+        <div class="ab-principle-row">
+          <span class="ab-principle-num">06</span>
+          <span class="ab-principle-name">Honest assessment first</span>
+          <span class="ab-principle-desc">Advisory reviews are designed to give you an accurate picture before you commit to hands-on work. If the problem is not one we can solve, we will tell you that.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 04 PRACTICE AREAS -->
+  <!-- ===== 04 PRACTICE AREAS ===== -->
   <section class="v4-section v4-section--tinted">
     <div class="v4-container">
       <div class="v4-section-header reveal">
         <span class="v4-section-number">04 &mdash; Practice Areas</span>
         <h2 class="v4-h2">Where we work.</h2>
-        <p class="v4-section-intro">Four focused practice areas. Each staffed by engineers who have worked in that domain at production scale &mdash; not generalists who cover everything at surface level.</p>
+        <p class="v4-section-intro">Four focused practice areas. Each staffed by engineers who have worked in that domain at production scale &mdash; not generalists covering everything at surface level.</p>
       </div>
-      <div class="v4-practices-table reveal">
-        <a href="/elastic-observability.html" class="v4-practice-row">
-          <span class="v4-practice-num">01</span>
-          <span class="v4-practice-name">Observability</span>
-          <span class="v4-practice-desc">APM instrumentation, distributed tracing, event ingestion pipeline architecture, and observability engineering across Elastic and Kafka-connected telemetry flows.</span>
-          <span class="v4-practice-stack">Elastic APM &middot; OpenTelemetry &middot; Logstash &middot; Kibana</span>
-          <span class="v4-practice-arrow">&rarr;</span>
+      <div class="ab-practice-grid reveal">
+        <a href="/elastic-observability.html" class="ab-practice-card">
+          <span class="ab-practice-arrow">&rarr;</span>
+          <div class="ab-practice-num">01 &mdash; Practice</div>
+          <div class="ab-practice-name">Observability</div>
+          <p class="ab-practice-desc">APM instrumentation, distributed tracing, event ingestion pipeline architecture, and observability engineering across Elastic and Kafka-connected telemetry flows.</p>
+          <div class="ab-practice-stack">Elastic APM &middot; OpenTelemetry &middot; Logstash &middot; Kibana</div>
         </a>
-        <a href="/elastic-search.html" class="v4-practice-row">
-          <span class="v4-practice-num">02</span>
-          <span class="v4-practice-name">Search</span>
-          <span class="v4-practice-desc">Relevance tuning, index architecture, cluster performance engineering, and migration planning for production Elasticsearch deployments at any scale.</span>
-          <span class="v4-practice-stack">Elasticsearch &middot; Query DSL &middot; ILM &middot; JVM tuning</span>
-          <span class="v4-practice-arrow">&rarr;</span>
+        <a href="/elastic-search.html" class="ab-practice-card">
+          <span class="ab-practice-arrow">&rarr;</span>
+          <div class="ab-practice-num">02 &mdash; Practice</div>
+          <div class="ab-practice-name">Search</div>
+          <p class="ab-practice-desc">Relevance tuning, index architecture, cluster performance engineering, and migration planning for production Elasticsearch deployments at any scale.</p>
+          <div class="ab-practice-stack">Elasticsearch &middot; Query DSL &middot; ILM &middot; JVM tuning</div>
         </a>
-        <a href="/elastic-security.html" class="v4-practice-row">
-          <span class="v4-practice-num">03</span>
-          <span class="v4-practice-name">Security</span>
-          <span class="v4-practice-desc">SIEM deployment, custom detection rule engineering, and Elastic Security implementation for compliance, fraud detection, and production threat operations.</span>
-          <span class="v4-practice-stack">Elastic Security &middot; EQL &middot; MITRE ATT&amp;CK &middot; SOC 2</span>
-          <span class="v4-practice-arrow">&rarr;</span>
+        <a href="/elastic-security.html" class="ab-practice-card">
+          <span class="ab-practice-arrow">&rarr;</span>
+          <div class="ab-practice-num">03 &mdash; Practice</div>
+          <div class="ab-practice-name">Security</div>
+          <p class="ab-practice-desc">SIEM deployment, custom detection rule engineering, and Elastic Security implementation for compliance, fraud detection, and production threat operations.</p>
+          <div class="ab-practice-stack">Elastic Security &middot; EQL &middot; MITRE ATT&amp;CK &middot; SOC 2</div>
         </a>
-        <a href="/platform-delivery.html" class="v4-practice-row">
-          <span class="v4-practice-num">04</span>
-          <span class="v4-practice-name">Platform &amp; Delivery</span>
-          <span class="v4-practice-desc">Kubernetes cluster engineering, deployment architecture, and infrastructure orchestration for teams running production data systems at scale.</span>
-          <span class="v4-practice-stack">Kubernetes &middot; Helm &middot; Terraform &middot; CI/CD</span>
-          <span class="v4-practice-arrow">&rarr;</span>
+        <a href="/platform-delivery.html" class="ab-practice-card">
+          <span class="ab-practice-arrow">&rarr;</span>
+          <div class="ab-practice-num">04 &mdash; Practice</div>
+          <div class="ab-practice-name">Platform &amp; Delivery</div>
+          <p class="ab-practice-desc">Kubernetes cluster engineering, deployment architecture, and infrastructure orchestration for teams running production data systems at scale.</p>
+          <div class="ab-practice-stack">Kubernetes &middot; Helm &middot; Terraform &middot; CI/CD</div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ===== CTA ===== -->
   <section class="v4-section">
     <div class="v4-container">
-      <div class="v4-cta reveal">
-        <span class="v4-section-number">Work With Us</span>
-        <h2 class="v4-h2">Ready to work with senior engineers?</h2>
-        <p class="v4-cta-desc">Tell us what you are working on. We will respond within one business day with a clear technical assessment. No sales pitch, no discovery theatre.</p>
-        <div class="v4-cta-actions">
-          <a href="/contact.html" class="v4-btn-primary">Start a conversation &rarr;</a>
-          <a href="/elastic-consulting.html" class="v4-btn-secondary">How we engage</a>
+      <div class="ab-cta reveal">
+        <div class="ab-cta-text">
+          <div class="ab-cta-label">Work With Us</div>
+          <div class="ab-cta-heading">Ready to work with senior engineers who own the outcome?</div>
+          <p class="ab-cta-sub">Tell us what you are working on. We will respond within one business day with a clear technical assessment. No sales pitch. No discovery theatre.</p>
+        </div>
+        <div class="ab-cta-actions">
+          <a href="/contact.html" class="ab-btn-primary">Start a conversation &rarr;</a>
+          <a href="/elastic-consulting.html" class="ab-btn-secondary">How we engage</a>
         </div>
       </div>
     </div>
