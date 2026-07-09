@@ -16,9 +16,84 @@
 <script src="/shared.js"></script>
 <script src="/scroll-reveal.js" defer></script>
 <style>
-/* elastic-migration.html — v4.3 local additions */
+/* elastic-migration.html — v4.4 local additions */
 
-/* ─ Platform tags ───────────────────────────────────────────── */
+/* ─ Hero signal strip ──────────────────────────────────────── */
+.v4-hero-signal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin-top: 36px;
+  border: 1px solid rgba(10,25,47,.12);
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 720px;
+}
+.v4-hero-signal-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #6B7C93;
+  padding: 10px 16px;
+  border-right: 1px solid rgba(10,25,47,.12);
+  white-space: nowrap;
+  background: rgba(10,25,47,.02);
+}
+.v4-hero-signal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 14px;
+}
+.v4-hero-signal-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6875rem;
+  color: #3D5166;
+  background: transparent;
+  border: 1px solid rgba(10,25,47,.14);
+  border-radius: 2px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  transition: border-color 160ms, color 160ms;
+}
+.v4-hero-signal-tag:hover {
+  border-color: rgba(10,25,47,.3);
+  color: #0A192F;
+}
+
+/* ─ Hero meta row ──────────────────────────────────────────── */
+.v4-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  max-width: 720px;
+}
+.v4-hero-meta-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.v4-hero-meta-rule {
+  width: 1px;
+  height: 14px;
+  background: rgba(10,25,47,.18);
+  flex-shrink: 0;
+}
+.v4-hero-meta-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #6B7C93;
+  line-height: 1.4;
+}
+.v4-hero-meta-text strong {
+  color: #0A192F;
+  font-weight: 600;
+}
+
+/* ─ Platform tags (sections 01+) ───────────────────────────── */
 .v4-platform-tags {
   display: flex;
   flex-wrap: wrap;
@@ -116,6 +191,9 @@
   .v4-phase-index { padding: 20px 0 20px 20px; }
   .v4-phase-index-num { font-size: 1.125rem; }
   .v4-phase-body { padding: 20px 20px; }
+  .v4-hero-signal { max-width: 100%; }
+  .v4-hero-meta { flex-wrap: wrap; gap: 14px; }
+  .v4-hero-meta-rule { display: none; }
 }
 </style>
 </head>
@@ -132,6 +210,39 @@
         <p class="v4-section-number">Practice &mdash; Migration Consulting</p>
         <h1 class="v4-h1">Migration off your legacy platform.<br>Done properly. No drama.</h1>
         <p class="v4-hero-lead">Splunk licensing too expensive. LogRhythm too brittle. Datadog costs spiraling. Algolia charging for relevance you can build yourself. We have executed these migrations before &mdash; and we know exactly what breaks if you skip the planning phase.</p>
+
+        <!-- Platform signal strip -->
+        <div class="v4-hero-signal">
+          <span class="v4-hero-signal-label">Migrating from</span>
+          <div class="v4-hero-signal-tags">
+            <span class="v4-hero-signal-tag">Splunk</span>
+            <span class="v4-hero-signal-tag">LogRhythm</span>
+            <span class="v4-hero-signal-tag">Datadog</span>
+            <span class="v4-hero-signal-tag">QRadar</span>
+            <span class="v4-hero-signal-tag">SolarWinds</span>
+            <span class="v4-hero-signal-tag">Dynatrace</span>
+            <span class="v4-hero-signal-tag">Algolia</span>
+            <span class="v4-hero-signal-tag">Solr</span>
+            <span class="v4-hero-signal-tag">New Relic</span>
+            <span class="v4-hero-signal-tag">ArcSight</span>
+          </div>
+        </div>
+
+        <!-- Meta row -->
+        <div class="v4-hero-meta">
+          <div class="v4-hero-meta-item">
+            <span class="v4-hero-meta-text"><strong>One engineer.</strong> Scoping through handoff.</span>
+          </div>
+          <div class="v4-hero-meta-rule"></div>
+          <div class="v4-hero-meta-item">
+            <span class="v4-hero-meta-text"><strong>Response in 1 business day.</strong></span>
+          </div>
+          <div class="v4-hero-meta-rule"></div>
+          <div class="v4-hero-meta-item">
+            <span class="v4-hero-meta-text"><strong>Clean handoff.</strong> No dependency on us.</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
