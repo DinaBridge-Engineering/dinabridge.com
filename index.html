@@ -35,8 +35,9 @@
   }
 
   /* ── Social proof bar ── */
+  /* FIX: background token corrected #F0F4FF → #F0F4FA */
   .proof-bar {
-    background: #F0F4FF;
+    background: #F0F4FA;
     border-top: 1px solid #E2E8F0;
     border-bottom: 1px solid #E2E8F0;
     padding: 14px 0;
@@ -82,7 +83,8 @@
     flex-shrink: 0;
   }
 
-  /* ── Service pillar cards (Motive-style) ── */
+  /* ── Service pillar cards ── */
+  /* FIX: border-radius 8px → 4px; hover: removed box-shadow and translateY */
   .pillar-section {
     padding: 72px 0 80px;
     background: #fff;
@@ -116,10 +118,10 @@
   }
   .pillar-card {
     border: 1px solid #E2E8F0;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 28px 24px;
     background: #FAFCFF;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: border-color 0.2s;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -127,8 +129,6 @@
   }
   .pillar-card:hover {
     border-color: #1A73E8;
-    box-shadow: 0 4px 20px rgba(26,115,232,0.10);
-    transform: translateY(-2px);
   }
   .pillar-card-label {
     font-size: 0.64rem;
@@ -165,9 +165,11 @@
     margin-top: 4px;
   }
 
-  /* ── Inline bottom CTA (Motive-style) ── */
+  /* ── Inline bottom CTA ── */
+  /* FIX: converted from dark navy (#0A192F) to light tinted surface */
   .inline-cta {
-    background: #0A192F;
+    background: #F4F7FB;
+    border-top: 1px solid #E2E8F0;
     padding: 72px 0 80px;
   }
   .inline-cta-inner {
@@ -187,13 +189,13 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #5B8DEF;
+    color: #1A73E8;
     margin-bottom: 14px;
   }
   .inline-cta-heading {
     font-size: clamp(1.5rem, 2.8vw, 2rem);
     font-weight: 600;
-    color: #fff;
+    color: #0A192F;
     line-height: 1.3;
     margin-bottom: 20px;
   }
@@ -207,7 +209,7 @@
   }
   .inline-cta-benefits li {
     font-size: 0.92rem;
-    color: #A8BDD0;
+    color: #3D5166;
     display: flex;
     align-items: flex-start;
     gap: 10px;
@@ -226,79 +228,85 @@
     flex-wrap: wrap;
   }
   .inline-cta-btn-primary {
-    background: #1A73E8;
+    background: #0A192F;
     color: #fff;
     padding: 13px 24px;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 0.92rem;
     font-weight: 600;
     text-decoration: none;
     transition: background 0.2s;
   }
-  .inline-cta-btn-primary:hover { background: #1558B0; }
+  .inline-cta-btn-primary:hover { background: #1A2F4A; }
   .inline-cta-btn-secondary {
     background: transparent;
-    color: #A8BDD0;
+    color: #3D5166;
     padding: 13px 24px;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 0.92rem;
     font-weight: 500;
     text-decoration: none;
-    border: 1px solid #2D4A66;
+    border: 1px solid rgba(10,25,47,.2);
     transition: border-color 0.2s, color 0.2s;
   }
-  .inline-cta-btn-secondary:hover { border-color: #5B8DEF; color: #fff; }
+  .inline-cta-btn-secondary:hover { border-color: #1A73E8; color: #0A192F; }
   .inline-cta-form-box {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid #2D4A66;
-    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(10,25,47,.12);
+    border-radius: 4px;
     padding: 32px 28px;
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
   .inline-cta-form-box label {
-    font-size: 0.78rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    color: #A8BDD0;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    color: #3D5166;
+    letter-spacing: 0.01em;
     margin-bottom: 4px;
     display: block;
   }
   .inline-cta-form-box input,
   .inline-cta-form-box textarea {
     width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid #2D4A66;
-    border-radius: 6px;
-    padding: 11px 14px;
-    color: #fff;
-    font-size: 0.9rem;
+    background: #ffffff;
+    border: 1px solid rgba(10,25,47,.18);
+    border-radius: 3px;
+    padding: 10px 14px;
+    color: #0A192F;
+    font-size: 0.9375rem;
     font-family: inherit;
     outline: none;
     box-sizing: border-box;
-    transition: border-color 0.2s;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
   }
+  .inline-cta-form-box input::placeholder,
+  .inline-cta-form-box textarea::placeholder { color: #6B7C93; }
   .inline-cta-form-box input:focus,
-  .inline-cta-form-box textarea:focus { border-color: #1A73E8; }
-  .inline-cta-form-box textarea { resize: vertical; min-height: 90px; }
+  .inline-cta-form-box textarea:focus {
+    border-color: #1A73E8;
+    box-shadow: 0 0 0 3px rgba(26,115,232,.12);
+  }
+  .inline-cta-form-box textarea { resize: vertical; min-height: 90px; line-height: 1.75; }
   .inline-cta-form-box button {
-    background: #1A73E8;
+    background: #0A192F;
     color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 13px 20px;
-    font-size: 0.92rem;
+    border: 1px solid #0A192F;
+    border-radius: 3px;
+    padding: 12px 20px;
+    font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.15s ease, border-color 0.15s ease;
     font-family: inherit;
   }
-  .inline-cta-form-box button:hover { background: #1558B0; }
+  .inline-cta-form-box button:hover { background: #1A2F4A; border-color: #1A2F4A; }
   .inline-cta-form-note {
     font-size: 0.74rem;
-    color: #5A7090;
+    color: #6B7C93;
     text-align: center;
     margin-top: 4px;
   }
@@ -389,7 +397,7 @@
     </div>
   </div>
 
-  <!-- ═══ SERVICE PILLARS (Motive-style cards) ═══ -->
+  <!-- ═══ SERVICE PILLARS ═══ -->
   <section class="pillar-section">
     <div class="v4-container">
       <p class="pillar-label">What We Do</p>
@@ -537,7 +545,7 @@
     </div>
   </section>
 
-  <!-- ═══ INLINE CTA (Motive-style dark panel) ═══ -->
+  <!-- ═══ 05 — INLINE CTA (light panel) ═══ -->
   <section class="inline-cta">
     <div class="inline-cta-inner">
       <div>
