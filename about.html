@@ -17,15 +17,15 @@
 <script src="/scroll-reveal.js" defer></script>
 <style>
 /* ============================================================
-   about.html — v5.2
-   Hero redesign: two-column split + right-side fact panel
-   All other sections unchanged from v5.1
+   about.html — v5.3
+   Hero: remove // At a glance header, redesign stat panel
+   All other sections unchanged from v5.2
    ============================================================ */
 
 /* --- HERO SPLIT --------------------------------------------- */
 .ab-hero-split {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 320px;
   gap: 64px;
   align-items: start;
 }
@@ -34,21 +34,26 @@
   margin-bottom: 16px;
 }
 
-/* --- HERO FACT PANEL --------------------------------------- */
+/* --- HERO STAT PANEL --------------------------------------- */
+/*
+   No header row. Three stats stacked, each separated by a rule.
+   Value and label share a single row — value large/mono left,
+   label small/muted wraps right. Clean vertical rhythm only.
+*/
 .ab-hero-facts {
   border: 1px solid var(--v4-rule-strong);
   border-radius: 4px;
   overflow: hidden;
   background: #fff;
-  margin-top: 6px; /* optical align with headline cap-height */
+  margin-top: 8px; /* optical align with headline cap-height */
 }
 
 .ab-fact-row {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 0 20px;
-  align-items: start;
-  padding: 24px 24px;
+  grid-template-columns: 72px 1fr;
+  column-gap: 20px;
+  align-items: center;
+  padding: 28px 28px;
   border-bottom: 1px solid var(--v4-rule);
   transition: background 200ms cubic-bezier(.4,0,.2,1);
 }
@@ -61,15 +66,15 @@
 
 .ab-fact-value {
   font-family: var(--v4-mono);
-  font-size: 1.625rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--v4-navy);
   line-height: 1;
-  letter-spacing: -0.02em;
-  padding-top: 2px;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 .ab-fact-value sup {
-  font-size: 55%;
+  font-size: 52%;
   color: var(--v4-blue);
   vertical-align: super;
   letter-spacing: 0;
@@ -77,22 +82,7 @@
 
 .ab-fact-label {
   font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--v4-ink-3);
-}
-
-/* panel header row */
-.ab-facts-header {
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--v4-rule-strong);
-  background: var(--v4-paper-2);
-}
-.ab-facts-header-label {
-  font-family: var(--v4-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  line-height: 1.6;
   color: var(--v4-ink-3);
 }
 
@@ -447,7 +437,7 @@
 /* --- RESPONSIVE --------------------------------------------- */
 @media (max-width: 960px) {
   .ab-hero-split { grid-template-columns: 1fr; gap: 36px; }
-  .ab-hero-facts { margin-top: 0; }
+  .ab-hero-facts { margin-top: 0; width: 100%; }
   .ab-fact-row { grid-template-columns: 72px 1fr; }
   .ab-mission { grid-template-columns: 1fr; gap: 36px; }
   .ab-principle-row { grid-template-columns: 52px 1fr; }
@@ -464,7 +454,7 @@
 }
 @media (max-width: 680px) {
   .ab-fact-row { gap: 0 14px; padding: 20px; }
-  .ab-fact-value { font-size: 1.375rem; }
+  .ab-fact-value { font-size: 1.5rem; }
   .ab-eng-row { grid-template-columns: 1fr; }
   .ab-eng-attr { margin-bottom: 6px; }
   .ab-cta-actions { flex-direction: column; }
@@ -490,11 +480,8 @@
           <p class="v4-hero-lead">DinaBridge is a named-engineer consultancy for production data systems. We work directly with your team &mdash; no account managers, no junior ramp-up, no black-box status updates &mdash; across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
         </div>
 
-        <!-- Right: fact panel -->
+        <!-- Right: stat panel — no header row, pure data -->
         <div class="ab-hero-facts">
-          <div class="ab-facts-header">
-            <span class="ab-facts-header-label">// At a glance</span>
-          </div>
           <div class="ab-fact-row">
             <span class="ab-fact-value">4<sup>+</sup></span>
             <span class="ab-fact-label">Practice areas &mdash; Elastic, Kafka, Kubernetes, ScienceLogic</span>
