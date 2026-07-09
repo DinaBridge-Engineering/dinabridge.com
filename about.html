@@ -17,57 +17,83 @@
 <script src="/scroll-reveal.js" defer></script>
 <style>
 /* ============================================================
-   about.html — v5.1 redesign (design-system compliant)
-   Follows DESIGN_SYSTEM.md v4.1.0 rules strictly:
-   - No gradients on UI elements
-   - No transform: translateY on card hover
-   - No ::before gradient accent bars on cards
-   - No section-dark / gradient CTA backgrounds
-   - No icons in colored circles
-   - Accent: #1A73E8 only (not #0078FF)
-   - Border hover: darkens only
-   - Blue accent <= 10% opacity on fills
+   about.html — v5.2
+   Hero redesign: two-column split + right-side fact panel
+   All other sections unchanged from v5.1
    ============================================================ */
 
-/* --- STAT BAR ------------------------------------------------ */
-.ab-stat-bar {
+/* --- HERO SPLIT --------------------------------------------- */
+.ab-hero-split {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: start;
+}
+
+.ab-hero-left .v4-section-number {
+  margin-bottom: 16px;
+}
+
+/* --- HERO FACT PANEL --------------------------------------- */
+.ab-hero-facts {
   border: 1px solid var(--v4-rule-strong);
   border-radius: 4px;
   overflow: hidden;
-  margin-top: 3rem;
-}
-.ab-stat-item {
-  padding: 28px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  border-right: 1px solid var(--v4-rule);
   background: #fff;
+  margin-top: 6px; /* optical align with headline cap-height */
+}
+
+.ab-fact-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0 20px;
+  align-items: start;
+  padding: 24px 24px;
+  border-bottom: 1px solid var(--v4-rule);
   transition: background 200ms cubic-bezier(.4,0,.2,1);
 }
-.ab-stat-item:last-child { border-right: none; }
-.ab-stat-item:hover { background: var(--v4-paper-2); }
-.ab-stat-number {
+.ab-fact-row:last-child {
+  border-bottom: none;
+}
+.ab-fact-row:hover {
+  background: var(--v4-paper-2);
+}
+
+.ab-fact-value {
   font-family: var(--v4-mono);
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-size: 1.625rem;
   font-weight: 700;
   color: var(--v4-navy);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  padding-top: 2px;
 }
-.ab-stat-number sup {
-  font-size: 52%;
+.ab-fact-value sup {
+  font-size: 55%;
   color: var(--v4-blue);
-  letter-spacing: 0;
   vertical-align: super;
+  letter-spacing: 0;
 }
-.ab-stat-label {
+
+.ab-fact-label {
   font-size: 0.8125rem;
-  color: var(--v4-ink-3);
   line-height: 1.55;
-  max-width: 200px;
+  color: var(--v4-ink-3);
+}
+
+/* panel header row */
+.ab-facts-header {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--v4-rule-strong);
+  background: var(--v4-paper-2);
+}
+.ab-facts-header-label {
+  font-family: var(--v4-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--v4-ink-3);
 }
 
 /* --- DIVIDER ------------------------------------------------- */
@@ -420,6 +446,9 @@
 
 /* --- RESPONSIVE --------------------------------------------- */
 @media (max-width: 960px) {
+  .ab-hero-split { grid-template-columns: 1fr; gap: 36px; }
+  .ab-hero-facts { margin-top: 0; }
+  .ab-fact-row { grid-template-columns: 72px 1fr; }
   .ab-mission { grid-template-columns: 1fr; gap: 36px; }
   .ab-principle-row { grid-template-columns: 52px 1fr; }
   .ab-principle-name { grid-column: 2; }
@@ -434,17 +463,12 @@
   .ab-eng-row { grid-template-columns: 100px 1fr; }
 }
 @media (max-width: 680px) {
-  .ab-stat-bar { grid-template-columns: 1fr 1fr; }
-  .ab-stat-item { border-right: none; border-bottom: 1px solid var(--v4-rule); }
-  .ab-stat-item:last-child { border-bottom: none; }
+  .ab-fact-row { gap: 0 14px; padding: 20px; }
+  .ab-fact-value { font-size: 1.375rem; }
   .ab-eng-row { grid-template-columns: 1fr; }
   .ab-eng-attr { margin-bottom: 6px; }
   .ab-cta-actions { flex-direction: column; }
   .ab-btn-primary, .ab-btn-secondary { text-align: center; }
-}
-@media (max-width: 440px) {
-  .ab-stat-bar { grid-template-columns: 1fr; }
-  .ab-stat-item { border-right: none; border-bottom: 1px solid var(--v4-rule); }
 }
 </style>
 </head>
@@ -455,32 +479,39 @@
 <main>
 
   <!-- ===== HERO ===== -->
-  <section class="v4-hero v4-hero--narrow">
+  <section class="v4-hero">
     <div class="v4-container">
-      <div class="v4-hero-text" style="max-width:700px;">
-        <p class="v4-section-number">DinaBridge &mdash; About</p>
-        <h1 class="v4-h1">Senior engineers.<br>No shortcuts.<br>No hand-offs.</h1>
-        <p class="v4-hero-lead">DinaBridge is a named-engineer consultancy for production data systems. We work directly with your team &mdash; no account managers, no junior ramp-up, no black-box status updates &mdash; across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
+      <div class="ab-hero-split">
 
-        <div class="ab-stat-bar">
-          <div class="ab-stat-item">
-            <span class="ab-stat-number">4<sup>+</sup></span>
-            <span class="ab-stat-label">Practice areas: Elastic, Kafka, Kubernetes, ScienceLogic</span>
+        <!-- Left: identity + headline + lead -->
+        <div class="ab-hero-left">
+          <p class="v4-section-number">DinaBridge &mdash; About</p>
+          <h1 class="v4-h1">Senior engineers.<br>No shortcuts.<br>No hand-offs.</h1>
+          <p class="v4-hero-lead">DinaBridge is a named-engineer consultancy for production data systems. We work directly with your team &mdash; no account managers, no junior ramp-up, no black-box status updates &mdash; across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
+        </div>
+
+        <!-- Right: fact panel -->
+        <div class="ab-hero-facts">
+          <div class="ab-facts-header">
+            <span class="ab-facts-header-label">// At a glance</span>
           </div>
-          <div class="ab-stat-item">
-            <span class="ab-stat-number">1:1</span>
-            <span class="ab-stat-label">Named senior engineer on every engagement &mdash; no hand-offs</span>
+          <div class="ab-fact-row">
+            <span class="ab-fact-value">4<sup>+</sup></span>
+            <span class="ab-fact-label">Practice areas &mdash; Elastic, Kafka, Kubernetes, ScienceLogic</span>
           </div>
-          <div class="ab-stat-item">
-            <span class="ab-stat-number">100<sup>%</sup></span>
-            <span class="ab-stat-label">Remote-first, distributed team of independent specialists</span>
+          <div class="ab-fact-row">
+            <span class="ab-fact-value">1:1</span>
+            <span class="ab-fact-label">Named senior engineer on every engagement &mdash; no hand-offs</span>
+          </div>
+          <div class="ab-fact-row">
+            <span class="ab-fact-value">100<sup>%</sup></span>
+            <span class="ab-fact-label">Remote-first, distributed team of independent specialists</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
-
-  <div class="ab-divider"></div>
 
   <!-- ===== 01 THE FIRM ===== -->
   <section class="v4-section">
