@@ -15,7 +15,72 @@
 <link rel="stylesheet" href="/v4.css">
 <script src="/shared.js"></script>
 <style>
-/* contact.html — v4.1 local overrides */
+/* ============================================================
+   contact.html — light-mode overrides
+   global.css + v4.css both set body/html to dark navy (#0A192F).
+   This block resets the page canvas to light and re-skins the
+   shared nav + footer components for the light context.
+   ============================================================ */
+
+/* 1. Page canvas — override dark body from global.css / v4.css */
+html, body {
+  background: #F4F7FB !important;
+  color: #0A192F !important;
+}
+
+/* 2. Nav — light surface */
+.nav {
+  background: rgba(255,255,255,.97) !important;
+  border-bottom: 1px solid rgba(10,25,47,.10) !important;
+}
+.brand { color: #0A192F !important; }
+.nav-links { color: rgba(10,25,47,.55) !important; }
+.nav-links a:hover, .nav-links a.active { color: #0A192F !important; }
+.nav-cta {
+  color: rgba(10,25,47,.7) !important;
+  border-color: rgba(10,25,47,.14) !important;
+}
+.nav-cta:hover {
+  background: rgba(10,25,47,.05) !important;
+  border-color: rgba(10,25,47,.25) !important;
+  color: #0A192F !important;
+}
+.nav-burger { border-color: rgba(10,25,47,.14) !important; }
+.nav-burger:hover { border-color: rgba(10,25,47,.3) !important; }
+.burger-bar { background: rgba(10,25,47,.7) !important; }
+.nav-drawer {
+  background: #ffffff !important;
+  border-bottom-color: rgba(10,25,47,.08) !important;
+}
+.drawer-links { color: rgba(10,25,47,.7) !important; }
+.drawer-links a:hover { color: #0A192F !important; }
+.nav-overlay { background: rgba(10,25,47,.4) !important; }
+
+/* 3. Hero section — light canvas */
+.v4-hero {
+  background: #F4F7FB !important;
+  border-bottom-color: rgba(10,25,47,.10) !important;
+}
+.v4-section-number { color: #1A73E8 !important; }
+.v4-h1 { color: #0A192F !important; }
+.v4-hero-lead { color: #3D5166 !important; }
+
+/* 4. Footer — light surface */
+footer .footer, footer {
+  border-top-color: rgba(10,25,47,.10) !important;
+  background: #F4F7FB !important;
+}
+.footer-brand { color: #0A192F !important; }
+.footer-tagline { color: rgba(10,25,47,.45) !important; }
+.footer-col-title { color: rgba(10,25,47,.38) !important; }
+.footer-col a { color: rgba(10,25,47,.55) !important; }
+.footer-col a:hover { color: #0A192F !important; }
+.footer-bottom { color: rgba(10,25,47,.38) !important; border-top-color: rgba(10,25,47,.08) !important; }
+.rule { border-top-color: rgba(10,25,47,.08) !important; }
+
+/* ============================================================
+   Form & layout (unchanged from previous version)
+   ============================================================ */
 
 .contact-section { padding: var(--sp-48, 48px) 0 var(--sp-56, 56px); }
 .contact-layout {
@@ -25,7 +90,7 @@
   align-items: start;
 }
 
-/* ── Form card ── */
+/* Form card */
 .contact-form-card {
   background: #ffffff;
   border: 1px solid rgba(10,25,47,.12);
@@ -41,7 +106,7 @@
   flex: 1;
 }
 
-/* ── Fields ── */
+/* Fields */
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label {
   font-size: 0.8125rem;
@@ -83,7 +148,7 @@
 }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-/* ── Send button ── */
+/* Send button */
 .btn-send {
   display: inline-flex;
   align-items: center;
@@ -107,7 +172,7 @@
 .btn-arrow { display: inline-flex; transition: transform .15s ease; }
 .btn-send:hover .btn-arrow { transform: translateX(4px); }
 
-/* ── Success state ── */
+/* Success state */
 @keyframes fadeSlideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 .contact-success {
   display: none;
@@ -132,7 +197,7 @@
 .success-title { font-size: 1.375rem; font-weight: 600; color: #0A192F; margin: 0; }
 .success-body { font-size: 0.875rem; color: #3D5166; line-height: 1.75; max-width: 300px; margin: 0; }
 
-/* ── Aside card ── */
+/* Aside card */
 .contact-aside-card {
   background: #ffffff;
   border: 1px solid rgba(10,25,47,.12);
@@ -162,7 +227,7 @@
 .aside-block a { color: #1A73E8; font-weight: 500; }
 .aside-block a:hover { text-decoration: underline; }
 
-/* ── What happens next list ── */
+/* What happens next list */
 .what-next-list { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
 .next-row {
   display: grid;
@@ -182,7 +247,7 @@
 .next-text strong { display: block; font-size: 0.8125rem; font-weight: 600; color: #0A192F; }
 .next-text span { font-size: 0.8rem; color: #6B7C93; line-height: 1.65; }
 
-/* ── Careers button ── */
+/* Careers button */
 .btn-careers {
   display: inline-flex;
   align-items: center;
@@ -201,7 +266,7 @@
 }
 .btn-careers:hover { background: rgba(26,115,232,.1); border-color: rgba(26,115,232,.5); text-decoration: none; }
 
-/* ── Responsive ── */
+/* Responsive */
 @media(max-width:900px) {
   .contact-layout { grid-template-columns: 1fr; gap: 28px; }
 }
