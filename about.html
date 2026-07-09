@@ -17,244 +17,210 @@
 <script src="/scroll-reveal.js" defer></script>
 <style>
 /* ============================================================
-   about.html — v5 redesign
+   about.html — v5.1 redesign (design-system compliant)
+   Follows DESIGN_SYSTEM.md v4.1.0 rules strictly:
+   - No gradients on UI elements
+   - No transform: translateY on card hover
+   - No ::before gradient accent bars on cards
+   - No section-dark / gradient CTA backgrounds
+   - No icons in colored circles
+   - Accent: #1A73E8 only (not #0078FF)
+   - Border hover: darkens only
+   - Blue accent <= 10% opacity on fills
    ============================================================ */
 
-/* HERO ACCENT BAR */
-.ab-hero-accent {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0,120,255,.07);
-  border: 1px solid rgba(0,120,255,.18);
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #0078FF;
-  margin-bottom: 24px;
-}
-.ab-hero-accent::before {
-  content: '';
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #0078FF;
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot {
-  0%,100% { opacity:1; transform:scale(1); }
-  50%      { opacity:.4; transform:scale(.7); }
-}
-
-/* STAT BAR */
+/* --- STAT BAR ------------------------------------------------ */
 .ab-stat-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 1px solid rgba(10,25,47,.1);
-  border-radius: 8px;
+  border: 1px solid var(--v4-rule-strong);
+  border-radius: 4px;
   overflow: hidden;
-  margin-top: 48px;
-  box-shadow: 0 2px 16px rgba(10,25,47,.06);
+  margin-top: 3rem;
 }
 .ab-stat-item {
-  background: #fff;
   padding: 28px 32px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  border-right: 1px solid rgba(10,25,47,.08);
-  transition: background .2s;
+  border-right: 1px solid var(--v4-rule);
+  background: #fff;
+  transition: background 200ms cubic-bezier(.4,0,.2,1);
 }
 .ab-stat-item:last-child { border-right: none; }
-.ab-stat-item:hover { background: #f8faff; }
+.ab-stat-item:hover { background: var(--v4-paper-2); }
 .ab-stat-number {
-  font-family: 'Courier New', monospace;
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-family: var(--v4-mono);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 700;
-  color: #0A192F;
+  color: var(--v4-navy);
   line-height: 1;
   letter-spacing: -0.03em;
 }
-.ab-stat-number span {
-  font-size: 55%;
-  color: #0078FF;
-  vertical-align: super;
+.ab-stat-number sup {
+  font-size: 52%;
+  color: var(--v4-blue);
   letter-spacing: 0;
+  vertical-align: super;
 }
 .ab-stat-label {
   font-size: 0.8125rem;
-  color: #6B7C93;
+  color: var(--v4-ink-3);
   line-height: 1.55;
   max-width: 200px;
 }
 
-/* DIVIDER LINE */
+/* --- DIVIDER ------------------------------------------------- */
 .ab-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(10,25,47,.12) 20%, rgba(10,25,47,.12) 80%, transparent);
-  margin: 0;
+  background: var(--v4-rule);
 }
 
-/* MISSION BLOCK */
+/* --- MISSION GRID ------------------------------------------- */
 .ab-mission {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: start;
+  margin-top: 40px;
 }
 .ab-mission-quote {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
   font-weight: 600;
   line-height: 1.55;
-  color: #0A192F;
-  border-left: 3px solid #0078FF;
-  padding-left: 24px;
+  color: var(--v4-navy);
+  border-left: 2px solid var(--v4-blue);
+  padding-left: 20px;
   margin: 0 0 28px;
 }
 .ab-mission-body p {
   font-size: 0.9375rem;
   line-height: 1.85;
-  color: #3D5166;
+  color: var(--v4-navy-2);
   margin-bottom: 18px;
 }
 .ab-mission-body p:last-child { margin-bottom: 0; }
-.ab-mission-side {
-  position: relative;
-}
+
+/* --- FOUNDER CARD ------------------------------------------- */
 .ab-founder-card {
-  background: #0A192F;
-  border-radius: 10px;
+  background: var(--v4-navy);
+  border-radius: 4px;
   padding: 36px 32px;
   color: #fff;
 }
 .ab-founder-label {
+  font-family: var(--v4-mono);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.38);
   margin-bottom: 20px;
 }
 .ab-founder-quote {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,.85);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,.82);
   font-style: italic;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 .ab-founder-byline {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.1);
 }
 .ab-founder-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(0,120,255,.25);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--v4-mono);
+  font-size: 0.75rem;
   font-weight: 700;
-  font-size: 0.875rem;
-  color: #7bb8ff;
+  color: rgba(255,255,255,.7);
   flex-shrink: 0;
 }
 .ab-founder-name {
   font-weight: 600;
   font-size: 0.875rem;
-  color: #fff;
+  color: rgba(255,255,255,.9);
 }
 .ab-founder-title {
   font-size: 0.75rem;
-  color: rgba(255,255,255,.45);
+  color: rgba(255,255,255,.38);
+  margin-top: 2px;
 }
+
+/* --- VALUE LIST --------------------------------------------- */
 .ab-values-list {
   margin-top: 32px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 .ab-value-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   font-size: 0.875rem;
-  line-height: 1.6;
-  color: #3D5166;
+  line-height: 1.65;
+  color: var(--v4-navy-2);
 }
-.ab-value-icon {
+.ab-value-check {
   flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: rgba(0,120,255,.1);
-  border: 1px solid rgba(0,120,255,.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
-  font-size: 0.6rem;
-  color: #0078FF;
+  margin-top: 3px;
+  color: var(--v4-blue);
+  font-size: 0.75rem;
 }
 
-/* ENGINEER CARDS */
-.ab-eng-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+/* --- ENGINEER ATTRIBUTE TABLE ------------------------------- */
+.ab-eng-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--v4-rule-strong);
+  border-radius: 4px;
+  overflow: hidden;
   margin-top: 40px;
 }
-.ab-eng-card {
+.ab-eng-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--v4-rule);
   background: #fff;
-  border: 1px solid rgba(10,25,47,.09);
-  border-radius: 10px;
-  padding: 28px 24px;
-  transition: border-color .2s, box-shadow .2s, transform .2s;
+  transition: background 200ms cubic-bezier(.4,0,.2,1);
 }
-.ab-eng-card:hover {
-  border-color: rgba(0,120,255,.3);
-  box-shadow: 0 6px 24px rgba(0,120,255,.08);
-  transform: translateY(-2px);
-}
-.ab-eng-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  background: rgba(0,120,255,.08);
-  border: 1px solid rgba(0,120,255,.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  margin-bottom: 16px;
-}
-.ab-eng-mode {
-  font-family: 'Courier New', monospace;
-  font-size: 0.6875rem;
-  color: #0078FF;
-  letter-spacing: 0.06em;
+.ab-eng-row:last-child { border-bottom: none; }
+.ab-eng-row:hover { background: var(--v4-paper-2); }
+.ab-eng-attr {
+  font-family: var(--v4-mono);
+  font-size: 0.75rem;
+  color: var(--v4-blue);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  padding-right: 20px;
+  padding-top: 2px;
 }
-.ab-eng-title {
-  font-size: 1rem;
+.ab-eng-content-title {
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: #0A192F;
-  margin-bottom: 10px;
+  color: var(--v4-navy);
+  margin-bottom: 6px;
 }
-.ab-eng-body {
+.ab-eng-content-body {
   font-size: 0.875rem;
-  color: #3D5166;
   line-height: 1.75;
+  color: var(--v4-navy-2);
 }
 
-/* EXPERTISE TAGS */
+/* --- EXPERTISE TAGS ----------------------------------------- */
 .ab-tags {
   display: flex;
   flex-wrap: wrap;
@@ -262,232 +228,223 @@
   margin-top: 36px;
 }
 .ab-tag {
-  font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
-  color: #3D5166;
+  font-family: var(--v4-mono);
+  font-size: 0.72rem;
+  color: var(--v4-navy-2);
   background: rgba(10,25,47,.03);
-  border: 1px solid rgba(10,25,47,.11);
+  border: 1px solid var(--v4-rule-strong);
   border-radius: 4px;
   padding: 5px 11px;
   white-space: nowrap;
-  transition: background .15s, border-color .15s, color .15s;
+  transition: background 200ms cubic-bezier(.4,0,.2,1), border-color 200ms cubic-bezier(.4,0,.2,1);
 }
 .ab-tag:hover {
-  background: rgba(0,120,255,.07);
-  border-color: rgba(0,120,255,.25);
-  color: #0A192F;
+  background: rgba(26,115,232,.06);
+  border-color: rgba(26,115,232,.22);
 }
 
-/* PRINCIPLES TABLE */
+/* --- OPERATING PRINCIPLES TABLE ----------------------------- */
 .ab-principles {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  border: 1px solid rgba(10,25,47,.09);
-  border-radius: 10px;
+  border: 1px solid var(--v4-rule-strong);
+  border-radius: 4px;
   overflow: hidden;
   margin-top: 40px;
 }
 .ab-principle-row {
   display: grid;
-  grid-template-columns: 48px 220px 1fr;
+  grid-template-columns: 52px 200px 1fr;
   gap: 0;
   padding: 24px 28px;
   align-items: start;
-  border-bottom: 1px solid rgba(10,25,47,.07);
+  border-bottom: 1px solid var(--v4-rule);
   background: #fff;
-  transition: background .15s;
+  transition: background 200ms cubic-bezier(.4,0,.2,1);
 }
 .ab-principle-row:last-child { border-bottom: none; }
-.ab-principle-row:hover { background: #f8faff; }
+.ab-principle-row:hover { background: var(--v4-paper-2); }
 .ab-principle-num {
-  font-family: 'Courier New', monospace;
+  font-family: var(--v4-mono);
   font-size: 0.75rem;
-  color: #0078FF;
+  color: var(--v4-ink-3);
   padding-top: 2px;
   font-weight: 600;
 }
 .ab-principle-name {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #0A192F;
+  color: var(--v4-navy);
   padding-right: 24px;
   padding-top: 1px;
 }
 .ab-principle-desc {
   font-size: 0.875rem;
   line-height: 1.75;
-  color: #3D5166;
+  color: var(--v4-navy-2);
 }
 
-/* PRACTICE AREA CARDS */
-.ab-practice-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+/* --- PRACTICE AREAS TABLE ----------------------------------- */
+.ab-practices-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--v4-rule-strong);
+  border-radius: 4px;
+  overflow: hidden;
   margin-top: 40px;
 }
-.ab-practice-card {
-  display: block;
+.ab-practice-row {
+  display: grid;
+  grid-template-columns: 52px 160px 1fr 200px 24px;
+  gap: 0;
+  padding: 24px 28px;
+  align-items: start;
+  border-bottom: 1px solid var(--v4-rule);
   background: #fff;
-  border: 1px solid rgba(10,25,47,.09);
-  border-radius: 10px;
-  padding: 28px 24px;
   text-decoration: none;
-  transition: border-color .2s, box-shadow .2s, transform .2s;
-  position: relative;
-  overflow: hidden;
+  transition: background 200ms cubic-bezier(.4,0,.2,1);
 }
-.ab-practice-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #0078FF, #00C2FF);
-  opacity: 0;
-  transition: opacity .2s;
-}
-.ab-practice-card:hover {
-  border-color: rgba(0,120,255,.25);
-  box-shadow: 0 8px 28px rgba(0,120,255,.09);
-  transform: translateY(-2px);
-}
-.ab-practice-card:hover::before { opacity: 1; }
+.ab-practice-row:last-child { border-bottom: none; }
+.ab-practice-row:hover { background: rgba(10,25,47,.02); }
 .ab-practice-num {
-  font-family: 'Courier New', monospace;
-  font-size: 0.6875rem;
-  color: #0078FF;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  font-family: var(--v4-mono);
+  font-size: 0.75rem;
+  color: var(--v4-ink-3);
+  padding-top: 2px;
 }
 .ab-practice-name {
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: #0A192F;
-  margin-bottom: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--v4-navy);
+  padding-right: 20px;
+  padding-top: 1px;
 }
 .ab-practice-desc {
   font-size: 0.875rem;
-  line-height: 1.75;
-  color: #3D5166;
-  margin-bottom: 14px;
+  line-height: 1.65;
+  color: var(--v4-navy-2);
+  padding-right: 24px;
 }
 .ab-practice-stack {
-  font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
-  color: #6B7C93;
+  font-family: var(--v4-mono);
+  font-size: 0.72rem;
+  color: var(--v4-ink-3);
+  line-height: 1.65;
+  padding-top: 2px;
 }
 .ab-practice-arrow {
-  position: absolute;
-  top: 28px; right: 24px;
-  font-size: 1.1rem;
-  color: rgba(0,120,255,.35);
-  transition: transform .2s, color .2s;
+  font-size: 1rem;
+  color: rgba(10,25,47,.25);
+  padding-top: 1px;
+  transition: transform 200ms cubic-bezier(.4,0,.2,1), color 200ms cubic-bezier(.4,0,.2,1);
+  text-align: right;
 }
-.ab-practice-card:hover .ab-practice-arrow {
-  transform: translate(3px, -1px);
-  color: #0078FF;
+.ab-practice-row:hover .ab-practice-arrow {
+  transform: translateX(3px);
+  color: var(--v4-blue);
 }
 
-/* CTA STRIP */
+/* --- CTA BLOCK ---------------------------------------------- */
 .ab-cta {
-  background: linear-gradient(135deg, #0A192F 0%, #0d2240 100%);
-  border-radius: 12px;
-  padding: 56px 52px;
-  display: flex;
+  border: 1px solid var(--v4-rule-strong);
+  border-radius: 4px;
+  padding: 52px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  position: relative;
-  overflow: hidden;
+  background: #fff;
 }
-.ab-cta::after {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,120,255,.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-.ab-cta-text {}
 .ab-cta-label {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--v4-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: var(--v4-ink-3);
   margin-bottom: 12px;
 }
 .ab-cta-heading {
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-  font-weight: 700;
-  color: #fff;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 600;
+  color: var(--v4-navy);
   line-height: 1.3;
+  letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
 .ab-cta-sub {
   font-size: 0.9375rem;
-  color: rgba(255,255,255,.6);
-  line-height: 1.65;
-  max-width: 460px;
+  color: var(--v4-navy-2);
+  line-height: 1.7;
+  max-width: 52ch;
 }
 .ab-cta-actions {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 10px;
   flex-shrink: 0;
+  min-width: 180px;
 }
 .ab-btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  background: #0078FF;
+  background: var(--v4-navy);
   color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
-  padding: 13px 24px;
-  border-radius: 6px;
+  padding: 11px 22px;
+  border-radius: 4px;
   text-decoration: none;
-  transition: background .2s, transform .15s;
+  transition: background 200ms cubic-bezier(.4,0,.2,1);
   white-space: nowrap;
 }
-.ab-btn-primary:hover { background: #005fd4; transform: translateY(-1px); }
+.ab-btn-primary:hover { background: #162940; }
 .ab-btn-secondary {
   display: inline-flex;
   align-items: center;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.15);
-  color: rgba(255,255,255,.85);
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--v4-rule-strong);
+  color: var(--v4-navy-2);
   font-size: 0.875rem;
   font-weight: 500;
-  padding: 13px 24px;
-  border-radius: 6px;
+  padding: 11px 22px;
+  border-radius: 4px;
   text-decoration: none;
-  transition: background .2s;
+  transition: border-color 200ms cubic-bezier(.4,0,.2,1), color 200ms cubic-bezier(.4,0,.2,1);
   white-space: nowrap;
 }
-.ab-btn-secondary:hover { background: rgba(255,255,255,.13); }
+.ab-btn-secondary:hover { border-color: var(--v4-navy); color: var(--v4-navy); }
 
-/* RESPONSIVE */
-@media(max-width:900px) {
+/* --- RESPONSIVE --------------------------------------------- */
+@media (max-width: 960px) {
   .ab-mission { grid-template-columns: 1fr; gap: 36px; }
-  .ab-eng-grid { grid-template-columns: 1fr 1fr; }
-  .ab-practice-grid { grid-template-columns: 1fr; }
-  .ab-cta { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
-  .ab-principle-row { grid-template-columns: 40px 1fr; }
+  .ab-principle-row { grid-template-columns: 52px 1fr; }
   .ab-principle-name { grid-column: 2; }
-  .ab-principle-desc { grid-column: 2; }
+  .ab-principle-desc { grid-column: 2; margin-top: 4px; }
+  .ab-practice-row { grid-template-columns: 52px 1fr 24px; }
+  .ab-practice-name { grid-column: 2; }
+  .ab-practice-desc { grid-column: 2; margin-top: 4px; }
+  .ab-practice-stack { display: none; }
+  .ab-practice-arrow { grid-column: 3; grid-row: 1; }
+  .ab-cta { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; }
+  .ab-cta-actions { flex-direction: row; }
+  .ab-eng-row { grid-template-columns: 100px 1fr; }
 }
-@media(max-width:640px) {
+@media (max-width: 680px) {
   .ab-stat-bar { grid-template-columns: 1fr 1fr; }
-  .ab-stat-item { border-right: none; border-bottom: 1px solid rgba(10,25,47,.08); }
-  .ab-eng-grid { grid-template-columns: 1fr; }
-  .ab-cta-actions { flex-direction: column; width: 100%; }
-  .ab-btn-primary, .ab-btn-secondary { justify-content: center; }
+  .ab-stat-item { border-right: none; border-bottom: 1px solid var(--v4-rule); }
+  .ab-stat-item:last-child { border-bottom: none; }
+  .ab-eng-row { grid-template-columns: 1fr; }
+  .ab-eng-attr { margin-bottom: 6px; }
+  .ab-cta-actions { flex-direction: column; }
+  .ab-btn-primary, .ab-btn-secondary { text-align: center; }
 }
-@media(max-width:420px) {
+@media (max-width: 440px) {
   .ab-stat-bar { grid-template-columns: 1fr; }
+  .ab-stat-item { border-right: none; border-bottom: 1px solid var(--v4-rule); }
 }
 </style>
 </head>
@@ -500,14 +457,14 @@
   <!-- ===== HERO ===== -->
   <section class="v4-hero v4-hero--narrow">
     <div class="v4-container">
-      <div class="v4-hero-text" style="max-width:720px;">
-        <div class="ab-hero-accent">About DinaBridge</div>
+      <div class="v4-hero-text" style="max-width:700px;">
+        <p class="v4-section-number">DinaBridge &mdash; About</p>
         <h1 class="v4-h1">Senior engineers.<br>No shortcuts.<br>No hand-offs.</h1>
         <p class="v4-hero-lead">DinaBridge is a named-engineer consultancy for production data systems. We work directly with your team &mdash; no account managers, no junior ramp-up, no black-box status updates &mdash; across Elastic, Kafka, Kubernetes, and ScienceLogic.</p>
 
         <div class="ab-stat-bar">
           <div class="ab-stat-item">
-            <span class="ab-stat-number">4<span>+</span></span>
+            <span class="ab-stat-number">4<sup>+</sup></span>
             <span class="ab-stat-label">Practice areas: Elastic, Kafka, Kubernetes, ScienceLogic</span>
           </div>
           <div class="ab-stat-item">
@@ -515,7 +472,7 @@
             <span class="ab-stat-label">Named senior engineer on every engagement &mdash; no hand-offs</span>
           </div>
           <div class="ab-stat-item">
-            <span class="ab-stat-number">100<span>%</span></span>
+            <span class="ab-stat-number">100<sup>%</sup></span>
             <span class="ab-stat-label">Remote-first, distributed team of independent specialists</span>
           </div>
         </div>
@@ -538,24 +495,23 @@
           <p>They staff generalists, add management layers, and charge for coordination. The engineers who actually understand the system are rarely the ones in the room. DinaBridge was built to fix that.</p>
           <p>Every engagement is led by a named senior engineer working directly inside your environment. No project managers between you and the technical work. No junior resources ramping up on your timeline. Just the right expert, scoped to your exact problem.</p>
           <p>Elasticsearch specialization is what makes this possible. Observability pipelines, relevance tuning, SIEM detection engineering, Kafka event streams, Kubernetes orchestration &mdash; each takes years of production experience to do well. Surface-level certifications do not move a struggling cluster.</p>
-
           <div class="ab-values-list">
             <div class="ab-value-item">
-              <span class="ab-value-icon">&#10003;</span>
+              <span class="ab-value-check">&rarr;</span>
               Narrow by design. Senior by default.
             </div>
             <div class="ab-value-item">
-              <span class="ab-value-icon">&#10003;</span>
+              <span class="ab-value-check">&rarr;</span>
               Accountable to outcomes &mdash; not hours logged.
             </div>
             <div class="ab-value-item">
-              <span class="ab-value-icon">&#10003;</span>
+              <span class="ab-value-check">&rarr;</span>
               Every engagement ends with documentation your team owns.
             </div>
           </div>
         </div>
 
-        <div class="ab-mission-side">
+        <div>
           <div class="ab-founder-card">
             <div class="ab-founder-label">// From the Founder</div>
             <p class="ab-founder-quote">&ldquo;I built DinaBridge because I kept seeing companies pay premium rates for junior work wrapped in senior packaging. We do the opposite &mdash; every engineer we put on a project has shipped production Elastic infrastructure and stands behind the work personally.&rdquo;</p>
@@ -583,29 +539,32 @@
         <p class="v4-section-intro">Every engineer in the DinaBridge network has worked in production environments at scale. Independent specialists &mdash; not employees &mdash; who take on work because it matches their expertise, not because they need to fill a bench.</p>
       </div>
 
-      <div class="ab-eng-grid reveal">
-        <div class="ab-eng-card">
-          <div class="ab-eng-icon">&#127942;</div>
-          <div class="ab-eng-mode">// Seniority</div>
-          <div class="ab-eng-title">Senior-only, always</div>
-          <p class="ab-eng-body">No juniors. No mid-level engineers learning on your project. Every engagement is staffed with someone who has shipped production work in this exact stack.</p>
+      <div class="ab-eng-table reveal">
+        <div class="ab-eng-row">
+          <span class="ab-eng-attr">// Seniority</span>
+          <div>
+            <div class="ab-eng-content-title">Senior-only, always</div>
+            <p class="ab-eng-content-body">No juniors. No mid-level engineers learning on your project. Every engagement is staffed with someone who has shipped production work in this exact stack.</p>
+          </div>
         </div>
-        <div class="ab-eng-card">
-          <div class="ab-eng-icon">&#128269;</div>
-          <div class="ab-eng-mode">// Depth</div>
-          <div class="ab-eng-title">Specialist, not generalist</div>
-          <p class="ab-eng-body">Each engineer has a defined practice area: Observability, Search, Security, Platform &amp; Delivery, Kafka, or ScienceLogic SL1. Deep expertise, not broad familiarity.</p>
+        <div class="ab-eng-row">
+          <span class="ab-eng-attr">// Depth</span>
+          <div>
+            <div class="ab-eng-content-title">Specialist, not generalist</div>
+            <p class="ab-eng-content-body">Each engineer has a defined practice area: Observability, Search, Security, Platform &amp; Delivery, Kafka, or ScienceLogic SL1. Deep expertise, not broad familiarity.</p>
+          </div>
         </div>
-        <div class="ab-eng-card">
-          <div class="ab-eng-icon">&#128101;</div>
-          <div class="ab-eng-mode">// Access</div>
-          <div class="ab-eng-title">Direct and accountable</div>
-          <p class="ab-eng-body">You speak directly to the engineer doing the work. Problems surface immediately &mdash; not after a management chain filters them through three layers of translation.</p>
+        <div class="ab-eng-row">
+          <span class="ab-eng-attr">// Access</span>
+          <div>
+            <div class="ab-eng-content-title">Direct and accountable</div>
+            <p class="ab-eng-content-body">You speak directly to the engineer doing the work. Problems surface immediately &mdash; not after a management chain filters them through three layers of translation.</p>
+          </div>
         </div>
       </div>
 
-      <div class="reveal" style="margin-top:8px;">
-        <p class="v4-section-number" style="margin-bottom:14px;">Expertise coverage</p>
+      <div class="reveal" style="margin-top: 8px;">
+        <p class="v4-section-number" style="margin-bottom: 14px;">Expertise coverage</p>
         <div class="ab-tags">
           <span class="ab-tag">Elasticsearch</span>
           <span class="ab-tag">Kibana</span>
@@ -626,7 +585,7 @@
     </div>
   </section>
 
-  <!-- ===== 03 OPERATING PRINCIPLES ===== -->
+  <!-- ===== 03 HOW WE WORK ===== -->
   <section class="v4-section">
     <div class="v4-container">
       <div class="v4-section-header reveal">
@@ -677,34 +636,34 @@
         <h2 class="v4-h2">Where we work.</h2>
         <p class="v4-section-intro">Four focused practice areas. Each staffed by engineers who have worked in that domain at production scale &mdash; not generalists covering everything at surface level.</p>
       </div>
-      <div class="ab-practice-grid reveal">
-        <a href="/elastic-observability.html" class="ab-practice-card">
+      <div class="ab-practices-table reveal">
+        <a href="/elastic-observability.html" class="ab-practice-row">
+          <span class="ab-practice-num">01</span>
+          <span class="ab-practice-name">Observability</span>
+          <span class="ab-practice-desc">APM instrumentation, distributed tracing, event ingestion pipeline architecture, and observability engineering across Elastic and Kafka-connected telemetry flows.</span>
+          <span class="ab-practice-stack">Elastic APM &middot; OpenTelemetry &middot; Logstash &middot; Kibana</span>
           <span class="ab-practice-arrow">&rarr;</span>
-          <div class="ab-practice-num">01 &mdash; Practice</div>
-          <div class="ab-practice-name">Observability</div>
-          <p class="ab-practice-desc">APM instrumentation, distributed tracing, event ingestion pipeline architecture, and observability engineering across Elastic and Kafka-connected telemetry flows.</p>
-          <div class="ab-practice-stack">Elastic APM &middot; OpenTelemetry &middot; Logstash &middot; Kibana</div>
         </a>
-        <a href="/elastic-search.html" class="ab-practice-card">
+        <a href="/elastic-search.html" class="ab-practice-row">
+          <span class="ab-practice-num">02</span>
+          <span class="ab-practice-name">Search</span>
+          <span class="ab-practice-desc">Relevance tuning, index architecture, cluster performance engineering, and migration planning for production Elasticsearch deployments at any scale.</span>
+          <span class="ab-practice-stack">Elasticsearch &middot; Query DSL &middot; ILM &middot; JVM tuning</span>
           <span class="ab-practice-arrow">&rarr;</span>
-          <div class="ab-practice-num">02 &mdash; Practice</div>
-          <div class="ab-practice-name">Search</div>
-          <p class="ab-practice-desc">Relevance tuning, index architecture, cluster performance engineering, and migration planning for production Elasticsearch deployments at any scale.</p>
-          <div class="ab-practice-stack">Elasticsearch &middot; Query DSL &middot; ILM &middot; JVM tuning</div>
         </a>
-        <a href="/elastic-security.html" class="ab-practice-card">
+        <a href="/elastic-security.html" class="ab-practice-row">
+          <span class="ab-practice-num">03</span>
+          <span class="ab-practice-name">Security</span>
+          <span class="ab-practice-desc">SIEM deployment, custom detection rule engineering, and Elastic Security implementation for compliance, fraud detection, and production threat operations.</span>
+          <span class="ab-practice-stack">Elastic Security &middot; EQL &middot; MITRE ATT&amp;CK &middot; SOC 2</span>
           <span class="ab-practice-arrow">&rarr;</span>
-          <div class="ab-practice-num">03 &mdash; Practice</div>
-          <div class="ab-practice-name">Security</div>
-          <p class="ab-practice-desc">SIEM deployment, custom detection rule engineering, and Elastic Security implementation for compliance, fraud detection, and production threat operations.</p>
-          <div class="ab-practice-stack">Elastic Security &middot; EQL &middot; MITRE ATT&amp;CK &middot; SOC 2</div>
         </a>
-        <a href="/platform-delivery.html" class="ab-practice-card">
+        <a href="/platform-delivery.html" class="ab-practice-row">
+          <span class="ab-practice-num">04</span>
+          <span class="ab-practice-name">Platform &amp; Delivery</span>
+          <span class="ab-practice-desc">Kubernetes cluster engineering, deployment architecture, and infrastructure orchestration for teams running production data systems at scale.</span>
+          <span class="ab-practice-stack">Kubernetes &middot; Helm &middot; Terraform &middot; CI/CD</span>
           <span class="ab-practice-arrow">&rarr;</span>
-          <div class="ab-practice-num">04 &mdash; Practice</div>
-          <div class="ab-practice-name">Platform &amp; Delivery</div>
-          <p class="ab-practice-desc">Kubernetes cluster engineering, deployment architecture, and infrastructure orchestration for teams running production data systems at scale.</p>
-          <div class="ab-practice-stack">Kubernetes &middot; Helm &middot; Terraform &middot; CI/CD</div>
         </a>
       </div>
     </div>
@@ -715,7 +674,7 @@
     <div class="v4-container">
       <div class="ab-cta reveal">
         <div class="ab-cta-text">
-          <div class="ab-cta-label">Work With Us</div>
+          <div class="ab-cta-label">// Work With Us</div>
           <div class="ab-cta-heading">Ready to work with senior engineers who own the outcome?</div>
           <p class="ab-cta-sub">Tell us what you are working on. We will respond within one business day with a clear technical assessment. No sales pitch. No discovery theatre.</p>
         </div>
