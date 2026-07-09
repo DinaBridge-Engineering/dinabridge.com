@@ -16,41 +16,7 @@
 <script src="/shared.js"></script>
 <script src="/scroll-reveal.js" defer></script>
 <style>
-/* elastic-migration.html — v4.2 local additions */
-
-/* ─ Hero stat bar ──────────────────────────────────────────── */
-.v4-stat-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(10,25,47,.1);
-  border: 1px solid rgba(10,25,47,.1);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: 40px;
-}
-.v4-stat-item {
-  background: #ffffff;
-  padding: 28px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.v4-stat-number {
-  font-family: 'Courier New', monospace;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 600;
-  color: #0A192F;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-.v4-stat-label {
-  font-size: 0.8125rem;
-  color: #6B7C93;
-  line-height: 1.55;
-}
-@media(max-width:768px) { .v4-stat-bar { grid-template-columns: 1fr 1fr; } }
-@media(max-width:480px) { .v4-stat-bar { grid-template-columns: 1fr; } }
+/* elastic-migration.html — v4.3 local additions */
 
 /* ─ Platform tags ───────────────────────────────────────────── */
 .v4-platform-tags {
@@ -166,20 +132,6 @@
         <p class="v4-section-number">Practice &mdash; Migration Consulting</p>
         <h1 class="v4-h1">Migration off your legacy platform.<br>Done properly. No drama.</h1>
         <p class="v4-hero-lead">Splunk licensing too expensive. LogRhythm too brittle. Datadog costs spiraling. Algolia charging for relevance you can build yourself. We have executed these migrations before &mdash; and we know exactly what breaks if you skip the planning phase.</p>
-        <div class="v4-stat-bar">
-          <div class="v4-stat-item">
-            <span class="v4-stat-number">Dozens</span>
-            <span class="v4-stat-label">of legacy SIEM, observability, and search migrations executed &mdash; from scoping to signed handoff</span>
-          </div>
-          <div class="v4-stat-item">
-            <span class="v4-stat-number">Zero</span>
-            <span class="v4-stat-label">lock-in after we finish &mdash; your team owns every pipeline, dashboard, and detection rule we build</span>
-          </div>
-          <div class="v4-stat-item">
-            <span class="v4-stat-number">One</span>
-            <span class="v4-stat-label">senior engineer runs your migration from first conversation to production cutover &mdash; no hand-off layers</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
