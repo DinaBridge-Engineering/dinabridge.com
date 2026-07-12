@@ -12,7 +12,7 @@
   <url><loc>https://dinabridge.com/careers.html</loc><priority>0.8</priority></url>
   <url><loc>https://dinabridge.com/company.html</loc><priority>0.8</priority></url>
   <url><loc>https://dinabridge.com/contact.html</loc><priority>0.8</priority></url>
-  <url><loc>https://dinabridge.com/learning.html</loc><priority>0.7</priority></url>
+  <url><loc>https://dinabridge.com/learning/</loc><priority>0.7</priority></url>
   <url><loc>https://dinabridge.com/glossary/</loc><priority>0.7</priority></url>
   <url><loc>https://dinabridge.com/blog.html</loc><priority>0.7</priority></url>
   <url><loc>https://dinabridge.com/blog/why-elasticsearch-alerts-lie.html</loc><priority>0.7</priority></url>

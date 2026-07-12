@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Learning — Core concepts in observability, search &amp; security | DinaBridge</title>
+<meta name="description" content="Seven foundational concepts every team should understand when building an observability, search, or security data platform — written by DinaBridge senior engineers." />
+<meta name="author" content="DinaBridge" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#1a1918" />
+<link rel="canonical" href="https://dinabridge.com/learning/" />
+
+<!-- OG -->
+<meta property="og:title" content="Learning — Big concepts, no fluff | DinaBridge" />
+<meta property="og:description" content="Seven concepts that separate teams that operate their platforms from teams that maintain them." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dinabridge.com/learning/" />
+<meta property="og:site_name" content="DinaBridge" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="Learning — Big concepts, no fluff | DinaBridge" />
+<meta name="twitter:description" content="Seven concepts that separate teams that operate their platforms from teams that maintain them." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<style>
+/* ── Design tokens (locked) ── */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --radius: 0.5rem;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* ── Reset / base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans);font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
+
+/* ── Layout utilities ── */
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
+
+.section{padding-block:3rem}
+@media(min-width:640px){.section{padding-block:4rem}}
+@media(min-width:1024px){.section{padding-block:7rem}}
+
+.section.cream{background:var(--cream);color:var(--ink)}
+
+/* ── Typography ── */
+.eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;border:1px solid var(--hairline-strong);color:inherit;font-weight:500;font-size:.95rem;transition:background 150ms,border-color 150ms}
+.btn-ghost:hover{background:oklch(1 0 0 / 6%);border-color:oklch(1 0 0 / 40%)}
+.section.cream .btn-ghost{border-color:oklch(0 0 0 / 20%);color:var(--ink)}
+.section.cream .btn-ghost:hover{background:oklch(0 0 0 / 6%);border-color:oklch(0 0 0 / 35%)}
+
+/* ── Section head ── */
+.section-head .eyebrow{display:block}
+.section-head .title{margin-top:1.25rem;font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em}
+.section-head .subtitle{margin-top:1rem;font-size:1rem;line-height:1.7;color:var(--muted-fg)}
+.section.cream .section-head .title{color:var(--ink)}
+.section.cream .section-head .subtitle{color:oklch(0.42 0.008 260)}
+
+/* ════════════════ HEADER ════════════════ */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover,.dropdown-btn.active{color:var(--cream)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover,.dropdown-item.active{background:var(--secondary);color:var(--cream)}
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
+
+/* ════════════════ HERO ════════════════ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairline)}
+.hero-glow{pointer-events:none;position:absolute;inset:0;opacity:.7}
+.hero-glow::before{content:'';position:absolute;top:-10rem;left:50%;transform:translateX(-50%);width:880px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(closest-side,oklch(0.78 0.16 65 / 22%),transparent 70%)}
+.hero-grid{pointer-events:none;position:absolute;inset:0;opacity:.035;background-image:linear-gradient(var(--cream) 1px,transparent 1px),linear-gradient(90deg,var(--cream) 1px,transparent 1px);background-size:56px 56px}
+.hero-content{position:relative;padding-top:5rem;padding-bottom:5rem}
+@media(min-width:1024px){.hero-content{padding-top:8rem;padding-bottom:8rem}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.hero-h1{margin-top:1.5rem;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-0.02em;max-width:900px}
+.hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
+
+/* ════════════════ LEARNING — page-specific layout only ════════════════ */
+
+/* Concept cards stack */
+.learn-cards{display:grid;gap:1.5rem}
+
+/* Each concept card */
+.learn-card{
+  border-radius:.75rem;
+  border:1px solid var(--hairline-strong);
+  background:var(--card);
+  padding:1.75rem;
+  display:grid;
+  gap:1.5rem;
+}
+@media(min-width:1024px){
+  .learn-card{
+    grid-template-columns:8rem 1fr;
+    padding:2.25rem;
+    gap:1.5rem;
+  }
+}
+
+/* Icon + number column */
+.learn-icon-col{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+@media(min-width:1024px){
+  .learn-icon-col{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.75rem;
+  }
+}
+
+.learn-icon-wrap{
+  width:3rem;
+  height:3rem;
+  border-radius:.75rem;
+  background:oklch(0.78 0.16 65 / 10%);
+  border:1px solid oklch(0.78 0.16 65 / 30%);
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+.learn-icon-wrap svg{
+  width:1.25rem;
+  height:1.25rem;
+  color:var(--signal);
+  stroke:var(--signal);
+}
+
+.learn-num{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted-fg);
+  font-weight:500;
+}
+
+/* Content column */
+.learn-content-col{}
+
+.learn-title{
+  font-family:var(--font-display);
+  font-size:clamp(1.1rem,2vw,1.5rem);
+  font-weight:600;
+  letter-spacing:-0.02em;
+  line-height:1.25;
+  color:var(--cream);
+}
+
+.learn-body{
+  margin-top:1rem;
+  font-size:.9375rem;
+  line-height:1.75;
+  color:oklch(0.955 0.012 85 / 75%);
+}
+
+/* Keyword tags */
+.learn-tags{
+  margin-top:1.25rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+.learn-tag{
+  font-family:var(--font-mono);
+  font-size:.6875rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:oklch(0.955 0.012 85 / 60%);
+  border:1px solid var(--hairline);
+  padding:.25rem .5rem;
+  border-radius:.25rem;
+}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+.social-row{display:flex;align-items:center;gap:.5rem}
+.social-btn{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid var(--hairline);color:oklch(0.955 0.012 85 / 70%);transition:color 150ms,border-color 150ms}
+.social-btn:hover{color:var(--cream);border-color:var(--hairline-strong)}
+.social-btn svg{width:16px;height:16px}
+
+.text-signal{color:var(--signal)}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header id="site-header">
+  <div class="cx header-inner">
+    <a href="/" class="logo">Dina<span>Bridge</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/platforms/" class="nav-link">Platforms</a>
+      <a href="/solutions/" class="nav-link">Solutions</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/about/" class="dropdown-item">About us</a>
+          <a href="/careers/" class="dropdown-item">Careers</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn active">Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/learning/" class="dropdown-item active">Learning</a>
+          <a href="/glossary/" class="dropdown-item">Glossary</a>
+          <a href="/blog/" class="dropdown-item">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="nav-link">Partners</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <a href="/#contact" class="btn-primary btn-sm header-cta">Contact</a>
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav cx" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms/" class="mobile-link">Platforms</a>
+      <a href="/solutions/" class="mobile-link">Solutions</a>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/about/" class="mobile-link">About us</a>
+          <a href="/careers/" class="mobile-link">Careers</a>
+        </div>
+      </div>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/learning/" class="mobile-link">Learning</a>
+          <a href="/glossary/" class="mobile-link">Glossary</a>
+          <a href="/blog/" class="mobile-link">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="mobile-link">Partners</a>
+      <a href="/#contact" class="btn-primary" style="margin-top:.75rem;font-size:.875rem" id="mobile-cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="cx hero-content">
+    <div class="hero-eyebrow">Learning &middot; DinaBridge</div>
+    <h1 class="hero-h1">Seven concepts that separate <span class="text-signal">operators from maintainers.</span></h1>
+    <p class="hero-lead">Not a tutorial series. Not a certification prep track. These are the ideas we come back to on every engagement &mdash; the ones that decide whether a platform pays for itself or quietly bleeds budget.</p>
+  </div>
+</section>
+
+<!-- ════════════════ CONCEPTS ════════════════ -->
+<section class="section">
+  <div class="cx">
+    <div class="learn-cards">
+
+      <!-- 01 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Layers icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="learn-num">01</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">The three pillars &mdash; and why they aren&rsquo;t enough</h2>
+          <p class="learn-body">Logs, metrics, and traces are the classical pillars of observability. The pillars tell you what happened; they don&rsquo;t tell you why. Mature platforms add profiles, events, and continuous change data &mdash; and correlate all of them through shared identifiers (trace_id, service.name, resource attributes) so an engineer can pivot from a metric spike to the exact log line without rebuilding context in their head.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">logs</span>
+            <span class="learn-tag">metrics</span>
+            <span class="learn-tag">traces</span>
+            <span class="learn-tag">profiles</span>
+            <span class="learn-tag">correlation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Route icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          </div>
+          <div class="learn-num">02</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">OpenTelemetry is the contract, not the vendor</h2>
+          <p class="learn-body">OpenTelemetry (OTel) is a vendor-neutral specification for how telemetry is produced, propagated, and shipped. Instrument once in OTel, and you can send the same data to Elastic, Datadog, Grafana, Honeycomb, or a home-grown ClickHouse warehouse without touching application code. Teams that skip OTel end up locked into whichever agent they installed first &mdash; and pay for it at renewal.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">OpenTelemetry</span>
+            <span class="learn-tag">OTLP</span>
+            <span class="learn-tag">collector</span>
+            <span class="learn-tag">vendor-neutral</span>
+            <span class="learn-tag">instrumentation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Gauge icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M22 12h1M1 12H2M12 2V1M12 23v-1M4.22 4.22l-.71-.71M20.49 20.49l-.71-.71M20.49 3.51l.71-.71M3.51 20.49l.71-.71"/><path d="m13.41 10.59 2.83-2.83"/></svg>
+          </div>
+          <div class="learn-num">03</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">Cardinality is the hidden cost of observability</h2>
+          <p class="learn-body">Every unique combination of metric label values (user_id, request_id, k8s pod name) creates a new time series. Metric cardinality grows multiplicatively and quietly eats budget &mdash; a single unbounded label can 10&times; your bill in a week. Design your label taxonomy on day one, cap high-cardinality dimensions at the collector, and put the ones you actually need on the query in logs or traces, not metrics.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">cardinality</span>
+            <span class="learn-tag">labels</span>
+            <span class="learn-tag">TSDB</span>
+            <span class="learn-tag">cost engineering</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Search icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <div class="learn-num">04</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">Relevance is a design decision, not a default</h2>
+          <p class="learn-body">Search engines like Elasticsearch and OpenSearch ship with BM25 &mdash; a strong statistical baseline for ranking. It is almost never the right answer for production. Real relevance is engineered: analyzer choices per language, boosts per field, learning-to-rank models, hybrid dense+sparse retrieval, and rigorous offline evaluation with judged queries. If your search team can&rsquo;t show you an NDCG chart, they&rsquo;re guessing.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">BM25</span>
+            <span class="learn-tag">relevance tuning</span>
+            <span class="learn-tag">NDCG</span>
+            <span class="learn-tag">hybrid search</span>
+            <span class="learn-tag">learning to rank</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Cpu icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M2 15h2M2 9h2M15 20v2M9 20v2M20 15h2M20 9h2"/></svg>
+          </div>
+          <div class="learn-num">05</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">Vector search is a different data structure, not a magic upgrade</h2>
+          <p class="learn-body">Embeddings turn text (or images, or code) into fixed-length vectors, and ANN indexes (HNSW, IVF) let you retrieve the nearest ones in milliseconds. That solves semantic recall &mdash; questions where keywords don&rsquo;t match. It does not solve exactness (product SKUs, error codes), governance (freshness, deletions), or ranking beyond similarity. The right architecture is usually hybrid: BM25 for lexical precision, vectors for semantic recall, reranking on top.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">embeddings</span>
+            <span class="learn-tag">HNSW</span>
+            <span class="learn-tag">ANN</span>
+            <span class="learn-tag">hybrid retrieval</span>
+            <span class="learn-tag">RAG</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Shield icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="learn-num">06</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">SIEM value comes from detections, not from data volume</h2>
+          <p class="learn-body">Onboarding every log source into your SIEM feels like progress and reads like a bill. The lever that matters is detection engineering: MITRE ATT&amp;CK-aligned rules, tuned to your environment, versioned in git, with unit tests and false-positive budgets. Pipeline tools like Cribl or Elastic ingest pipelines let you route, reduce, and enrich data before it hits the license tier &mdash; cutting cost while keeping the detections you actually run.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">SIEM</span>
+            <span class="learn-tag">detection engineering</span>
+            <span class="learn-tag">MITRE ATT&amp;CK</span>
+            <span class="learn-tag">Cribl</span>
+            <span class="learn-tag">data reduction</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 07 -->
+      <article class="learn-card">
+        <div class="learn-icon-col">
+          <div class="learn-icon-wrap">
+            <!-- Database icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="learn-num">07</div>
+        </div>
+        <div class="learn-content-col">
+          <h2 class="learn-title">Retention &amp; tiering is where architecture meets the invoice</h2>
+          <p class="learn-body">Hot storage (SSD, fast query) is expensive; warm and cold tiers (object storage, decompressed on demand) are 10&ndash;50&times; cheaper. The engineering decision is which data belongs where and for how long &mdash; driven by legal retention, incident-response reachback (typically 90 days hot, 12 months warm), and compliance frames (PCI, HIPAA, SOX). Platforms like Elastic frozen tier, Splunk SmartStore, and ClickHouse tiered storage exist for this exact reason; use them.</p>
+          <div class="learn-tags">
+            <span class="learn-tag">hot/warm/cold</span>
+            <span class="learn-tag">frozen tier</span>
+            <span class="learn-tag">SmartStore</span>
+            <span class="learn-tag">retention</span>
+            <span class="learn-tag">compliance</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FINAL CTA (cream) ════════════════ -->
+<section class="section cream">
+  <div class="cx">
+    <div class="section-head">
+      <div class="eyebrow" style="color:oklch(0.42 0.008 260 / 80%)">Keep going</div>
+      <h2 class="title" style="margin-top:1.25rem;font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:var(--ink)">Want the terms defined?</h2>
+      <p class="subtitle" style="margin-top:1rem;font-size:1rem;line-height:1.7;color:oklch(0.42 0.008 260)">Our Glossary covers 100 of the most-searched terms across observability, search, and security data &mdash; plain-English definitions from engineers, not marketing.</p>
+    </div>
+    <div style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:.75rem">
+      <a href="/glossary/" class="btn-primary">Open the Glossary
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/#contact" class="btn-ghost">Talk to an engineer</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>
+        <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>
+        <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions/">Team augmentation</a></li>
+          <li><a href="/partners/">Partner delivery</a></li>
+          <li><a href="/#contact">Direct engagement</a></li>
+          <li><a href="/platforms/">All platforms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/glossary/">Glossary</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DinaBridge. We build platforms that work.</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="RSS">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var h = document.getElementById('site-header');
+  function onScroll(){ h.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var nav = document.getElementById('mobile-nav');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconClose = document.getElementById('icon-close');
+  var mobileCta = document.getElementById('mobile-cta');
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+  mobileCta.addEventListener('click', function(){
+    nav.classList.remove('open');
+    iconMenu.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+  document.querySelectorAll('[data-mobile-drop]').forEach(function(dropBtn){
+    dropBtn.addEventListener('click', function(){
+      var sub = dropBtn.nextElementSibling;
+      var open = sub.classList.toggle('open');
+      dropBtn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
