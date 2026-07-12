@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v2.3.0
+/* DinaBridge Shared Components — v2.4.0
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -9,6 +9,7 @@
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
 
+   v2.4.0: /platforms → /platforms/ in NAV_LINKS (directory routing, real page now at platforms/index.html).
    v2.3.0: /platforms.html → /platforms in NAV_LINKS.
    v2.2.0: Added Privacy Policy to footer Legal section.
    v2.1.0: Added Glossary to NAV_LINKS.
@@ -63,7 +64,7 @@
     { href: '/',                         label: 'Home' },
     { href: '/elastic-consulting.html',  label: 'How We Work' },
     { href: '/solutions.html',           label: 'Solutions' },
-    { href: '/platforms',                label: 'Platforms' },
+    { href: '/platforms/',               label: 'Platforms' },
     { href: '/partners.html',            label: 'Partners' },
     { href: '/elastic-migration.html',   label: 'Migration' },
     { href: '/about.html',               label: 'About' },
