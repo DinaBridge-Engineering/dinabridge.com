@@ -28,90 +28,101 @@
 <link rel="stylesheet" href="/global.css" />
 <link rel="stylesheet" href="/v4.css" />
 
-<!-- Shared shell (nav + footer + scroll-reveal) -->
-<script src="/shared.js"></script>
-
 <style>
-/* careers/index.html — page-specific styles only */
+/* careers/index.html — page-specific overrides only
+   All colour references use design-system tokens.
+   No purple. No pink. Amber signal only.
+*/
 
-/* ─ Hero ─ */
-.car-hero {
+/* ─── PageHero ─────────────────────────────────────────────────── */
+.page-hero {
   position: relative;
   border-bottom: 1px solid var(--rule);
   overflow: hidden;
+  background: var(--charcoal, #0F0F0F);
 }
-.car-hero-glow {
+.page-hero-glow {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  opacity: .60;
+  opacity: .55;
 }
-.car-hero-glow-orb {
+.page-hero-glow-orb {
   position: absolute;
   top: -160px;
   right: 0;
-  height: 420px;
-  width: 720px;
+  height: 480px;
+  width: 800px;
   border-radius: 50%;
-  filter: blur(80px);
-  background: radial-gradient(closest-side, rgba(240,78,152,.18), transparent 70%);
+  filter: blur(90px);
+  /* amber radial — no pink, no purple */
+  background: radial-gradient(closest-side, rgba(245,158,11,.14), transparent 70%);
 }
-.car-hero-inner {
+.page-hero-inner {
   position: relative;
-  max-width: var(--max);
+  max-width: 1280px;
   margin: 0 auto;
   padding: 80px 40px 64px;
 }
-@media (min-width: 1024px) { .car-hero-inner { padding: 112px 40px 96px; } }
-@media (max-width: 640px)  { .car-hero-inner { padding: 64px 20px 48px; } }
-.car-eyebrow {
+@media (min-width: 1024px) { .page-hero-inner { padding: 112px 40px 96px; } }
+@media (max-width: 640px)  { .page-hero-inner { padding: 64px 20px 48px; } }
+
+.hero-eyebrow {
   display: inline-block;
-  font-size: var(--text-xs);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: var(--pink);
-  font-family: var(--font-body);
+  color: var(--signal);
   margin-bottom: 24px;
 }
-.car-hero-h1 {
+.hero-h1 {
   max-width: 860px;
   font-family: var(--font-heading);
   font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -.03em;
-  color: #fff;
+  color: var(--cream);
   margin-bottom: 24px;
 }
-.car-hero-h1 .text-signal { color: var(--pink); }
-.car-hero-sub {
+.hero-h1 .text-signal { color: var(--signal); }
+.hero-subtitle {
   max-width: 680px;
+  font-family: var(--font-body);
   font-size: clamp(1rem, 1.5vw, 1.125rem);
-  color: rgba(255,255,255,.70);
+  color: rgba(250,248,242,.70);
   line-height: 1.75;
 }
 
-/* ─ Section containers ─ */
-.car-section {
-  max-width: var(--max);
+/* ─── Section containers ───────────────────────────────────────── */
+.section {
+  max-width: 1280px;
   margin: 0 auto;
   padding: 80px 40px;
 }
-@media (max-width: 640px) { .car-section { padding: 56px 20px; } }
-.car-section-wrap--cream { background: #F5F4FB; }
+@media (max-width: 640px) { .section { padding: 56px 20px; } }
 
-/* ─ Section head ─ */
-.car-sh-eyebrow {
+/* Cream variant — warm, no purple */
+.section-wrap--cream {
+  background: #FAF9F7;
+}
+.section-wrap--cream .section-eyebrow { color: var(--signal); }
+.section-wrap--cream .section-h2      { color: #1A1A1A; }
+.section-wrap--cream .section-sub     { color: rgba(26,26,26,.70); }
+
+/* ─── Section head ─────────────────────────────────────────────── */
+.section-eyebrow {
   display: inline-block;
-  font-size: var(--text-xs);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: var(--pink);
-  font-family: var(--font-body);
+  color: var(--signal);
 }
-.car-sh-h2 {
+.section-h2 {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 800;
@@ -119,96 +130,97 @@
   line-height: 1.05;
   margin-top: 20px;
   max-width: 48rem;
+  color: var(--cream);
 }
-.car-sh-h2--dark  { color: #fff; }
-.car-sh-h2--cream { color: #1E1251; }
-.car-sh-sub {
+.section-sub {
   margin-top: 20px;
+  font-family: var(--font-body);
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.75;
   max-width: 48rem;
+  color: rgba(250,248,242,.70);
 }
-.car-sh-sub--dark  { color: rgba(255,255,255,.70); }
-.car-sh-sub--cream { color: rgba(30,18,81,.70); }
 
-/* ─ Cert table ─ */
-.car-table-wrap {
+/* ─── Cert table ───────────────────────────────────────────────── */
+.cert-table-wrap {
   margin-top: 48px;
   border-radius: 12px;
-  border: 1px solid var(--rule-strong);
+  border: 1px solid var(--rule-strong, rgba(255,255,255,.12));
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-table.car-table {
+table.cert-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: var(--text-sm);
+  font-size: 0.875rem;
 }
-.car-table thead tr {
-  border-bottom: 1px solid var(--rule-strong);
-  background: rgba(255,255,255,.04);
+.cert-table thead tr {
+  border-bottom: 1px solid var(--rule-strong, rgba(255,255,255,.12));
+  background: var(--card, rgba(255,255,255,.04));
 }
-.car-table th {
+.cert-table th {
   padding: 16px 20px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-mono, 'JetBrains Mono', 'Courier New', monospace);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: rgba(255,255,255,.60);
+  color: rgba(250,248,242,.60);
   font-weight: 600;
   white-space: nowrap;
 }
-.car-table tbody tr {
-  border-bottom: 1px solid var(--rule);
+.cert-table tbody tr {
+  border-bottom: 1px solid var(--rule, rgba(255,255,255,.07));
   transition: background 200ms;
 }
-.car-table tbody tr:last-child { border-bottom: none; }
-.car-table tbody tr:hover { background: rgba(255,255,255,.03); }
-.car-table td { padding: 16px 20px; vertical-align: middle; }
-.car-td-vendor {
+.cert-table tbody tr:last-child { border-bottom: none; }
+.cert-table tbody tr:hover { background: rgba(255,255,255,.035); }
+.cert-table td { padding: 16px 20px; vertical-align: middle; }
+.cert-td-vendor {
   font-family: var(--font-heading);
   font-weight: 700;
-  color: #fff;
+  color: var(--cream);
   white-space: nowrap;
 }
-.car-td-certs { color: rgba(255,255,255,.75); }
-.car-td-status-hiring {
-  font-family: 'Courier New', monospace;
+.cert-td-certs  { color: rgba(250,248,242,.75); font-family: var(--font-body); }
+.cert-td-status-hiring {
+  font-family: var(--font-mono, 'JetBrains Mono', 'Courier New', monospace);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: var(--pink);
+  color: var(--signal);
   font-weight: 600;
   white-space: nowrap;
 }
-.car-td-status-staged {
-  font-family: 'Courier New', monospace;
+.cert-td-status-staged {
+  font-family: var(--font-mono, 'JetBrains Mono', 'Courier New', monospace);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: rgba(255,255,255,.50);
+  color: rgba(250,248,242,.45);
   font-weight: 600;
   white-space: nowrap;
 }
 
-/* ─ What we look for + Apply card grid ─ */
-.car-eng-grid {
+/* ─── 2-col grid: What we look for + Apply card ────────────────── */
+.eng-grid {
   display: grid;
   gap: 24px;
   margin-top: 48px;
 }
-@media (min-width: 1024px) { .car-eng-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .eng-grid { grid-template-columns: 1fr 1fr; } }
 
-.car-wlf-h3 {
+.wlf-h3 {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -.02em;
-  color: #fff;
+  color: var(--cream);
   margin-bottom: 20px;
 }
-.car-check-list {
+
+/* Check lists */
+.check-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -216,151 +228,156 @@ table.car-table {
   flex-direction: column;
   gap: 12px;
 }
-.car-check-item {
+.check-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   line-height: 1.65;
 }
-.car-check-item--dark  { color: rgba(255,255,255,.80); }
-.car-check-item--cream { color: rgba(30,18,81,.80); }
-.car-check-icon {
+.check-item--dark  { color: rgba(250,248,242,.80); }
+.check-item--cream { color: rgba(26,26,26,.80); }
+.check-icon {
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 2px;
   width: 16px;
   height: 16px;
-  color: var(--pink);
+  color: var(--signal);
   display: block;
 }
 
-/* Apply card */
-.car-apply-card {
+/* Apply / action panel card */
+.panel-card {
   border-radius: 12px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule, rgba(255,255,255,.07));
   padding: 24px;
 }
-.car-apply-icon {
+.panel-card-icon {
   width: 24px;
   height: 24px;
-  color: var(--pink);
+  color: var(--signal);
   display: block;
 }
-.car-apply-h3 {
+.panel-card-h3 {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -.02em;
-  color: #fff;
+  color: var(--cream);
   margin-top: 20px;
   margin-bottom: 12px;
 }
-.car-apply-desc {
-  font-size: var(--text-sm);
-  color: rgba(255,255,255,.70);
+.panel-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(250,248,242,.70);
   line-height: 1.75;
   margin-bottom: 24px;
 }
 
-/* ─ Intern tracks (cream) ─ */
-.car-intern-grid {
+/* ─── Intern tracks ────────────────────────────────────────────── */
+.intern-grid {
   display: grid;
   gap: 20px;
   margin-top: 48px;
 }
-@media (min-width: 1024px) { .car-intern-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .intern-grid { grid-template-columns: repeat(3, 1fr); } }
 
-.car-intern-card {
+.intern-card {
   border-radius: 12px;
-  border: 1px solid rgba(30,18,81,.14);
+  border: 1px solid rgba(26,26,26,.14);
   background: #ffffff;
   padding: 28px;
 }
-.car-intern-icon {
+.intern-card-icon {
   width: 24px;
   height: 24px;
-  color: var(--pink);
+  color: var(--signal);
   display: block;
   margin-bottom: 20px;
 }
-.car-intern-h3 {
+.intern-card-h3 {
   font-family: var(--font-heading);
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -.02em;
-  color: #1E1251;
+  color: #1A1A1A;
   margin-bottom: 12px;
 }
-.car-intern-body {
-  font-size: var(--text-sm);
-  color: rgba(30,18,81,.65);
+.intern-card-body {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(26,26,26,.65);
   line-height: 1.75;
 }
 
 /* What you'll get + Uni card grid */
-.car-intern-lower {
+.intern-lower {
   display: grid;
   gap: 32px;
   margin-top: 56px;
 }
 @media (min-width: 1024px) {
-  .car-intern-lower {
+  .intern-lower {
     grid-template-columns: 1.2fr 1fr;
     align-items: start;
   }
 }
-.car-intern-lower-h3 {
+.intern-lower-h3 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -.025em;
-  color: #1E1251;
+  color: #1A1A1A;
   margin-bottom: 24px;
 }
 
-/* Uni card */
-.car-uni-card {
+/* University panel card */
+.uni-card {
   border-radius: 12px;
-  border: 1px solid rgba(30,18,81,.14);
+  border: 1px solid rgba(26,26,26,.14);
   background: #ffffff;
   padding: 24px;
 }
-.car-uni-icon {
+.uni-card-icon {
   width: 24px;
   height: 24px;
-  color: var(--pink);
+  color: var(--signal);
   display: block;
   margin-bottom: 20px;
 }
-.car-uni-h3 {
+.uni-card-h3 {
   font-family: var(--font-heading);
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -.02em;
-  color: #1E1251;
+  color: #1A1A1A;
   margin-bottom: 12px;
 }
-.car-uni-body {
-  font-size: var(--text-sm);
-  color: rgba(30,18,81,.65);
+.uni-card-body {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(26,26,26,.65);
   line-height: 1.75;
   margin-bottom: 20px;
 }
-.car-uni-link {
+.uni-card-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: var(--text-sm);
-  color: var(--pink);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--signal);
   text-decoration: none;
   text-underline-offset: 4px;
 }
-.car-uni-link:hover { text-decoration: underline; }
-.car-uni-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+.uni-card-link:hover { text-decoration: underline; }
+.uni-card-link svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ─ Final CTA strip ─ */
-.car-cta-inner {
-  max-width: var(--max);
+/* ─── Final CTA strip ──────────────────────────────────────────── */
+.cta-inner {
+  max-width: 1280px;
   margin: 0 auto;
   padding: 80px 40px;
   display: flex;
@@ -368,24 +385,24 @@ table.car-table {
   gap: 24px;
 }
 @media (min-width: 1024px) {
-  .car-cta-inner {
+  .cta-inner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
 }
-@media (max-width: 640px) { .car-cta-inner { padding: 56px 20px; } }
-.car-cta-heading {
+@media (max-width: 640px) { .cta-inner { padding: 56px 20px; } }
+.cta-heading {
   font-family: var(--font-heading);
   font-size: clamp(1.4rem, 2.5vw, 1.875rem);
   font-weight: 800;
   letter-spacing: -.025em;
-  color: #fff;
+  color: var(--cream);
   max-width: 560px;
   line-height: 1.2;
 }
 
-/* ─ Reveal animation ─ */
+/* ─── Scroll reveal ────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -402,28 +419,28 @@ table.car-table {
 
 <main>
 
-  <!-- HERO -->
-  <section class="car-hero">
-    <div class="car-hero-glow"><div class="car-hero-glow-orb"></div></div>
-    <div class="car-hero-inner">
-      <span class="car-eyebrow">Careers</span>
-      <h1 class="car-hero-h1">Senior engineers, and the <span class="text-signal">next ones.</span></h1>
-      <p class="car-hero-sub">We hire two kinds of people: certified specialists in the platforms we work on, and interns taking their first structured step into corporate America. No juniors in between, by design.</p>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-glow"><div class="page-hero-glow-orb"></div></div>
+    <div class="page-hero-inner">
+      <span class="hero-eyebrow">Careers</span>
+      <h1 class="hero-h1">Senior engineers, and the <span class="text-signal">next ones.</span></h1>
+      <p class="hero-subtitle">We hire two kinds of people: certified specialists in the platforms we work on, and interns taking their first structured step into corporate America. No juniors in between, by design.</p>
     </div>
   </section>
 
   <!-- SECTION 1: FULL-TIME ENGINEERS -->
   <section id="engineers">
-    <div class="car-section">
+    <div class="section">
       <div class="reveal">
-        <span class="car-sh-eyebrow">Full-time engineers</span>
-        <h2 class="car-sh-h2 car-sh-h2--dark">Certified in what we ship on.</h2>
-        <p class="car-sh-sub car-sh-sub--dark">If you carry an active vendor certification on our roadmap and want to consult without joining a body-shop, we should talk.</p>
+        <span class="section-eyebrow">Full-time engineers</span>
+        <h2 class="section-h2">Certified in what we ship on.</h2>
+        <p class="section-sub">If you carry an active vendor certification on our roadmap and want to consult without joining a body-shop, we should talk.</p>
       </div>
 
-      <!-- Cert table -->
-      <div class="car-table-wrap reveal">
-        <table class="car-table">
+      <!-- Certification table -->
+      <div class="cert-table-wrap reveal">
+        <table class="cert-table">
           <thead>
             <tr>
               <th>Vendor</th>
@@ -433,75 +450,79 @@ table.car-table {
           </thead>
           <tbody>
             <tr>
-              <td class="car-td-vendor">Elastic</td>
-              <td class="car-td-certs">Elastic Certified Engineer / Observability / Security Analyst</td>
-              <td><span class="car-td-status-hiring">Active &mdash; hiring</span></td>
+              <td class="cert-td-vendor">Elastic</td>
+              <td class="cert-td-certs">Elastic Certified Engineer / Observability / Security Analyst</td>
+              <td><span class="cert-td-status-hiring">Active &mdash; hiring</span></td>
             </tr>
             <tr>
-              <td class="car-td-vendor">Splunk</td>
-              <td class="car-td-certs">Splunk Core Certified Consultant, Enterprise Security Admin</td>
-              <td><span class="car-td-status-hiring">Priority &mdash; hiring</span></td>
+              <td class="cert-td-vendor">Splunk</td>
+              <td class="cert-td-certs">Splunk Core Certified Consultant, Enterprise Security Admin</td>
+              <td><span class="cert-td-status-hiring">Priority &mdash; hiring</span></td>
             </tr>
             <tr>
-              <td class="car-td-vendor">Cribl</td>
-              <td class="car-td-certs">Cribl Certified Admin / Observability Engineer</td>
-              <td><span class="car-td-status-staged">Staged</span></td>
+              <td class="cert-td-vendor">Cribl</td>
+              <td class="cert-td-certs">Cribl Certified Admin / Observability Engineer</td>
+              <td><span class="cert-td-status-staged">Staged</span></td>
             </tr>
             <tr>
-              <td class="car-td-vendor">Dynatrace</td>
-              <td class="car-td-certs">Dynatrace Associate / Professional</td>
-              <td><span class="car-td-status-staged">Staged</span></td>
+              <td class="cert-td-vendor">Dynatrace</td>
+              <td class="cert-td-certs">Dynatrace Associate / Professional</td>
+              <td><span class="cert-td-status-staged">Staged</span></td>
             </tr>
             <tr>
-              <td class="car-td-vendor">Datadog</td>
-              <td class="car-td-certs">Datadog Fundamentals, Log Management, APM</td>
-              <td><span class="car-td-status-staged">Staged</span></td>
+              <td class="cert-td-vendor">Datadog</td>
+              <td class="cert-td-certs">Datadog Fundamentals, Log Management, APM</td>
+              <td><span class="cert-td-status-staged">Staged</span></td>
             </tr>
             <tr>
-              <td class="car-td-vendor">New Relic</td>
-              <td class="car-td-certs">Full-Stack Observability certifications</td>
-              <td><span class="car-td-status-staged">Staged</span></td>
+              <td class="cert-td-vendor">New Relic</td>
+              <td class="cert-td-certs">Full-Stack Observability certifications</td>
+              <td><span class="cert-td-status-staged">Staged</span></td>
             </tr>
             <tr>
-              <td class="car-td-vendor">Grafana</td>
-              <td class="car-td-certs">Grafana Certified Metrics / Logs / Traces</td>
-              <td><span class="car-td-status-staged">Staged</span></td>
+              <td class="cert-td-vendor">Grafana</td>
+              <td class="cert-td-certs">Grafana Certified Metrics / Logs / Traces</td>
+              <td><span class="cert-td-status-staged">Staged</span></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- What we look for + Apply card -->
-      <div class="car-eng-grid">
+      <!-- What we look for + Apply panel -->
+      <div class="eng-grid">
         <div class="reveal">
-          <h3 class="car-wlf-h3">What we look for</h3>
-          <ul class="car-check-list">
-            <li class="car-check-item car-check-item--dark">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <h3 class="wlf-h3">What we look for</h3>
+          <ul class="check-list">
+            <li class="check-item check-item--dark">
+              <!-- CheckCircle2 (lucide) -->
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>5+ years shipping production infrastructure in one of our practice areas (observability, search, security data)</span>
             </li>
-            <li class="car-check-item car-check-item--dark">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>At least one vendor certification on our roadmap &mdash; or the depth to earn one within your first quarter (we pay for it)</span>
             </li>
-            <li class="car-check-item car-check-item--dark">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>Comfortable writing runbooks and architecture docs your client can defend internally</span>
             </li>
-            <li class="car-check-item car-check-item--dark">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>Consulting temperament &mdash; you&rsquo;d rather solve a customer&rsquo;s problem than defend a slide deck</span>
             </li>
-            <li class="car-check-item car-check-item--dark">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>US-based (remote) with overlap for eastern &amp; central time zones</span>
             </li>
           </ul>
         </div>
-        <div class="car-apply-card reveal">
-          <svg class="car-apply-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-          <h3 class="car-apply-h3">How to apply</h3>
-          <p class="car-apply-desc">We don&rsquo;t post req IDs. Send a short note about the last production system you fixed, the certification you hold, and what you&rsquo;d want to work on next. A partner reads every application personally.</p>
+
+        <!-- How to apply panel -->
+        <div class="panel-card reveal">
+          <!-- Award icon (lucide) -->
+          <svg class="panel-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <h3 class="panel-card-h3">How to apply</h3>
+          <p class="panel-card-desc">We don&rsquo;t post req IDs. Send a short note about the last production system you fixed, the certification you hold, and what you&rsquo;d want to work on next. A partner reads every application personally.</p>
           <a href="mailto:careers@dinabridge.com?subject=Engineer%20application" class="btn btn-primary">
             Apply &mdash; careers@dinabridge.com
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -511,62 +532,66 @@ table.car-table {
     </div>
   </section>
 
-  <!-- SECTION 2: INTERNSHIPS (cream) -->
-  <section class="car-section-wrap--cream" id="internships">
-    <div class="car-section">
+  <!-- SECTION 2: INTERNSHIPS (cream section) -->
+  <section class="section-wrap--cream" id="internships">
+    <div class="section">
       <div class="reveal">
-        <span class="car-sh-eyebrow">Internships</span>
-        <h2 class="car-sh-h2 car-sh-h2--cream">Your first step into corporate America.</h2>
-        <p class="car-sh-sub car-sh-sub--cream">We intentionally host interns from university programs and Virtual Internships. It&rsquo;s how we support the field &mdash; and how we meet the specialists we&rsquo;ll want to hire in three years.</p>
+        <span class="section-eyebrow">Internships</span>
+        <h2 class="section-h2">Your first step into corporate America.</h2>
+        <p class="section-sub">We intentionally host interns from university programs and Virtual Internships. It&rsquo;s how we support the field &mdash; and how we meet the specialists we&rsquo;ll want to hire in three years.</p>
       </div>
 
-      <!-- Intern track cards -->
-      <div class="car-intern-grid">
-        <div class="car-intern-card reveal">
-          <svg class="car-intern-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <h3 class="car-intern-h3">University co-op &amp; senior projects</h3>
-          <p class="car-intern-body">We host interns from US universities that fund student placements or count the work toward a capstone / practicum credit. We help scope a shippable project up front and provide the mentor sign-offs your program requires.</p>
+      <!-- Three internship track cards -->
+      <div class="intern-grid">
+        <div class="intern-card reveal">
+          <!-- GraduationCap (lucide) -->
+          <svg class="intern-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="intern-card-h3">University co-op &amp; senior projects</h3>
+          <p class="intern-card-body">We host interns from US universities that fund student placements or count the work toward a capstone / practicum credit. We help scope a shippable project up front and provide the mentor sign-offs your program requires.</p>
         </div>
-        <div class="car-intern-card reveal">
-          <svg class="car-intern-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <h3 class="car-intern-h3">Virtual Internships partnership</h3>
-          <p class="car-intern-body">DinaBridge is a host company on the Virtual Internships platform. Structured 8&ndash;24 week remote placements with weekly check-ins, coaching, and a portfolio-ready deliverable. Ideal for international students and career changers entering US tech.</p>
+        <div class="intern-card reveal">
+          <svg class="intern-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="intern-card-h3">Virtual Internships partnership</h3>
+          <p class="intern-card-body">DinaBridge is a host company on the Virtual Internships platform. Structured 8&ndash;24 week remote placements with weekly check-ins, coaching, and a portfolio-ready deliverable. Ideal for international students and career changers entering US tech.</p>
         </div>
-        <div class="car-intern-card reveal">
-          <svg class="car-intern-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          <h3 class="car-intern-h3">First step into corporate America</h3>
-          <p class="car-intern-body">We&rsquo;re deliberate about hiring people who&rsquo;ve never worked inside a US tech company before. You&rsquo;ll be paired with a senior engineer, sit in on real client work under NDA, and leave with a written recommendation and reference network.</p>
+        <div class="intern-card reveal">
+          <svg class="intern-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="intern-card-h3">First step into corporate America</h3>
+          <p class="intern-card-body">We&rsquo;re deliberate about hiring people who&rsquo;ve never worked inside a US tech company before. You&rsquo;ll be paired with a senior engineer, sit in on real client work under NDA, and leave with a written recommendation and reference network.</p>
         </div>
       </div>
 
-      <!-- What you'll get + Uni card -->
-      <div class="car-intern-lower">
+      <!-- What you'll get + University panel -->
+      <div class="intern-lower">
         <div class="reveal">
-          <h3 class="car-intern-lower-h3">What you&rsquo;ll get</h3>
-          <ul class="car-check-list">
-            <li class="car-check-item car-check-item--cream">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <h3 class="intern-lower-h3">What you&rsquo;ll get</h3>
+          <ul class="check-list">
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>Real work on non-critical paths &mdash; no coffee runs, no busywork</span>
             </li>
-            <li class="car-check-item car-check-item--cream">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>Written weekly feedback and a mid-term review</span>
             </li>
-            <li class="car-check-item car-check-item--cream">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>One production-quality deliverable you can put in your portfolio</span>
             </li>
-            <li class="car-check-item car-check-item--cream">
-              <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
               <span>Access to our internal learning tracks (observability, search, security fundamentals)</span>
             </li>
           </ul>
         </div>
-        <div class="car-uni-card reveal">
-          <svg class="car-uni-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 19a6 6 0 0 0-12 0"/><circle cx="8" cy="9" r="4"/><path d="M22 19a6 6 0 0 0-6-6 4 4 0 0 0 0-8"/></svg>
-          <h3 class="car-uni-h3">For universities &amp; programs</h3>
-          <p class="car-uni-body">If your program funds student placements or wraps them into course credit, we&rsquo;re set up to work with you. Email us with the program details and a typical cohort size.</p>
-          <a href="mailto:careers@dinabridge.com?subject=University%20partnership" class="car-uni-link">
+
+        <!-- For universities panel -->
+        <div class="uni-card reveal">
+          <!-- Users2 (lucide) -->
+          <svg class="uni-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 19a6 6 0 0 0-12 0"/><circle cx="8" cy="9" r="4"/><path d="M22 19a6 6 0 0 0-6-6 4 4 0 0 0 0-8"/></svg>
+          <h3 class="uni-card-h3">For universities &amp; programs</h3>
+          <p class="uni-card-body">If your program funds student placements or wraps them into course credit, we&rsquo;re set up to work with you. Email us with the program details and a typical cohort size.</p>
+          <a href="mailto:careers@dinabridge.com?subject=University%20partnership" class="uni-card-link">
             Talk to us about a cohort
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -577,8 +602,8 @@ table.car-table {
 
   <!-- SECTION 3: FINAL CTA -->
   <section>
-    <div class="car-cta-inner">
-      <h3 class="car-cta-heading">Ready to apply?</h3>
+    <div class="cta-inner">
+      <h3 class="cta-heading">Ready to apply?</h3>
       <a href="/#contact" class="btn btn-primary">
         Send us a note
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -587,6 +612,8 @@ table.car-table {
   </section>
 
 </main>
+
 <footer></footer>
+<script src="/shared.js"></script>
 </body>
 </html>
