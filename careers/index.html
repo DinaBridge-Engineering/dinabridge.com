@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Careers — Certified engineers &amp; internships | DinaBridge</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Careers — Certified engineers &amp; internships | DinaBridge</title>
 <meta name="description" content="DinaBridge hires certified observability, search, and security engineers, plus interns entering corporate America via US universities and Virtual Internships." />
+<meta name="author" content="DinaBridge" />
 <meta name="robots" content="index, follow" />
 <meta property="og:title" content="Careers at DinaBridge" />
 <meta property="og:description" content="Certified senior engineers in Elastic, Splunk, Datadog, Dynatrace, Grafana, and more. Plus a structured internship path." />
@@ -12,16 +13,26 @@
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://dinabridge.com/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="Careers at DinaBridge" />
+<meta name="twitter:description" content="Certified senior engineers in Elastic, Splunk, Datadog, Dynatrace, Grafana, and more. Plus a structured internship path." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
 <link rel="canonical" href="https://dinabridge.com/careers/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/global.css">
-<link rel="stylesheet" href="/v4.css">
+
+<!-- Global design system -->
+<link rel="stylesheet" href="/global.css" />
+<link rel="stylesheet" href="/v4.css" />
+
+<!-- Shared shell (nav + footer + scroll-reveal) -->
+<script src="/shared.js"></script>
+
 <style>
-/* careers/index.html — local styles */
+/* careers/index.html — page-specific styles only */
 
 /* ─ Hero ─ */
 .car-hero {
@@ -123,7 +134,6 @@
 /* ─ Cert table ─ */
 .car-table-wrap {
   margin-top: 48px;
-  overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--rule-strong);
   overflow-x: auto;
@@ -151,7 +161,7 @@ table.car-table {
 }
 .car-table tbody tr {
   border-bottom: 1px solid var(--rule);
-  transition: background var(--t-base) var(--ease);
+  transition: background 200ms;
 }
 .car-table tbody tr:last-child { border-bottom: none; }
 .car-table tbody tr:hover { background: rgba(255,255,255,.03); }
@@ -251,30 +261,6 @@ table.car-table {
   line-height: 1.75;
   margin-bottom: 24px;
 }
-.car-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  background: var(--pink);
-  color: #fff;
-  border: 1px solid var(--pink);
-  border-radius: var(--radius);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background var(--t-base) var(--ease),
-              border-color var(--t-base) var(--ease),
-              box-shadow var(--t-base) var(--ease);
-}
-.car-btn-primary:hover {
-  background: var(--pink-hover);
-  border-color: var(--pink-hover);
-  box-shadow: 0 0 0 3px rgba(240,78,152,.25);
-}
-.car-btn-primary svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 /* ─ Intern tracks (cream) ─ */
 .car-intern-grid {
@@ -372,7 +358,7 @@ table.car-table {
 .car-uni-link:hover { text-decoration: underline; }
 .car-uni-link svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ─ Final CTA strip (dark) ─ */
+/* ─ Final CTA strip ─ */
 .car-cta-inner {
   max-width: var(--max);
   margin: 0 auto;
@@ -403,7 +389,7 @@ table.car-table {
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  transition: opacity .5s cubic-bezier(.4,0,.2,1), transform .5s cubic-bezier(.4,0,.2,1);
 }
 .reveal.is-visible {
   opacity: 1;
@@ -516,9 +502,9 @@ table.car-table {
           <svg class="car-apply-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
           <h3 class="car-apply-h3">How to apply</h3>
           <p class="car-apply-desc">We don&rsquo;t post req IDs. Send a short note about the last production system you fixed, the certification you hold, and what you&rsquo;d want to work on next. A partner reads every application personally.</p>
-          <a href="mailto:careers@dinabridge.com?subject=Engineer%20application" class="car-btn-primary">
+          <a href="mailto:careers@dinabridge.com?subject=Engineer%20application" class="btn btn-primary">
             Apply &mdash; careers@dinabridge.com
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
       </div>
@@ -529,7 +515,7 @@ table.car-table {
   <section class="car-section-wrap--cream" id="internships">
     <div class="car-section">
       <div class="reveal">
-        <span class="car-sh-eyebrow" style="color:rgba(240,78,152,1);">Internships</span>
+        <span class="car-sh-eyebrow">Internships</span>
         <h2 class="car-sh-h2 car-sh-h2--cream">Your first step into corporate America.</h2>
         <p class="car-sh-sub car-sh-sub--cream">We intentionally host interns from university programs and Virtual Internships. It&rsquo;s how we support the field &mdash; and how we meet the specialists we&rsquo;ll want to hire in three years.</p>
       </div>
@@ -556,7 +542,7 @@ table.car-table {
       <!-- What you'll get + Uni card -->
       <div class="car-intern-lower">
         <div class="reveal">
-          <h3 class="car-intern-lower-h3" style="color:#1E1251;">What you&rsquo;ll get</h3>
+          <h3 class="car-intern-lower-h3">What you&rsquo;ll get</h3>
           <ul class="car-check-list">
             <li class="car-check-item car-check-item--cream">
               <svg class="car-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
@@ -589,19 +575,18 @@ table.car-table {
     </div>
   </section>
 
-  <!-- SECTION 3: FINAL CTA (dark) -->
+  <!-- SECTION 3: FINAL CTA -->
   <section>
     <div class="car-cta-inner">
       <h3 class="car-cta-heading">Ready to apply?</h3>
-      <a href="/#contact" class="car-btn-primary">
+      <a href="/#contact" class="btn btn-primary">
         Send us a note
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
   </section>
 
 </main>
 <footer></footer>
-<script src="/shared.js"></script>
 </body>
 </html>
