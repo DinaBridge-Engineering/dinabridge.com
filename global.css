@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v5.2.0
+   DinaBridge Global Design System — v5.3.0
    Elastic Brand Inspired
    ============================================================
    Palette
@@ -71,6 +71,20 @@
   --logo-ink:  #1C1C1C;   /* charcoal D */
   --logo-size: 32px;
   --logo-gap:  0.625rem;
+
+  /* Home-page design tokens (oklch) — used by shared footer */
+  --hp-ink:        oklch(0.16 0.008 260);
+  --hp-cream:      oklch(0.955 0.012 85);
+  --hp-signal:     oklch(0.78 0.16 65);
+  --hp-signal-fg:  oklch(0.16 0.008 260);
+  --hp-card:       oklch(0.19 0.008 260);
+  --hp-secondary:  oklch(0.24 0.008 260);
+  --hp-muted-fg:   oklch(0.68 0.012 260);
+  --hp-hairline:        oklch(1 0 0 / 8%);
+  --hp-hairline-strong: oklch(1 0 0 / 16%);
+  --hp-font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --hp-font-sans:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  --hp-font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   /* Typography */
   --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
@@ -151,6 +165,14 @@ img { display: block; max-width: 100%; }
   margin-left: auto; margin-right: auto;
   padding-left: 40px; padding-right: 40px;
 }
+/* Home-page layout alias used by shared footer */
+.cx {
+  width: 100%; max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 1024px) { .cx { padding-inline: 4rem; } }
+
 .grid-1 { display: grid; grid-template-columns: 1fr;                      gap: var(--sp-32); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--sp-32); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--sp-32); }
@@ -514,56 +536,127 @@ p { max-width: 72ch; color: rgba(255,255,255,.70); font-family: var(--font-body)
 .rule { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 0; }
 
 /* ══════════════════════════════════════════════════════════════
-   11. FOOTER
+   11. FOOTER — matches home page (index.html) exactly
    ══════════════════════════════════════════════════════════════ */
-.footer {
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: var(--sp-48) 0 var(--sp-32);
-  background: var(--paper-2);
+footer {
+  border-top: 1px solid oklch(1 0 0 / 8%);
+  background: oklch(0.16 0.008 260);
+  color: oklch(0.955 0.012 85);
 }
 .footer-inner {
+  padding-block: 4rem;
+}
+@media (min-width: 1024px) { .footer-inner { padding-block: 5rem; } }
+
+.footer-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--sp-64);
-  align-items: start;
+  gap: 3rem;
 }
-.footer-brand {
-  font-size: var(--text-sm); font-weight: 800; color: #ffffff;
-  letter-spacing: -.02em; margin-bottom: var(--sp-8);
-  font-family: var(--font-heading);
-}
-.footer-tagline {
-  font-size: var(--text-xs); color: rgba(255,255,255,.35); line-height: 1.6;
-}
-.footer-links {
-  display: flex; gap: var(--sp-40); justify-content: flex-end; flex-wrap: wrap;
-}
-.footer-col-title {
-  font-size: var(--text-xs); font-weight: 600;
-  text-transform: uppercase; letter-spacing: .08em;
-  color: rgba(255,255,255,.35); margin-bottom: var(--sp-16);
-  font-family: var(--font-body);
-}
-.footer-col a {
-  display: block; font-size: var(--text-sm);
-  color: rgba(255,255,255,.60); margin-bottom: var(--sp-8);
-  transition: color var(--t-base) var(--ease);
-  font-family: var(--font-body);
-}
-.footer-col a:hover { color: #ffffff; }
-.footer-bottom {
-  margin-top: var(--sp-48); padding-top: var(--sp-24);
-  border-top: 1px solid rgba(255,255,255,.06);
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: var(--sp-16);
-  font-size: var(--text-xs); color: rgba(255,255,255,.30);
-  font-family: var(--font-body);
+@media (min-width: 1024px) {
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; }
 }
 
-@media (max-width: 680px) {
-  .footer-inner { grid-template-columns: 1fr; gap: var(--sp-40); }
-  .footer-links { justify-content: flex-start; gap: var(--sp-24); }
+/* Brand column */
+.footer-brand p {
+  margin-top: 1.25rem;
+  font-size: .875rem;
+  line-height: 1.7;
+  color: oklch(0.955 0.012 85 / 65%);
+  max-width: 72ch;
 }
+.footer-email {
+  display: block;
+  margin-top: 1.25rem;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: .875rem;
+  color: oklch(0.78 0.16 65);
+}
+.footer-email:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Logo wordmark used inside footer brand col */
+.logo {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.03em;
+  color: oklch(0.955 0.012 85);
+  text-decoration: none;
+}
+.logo span { color: oklch(0.78 0.16 65); }
+
+/* Link columns */
+.footer-col-title {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: oklch(0.68 0.012 260);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-col a {
+  font-size: .875rem;
+  color: oklch(0.955 0.012 85 / 75%);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.footer-col a:hover { color: oklch(0.955 0.012 85); }
+
+/* Bottom bar */
+.footer-bottom {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.5rem;
+  border-top: 1px solid oklch(1 0 0 / 8%);
+  padding-top: 1.5rem;
+}
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.footer-copy {
+  font-size: .75rem;
+  color: oklch(0.955 0.012 85 / 50%);
+  max-width: 72ch;
+}
+
+/* Social buttons */
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.social-btn {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid oklch(1 0 0 / 8%);
+  color: oklch(0.955 0.012 85 / 70%);
+  text-decoration: none;
+  transition: color 150ms, border-color 150ms;
+}
+.social-btn:hover {
+  color: oklch(0.955 0.012 85);
+  border-color: oklch(1 0 0 / 16%);
+}
+.social-btn svg { display: block; }
 
 /* ══════════════════════════════════════════════════════════════
    12. UTILITIES
