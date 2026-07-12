@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Glossary — 100 terms in observability, search &amp; security | DinaBridge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Plain-English definitions for 100 of the most-searched terms in observability, search, security data, and vector infrastructure — written by DinaBridge engineers." />
+<meta property="og:title" content="Glossary — Observability, Search &amp; Security" />
+<meta property="og:description" content="100 definitions across Elastic, Splunk, Datadog, Grafana, OpenTelemetry, OpenSearch, Cribl, and more." />
+<meta property="og:url" content="https://dinabridge.com/glossary.html" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://dinabridge.com/glossary.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/global.css">
+<link rel="stylesheet" href="/v4.css">
+<script src="/shared.js"></script>
+<style>
+/* glossary.html — local styles */
+
+/* ─ Hero ─ */
+.gls-hero {
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+.gls-hero-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: .60;
+}
+.gls-hero-glow-orb {
+  position: absolute;
+  top: -160px;
+  right: 0;
+  height: 420px;
+  width: 720px;
+  border-radius: 50%;
+  filter: blur(80px);
+  background: radial-gradient(closest-side, rgba(240,78,152,.18), transparent 70%);
+}
+.gls-hero-inner {
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px 40px 64px;
+}
+@media (min-width: 1024px) { .gls-hero-inner { padding: 112px 40px 96px; } }
+@media (max-width: 640px)  { .gls-hero-inner { padding: 64px 20px 48px; } }
+.gls-eyebrow {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--pink);
+  font-family: var(--font-body);
+  margin-bottom: 24px;
+}
+.gls-hero-h1 {
+  max-width: 860px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.gls-hero-h1 .text-signal { color: var(--pink); }
+.gls-hero-sub {
+  max-width: 680px;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: rgba(255,255,255,.70);
+  line-height: 1.75;
+}
+
+/* ─ Section wrapper ─ */
+.gls-section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+@media (max-width: 640px) { .gls-section { padding: 56px 20px; } }
+.gls-section-wrap--cream { background: #F5F4FB; }
+
+/* ─ Search bar ─ */
+.gls-search-wrap {
+  margin-bottom: 48px;
+}
+.gls-search {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px 16px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  color: #fff;
+  outline: none;
+  transition: border-color var(--t-base) var(--ease),
+              box-shadow var(--t-base) var(--ease);
+}
+.gls-search::placeholder { color: rgba(255,255,255,.40); }
+.gls-search:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(240,78,152,.18);
+}
+.gls-no-results {
+  display: none;
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,.50);
+  padding: 32px 0;
+}
+
+/* ─ Main layout: sidebar + content ─ */
+.gls-layout {
+  display: grid;
+  gap: 32px;
+}
+@media (min-width: 1024px) {
+  .gls-layout {
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+}
+
+/* Sidebar */
+.gls-sidebar {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .gls-sidebar {
+    display: block;
+    position: sticky;
+    top: 96px;
+  }
+}
+.gls-sidebar-eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--pink);
+  font-family: var(--font-body);
+  margin-bottom: 16px;
+  display: block;
+}
+.gls-sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.gls-sidebar-list a {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  transition: color var(--t-base) var(--ease);
+}
+.gls-sidebar-list a:hover { color: var(--pink); }
+.gls-sidebar-count { color: rgba(255,255,255,.40); }
+
+/* ─ Groups + entries ─ */
+.gls-groups {
+  display: grid;
+  gap: 64px;
+}
+.gls-group-head {
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+.gls-group-count {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--pink);
+  font-family: var(--font-body);
+  margin-bottom: 8px;
+  display: block;
+}
+.gls-group-h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: #fff;
+  margin: 0;
+}
+.gls-dl {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+}
+.gls-entry {
+  display: grid;
+  gap: 6px;
+}
+.gls-dt {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.gls-dd {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,.70);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* hide filtered entries */
+.gls-entry[hidden] { display: none; }
+.gls-group[data-empty="true"] { display: none; }
+
+/* ─ CTA strip (cream) ─ */
+.gls-cta-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 1024px) {
+  .gls-cta-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 640px) { .gls-cta-inner { padding: 56px 20px; } }
+.gls-cta-h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: #1E1251;
+  max-width: 560px;
+  line-height: 1.2;
+}
+.gls-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  background: var(--pink);
+  color: #fff;
+  border: 1px solid var(--pink);
+  border-radius: var(--radius);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background var(--t-base) var(--ease),
+              border-color var(--t-base) var(--ease),
+              box-shadow var(--t-base) var(--ease);
+}
+.gls-btn-primary:hover {
+  background: var(--pink-hover);
+  border-color: var(--pink-hover);
+  box-shadow: 0 0 0 3px rgba(240,78,152,.25);
+}
+.gls-btn-primary svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ─ Reveal ─ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+<nav class="nav"></nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="gls-hero">
+    <div class="gls-hero-glow"><div class="gls-hero-glow-orb"></div></div>
+    <div class="gls-hero-inner">
+      <span class="gls-eyebrow">Glossary</span>
+      <h1 class="gls-hero-h1">100 terms, <span class="text-signal">plain English.</span></h1>
+      <p class="gls-hero-sub">The vocabulary of observability, search, security data, and vector infrastructure &mdash; defined by engineers who&rsquo;ve shipped the systems, not by a marketing team.</p>
+    </div>
+  </section>
+
+  <!-- MAIN SECTION -->
+  <section>
+    <div class="gls-section">
+
+      <!-- Search -->
+      <div class="gls-search-wrap reveal">
+        <input
+          id="glsSearch"
+          class="gls-search"
+          type="search"
+          placeholder="Filter terms&hellip;"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+      <p class="gls-no-results" id="glsNoResults">No matching terms. Try a different keyword.</p>
+
+      <!-- Sidebar + content grid -->
+      <div class="gls-layout">
+
+        <!-- Sidebar (desktop only) -->
+        <aside class="gls-sidebar" id="glsSidebar">
+          <span class="gls-sidebar-eyebrow">Jump to</span>
+          <ul class="gls-sidebar-list">
+            <li><a href="#observability">Observability <span class="gls-sidebar-count">(40)</span></a></li>
+            <li><a href="#search">Search &amp; retrieval <span class="gls-sidebar-count">(25)</span></a></li>
+            <li><a href="#security">Security data &amp; SecOps <span class="gls-sidebar-count">(25)</span></a></li>
+            <li><a href="#vector-ai">Vector &amp; AI infrastructure <span class="gls-sidebar-count">(10)</span></a></li>
+          </ul>
+        </aside>
+
+        <!-- Term groups -->
+        <div class="gls-groups" id="glsGroups">
+
+          <!-- GROUP: Observability -->
+          <section class="gls-group reveal" id="observability" style="scroll-margin-top:96px;">
+            <div class="gls-group-head">
+              <span class="gls-group-count">40 terms</span>
+              <h2 class="gls-group-h2">Observability</h2>
+            </div>
+            <dl class="gls-dl">
+              <div class="gls-entry"><dt class="gls-dt">Observability</dt><dd class="gls-dd">The ability to answer new questions about a running system from the data it emits, without shipping new code.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Logs</dt><dd class="gls-dd">Immutable, timestamped records of discrete events emitted by a service.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Metrics</dt><dd class="gls-dd">Numeric measurements sampled over time, stored in a time-series database and identified by name plus labels.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Traces</dt><dd class="gls-dd">End-to-end records of a single request as it flows across services, made up of parent/child spans.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Span</dt><dd class="gls-dd">One unit of work inside a trace, with a start time, duration, attributes, and a parent.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">OpenTelemetry (OTel)</dt><dd class="gls-dd">A vendor-neutral CNCF specification and set of SDKs/collectors for producing and shipping logs, metrics, and traces.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">OTLP</dt><dd class="gls-dd">OpenTelemetry Protocol &mdash; the wire format services and collectors use to exchange telemetry.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">OTel Collector</dt><dd class="gls-dd">A pipeline binary that receives, processes (batch, filter, redact), and exports telemetry to one or more backends.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Prometheus</dt><dd class="gls-dd">A CNCF pull-based time-series database and monitoring system that scrapes metrics from HTTP endpoints.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">PromQL</dt><dd class="gls-dd">The query language used to select, aggregate, and alert on Prometheus time series.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Grafana</dt><dd class="gls-dd">An open-source dashboarding and alerting front end that queries many backends (Prometheus, Loki, Tempo, Elasticsearch, more).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Loki</dt><dd class="gls-dd">Grafana&rsquo;s log aggregation system, indexed by labels rather than by full-text tokens.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Tempo</dt><dd class="gls-dd">Grafana&rsquo;s high-scale distributed-tracing backend, storing traces in object storage.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Mimir</dt><dd class="gls-dd">Grafana&rsquo;s horizontally scalable, long-term Prometheus-compatible metrics backend.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Elastic Observability</dt><dd class="gls-dd">Elastic&rsquo;s unified logs / metrics / APM / synthetics offering built on the Elasticsearch engine.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">APM</dt><dd class="gls-dd">Application Performance Monitoring &mdash; instrumentation that captures per-request latency, throughput, and errors, typically with distributed traces.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Datadog</dt><dd class="gls-dd">A commercial SaaS observability platform covering metrics, logs, APM, RUM, and security signals.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Dynatrace</dt><dd class="gls-dd">A commercial observability platform known for its OneAgent, automatic topology mapping, and AI-driven root-cause analysis (Davis).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">New Relic</dt><dd class="gls-dd">A commercial observability platform with a unified telemetry data platform (NRDB) and usage-based pricing.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Honeycomb</dt><dd class="gls-dd">An observability tool built around wide, high-cardinality events and interactive exploration of production traces.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Cribl</dt><dd class="gls-dd">An observability and security data pipeline (Cribl Stream) that routes, reduces, enriches, and replays data before it reaches its destination.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">SLO</dt><dd class="gls-dd">Service Level Objective &mdash; a target for a specific reliability metric (e.g. 99.9% success over 30 days).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">SLI</dt><dd class="gls-dd">Service Level Indicator &mdash; the actual measured signal (e.g. good requests / total requests) that an SLO evaluates against.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Error budget</dt><dd class="gls-dd">The permitted amount of unreliability inside an SLO window; a lever for balancing feature velocity vs. reliability work.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">MTTR / MTTD</dt><dd class="gls-dd">Mean Time To Recover / Detect &mdash; how long incidents last and how quickly they are noticed.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Golden signals</dt><dd class="gls-dd">Latency, traffic, errors, and saturation &mdash; Google SRE&rsquo;s four baseline signals for a user-facing service.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">RED method</dt><dd class="gls-dd">Rate, Errors, Duration &mdash; a request-centric monitoring pattern used across microservices.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">USE method</dt><dd class="gls-dd">Utilization, Saturation, Errors &mdash; a resource-centric pattern used to diagnose infrastructure bottlenecks.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Cardinality</dt><dd class="gls-dd">The number of unique label-value combinations for a metric; the dominant driver of TSDB cost.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">High-cardinality data</dt><dd class="gls-dd">Telemetry with many unique dimensions (user IDs, request IDs) &mdash; cheap to store as logs/traces, expensive as metrics.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Sampling (traces)</dt><dd class="gls-dd">Recording only a subset of traces to control cost; done head-based (at ingress) or tail-based (after the trace completes).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">eBPF</dt><dd class="gls-dd">A Linux kernel technology that runs sandboxed programs to collect telemetry (system calls, network, syscalls) with near-zero overhead.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Continuous profiling</dt><dd class="gls-dd">Always-on CPU / memory profiling in production, giving code-level flame graphs alongside metrics and traces.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">RUM</dt><dd class="gls-dd">Real User Monitoring &mdash; telemetry collected from real browsers / mobile apps in the field.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Synthetics</dt><dd class="gls-dd">Scripted checks that hit endpoints from known locations to measure availability and performance.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Alertmanager</dt><dd class="gls-dd">The Prometheus component that deduplicates, groups, silences, and routes alerts to sending receivers (PagerDuty, Slack, email).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Runbook</dt><dd class="gls-dd">A written procedure an on-call engineer follows to diagnose and mitigate a known alert.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Blast radius</dt><dd class="gls-dd">The scope of impact of a change or failure; minimizing blast radius is a core reliability pattern.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Chaos engineering</dt><dd class="gls-dd">The practice of deliberately injecting faults into production-like systems to verify resilience.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Ingest pipeline</dt><dd class="gls-dd">A processor chain (parse, enrich, drop) applied to events between the source and the storage backend.</dd></div>
+            </dl>
+          </section>
+
+          <!-- GROUP: Search & retrieval -->
+          <section class="gls-group reveal" id="search" style="scroll-margin-top:96px;">
+            <div class="gls-group-head">
+              <span class="gls-group-count">25 terms</span>
+              <h2 class="gls-group-h2">Search &amp; retrieval</h2>
+            </div>
+            <dl class="gls-dl">
+              <div class="gls-entry"><dt class="gls-dt">Elasticsearch</dt><dd class="gls-dd">A distributed, Lucene-based search and analytics engine used for full-text search, logs, and vector retrieval.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">OpenSearch</dt><dd class="gls-dd">An Apache 2.0-licensed fork of Elasticsearch and Kibana, maintained by the OpenSearch community.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Kibana</dt><dd class="gls-dd">The default visualization and management UI for Elasticsearch.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">OpenSearch Dashboards</dt><dd class="gls-dd">The OpenSearch equivalent of Kibana.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Lucene</dt><dd class="gls-dd">The Java library that provides the underlying inverted-index engine for Elasticsearch, OpenSearch, and Solr.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Algolia</dt><dd class="gls-dd">A hosted search-as-a-service focused on instant, typo-tolerant, front-end search for e-commerce and SaaS.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Inverted index</dt><dd class="gls-dd">A data structure mapping each term to the list of documents that contain it &mdash; the core of classical search engines.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">BM25</dt><dd class="gls-dd">The default relevance-scoring function in Lucene-based engines, a probabilistic term-frequency model.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">TF-IDF</dt><dd class="gls-dd">Term Frequency&ndash;Inverse Document Frequency, an older weighting scheme that BM25 largely replaced.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Analyzer</dt><dd class="gls-dd">The pipeline that turns raw text into indexable tokens (tokenizer + character/token filters like lowercase, stemming, stopwords).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Tokenizer</dt><dd class="gls-dd">The stage of an analyzer that splits text into terms (whitespace, standard, edge_ngram, kuromoji, etc.).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Mapping (Elastic)</dt><dd class="gls-dd">The schema definition for a field&rsquo;s type, analyzer, and indexing options.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Shard</dt><dd class="gls-dd">A single Lucene index; an Elasticsearch/OpenSearch index is composed of one or more primary shards plus replicas.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Replica</dt><dd class="gls-dd">A copy of a shard used for high availability and read scaling.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Refresh interval</dt><dd class="gls-dd">How often newly indexed documents are made searchable; higher values reduce indexing overhead.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">ILM</dt><dd class="gls-dd">Index Lifecycle Management &mdash; automated rollover, shrink, freeze, and delete of time-series indices.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Frozen tier</dt><dd class="gls-dd">An Elastic storage tier where indices are queried directly from object storage at low cost.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Data stream</dt><dd class="gls-dd">An Elastic abstraction for append-only, time-series data backed by a rolling set of indices.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Aggregations</dt><dd class="gls-dd">Elasticsearch&rsquo;s server-side analytics primitives (bucketing, metrics, pipeline) &mdash; used heavily in Kibana.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Relevance tuning</dt><dd class="gls-dd">The engineering discipline of designing analyzers, boosts, function scores, and rerankers to improve search quality.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">NDCG</dt><dd class="gls-dd">Normalized Discounted Cumulative Gain &mdash; a standard offline metric for ranked-search quality.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Learning to rank</dt><dd class="gls-dd">Training an ML model to reorder search results based on features and judged relevance labels.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Autocomplete</dt><dd class="gls-dd">Type-ahead suggestions, typically powered by edge_ngram, completion suggesters, or dedicated services (Algolia).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Faceted search</dt><dd class="gls-dd">Filters presented alongside results (category, price, brand) that let users refine a query interactively.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">ClickHouse</dt><dd class="gls-dd">A columnar OLAP database used for search-adjacent analytics, log warehousing, and real-time dashboards at massive scale.</dd></div>
+            </dl>
+          </section>
+
+          <!-- GROUP: Security data & SecOps -->
+          <section class="gls-group reveal" id="security" style="scroll-margin-top:96px;">
+            <div class="gls-group-head">
+              <span class="gls-group-count">25 terms</span>
+              <h2 class="gls-group-h2">Security data &amp; SecOps</h2>
+            </div>
+            <dl class="gls-dl">
+              <div class="gls-entry"><dt class="gls-dt">SIEM</dt><dd class="gls-dd">Security Information and Event Management &mdash; centralised collection, correlation, and alerting on security-relevant events.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">SOAR</dt><dd class="gls-dd">Security Orchestration, Automation, and Response &mdash; playbook-driven automation over SIEM detections.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">XDR</dt><dd class="gls-dd">Extended Detection and Response &mdash; a SIEM-adjacent category that correlates endpoint, network, identity, and cloud telemetry.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">EDR</dt><dd class="gls-dd">Endpoint Detection and Response &mdash; telemetry and containment on user endpoints and servers (CrowdStrike, SentinelOne).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">MITRE ATT&amp;CK</dt><dd class="gls-dd">A public knowledge base of adversary tactics, techniques, and procedures used to structure detections and reporting.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Detection engineering</dt><dd class="gls-dd">Treating detection content (rules, queries, hunts) as versioned code with tests, reviews, and change management.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Splunk</dt><dd class="gls-dd">A leading SIEM and machine-data platform with SPL, indexers, search heads, and Enterprise Security.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">SPL</dt><dd class="gls-dd">Splunk&rsquo;s Search Processing Language, used to query and transform events in Splunk.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Elastic Security</dt><dd class="gls-dd">Elastic&rsquo;s SIEM/XDR offering built on the Elasticsearch engine, with Fleet, Endpoint Security, and prebuilt ATT&amp;CK detections.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">CrowdStrike Falcon</dt><dd class="gls-dd">A leading cloud-native EDR/XDR platform with agent-based telemetry and cloud-side detections.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Data lake (security)</dt><dd class="gls-dd">Long-retention, low-cost storage for security telemetry, typically object storage plus a query engine.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Detection as code</dt><dd class="gls-dd">Storing SIEM rules in git with CI/CD, unit tests, and code review.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">IOC</dt><dd class="gls-dd">Indicator of Compromise &mdash; an atomic artefact (hash, IP, domain) associated with malicious activity.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">TTP</dt><dd class="gls-dd">Tactics, Techniques, and Procedures &mdash; behavioural patterns of adversaries as classified by MITRE ATT&amp;CK.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Threat hunting</dt><dd class="gls-dd">Proactive, hypothesis-driven search through telemetry for adversary behaviour that automated detections would miss.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">UEBA</dt><dd class="gls-dd">User and Entity Behaviour Analytics &mdash; anomaly detection over user/host baselines.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Log reduction</dt><dd class="gls-dd">Filtering, sampling, or summarising events before indexing to control SIEM cost without losing detection value.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Data routing</dt><dd class="gls-dd">Sending each event to the destination that fits it (SIEM, data lake, cheap archive) &mdash; the core Cribl use case.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Replay (Cribl)</dt><dd class="gls-dd">Re-sending archived data back into a SIEM or analytics tool on demand &mdash; e.g. during an investigation.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">CIM / ECS</dt><dd class="gls-dd">Common Information Model (Splunk) and Elastic Common Schema &mdash; normalised field names for cross-source correlation.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Sigma rule</dt><dd class="gls-dd">A vendor-neutral YAML format for detection rules, convertable to SPL, KQL, EQL, and others.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">EQL</dt><dd class="gls-dd">Event Query Language &mdash; Elastic&rsquo;s sequence-oriented query language for correlated detections.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">KQL (Kibana)</dt><dd class="gls-dd">Kibana Query Language &mdash; the interactive filter syntax in Kibana / Elastic Security.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">SOC</dt><dd class="gls-dd">Security Operations Center &mdash; the team (and often the room) that watches SIEM alerts and drives incident response.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Playbook</dt><dd class="gls-dd">A documented response procedure for a specific alert or incident type; often automated in SOAR.</dd></div>
+            </dl>
+          </section>
+
+          <!-- GROUP: Vector & AI infrastructure -->
+          <section class="gls-group reveal" id="vector-ai" style="scroll-margin-top:96px;">
+            <div class="gls-group-head">
+              <span class="gls-group-count">10 terms</span>
+              <h2 class="gls-group-h2">Vector &amp; AI infrastructure</h2>
+            </div>
+            <dl class="gls-dl">
+              <div class="gls-entry"><dt class="gls-dt">Embedding</dt><dd class="gls-dd">A fixed-length numeric vector produced by a model that represents the semantic content of text, image, or code.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Vector database</dt><dd class="gls-dd">A store optimised for approximate-nearest-neighbour (ANN) search over embeddings (Qdrant, Pinecone, Weaviate, Milvus).</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">ANN</dt><dd class="gls-dd">Approximate Nearest Neighbour &mdash; sub-linear algorithms (HNSW, IVF, PQ) that trade a little recall for large speed gains.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">HNSW</dt><dd class="gls-dd">Hierarchical Navigable Small World &mdash; the most widely used ANN index, with tunable recall/latency trade-offs.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Hybrid search</dt><dd class="gls-dd">Combining lexical (BM25) and vector (ANN) retrieval, often with a reranker on top, for both precision and semantic recall.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">RAG</dt><dd class="gls-dd">Retrieval-Augmented Generation &mdash; feeding retrieved documents into an LLM prompt to ground its answers.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Reranker</dt><dd class="gls-dd">A second-stage model (typically a cross-encoder) that reorders the top-k results from a first-stage retriever.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">pgvector</dt><dd class="gls-dd">A PostgreSQL extension that adds a vector column type and ANN indexes &mdash; the simplest path to vector search inside an existing DB.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">Qdrant</dt><dd class="gls-dd">An open-source vector database written in Rust, with payload filtering, gRPC/REST APIs, and managed cloud.</dd></div>
+              <div class="gls-entry"><dt class="gls-dt">LangChain</dt><dd class="gls-dd">An orchestration library for LLM applications &mdash; retrievers, chains, agents, and vector-store integrations.</dd></div>
+            </dl>
+          </section>
+
+        </div><!-- /gls-groups -->
+      </div><!-- /gls-layout -->
+    </div><!-- /gls-section -->
+  </section>
+
+  <!-- CTA STRIP (cream) -->
+  <section class="gls-section-wrap--cream">
+    <div class="gls-cta-inner reveal">
+      <h3 class="gls-cta-h3">Missing a term you&rsquo;d want defined?</h3>
+      <a href="/#contact" class="gls-btn-primary">
+        Suggest one
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+<footer></footer>
+
+<script>
+(function () {
+  var input   = document.getElementById('glsSearch');
+  var noRes   = document.getElementById('glsNoResults');
+  var groups  = document.querySelectorAll('.gls-group');
+
+  if (!input) return;
+
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase();
+    var totalVisible = 0;
+
+    groups.forEach(function (grp) {
+      var entries = grp.querySelectorAll('.gls-entry');
+      var groupVisible = 0;
+
+      entries.forEach(function (entry) {
+        var term = entry.querySelector('.gls-dt').textContent.toLowerCase();
+        var def  = entry.querySelector('.gls-dd').textContent.toLowerCase();
+        var match = !q || term.indexOf(q) !== -1 || def.indexOf(q) !== -1;
+        entry.hidden = !match;
+        if (match) groupVisible++;
+      });
+
+      grp.setAttribute('data-empty', groupVisible === 0 ? 'true' : 'false');
+      totalVisible += groupVisible;
+    });
+
+    noRes.style.display = (q && totalVisible === 0) ? 'block' : 'none';
+  });
+}());
+</script>
+</body>
+</html>
