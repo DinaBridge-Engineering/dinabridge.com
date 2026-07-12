@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glossary — 100 terms in observability, search &amp; security | DinaBridge</title>
+<meta name="description" content="Plain-English definitions for 100 of the most-searched terms in observability, search, security data, and vector infrastructure — written by DinaBridge engineers." />
+<meta name="author" content="DinaBridge" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#1a1918" />
+<link rel="canonical" href="https://dinabridge.com/glossary/" />
+
+<!-- OG -->
+<meta property="og:title" content="Glossary — Observability, Search &amp; Security" />
+<meta property="og:description" content="100 definitions across Elastic, Splunk, Datadog, Grafana, OpenTelemetry, OpenSearch, Cribl, and more." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dinabridge.com/glossary/" />
+<meta property="og:site_name" content="DinaBridge" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="Glossary — Observability, Search &amp; Security" />
+<meta name="twitter:description" content="100 definitions across Elastic, Splunk, Datadog, Grafana, OpenTelemetry, OpenSearch, Cribl, and more." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<style>
+/* ── Design tokens (locked) ── */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --radius: 0.5rem;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* ── Reset / base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans);font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
+
+/* ── Layout utilities ── */
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
+
+.section{padding-block:3rem}
+@media(min-width:640px){.section{padding-block:4rem}}
+@media(min-width:1024px){.section{padding-block:7rem}}
+
+.section.cream{background:var(--cream);color:var(--ink)}
+
+/* ── Typography ── */
+.eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+/* ════════════════ HEADER ════════════════ */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover,.dropdown-btn.active{color:var(--cream)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover,.dropdown-item.active{background:var(--secondary);color:var(--cream)}
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
+
+/* ════════════════ HERO ════════════════ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairline)}
+.hero-glow{pointer-events:none;position:absolute;inset:0;opacity:.7}
+.hero-glow::before{content:'';position:absolute;top:-10rem;left:50%;transform:translateX(-50%);width:880px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(closest-side,oklch(0.78 0.16 65 / 22%),transparent 70%)}
+.hero-grid{pointer-events:none;position:absolute;inset:0;opacity:.035;background-image:linear-gradient(var(--cream) 1px,transparent 1px),linear-gradient(90deg,var(--cream) 1px,transparent 1px);background-size:56px 56px}
+.hero-content{position:relative;padding-top:5rem;padding-bottom:5rem}
+@media(min-width:1024px){.hero-content{padding-top:8rem;padding-bottom:8rem}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.hero-h1{margin-top:1.5rem;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-0.02em;max-width:900px}
+.hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
+
+/* ════════════════ GLOSSARY — page-specific layout only ════════════════ */
+
+/* 220px sidebar + content two-column */
+.gloss-layout{display:grid;gap:2rem}
+@media(min-width:1024px){.gloss-layout{grid-template-columns:220px 1fr;gap:2rem;align-items:start}}
+
+/* Sticky sidebar */
+.gloss-sidebar{}
+@media(min-width:1024px){.gloss-sidebar{position:sticky;top:6rem;align-self:start}}
+
+.gloss-sidebar-list{margin-top:1rem;display:flex;flex-direction:column;gap:.625rem}
+.gloss-sidebar-link{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms;display:block;line-height:1.4}
+.gloss-sidebar-link:hover{color:var(--signal)}
+.gloss-sidebar-count{color:oklch(0.955 0.012 85 / 40%)}
+
+/* Group sections */
+.gloss-groups{display:grid;gap:4rem}
+
+.gloss-group-head{border-bottom:1px solid var(--hairline-strong);padding-bottom:1rem}
+.gloss-group-count{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.gloss-group-title{margin-top:.5rem;font-family:var(--font-display);font-size:clamp(1.5rem,3vw,1.875rem);font-weight:600;letter-spacing:-0.02em}
+
+/* scroll-mt for anchor offset */
+.gloss-group{scroll-margin-top:6rem}
+
+/* Definition list */
+.gloss-dl{margin-top:2rem;display:grid;gap:1.5rem}
+
+.gloss-entry{}
+.gloss-term{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--cream);line-height:1.4}
+.gloss-def{margin-top:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 70%);line-height:1.7}
+
+/* Final CTA row */
+.gloss-cta-row{display:flex;flex-direction:column;gap:1.5rem}
+@media(min-width:1024px){.gloss-cta-row{flex-direction:row;align-items:center;justify-content:space-between}}
+.gloss-cta-h3{font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,1.875rem);font-weight:600;letter-spacing:-0.02em;line-height:1.2;max-width:42rem;color:var(--ink)}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+.social-row{display:flex;align-items:center;gap:.5rem}
+.social-btn{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid var(--hairline);color:oklch(0.955 0.012 85 / 70%);transition:color 150ms,border-color 150ms}
+.social-btn:hover{color:var(--cream);border-color:var(--hairline-strong)}
+.social-btn svg{width:16px;height:16px}
+
+.text-signal{color:var(--signal)}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header id="site-header">
+  <div class="cx header-inner">
+    <a href="/" class="logo">Dina<span>Bridge</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/platforms/" class="nav-link">Platforms</a>
+      <a href="/solutions/" class="nav-link">Solutions</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/about/" class="dropdown-item">About us</a>
+          <a href="/careers/" class="dropdown-item">Careers</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn active">Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/learning.html" class="dropdown-item">Learning</a>
+          <a href="/glossary/" class="dropdown-item active">Glossary</a>
+          <a href="/blog.html" class="dropdown-item">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="nav-link">Partners</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <a href="/#contact" class="btn-primary btn-sm header-cta">Contact</a>
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav cx" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms/" class="mobile-link">Platforms</a>
+      <a href="/solutions/" class="mobile-link">Solutions</a>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/about/" class="mobile-link">About us</a>
+          <a href="/careers/" class="mobile-link">Careers</a>
+        </div>
+      </div>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/learning.html" class="mobile-link">Learning</a>
+          <a href="/glossary/" class="mobile-link">Glossary</a>
+          <a href="/blog.html" class="mobile-link">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="mobile-link">Partners</a>
+      <a href="/#contact" class="btn-primary" style="margin-top:.75rem;font-size:.875rem" id="mobile-cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="cx hero-content">
+    <div class="hero-eyebrow">Glossary &middot; DinaBridge</div>
+    <h1 class="hero-h1">100 terms, <span class="text-signal">plain English.</span></h1>
+    <p class="hero-lead">The vocabulary of observability, search, security data, and vector infrastructure &mdash; defined by engineers who&rsquo;ve shipped the systems, not by a marketing team.</p>
+  </div>
+</section>
+
+<!-- ════════════════ GLOSSARY BODY ════════════════ -->
+<section class="section">
+  <div class="cx">
+    <div class="gloss-layout">
+
+      <!-- ── Sidebar ── -->
+      <aside class="gloss-sidebar" aria-label="Jump to section">
+        <div class="eyebrow">Jump to</div>
+        <ul class="gloss-sidebar-list">
+          <li><a href="#observability" class="gloss-sidebar-link">Observability <span class="gloss-sidebar-count">(40)</span></a></li>
+          <li><a href="#search" class="gloss-sidebar-link">Search &amp; retrieval <span class="gloss-sidebar-count">(25)</span></a></li>
+          <li><a href="#security" class="gloss-sidebar-link">Security data &amp; SecOps <span class="gloss-sidebar-count">(25)</span></a></li>
+          <li><a href="#vector-ai" class="gloss-sidebar-link">Vector &amp; AI infrastructure <span class="gloss-sidebar-count">(10)</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- ── Groups ── -->
+      <div class="gloss-groups">
+
+        <!-- ── GROUP 1: Observability (40) ── -->
+        <section id="observability" class="gloss-group">
+          <div class="gloss-group-head">
+            <div class="gloss-group-count">40 terms</div>
+            <h2 class="gloss-group-title">Observability</h2>
+          </div>
+          <dl class="gloss-dl">
+            <div class="gloss-entry"><dt class="gloss-term">Observability</dt><dd class="gloss-def">The ability to answer new questions about a running system from the data it emits, without shipping new code.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Logs</dt><dd class="gloss-def">Immutable, timestamped records of discrete events emitted by a service.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Metrics</dt><dd class="gloss-def">Numeric measurements sampled over time, stored in a time-series database and identified by name plus labels.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Traces</dt><dd class="gloss-def">End-to-end records of a single request as it flows across services, made up of parent/child spans.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Span</dt><dd class="gloss-def">One unit of work inside a trace, with a start time, duration, attributes, and a parent.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">OpenTelemetry (OTel)</dt><dd class="gloss-def">A vendor-neutral CNCF specification and set of SDKs/collectors for producing and shipping logs, metrics, and traces.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">OTLP</dt><dd class="gloss-def">OpenTelemetry Protocol &mdash; the wire format services and collectors use to exchange telemetry.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">OTel Collector</dt><dd class="gloss-def">A pipeline binary that receives, processes (batch, filter, redact), and exports telemetry to one or more backends.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Prometheus</dt><dd class="gloss-def">A CNCF pull-based time-series database and monitoring system that scrapes metrics from HTTP endpoints.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">PromQL</dt><dd class="gloss-def">The query language used to select, aggregate, and alert on Prometheus time series.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Grafana</dt><dd class="gloss-def">An open-source dashboarding and alerting front end that queries many backends (Prometheus, Loki, Tempo, Elasticsearch, more).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Loki</dt><dd class="gloss-def">Grafana&rsquo;s log aggregation system, indexed by labels rather than by full-text tokens.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Tempo</dt><dd class="gloss-def">Grafana&rsquo;s high-scale distributed-tracing backend, storing traces in object storage.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Mimir</dt><dd class="gloss-def">Grafana&rsquo;s horizontally scalable, long-term Prometheus-compatible metrics backend.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Elastic Observability</dt><dd class="gloss-def">Elastic&rsquo;s unified logs / metrics / APM / synthetics offering built on the Elasticsearch engine.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">APM</dt><dd class="gloss-def">Application Performance Monitoring &mdash; instrumentation that captures per-request latency, throughput, and errors, typically with distributed traces.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Datadog</dt><dd class="gloss-def">A commercial SaaS observability platform covering metrics, logs, APM, RUM, and security signals.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Dynatrace</dt><dd class="gloss-def">A commercial observability platform known for its OneAgent, automatic topology mapping, and AI-driven root-cause analysis (Davis).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">New Relic</dt><dd class="gloss-def">A commercial observability platform with a unified telemetry data platform (NRDB) and usage-based pricing.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Honeycomb</dt><dd class="gloss-def">An observability tool built around wide, high-cardinality events and interactive exploration of production traces.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Cribl</dt><dd class="gloss-def">An observability and security data pipeline (Cribl Stream) that routes, reduces, enriches, and replays data before it reaches its destination.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">SLO</dt><dd class="gloss-def">Service Level Objective &mdash; a target for a specific reliability metric (e.g. 99.9% success over 30 days).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">SLI</dt><dd class="gloss-def">Service Level Indicator &mdash; the actual measured signal (e.g. good requests / total requests) that an SLO evaluates against.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Error budget</dt><dd class="gloss-def">The permitted amount of unreliability inside an SLO window; a lever for balancing feature velocity vs. reliability work.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">MTTR / MTTD</dt><dd class="gloss-def">Mean Time To Recover / Detect &mdash; how long incidents last and how quickly they are noticed.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Golden signals</dt><dd class="gloss-def">Latency, traffic, errors, and saturation &mdash; Google SRE&rsquo;s four baseline signals for a user-facing service.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">RED method</dt><dd class="gloss-def">Rate, Errors, Duration &mdash; a request-centric monitoring pattern used across microservices.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">USE method</dt><dd class="gloss-def">Utilization, Saturation, Errors &mdash; a resource-centric pattern used to diagnose infrastructure bottlenecks.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Cardinality</dt><dd class="gloss-def">The number of unique label-value combinations for a metric; the dominant driver of TSDB cost.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">High-cardinality data</dt><dd class="gloss-def">Telemetry with many unique dimensions (user IDs, request IDs) &mdash; cheap to store as logs/traces, expensive as metrics.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Sampling (traces)</dt><dd class="gloss-def">Recording only a subset of traces to control cost; done head-based (at ingress) or tail-based (after the trace completes).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">eBPF</dt><dd class="gloss-def">A Linux kernel technology that runs sandboxed programs to collect telemetry (system calls, network, syscalls) with near-zero overhead.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Continuous profiling</dt><dd class="gloss-def">Always-on CPU / memory profiling in production, giving code-level flame graphs alongside metrics and traces.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">RUM</dt><dd class="gloss-def">Real User Monitoring &mdash; telemetry collected from real browsers / mobile apps in the field.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Synthetics</dt><dd class="gloss-def">Scripted checks that hit endpoints from known locations to measure availability and performance.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Alertmanager</dt><dd class="gloss-def">The Prometheus component that deduplicates, groups, silences, and routes alerts to sending receivers (PagerDuty, Slack, email).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Runbook</dt><dd class="gloss-def">A written procedure an on-call engineer follows to diagnose and mitigate a known alert.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Blast radius</dt><dd class="gloss-def">The scope of impact of a change or failure; minimizing blast radius is a core reliability pattern.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Chaos engineering</dt><dd class="gloss-def">The practice of deliberately injecting faults into production-like systems to verify resilience.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Ingest pipeline</dt><dd class="gloss-def">A processor chain (parse, enrich, drop) applied to events between the source and the storage backend.</dd></div>
+          </dl>
+        </section>
+
+        <!-- ── GROUP 2: Search & retrieval (25) ── -->
+        <section id="search" class="gloss-group">
+          <div class="gloss-group-head">
+            <div class="gloss-group-count">25 terms</div>
+            <h2 class="gloss-group-title">Search &amp; retrieval</h2>
+          </div>
+          <dl class="gloss-dl">
+            <div class="gloss-entry"><dt class="gloss-term">Elasticsearch</dt><dd class="gloss-def">A distributed, Lucene-based search and analytics engine used for full-text search, logs, and vector retrieval.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">OpenSearch</dt><dd class="gloss-def">An Apache 2.0-licensed fork of Elasticsearch and Kibana, maintained by the OpenSearch community.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Kibana</dt><dd class="gloss-def">The default visualization and management UI for Elasticsearch.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">OpenSearch Dashboards</dt><dd class="gloss-def">The OpenSearch equivalent of Kibana.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Lucene</dt><dd class="gloss-def">The Java library that provides the underlying inverted-index engine for Elasticsearch, OpenSearch, and Solr.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Algolia</dt><dd class="gloss-def">A hosted search-as-a-service focused on instant, typo-tolerant, front-end search for e-commerce and SaaS.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Inverted index</dt><dd class="gloss-def">A data structure mapping each term to the list of documents that contain it &mdash; the core of classical search engines.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">BM25</dt><dd class="gloss-def">The default relevance-scoring function in Lucene-based engines, a probabilistic term-frequency model.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">TF-IDF</dt><dd class="gloss-def">Term Frequency&ndash;Inverse Document Frequency, an older weighting scheme that BM25 largely replaced.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Analyzer</dt><dd class="gloss-def">The pipeline that turns raw text into indexable tokens (tokenizer + character/token filters like lowercase, stemming, stopwords).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Tokenizer</dt><dd class="gloss-def">The stage of an analyzer that splits text into terms (whitespace, standard, edge_ngram, kuromoji, etc.).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Mapping (Elastic)</dt><dd class="gloss-def">The schema definition for a field&rsquo;s type, analyzer, and indexing options.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Shard</dt><dd class="gloss-def">A single Lucene index; an Elasticsearch/OpenSearch index is composed of one or more primary shards plus replicas.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Replica</dt><dd class="gloss-def">A copy of a shard used for high availability and read scaling.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Refresh interval</dt><dd class="gloss-def">How often newly indexed documents are made searchable; higher values reduce indexing overhead.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">ILM</dt><dd class="gloss-def">Index Lifecycle Management &mdash; automated rollover, shrink, freeze, and delete of time-series indices.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Frozen tier</dt><dd class="gloss-def">An Elastic storage tier where indices are queried directly from object storage at low cost.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Data stream</dt><dd class="gloss-def">An Elastic abstraction for append-only, time-series data backed by a rolling set of indices.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Aggregations</dt><dd class="gloss-def">Elasticsearch&rsquo;s server-side analytics primitives (bucketing, metrics, pipeline) &mdash; used heavily in Kibana.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Relevance tuning</dt><dd class="gloss-def">The engineering discipline of designing analyzers, boosts, function scores, and rerankers to improve search quality.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">NDCG</dt><dd class="gloss-def">Normalized Discounted Cumulative Gain &mdash; a standard offline metric for ranked-search quality.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Learning to rank</dt><dd class="gloss-def">Training an ML model to reorder search results based on features and judged relevance labels.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Autocomplete</dt><dd class="gloss-def">Type-ahead suggestions, typically powered by edge_ngram, completion suggesters, or dedicated services (Algolia).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Faceted search</dt><dd class="gloss-def">Filters presented alongside results (category, price, brand) that let users refine a query interactively.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">ClickHouse</dt><dd class="gloss-def">A columnar OLAP database used for search-adjacent analytics, log warehousing, and real-time dashboards at massive scale.</dd></div>
+          </dl>
+        </section>
+
+        <!-- ── GROUP 3: Security data & SecOps (25) ── -->
+        <section id="security" class="gloss-group">
+          <div class="gloss-group-head">
+            <div class="gloss-group-count">25 terms</div>
+            <h2 class="gloss-group-title">Security data &amp; SecOps</h2>
+          </div>
+          <dl class="gloss-dl">
+            <div class="gloss-entry"><dt class="gloss-term">SIEM</dt><dd class="gloss-def">Security Information and Event Management &mdash; centralised collection, correlation, and alerting on security-relevant events.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">SOAR</dt><dd class="gloss-def">Security Orchestration, Automation, and Response &mdash; playbook-driven automation over SIEM detections.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">XDR</dt><dd class="gloss-def">Extended Detection and Response &mdash; a SIEM-adjacent category that correlates endpoint, network, identity, and cloud telemetry.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">EDR</dt><dd class="gloss-def">Endpoint Detection and Response &mdash; telemetry and containment on user endpoints and servers (CrowdStrike, SentinelOne).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">MITRE ATT&amp;CK</dt><dd class="gloss-def">A public knowledge base of adversary tactics, techniques, and procedures used to structure detections and reporting.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Detection engineering</dt><dd class="gloss-def">Treating detection content (rules, queries, hunts) as versioned code with tests, reviews, and change management.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Splunk</dt><dd class="gloss-def">A leading SIEM and machine-data platform with SPL, indexers, search heads, and Enterprise Security.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">SPL</dt><dd class="gloss-def">Splunk&rsquo;s Search Processing Language, used to query and transform events in Splunk.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Elastic Security</dt><dd class="gloss-def">Elastic&rsquo;s SIEM/XDR offering built on the Elasticsearch engine, with Fleet, Endpoint Security, and prebuilt ATT&amp;CK detections.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">CrowdStrike Falcon</dt><dd class="gloss-def">A leading cloud-native EDR/XDR platform with agent-based telemetry and cloud-side detections.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Data lake (security)</dt><dd class="gloss-def">Long-retention, low-cost storage for security telemetry, typically object storage plus a query engine.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Detection as code</dt><dd class="gloss-def">Storing SIEM rules in git with CI/CD, unit tests, and code review.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">IOC</dt><dd class="gloss-def">Indicator of Compromise &mdash; an atomic artefact (hash, IP, domain) associated with malicious activity.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">TTP</dt><dd class="gloss-def">Tactics, Techniques, and Procedures &mdash; behavioural patterns of adversaries as classified by MITRE ATT&amp;CK.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Threat hunting</dt><dd class="gloss-def">Proactive, hypothesis-driven search through telemetry for adversary behaviour that automated detections would miss.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">UEBA</dt><dd class="gloss-def">User and Entity Behaviour Analytics &mdash; anomaly detection over user/host baselines.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Log reduction</dt><dd class="gloss-def">Filtering, sampling, or summarising events before indexing to control SIEM cost without losing detection value.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Data routing</dt><dd class="gloss-def">Sending each event to the destination that fits it (SIEM, data lake, cheap archive) &mdash; the core Cribl use case.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Replay (Cribl)</dt><dd class="gloss-def">Re-sending archived data back into a SIEM or analytics tool on demand &mdash; e.g. during an investigation.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">CIM / ECS</dt><dd class="gloss-def">Common Information Model (Splunk) and Elastic Common Schema &mdash; normalised field names for cross-source correlation.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Sigma rule</dt><dd class="gloss-def">A vendor-neutral YAML format for detection rules, convertable to SPL, KQL, EQL, and others.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">EQL</dt><dd class="gloss-def">Event Query Language &mdash; Elastic&rsquo;s sequence-oriented query language for correlated detections.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">KQL (Kibana)</dt><dd class="gloss-def">Kibana Query Language &mdash; the interactive filter syntax in Kibana / Elastic Security.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">SOC</dt><dd class="gloss-def">Security Operations Center &mdash; the team (and often the room) that watches SIEM alerts and drives incident response.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Playbook</dt><dd class="gloss-def">A documented response procedure for a specific alert or incident type; often automated in SOAR.</dd></div>
+          </dl>
+        </section>
+
+        <!-- ── GROUP 4: Vector & AI infrastructure (10) ── -->
+        <section id="vector-ai" class="gloss-group">
+          <div class="gloss-group-head">
+            <div class="gloss-group-count">10 terms</div>
+            <h2 class="gloss-group-title">Vector &amp; AI infrastructure</h2>
+          </div>
+          <dl class="gloss-dl">
+            <div class="gloss-entry"><dt class="gloss-term">Embedding</dt><dd class="gloss-def">A fixed-length numeric vector produced by a model that represents the semantic content of text, image, or code.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Vector database</dt><dd class="gloss-def">A store optimised for approximate-nearest-neighbour (ANN) search over embeddings (Qdrant, Pinecone, Weaviate, Milvus).</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">ANN</dt><dd class="gloss-def">Approximate Nearest Neighbour &mdash; sub-linear algorithms (HNSW, IVF, PQ) that trade a little recall for large speed gains.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">HNSW</dt><dd class="gloss-def">Hierarchical Navigable Small World &mdash; the most widely used ANN index, with tunable recall/latency trade-offs.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Hybrid search</dt><dd class="gloss-def">Combining lexical (BM25) and vector (ANN) retrieval, often with a reranker on top, for both precision and semantic recall.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">RAG</dt><dd class="gloss-def">Retrieval-Augmented Generation &mdash; feeding retrieved documents into an LLM prompt to ground its answers.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Reranker</dt><dd class="gloss-def">A second-stage model (typically a cross-encoder) that reorders the top-k results from a first-stage retriever.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">pgvector</dt><dd class="gloss-def">A PostgreSQL extension that adds a vector column type and ANN indexes &mdash; the simplest path to vector search inside an existing DB.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">Qdrant</dt><dd class="gloss-def">An open-source vector database written in Rust, with payload filtering, gRPC/REST APIs, and managed cloud.</dd></div>
+            <div class="gloss-entry"><dt class="gloss-term">LangChain</dt><dd class="gloss-def">An orchestration library for LLM applications &mdash; retrievers, chains, agents, and vector-store integrations.</dd></div>
+          </dl>
+        </section>
+
+      </div><!-- /.gloss-groups -->
+    </div><!-- /.gloss-layout -->
+  </div>
+</section>
+
+<!-- ════════════════ FINAL CTA (cream) ════════════════ -->
+<section class="section cream">
+  <div class="cx">
+    <div class="gloss-cta-row">
+      <h3 class="gloss-cta-h3">Missing a term you&rsquo;d want defined?</h3>
+      <a href="/#contact" class="btn-primary" style="flex-shrink:0">Suggest one
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>
+        <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>
+        <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions/">Team augmentation</a></li>
+          <li><a href="/partners/">Partner delivery</a></li>
+          <li><a href="/#contact">Direct engagement</a></li>
+          <li><a href="/platforms/">All platforms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/learning.html">Learning</a></li>
+          <li><a href="/glossary/">Glossary</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DinaBridge. We build platforms that work.</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="RSS">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var h = document.getElementById('site-header');
+  function onScroll(){ h.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var nav = document.getElementById('mobile-nav');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconClose = document.getElementById('icon-close');
+  var mobileCta = document.getElementById('mobile-cta');
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+  mobileCta.addEventListener('click', function(){
+    nav.classList.remove('open');
+    iconMenu.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+  document.querySelectorAll('[data-mobile-drop]').forEach(function(dropBtn){
+    dropBtn.addEventListener('click', function(){
+      var sub = dropBtn.nextElementSibling;
+      var open = sub.classList.toggle('open');
+      dropBtn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
