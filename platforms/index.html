@@ -2,585 +2,617 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Platforms — DinaBridge coverage across observability, search &amp; security</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Deep engineering on Elastic, Datadog, Dynatrace, Grafana, Prometheus, OpenTelemetry, Honeycomb, Splunk, Elastic Security, CrowdStrike, Cribl, ClickHouse, Qdrant and more." />
+<meta name="author" content="DinaBridge" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#1a1918" />
+<link rel="canonical" href="https://dinabridge.com/platforms/" />
+
+<!-- OG -->
 <meta property="og:title" content="Platforms — DinaBridge" />
 <meta property="og:description" content="24+ platforms across four categories. Observability is our anchor practice." />
-<meta property="og:url" content="https://dinabridge.com/platforms/" />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://dinabridge.com/platforms/" />
+<meta property="og:site_name" content="DinaBridge" />
 <meta property="og:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="canonical" href="https://dinabridge.com/platforms/" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="Platforms — DinaBridge" />
+<meta name="twitter:description" content="24+ platforms across four categories. Observability is our anchor practice." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/global.css">
-<link rel="stylesheet" href="/v4.css">
-<script src="/shared.js"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
 <style>
-/*
- * platforms/index.html — Lovable design system
- * Tokens scoped to .platforms-page so shared nav/footer
- * (global.css purple/pink system) are completely unaffected.
- */
-
-/* ── Lovable tokens — page content scope only ── */
-.platforms-page {
-  --ink:               oklch(0.16 0.008 260);
-  --cream:             oklch(0.955 0.012 85);
-  --signal:            oklch(0.78 0.16 65);
-  --signal-foreground: oklch(0.16 0.008 260);
-  --card:              oklch(0.19 0.008 260);
-  --secondary:         oklch(0.24 0.008 260);
-  --muted:             oklch(0.22 0.008 260);
-  --muted-foreground:  oklch(0.68 0.012 260);
-  --hairline:          oklch(1 0 0 / 8%);
-  --hairline-strong:   oklch(1 0 0 / 16%);
+/* ── Design tokens (identical to index.html) ── */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --radius: 0.5rem;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
 }
 
-/* ── Page background & base text ── */
-.plat-main {
-  background-color: var(--ink);
-  color: var(--cream);
-}
+/* ── Reset / base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans);font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
 
-/* ════════════════════════════════════════
-   HERO  —  exact PageHero.tsx translation
-   ════════════════════════════════════════ */
-.plat-hero {
-  position: relative;
-  border-bottom: 1px solid var(--hairline);
-  overflow: hidden;
-}
+/* ── Layout utilities ── */
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
 
-/* Glow layer */
-.plat-hero-glow {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: 0.60;
-}
+.section{padding-block:3rem}
+@media(min-width:640px){.section{padding-block:4rem}}
+@media(min-width:1024px){.section{padding-block:7rem}}
 
-/* Orb: blur-3xl = 48px, -top-40 = -10rem, 720x420, rounded-full */
-.plat-hero-orb {
-  position: absolute;
-  top: -10rem;
-  right: 0;
-  width: 720px;
-  height: 420px;
-  border-radius: 9999px;
-  filter: blur(48px);
-  background: radial-gradient(
-    closest-side,
-    color-mix(in oklab, var(--signal) 18%, transparent),
-    transparent 70%
-  );
-}
+.section.cream{background:var(--cream);color:var(--ink)}
+.section.cream .muted{color:oklch(0.42 0.008 260)}
+.section.cream .hairline-border{border-color:oklch(0 0 0 / 10%)}
+.section.cream .card-bg{background:#fff;border-color:oklch(0 0 0 / 18%)}
 
-/* container-x: max-width 1280px, padding-inline 1.5rem -> 4rem @1024px */
-.plat-hero-inner {
-  position: relative;
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-  padding-top: 5rem;
-  padding-bottom: 4rem;
-}
-@media (min-width: 1024px) {
-  .plat-hero-inner {
-    padding-inline: 4rem;
-    padding-top: 7rem;
-    padding-bottom: 6rem;
-  }
-}
+/* ── Typography ── */
+.eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.muted{color:var(--muted-fg)}
 
-/* Eyebrow */
-.plat-eyebrow {
-  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-}
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;border:1px solid var(--hairline-strong);color:inherit;font-weight:500;font-size:.95rem;transition:background 150ms,border-color 150ms}
+.btn-ghost:hover{background:oklch(1 0 0 / 6%);border-color:oklch(1 0 0 / 40%)}
+.btn-sm{padding:.5rem 1rem;font-size:.85rem}
 
-/* H1 */
-.plat-hero-h1 {
-  margin-top: 1.5rem;
-  max-width: 56rem;
-  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 2.25rem;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--cream);
-}
-@media (min-width: 640px) {
-  .plat-hero-h1 { font-size: 3rem; }
-}
-@media (min-width: 1024px) {
-  .plat-hero-h1 { font-size: 3.75rem; }
-}
-.plat-hero-h1 .text-signal {
-  color: var(--signal);
-}
+/* ── Section head ── */
+.section-head{max-width:700px;margin-bottom:0}
+.section-head .title{margin-top:1.25rem;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em}
+.section-head .subtitle{margin-top:1rem;font-size:1rem;line-height:1.7;color:var(--muted-fg)}
+.section.cream .section-head .subtitle{color:oklch(0.42 0.008 260)}
 
-/* Subtitle */
-.plat-hero-sub {
-  margin-top: 1.5rem;
-  max-width: 42rem;
-  font-size: 1rem;
-  line-height: 1.625;
-  color: color-mix(in oklab, var(--cream) 70%, transparent);
-}
-@media (min-width: 640px) {
-  .plat-hero-sub { font-size: 1.125rem; }
-}
+/* ════════════════ HEADER ════════════════ */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
 
-/* ════════════════════════════════════════
-   SECTION
-   ════════════════════════════════════════ */
-.plat-section {
-  padding-block: 3rem;
-  background-color: var(--ink);
-}
-@media (min-width: 640px) {
-  .plat-section { padding-block: 4rem; }
-}
-@media (min-width: 1024px) {
-  .plat-section { padding-block: 7rem; }
-}
+/* Logo */
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
 
-.plat-section-inner {
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-}
-@media (min-width: 1024px) {
-  .plat-section-inner { padding-inline: 4rem; }
-}
+/* Desktop nav */
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
 
-.plat-categories {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-}
+/* Dropdown */
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover{color:var(--cream)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover{background:var(--secondary);color:var(--cream)}
 
-/* ── Category header ── */
-.plat-cat-header {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-@media (min-width: 1024px) {
-  .plat-cat-header {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-  }
-}
+/* Header CTA */
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
 
-.plat-cat-left { max-width: 42rem; }
+/* Mobile toggle */
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
 
-.plat-cat-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
+/* Mobile nav drawer */
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
 
-.plat-cat-key {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--signal);
-  font-variant-numeric: tabular-nums;
-}
+/* ════════════════ HERO ════════════════ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairline)}
+.hero-glow{pointer-events:none;position:absolute;inset:0;opacity:.7}
+.hero-glow::before{content:'';position:absolute;top:-10rem;left:50%;transform:translateX(-50%);width:880px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(closest-side,oklch(0.78 0.16 65 / 22%),transparent 70%)}
+.hero-grid{pointer-events:none;position:absolute;inset:0;opacity:.035;background-image:linear-gradient(var(--cream) 1px,transparent 1px),linear-gradient(90deg,var(--cream) 1px,transparent 1px);background-size:56px 56px}
+.hero-content{position:relative;padding-top:5rem;padding-bottom:5rem}
+@media(min-width:1024px){.hero-content{padding-top:8rem;padding-bottom:8rem}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.hero-h1{margin-top:1.5rem;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-0.02em;max-width:900px}
+.hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
+.hero-actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem}
 
-.plat-cat-badge {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.625rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--signal);
-  border: 1px solid color-mix(in oklab, var(--signal) 40%, transparent);
-  border-radius: 0.25rem;
-  padding: 0.125rem 0.5rem;
-}
+/* ════════════════ PLATFORM CATEGORIES ════════════════ */
+.plat-categories{display:flex;flex-direction:column;gap:5rem}
 
-.plat-cat-title {
-  margin-top: 0.75rem;
-  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.875rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--cream);
-  line-height: 1.1;
-}
-@media (min-width: 1024px) {
-  .plat-cat-title { font-size: 2.25rem; }
-}
+.plat-cat-header{display:flex;flex-direction:column;gap:1rem;border-bottom:1px solid var(--hairline);padding-bottom:1.5rem;margin-bottom:2.5rem}
+@media(min-width:1024px){.plat-cat-header{flex-direction:row;align-items:flex-end;justify-content:space-between}}
 
-.plat-cat-blurb {
-  margin-top: 1rem;
-  color: color-mix(in oklab, var(--cream) 70%, transparent);
-  line-height: 1.625;
-}
+.plat-cat-left{max-width:42rem}
 
-.plat-cat-count {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+.plat-cat-meta{display:flex;align-items:center;gap:.75rem}
 
-/* ── Platform grid ── */
-.plat-grid {
-  display: grid;
-  gap: 1px;
-  background-color: var(--hairline);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  border: 1px solid var(--hairline);
-}
+.plat-cat-key{font-family:var(--font-mono);font-size:.75rem;font-weight:500;color:var(--signal);font-variant-numeric:tabular-nums}
 
-.plat-row {
-  background-color: var(--card);
-  padding: 1.75rem;
-}
-@media (min-width: 1024px) {
-  .plat-row {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 2.5rem;
-    padding: 2.25rem;
-  }
-}
+.plat-cat-badge{font-family:var(--font-mono);font-size:.625rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--signal);border:1px solid oklch(0.78 0.16 65 / 40%);border-radius:.25rem;padding:.125rem .5rem}
 
-.plat-row-identity {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
+.plat-cat-title{margin-top:.75rem;font-family:var(--font-display);font-size:1.875rem;font-weight:600;letter-spacing:-0.02em;color:var(--cream);line-height:1.1}
+@media(min-width:1024px){.plat-cat-title{font-size:2.25rem}}
 
-.plat-row-num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-  margin-top: 0.25rem;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
+.plat-cat-blurb{margin-top:1rem;color:oklch(0.955 0.012 85 / 70%);line-height:1.7}
 
-.plat-row-name {
-  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--cream);
-  line-height: 1.2;
-}
-@media (min-width: 1024px) {
-  .plat-row-name { font-size: 1.5rem; }
-}
+.plat-cat-count{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-fg);white-space:nowrap;flex-shrink:0}
 
-.plat-row-tag {
-  margin-top: 0.25rem;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.75rem;
-  color: color-mix(in oklab, var(--signal) 90%, transparent);
-}
+/* ── Platform grid — same card / panel pattern as homepage discipline-card / models-grid ── */
+.plat-grid{display:grid;gap:1px;background:var(--hairline);border-radius:.75rem;overflow:hidden;border:1px solid var(--hairline)}
 
-.plat-row-body {
-  margin-top: 1rem;
-  color: color-mix(in oklab, var(--cream) 75%, transparent);
-  line-height: 1.625;
-  max-width: 48rem;
-}
-@media (min-width: 1024px) {
-  .plat-row-body { margin-top: 0.25rem; }
-}
+.plat-row{background:var(--card);padding:1.75rem}
+@media(min-width:1024px){.plat-row{display:grid;grid-template-columns:220px 1fr;gap:2.5rem;padding:2.25rem}}
 
-/* ════════════════════════════════════════
-   CTA SECTION
-   ════════════════════════════════════════ */
-.plat-cta-section {
-  padding-block: 3rem;
-  background-color: var(--cream);
-  color: var(--ink);
-}
-@media (min-width: 640px) {
-  .plat-cta-section { padding-block: 4rem; }
-}
-@media (min-width: 1024px) {
-  .plat-cta-section { padding-block: 7rem; }
-}
+.plat-row-identity{display:flex;align-items:flex-start;gap:.75rem}
 
-.plat-cta-inner {
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-@media (min-width: 1024px) {
-  .plat-cta-inner {
-    padding-inline: 4rem;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
+.plat-row-num{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-fg);margin-top:.25rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 
-.plat-cta-heading {
-  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  max-width: 42rem;
-  line-height: 1.2;
-}
-@media (min-width: 640px) {
-  .plat-cta-heading { font-size: 1.875rem; }
-}
+.plat-row-name{font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--cream);line-height:1.2}
+@media(min-width:1024px){.plat-row-name{font-size:1.5rem}}
 
-.plat-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.4rem;
-  border-radius: 9999px;
-  background-color: var(--signal);
-  color: var(--signal-foreground);
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: filter 150ms ease, transform 150ms ease;
-}
-.plat-cta-btn:hover {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-}
-.plat-cta-btn svg {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
-}
+.plat-row-tag{margin-top:.25rem;font-family:var(--font-mono);font-size:.75rem;color:oklch(0.78 0.16 65 / 90%)}
+
+.plat-row-body{margin-top:1rem;color:oklch(0.955 0.012 85 / 75%);line-height:1.7;max-width:48rem}
+@media(min-width:1024px){.plat-row-body{margin-top:.25rem}}
+
+/* ════════════════ ASSESSMENT CTA (exact homepage match) ════════════════ */
+.assessment-card{border-radius:1rem;border:1px solid var(--hairline-strong);background:var(--ink);color:var(--cream);padding:2rem;display:flex;flex-direction:column;gap:2rem}
+@media(min-width:1024px){.assessment-card{flex-direction:row;align-items:center;justify-content:space-between;padding:3.5rem}}
+.assessment-title{margin-top:1.25rem;font-family:var(--font-display);font-size:clamp(1.25rem,2.5vw,1.875rem);line-height:1.2;letter-spacing:-0.02em}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+.social-row{display:flex;align-items:center;gap:.5rem}
+.social-btn{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid var(--hairline);color:oklch(0.955 0.012 85 / 70%);transition:color 150ms,border-color 150ms}
+.social-btn:hover{color:var(--cream);border-color:var(--hairline-strong)}
+.social-btn svg{width:16px;height:16px}
+
+/* ── Misc ── */
+.text-signal{color:var(--signal)}
+.signal-link{color:var(--signal);display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem}
+.signal-link:hover{text-decoration:underline;text-underline-offset:4px}
 </style>
 </head>
-<body class="platforms-page">
-<nav class="nav"></nav>
+<body>
 
-<main class="plat-main">
+<!-- ════════════════ HEADER (identical to index.html) ════════════════ -->
+<header id="site-header">
+  <div class="cx header-inner">
+    <a href="/" class="logo">Dina<span>Bridge</span></a>
 
-  <!-- HERO -->
-  <section class="plat-hero">
-    <div class="plat-hero-glow">
-      <div class="plat-hero-orb"></div>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/platforms/" class="nav-link active">Platforms</a>
+      <a href="/solutions" class="nav-link">Solutions</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/about" class="dropdown-item">About us</a>
+          <a href="/careers" class="dropdown-item">Careers</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn">Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/resources/learning" class="dropdown-item">Learning</a>
+          <a href="/resources/glossary" class="dropdown-item">Glossary</a>
+          <a href="/resources/blog" class="dropdown-item">Blog</a>
+        </div>
+      </div>
+      <a href="/partners" class="nav-link">Partners</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <a href="/#contact" class="btn-primary btn-sm header-cta">Contact</a>
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </div>
-    <div class="plat-hero-inner">
-      <div class="plat-eyebrow">Platform coverage</div>
-      <h1 class="plat-hero-h1">Deep engineering across the stacks that <span class="text-signal">run at scale.</span></h1>
-      <p class="plat-hero-sub">24+ platforms across four categories. Observability is our anchor practice &mdash; the rest live around it, delivered by the same senior US-based bench.</p>
+  </div>
+
+  <div class="mobile-nav cx" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms/" class="mobile-link">Platforms</a>
+      <a href="/solutions" class="mobile-link">Solutions</a>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/about" class="mobile-link">About us</a>
+          <a href="/careers" class="mobile-link">Careers</a>
+        </div>
+      </div>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/resources/learning" class="mobile-link">Learning</a>
+          <a href="/resources/glossary" class="mobile-link">Glossary</a>
+          <a href="/resources/blog" class="mobile-link">Blog</a>
+        </div>
+      </div>
+      <a href="/partners" class="mobile-link">Partners</a>
+      <a href="/#contact" class="btn-primary" style="margin-top:.75rem;font-size:.875rem" id="mobile-cta">Contact</a>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- PLATFORM CATEGORIES -->
-  <section class="plat-section">
-    <div class="plat-section-inner">
-      <div class="plat-categories">
+<main>
 
-        <!-- 01 OBSERVABILITY -->
-        <div>
-          <div class="plat-cat-header">
-            <div class="plat-cat-left">
-              <div class="plat-cat-meta">
-                <span class="plat-cat-key">01</span>
-                <span class="plat-cat-badge">Largest practice</span>
-              </div>
-              <h2 class="plat-cat-title">Observability</h2>
-              <p class="plat-cat-blurb">Our anchor practice &mdash; the largest bench and the widest platform coverage. Logs, metrics, traces, and everything wired between them.</p>
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="cx hero-content">
+    <div class="hero-eyebrow">Platform coverage · DinaBridge</div>
+    <h1 class="hero-h1">Deep engineering across the stacks that <span class="text-signal">run at scale.</span></h1>
+    <p class="hero-lead">24+ platforms across four categories. Observability is our anchor practice &mdash; the rest live around it, delivered by the same senior US-based bench.</p>
+    <div class="hero-actions">
+      <a href="/#contact" class="btn-primary">Talk to a senior engineer
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/" class="btn-ghost">Back to home</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ PLATFORM CATEGORIES ════════════════ -->
+<section class="section">
+  <div class="cx">
+    <div class="plat-categories">
+
+      <!-- 01 OBSERVABILITY -->
+      <div>
+        <div class="plat-cat-header">
+          <div class="plat-cat-left">
+            <div class="plat-cat-meta">
+              <span class="plat-cat-key">01</span>
+              <span class="plat-cat-badge">Largest practice</span>
             </div>
-            <span class="plat-cat-count">09 platforms</span>
+            <h2 class="plat-cat-title">Observability</h2>
+            <p class="plat-cat-blurb">Our anchor practice &mdash; the largest bench and the widest platform coverage. Logs, metrics, traces, and everything wired between them.</p>
           </div>
-          <div class="plat-grid">
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elastic Observability</div><div class="plat-row-tag">Elastic Stack &middot; APM</div></div></div>
-              <p class="plat-row-body">Elasticsearch-backed observability at scale &mdash; ingest pipelines, APM, and Kibana dashboards tuned for real incident response, not just uptime charts.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Datadog</div><div class="plat-row-tag">Full-stack observability</div></div></div>
-              <p class="plat-row-body">Metrics, logs, traces, and RUM wired together for fast root-cause analysis. Custom detectors, SLOs, and cost engineering on high-cardinality accounts.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">Dynatrace</div><div class="plat-row-tag">APM &middot; AIOps</div></div></div>
-              <p class="plat-row-body">OneAgent deployments, Smartscape topology, and Davis AI tuning for distributed systems where a slow trace is a business problem.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">Grafana</div><div class="plat-row-tag">Visualization &middot; LGTM stack</div></div></div>
-              <p class="plat-row-body">Grafana, Loki, Tempo, and Mimir engineered as a coherent open-source observability layer &mdash; dashboards built for the questions your team asks under pressure.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">Prometheus</div><div class="plat-row-tag">Metrics &middot; Alerting</div></div></div>
-              <p class="plat-row-body">Prometheus and Thanos at production scale. Recording rules, alertmanager routing, and long-term storage strategies that hold up under real query load.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">06</span><div><div class="plat-row-name">Loki</div><div class="plat-row-tag">Log aggregation</div></div></div>
-              <p class="plat-row-body">Grafana Loki as a cost-effective log backend &mdash; label design, chunk tuning, and multi-tenant deployments that don&rsquo;t collapse at volume.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">07</span><div><div class="plat-row-name">Tempo</div><div class="plat-row-tag">Distributed tracing</div></div></div>
-              <p class="plat-row-body">Grafana Tempo for high-throughput tracing, wired into your existing metrics and logs for true correlation across services.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">08</span><div><div class="plat-row-name">OpenTelemetry</div><div class="plat-row-tag">Vendor-neutral telemetry</div></div></div>
-              <p class="plat-row-body">OTel Collector rollouts, instrumentation standards, and vendor migrations that give you back control over your telemetry pipeline.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">09</span><div><div class="plat-row-name">Honeycomb</div><div class="plat-row-tag">Observability 2.0</div></div></div>
-              <p class="plat-row-body">Wide-event instrumentation and BubbleUp workflows for teams that debug in production rather than staring at dashboards.</p>
-            </div>
+          <span class="plat-cat-count">09 platforms</span>
+        </div>
+        <div class="plat-grid">
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elastic Observability</div><div class="plat-row-tag">Elastic Stack &middot; APM</div></div></div>
+            <p class="plat-row-body">Elasticsearch-backed observability at scale &mdash; ingest pipelines, APM, and Kibana dashboards tuned for real incident response, not just uptime charts.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Datadog</div><div class="plat-row-tag">Full-stack observability</div></div></div>
+            <p class="plat-row-body">Metrics, logs, traces, and RUM wired together for fast root-cause analysis. Custom detectors, SLOs, and cost engineering on high-cardinality accounts.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">Dynatrace</div><div class="plat-row-tag">APM &middot; AIOps</div></div></div>
+            <p class="plat-row-body">OneAgent deployments, Smartscape topology, and Davis AI tuning for distributed systems where a slow trace is a business problem.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">Grafana</div><div class="plat-row-tag">Visualization &middot; LGTM stack</div></div></div>
+            <p class="plat-row-body">Grafana, Loki, Tempo, and Mimir engineered as a coherent open-source observability layer &mdash; dashboards built for the questions your team asks under pressure.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">Prometheus</div><div class="plat-row-tag">Metrics &middot; Alerting</div></div></div>
+            <p class="plat-row-body">Prometheus and Thanos at production scale. Recording rules, alertmanager routing, and long-term storage strategies that hold up under real query load.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">06</span><div><div class="plat-row-name">Loki</div><div class="plat-row-tag">Log aggregation</div></div></div>
+            <p class="plat-row-body">Grafana Loki as a cost-effective log backend &mdash; label design, chunk tuning, and multi-tenant deployments that don&rsquo;t collapse at volume.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">07</span><div><div class="plat-row-name">Tempo</div><div class="plat-row-tag">Distributed tracing</div></div></div>
+            <p class="plat-row-body">Grafana Tempo for high-throughput tracing, wired into your existing metrics and logs for true correlation across services.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">08</span><div><div class="plat-row-name">OpenTelemetry</div><div class="plat-row-tag">Vendor-neutral telemetry</div></div></div>
+            <p class="plat-row-body">OTel Collector rollouts, instrumentation standards, and vendor migrations that give you back control over your telemetry pipeline.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">09</span><div><div class="plat-row-name">Honeycomb</div><div class="plat-row-tag">Observability 2.0</div></div></div>
+            <p class="plat-row-body">Wide-event instrumentation and BubbleUp workflows for teams that debug in production rather than staring at dashboards.</p>
           </div>
         </div>
+      </div>
 
-        <!-- 02 SEARCH -->
-        <div>
-          <div class="plat-cat-header">
-            <div class="plat-cat-left">
-              <div class="plat-cat-meta">
-                <span class="plat-cat-key">02</span>
-              </div>
-              <h2 class="plat-cat-title">Search</h2>
-              <p class="plat-cat-blurb">Application, marketplace, and enterprise search &mdash; plus the columnar and document stores that sit next to it.</p>
+      <!-- 02 SEARCH -->
+      <div>
+        <div class="plat-cat-header">
+          <div class="plat-cat-left">
+            <div class="plat-cat-meta">
+              <span class="plat-cat-key">02</span>
             </div>
-            <span class="plat-cat-count">05 platforms</span>
+            <h2 class="plat-cat-title">Search</h2>
+            <p class="plat-cat-blurb">Application, marketplace, and enterprise search &mdash; plus the columnar and document stores that sit next to it.</p>
           </div>
-          <div class="plat-grid">
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elasticsearch</div><div class="plat-row-tag">Search &middot; Analytics</div></div></div>
-              <p class="plat-row-body">Relevance tuning, sharding strategy, and cluster performance at high query volume &mdash; from product search to enterprise knowledge bases.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">OpenSearch</div><div class="plat-row-tag">Open-source search</div></div></div>
-              <p class="plat-row-body">Fully open-source distributed search &mdash; cluster sizing, ingest pipelines, and query performance that hold up under production traffic.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">Algolia</div><div class="plat-row-tag">Application search</div></div></div>
-              <p class="plat-row-body">Instant, relevance-tuned product and content search &mdash; index design, ranking rules, and frontend integration that ship in weeks, not quarters.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">ClickHouse</div><div class="plat-row-tag">Columnar analytics</div></div></div>
-              <p class="plat-row-body">High-volume log, event, and search-adjacent analytics at a scale where traditional databases fall over.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">MongoDB</div><div class="plat-row-tag">Document store</div></div></div>
-              <p class="plat-row-body">Document architecture and performance tuning for applications where search and complex document models sit side by side.</p>
-            </div>
+          <span class="plat-cat-count">05 platforms</span>
+        </div>
+        <div class="plat-grid">
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elasticsearch</div><div class="plat-row-tag">Search &middot; Analytics</div></div></div>
+            <p class="plat-row-body">Relevance tuning, sharding strategy, and cluster performance at high query volume &mdash; from product search to enterprise knowledge bases.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">OpenSearch</div><div class="plat-row-tag">Open-source search</div></div></div>
+            <p class="plat-row-body">Fully open-source distributed search &mdash; cluster sizing, ingest pipelines, and query performance that hold up under production traffic.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">Algolia</div><div class="plat-row-tag">Application search</div></div></div>
+            <p class="plat-row-body">Instant, relevance-tuned product and content search &mdash; index design, ranking rules, and frontend integration that ship in weeks, not quarters.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">ClickHouse</div><div class="plat-row-tag">Columnar analytics</div></div></div>
+            <p class="plat-row-body">High-volume log, event, and search-adjacent analytics at a scale where traditional databases fall over.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">MongoDB</div><div class="plat-row-tag">Document store</div></div></div>
+            <p class="plat-row-body">Document architecture and performance tuning for applications where search and complex document models sit side by side.</p>
           </div>
         </div>
+      </div>
 
-        <!-- 03 SECURITY DATA -->
-        <div>
-          <div class="plat-cat-header">
-            <div class="plat-cat-left">
-              <div class="plat-cat-meta">
-                <span class="plat-cat-key">03</span>
-              </div>
-              <h2 class="plat-cat-title">Security Data</h2>
-              <p class="plat-cat-blurb">SIEM, detection engineering, and the ingestion pipes that feed them. Elastic Security-led, with adjacent SecOps depth.</p>
+      <!-- 03 SECURITY DATA -->
+      <div>
+        <div class="plat-cat-header">
+          <div class="plat-cat-left">
+            <div class="plat-cat-meta">
+              <span class="plat-cat-key">03</span>
             </div>
-            <span class="plat-cat-count">05 platforms</span>
+            <h2 class="plat-cat-title">Security Data</h2>
+            <p class="plat-cat-blurb">SIEM, detection engineering, and the ingestion pipes that feed them. Elastic Security-led, with adjacent SecOps depth.</p>
           </div>
-          <div class="plat-grid">
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elastic Security</div><div class="plat-row-tag">SIEM &middot; XDR</div></div></div>
-              <p class="plat-row-body">End-to-end SIEM on the Elastic Stack &mdash; detection rules, threat hunting workflows, and ingestion at security-team volumes.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Splunk</div><div class="plat-row-tag">SIEM &middot; Security data</div></div></div>
-              <p class="plat-row-body">Splunk Enterprise Security and Splunk Cloud engineering &mdash; SPL tuning, data model acceleration, and migrations off legacy deployments.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">CrowdStrike</div><div class="plat-row-tag">EDR &middot; Threat intel</div></div></div>
-              <p class="plat-row-body">Falcon platform integration, telemetry routing, and detection pipelines that connect endpoint signal to your broader SecOps stack.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">Cribl</div><div class="plat-row-tag">Observability &amp; security routing</div></div></div>
-              <p class="plat-row-body">Cribl Stream and Edge deployments to control, shape, and route security and observability data before it hits your SIEM bill.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">Wazuh</div><div class="plat-row-tag">Open-source SIEM</div></div></div>
-              <p class="plat-row-body">Wazuh deployments for teams that need open-source security monitoring alongside a commercial SIEM.</p>
-            </div>
+          <span class="plat-cat-count">05 platforms</span>
+        </div>
+        <div class="plat-grid">
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elastic Security</div><div class="plat-row-tag">SIEM &middot; XDR</div></div></div>
+            <p class="plat-row-body">End-to-end SIEM on the Elastic Stack &mdash; detection rules, threat hunting workflows, and ingestion at security-team volumes.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Splunk</div><div class="plat-row-tag">SIEM &middot; Security data</div></div></div>
+            <p class="plat-row-body">Splunk Enterprise Security and Splunk Cloud engineering &mdash; SPL tuning, data model acceleration, and migrations off legacy deployments.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">CrowdStrike</div><div class="plat-row-tag">EDR &middot; Threat intel</div></div></div>
+            <p class="plat-row-body">Falcon platform integration, telemetry routing, and detection pipelines that connect endpoint signal to your broader SecOps stack.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">Cribl</div><div class="plat-row-tag">Observability &amp; security routing</div></div></div>
+            <p class="plat-row-body">Cribl Stream and Edge deployments to control, shape, and route security and observability data before it hits your SIEM bill.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">Wazuh</div><div class="plat-row-tag">Open-source SIEM</div></div></div>
+            <p class="plat-row-body">Wazuh deployments for teams that need open-source security monitoring alongside a commercial SIEM.</p>
           </div>
         </div>
+      </div>
 
-        <!-- 04 VECTOR & AI INFRASTRUCTURE -->
-        <div>
-          <div class="plat-cat-header">
-            <div class="plat-cat-left">
-              <div class="plat-cat-meta">
-                <span class="plat-cat-key">04</span>
-                <span class="plat-cat-badge">Emerging</span>
-              </div>
-              <h2 class="plat-cat-title">Vector &amp; AI Infrastructure</h2>
-              <p class="plat-cat-blurb">Emerging capability. AI-adjacent infrastructure delivered by the same senior bench &mdash; most platform consultancies don&rsquo;t cover this ground.</p>
+      <!-- 04 VECTOR & AI INFRASTRUCTURE -->
+      <div>
+        <div class="plat-cat-header">
+          <div class="plat-cat-left">
+            <div class="plat-cat-meta">
+              <span class="plat-cat-key">04</span>
+              <span class="plat-cat-badge">Emerging</span>
             </div>
-            <span class="plat-cat-count">05 platforms</span>
+            <h2 class="plat-cat-title">Vector &amp; AI Infrastructure</h2>
+            <p class="plat-cat-blurb">Emerging capability. AI-adjacent infrastructure delivered by the same senior bench &mdash; most platform consultancies don&rsquo;t cover this ground.</p>
           </div>
-          <div class="plat-grid">
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Qdrant</div><div class="plat-row-tag">Vector database</div></div></div>
-              <p class="plat-row-body">Vector database engineering for semantic retrieval, hybrid search, and RAG pipelines that need to survive production traffic.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Redis (Vector)</div><div class="plat-row-tag">Vector &middot; Cache</div></div></div>
-              <p class="plat-row-body">Redis Stack and Redis Vector for low-latency semantic search alongside your existing caching and realtime workloads.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">pgvector</div><div class="plat-row-tag">Postgres vector</div></div></div>
-              <p class="plat-row-body">Vector search inside Postgres &mdash; schema, indexing, and hybrid retrieval strategies for teams that don&rsquo;t want another data store.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">LangChain</div><div class="plat-row-tag">LLM pipelines</div></div></div>
-              <p class="plat-row-body">LangChain and LangGraph pipelines integrated cleanly into your existing search, telemetry, and data infrastructure.</p>
-            </div>
-            <div class="plat-row">
-              <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">OpenSearch k-NN</div><div class="plat-row-tag">Hybrid search</div></div></div>
-              <p class="plat-row-body">Vector and lexical search combined inside OpenSearch &mdash; one cluster, one relevance model, one operations story.</p>
-            </div>
+          <span class="plat-cat-count">05 platforms</span>
+        </div>
+        <div class="plat-grid">
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Qdrant</div><div class="plat-row-tag">Vector database</div></div></div>
+            <p class="plat-row-body">Vector database engineering for semantic retrieval, hybrid search, and RAG pipelines that need to survive production traffic.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Redis (Vector)</div><div class="plat-row-tag">Vector &middot; Cache</div></div></div>
+            <p class="plat-row-body">Redis Stack and Redis Vector for low-latency semantic search alongside your existing caching and realtime workloads.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">pgvector</div><div class="plat-row-tag">Postgres vector</div></div></div>
+            <p class="plat-row-body">Vector search inside Postgres &mdash; schema, indexing, and hybrid retrieval strategies for teams that don&rsquo;t want another data store.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">LangChain</div><div class="plat-row-tag">LLM pipelines</div></div></div>
+            <p class="plat-row-body">LangChain and LangGraph pipelines integrated cleanly into your existing search, telemetry, and data infrastructure.</p>
+          </div>
+          <div class="plat-row">
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">OpenSearch k-NN</div><div class="plat-row-tag">Hybrid search</div></div></div>
+            <p class="plat-row-body">Vector and lexical search combined inside OpenSearch &mdash; one cluster, one relevance model, one operations story.</p>
           </div>
         </div>
+      </div>
 
-      </div><!-- /.plat-categories -->
-    </div><!-- /.plat-section-inner -->
-  </section>
+    </div><!-- /.plat-categories -->
+  </div>
+</section>
 
-  <!-- CTA STRIP -->
-  <section class="plat-cta-section">
-    <div class="plat-cta-inner">
-      <h3 class="plat-cta-heading">Not sure which platform fits your problem?</h3>
-      <a href="/#contact" class="plat-cta-btn">
+<!-- ════════════════ CTA — exact homepage assessment-card pattern ════════════════ -->
+<section class="section cream">
+  <div class="cx">
+    <div class="assessment-card">
+      <div style="max-width:42rem">
+        <div class="eyebrow" style="color:oklch(0.955 0.012 85 / 60%)">Not sure where to start?</div>
+        <p class="assessment-title">Not sure which platform fits your problem? Talk to a senior engineer — we reply personally, usually within one US business day.</p>
+      </div>
+      <a href="/#contact" class="btn-primary" style="flex-shrink:0">
         Talk to a senior engineer
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
-<footer></footer>
+
+<!-- ════════════════ FOOTER (identical to index.html) ════════════════ -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>
+        <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>
+        <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions">Team augmentation</a></li>
+          <li><a href="/partners">Partner delivery</a></li>
+          <li><a href="/#contact">Direct engagement</a></li>
+          <li><a href="/platforms/">All platforms</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/resources/learning">Learning</a></li>
+          <li><a href="/resources/glossary">Glossary</a></li>
+          <li><a href="/resources/blog">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/careers">Careers</a></li>
+          <li><a href="/partners">Partners</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/legal/privacy">Privacy</a></li>
+          <li><a href="/legal/terms">Terms</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 DinaBridge. We build platforms that work.</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="RSS">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Header scroll class ── */
+(function(){
+  var h = document.getElementById('site-header');
+  function onScroll(){ h.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ── Mobile menu toggle ── */
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var nav = document.getElementById('mobile-nav');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconClose = document.getElementById('icon-close');
+  var mobileCta = document.getElementById('mobile-cta');
+
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+
+  mobileCta.addEventListener('click', function(){
+    nav.classList.remove('open');
+    iconMenu.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+
+  document.querySelectorAll('[data-mobile-drop]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sub = btn.nextElementSibling;
+      var open = sub.classList.toggle('open');
+      btn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
