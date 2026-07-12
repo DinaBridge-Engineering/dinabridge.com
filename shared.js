@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v1.8.0
+/* DinaBridge Shared Components — v1.9.0
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -62,6 +62,7 @@
     { href: '/partners.html',            label: 'Partners' },
     { href: '/elastic-migration.html',   label: 'Migration' },
     { href: '/about.html',               label: 'About' },
+    { href: '/careers.html',             label: 'Careers' },
     { href: '/contact.html',             label: 'Contact' },
     { href: '/blog.html',                label: 'Blog' }
   ];
