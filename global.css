@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v5.1.0
+   DinaBridge Global Design System — v5.2.0
    Elastic Brand Inspired
    ============================================================
    Palette
@@ -65,6 +65,12 @@
   --blue:     #F04E98;
   --blue-mid: rgba(240,78,152,.15);
   --teal:     #FEC514;
+
+  /* Logo — Lovable amber square system */
+  --logo-bg:   #F59E0B;   /* amber-500 */
+  --logo-ink:  #1C1C1C;   /* charcoal D */
+  --logo-size: 32px;
+  --logo-gap:  0.625rem;
 
   /* Typography */
   --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
@@ -288,13 +294,43 @@ p { max-width: 72ch; color: rgba(255,255,255,.70); font-family: var(--font-body)
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--sp-24); padding: var(--sp-16) 0;
 }
+
+/* ── Shared brand / logo ── */
 .brand {
-  display: flex; align-items: center; gap: var(--sp-12);
-  color: #ffffff; font-size: 0.9375rem;
-  font-weight: 800; letter-spacing: -.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--logo-gap);
   text-decoration: none;
-  font-family: var(--font-heading);
+  color: #ffffff;
+  flex-shrink: 0;
 }
+.brand-mark {
+  /* 32×32 amber square */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:  var(--logo-size);
+  height: var(--logo-size);
+  border-radius: 6px;
+  background: var(--logo-bg);
+  flex-shrink: 0;
+  /* charcoal D — Space Grotesk bold */
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--logo-ink);
+  user-select: none;
+}
+.brand-wordmark {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
 .brand-logo {
   display: flex; align-items: center;
 }

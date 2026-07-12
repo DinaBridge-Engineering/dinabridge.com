@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v2.7.0
+/* DinaBridge Shared Components — v2.8.0
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -9,10 +9,14 @@
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
 
-   v2.7.0: /privacy.html -> /privacy/ in LEGAL_LINKS (directory routing, real page now at privacy/index.html).
-   v2.6.0: /partners.html → /partners/ in NAV_LINKS (directory routing, real page now at partners/index.html).
-   v2.5.0: /solutions.html → /solutions/ in NAV_LINKS (directory routing, real page now at solutions/index.html).
-   v2.4.0: /platforms → /platforms/ in NAV_LINKS (directory routing, real page now at platforms/index.html).
+   v2.8.0: Shared Lovable logo — .brand-mark (32×32 amber square, charcoal D,
+           Space Grotesk bold) + .brand-wordmark (1.05rem, weight 600) rendered
+           identically in header, mobile drawer, and footer via buildBrand().
+           Logo tokens defined in global.css v5.2.0.
+   v2.7.0: /privacy.html -> /privacy/ in LEGAL_LINKS.
+   v2.6.0: /partners.html → /partners/ in NAV_LINKS.
+   v2.5.0: /solutions.html → /solutions/ in NAV_LINKS.
+   v2.4.0: /platforms → /platforms/ in NAV_LINKS.
    v2.3.0: /platforms.html → /platforms in NAV_LINKS.
    v2.2.0: Added Privacy Policy to footer Legal section.
    v2.1.0: Added Glossary to NAV_LINKS.
@@ -71,7 +75,7 @@
     { href: '/partners/',                label: 'Partners' },
     { href: '/elastic-migration.html',   label: 'Migration' },
     { href: '/about.html',               label: 'About' },
-    { href: '/careers.html',             label: 'Careers' },
+    { href: '/careers/',                 label: 'Careers' },
     { href: '/contact.html',             label: 'Contact' },
     { href: '/blog.html',                label: 'Blog' },
     { href: '/learning.html',            label: 'Learning' },
@@ -89,6 +93,14 @@
   function isActive(href) {
     if (href === '/') return path === '/';
     return path === href || path.indexOf(href) === 0;
+  }
+
+  /* ── Shared logo markup ──────────────────────────────── */
+  function buildBrand(href) {
+    return '<a href="' + href + '" class="brand" aria-label="DinaBridge home">' +
+      '<div class="brand-mark" aria-hidden="true">D</div>' +
+      '<span class="brand-wordmark">DinaBridge</span>' +
+      '</a>';
   }
 
   function buildLinks() {
@@ -113,10 +125,7 @@
       navEl.innerHTML =
         '<div class="container">\n' +
         '  <div class="nav-inner">\n' +
-        '    <a href="/" class="brand">\n' +
-        '      <div class="brand-mark">D</div>\n' +
-        '      <span>DinaBridge</span>\n' +
-        '    </a>\n' +
+        '    ' + buildBrand('/') + '\n' +
         '    <div class="nav-links">\n        ' +
         buildLinks() +
         '\n    </div>\n' +
@@ -132,7 +141,8 @@
       /* DRAWER */
       var drawerHTML =
         '<div class="nav-drawer" id="navDrawer">\n' +
-        '  <div class="drawer-links">\n        ' +
+        '  <div class="drawer-links">\n' +
+        '    ' + buildBrand('/') + '\n        ' +
         buildLinks() +
         '\n    <a href="/contact.html" class="nav-cta btn btn-primary" style="margin-top:var(--sp-12);width:100%;justify-content:center;">Start a Conversation</a>\n' +
         '  </div>\n' +
@@ -173,10 +183,7 @@
         '<div class="container">\n' +
         '  <div class="footer-inner">\n' +
         '    <div class="footer-brand-block">\n' +
-        '      <a href="/" class="brand">\n' +
-        '        <div class="brand-mark">D</div>\n' +
-        '        <span>DinaBridge</span>\n' +
-        '      </a>\n' +
+        '      ' + buildBrand('/') + '\n' +
         '    </div>\n' +
         '    <p class="footer-tagline">Senior engineering for production data systems &mdash; observability, search, security, and platform infrastructure.</p>\n' +
         '    <nav class="footer-nav" aria-label="Footer navigation">\n        ' +
