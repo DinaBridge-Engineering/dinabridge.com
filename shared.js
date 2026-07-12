@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v2.1.0
+/* DinaBridge Shared Components — v2.2.0
    Single source of truth for:
    - Global nav (header + drawer + overlay + burger)
    - Global footer
@@ -8,12 +8,15 @@
    Nav is injected into <nav class="nav"> on every page.
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
+
+   v2.2.0: Added Privacy Policy to footer Legal section.
+           NAV_LINKS unchanged (Privacy not in primary nav).
 */
 
 (function () {
   'use strict';
 
-  /* ── JSON-LD ─────────────────────────────────────────────── */
+  /* ── JSON-LD ──────────────────────────────────────────── */
   var schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -53,7 +56,7 @@
   schemaTag.text = JSON.stringify(schema, null, 2);
   document.head.appendChild(schemaTag);
 
-  /* ── Nav link definitions ────────────────────────────────── */
+  /* ── Nav link definitions ────────────────────────────── */
   var NAV_LINKS = [
     { href: '/',                         label: 'Home' },
     { href: '/elastic-consulting.html',  label: 'How We Work' },
@@ -67,6 +70,11 @@
     { href: '/blog.html',                label: 'Blog' },
     { href: '/learning.html',            label: 'Learning' },
     { href: '/glossary.html',            label: 'Glossary' }
+  ];
+
+  /* Legal links — footer only, not in primary nav */
+  var LEGAL_LINKS = [
+    { href: '/privacy.html', label: 'Privacy Policy' }
   ];
 
   var path = window.location.pathname;
@@ -84,7 +92,13 @@
     }).join('\n        ');
   }
 
-  /* ── DOM injection ───────────────────────────────────────── */
+  function buildLegalLinks() {
+    return LEGAL_LINKS.map(function (l) {
+      return '<a href="' + l.href + '">' + l.label + '</a>';
+    }).join('\n        ');
+  }
+
+  /* ── DOM injection ───────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
 
     /* NAV */
@@ -163,6 +177,9 @@
         footerLinks +
         '\n    </nav>\n' +
         '    <div class="footer-divider"></div>\n' +
+        '    <nav class="footer-legal-nav" aria-label="Legal">\n        ' +
+        buildLegalLinks() +
+        '\n    </nav>\n' +
         '    <p class="footer-legal">&copy; 2026 DinaBridge LLC &mdash; All rights reserved</p>\n' +
         '    <span class="footer-gem">Senior Production Data Systems Engineering</span>\n' +
         '  </div>\n' +

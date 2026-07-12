@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Privacy Policy — DinaBridge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="How DinaBridge collects, uses, and protects personal information from visitors, prospects, clients, and candidates." />
+<meta property="og:title" content="Privacy Policy — DinaBridge" />
+<meta property="og:description" content="How DinaBridge collects, uses, and protects personal information from visitors, prospects, clients, and candidates." />
+<meta property="og:url" content="https://dinabridge.com/privacy.html" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+<link rel="canonical" href="https://dinabridge.com/privacy.html" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/global.css">
+<link rel="stylesheet" href="/v4.css">
+<script src="/shared.js"></script>
+<style>
+/*
+ * privacy.html — Lovable design system
+ * Tokens scoped to .privacy-page so shared nav/footer
+ * (global.css purple/pink system) are completely unaffected.
+ */
+
+/* ── Lovable tokens — page content scope only ── */
+.privacy-page {
+  --ink:               oklch(0.16 0.008 260);
+  --cream:             oklch(0.955 0.012 85);
+  --signal:            oklch(0.78 0.16 65);
+  --signal-foreground: oklch(0.16 0.008 260);
+  --card:              oklch(0.19 0.008 260);
+  --secondary:         oklch(0.24 0.008 260);
+  --muted:             oklch(0.22 0.008 260);
+  --muted-foreground:  oklch(0.68 0.012 260);
+  --hairline:          oklch(1 0 0 / 8%);
+  --hairline-strong:   oklch(1 0 0 / 16%);
+}
+
+/* ── Page background & base text ── */
+.priv-main {
+  background-color: var(--ink);
+  color: var(--cream);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══ HERO — PageHero.tsx exact translation ══ */
+.priv-hero {
+  position: relative;
+  border-bottom: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.priv-hero-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.60;
+}
+.priv-hero-orb {
+  position: absolute;
+  top: -10rem;
+  right: 0;
+  width: 720px;
+  height: 420px;
+  border-radius: 9999px;
+  filter: blur(48px);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--signal) 18%, transparent),
+    transparent 70%
+  );
+}
+.priv-hero-inner {
+  position: relative;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+}
+@media (min-width: 1024px) {
+  .priv-hero-inner {
+    padding-inline: 4rem;
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+  }
+}
+.priv-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.priv-hero-h1 {
+  margin-top: 1.5rem;
+  max-width: 56rem;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+@media (min-width: 640px)  { .priv-hero-h1 { font-size: 3rem; } }
+@media (min-width: 1024px) { .priv-hero-h1 { font-size: 3.75rem; } }
+.priv-hero-h1 .text-signal { color: var(--signal); }
+.priv-hero-sub {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--cream) 70%, transparent);
+}
+@media (min-width: 640px) { .priv-hero-sub { font-size: 1.125rem; } }
+
+/* ══ SECTION — Section.tsx / section-y + container-x ══ */
+.priv-section {
+  padding-block: 3rem;
+  background-color: var(--ink);
+}
+@media (min-width: 640px)  { .priv-section { padding-block: 4rem; } }
+@media (min-width: 1024px) { .priv-section { padding-block: 7rem; } }
+
+.priv-section-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 1024px) { .priv-section-inner { padding-inline: 4rem; } }
+
+/* ══ prose-doc — exact from styles.css ══ */
+.prose-doc {
+  max-width: 48rem;
+}
+.prose-doc h2 {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--cream);
+}
+.prose-doc p,
+.prose-doc li {
+  color: color-mix(in oklab, var(--cream) 78%, transparent);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.prose-doc p { margin-bottom: 1rem; }
+.prose-doc ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.prose-doc li { margin-bottom: 0.4rem; }
+.prose-doc a {
+  color: var(--signal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-doc strong { color: var(--cream); font-weight: 600; }
+.prose-doc .text-meta {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+  margin-bottom: 2rem;
+  display: block;
+}
+</style>
+</head>
+<body class="privacy-page">
+<nav class="nav"></nav>
+
+<main class="priv-main">
+
+  <!-- HERO — PageHero.tsx exact translation -->
+  <section class="priv-hero">
+    <div class="priv-hero-glow">
+      <div class="priv-hero-orb"></div>
+    </div>
+    <div class="priv-hero-inner">
+      <div class="priv-eyebrow">Legal</div>
+      <h1 class="priv-hero-h1">Privacy <span class="text-signal">Policy</span></h1>
+      <p class="priv-hero-sub">This page explains what personal information DinaBridge collects, how we use it, and the choices you have. Plain English, no dark patterns.</p>
+    </div>
+  </section>
+
+  <!-- POLICY BODY — Section dark + prose-doc -->
+  <section class="priv-section">
+    <div class="priv-section-inner">
+      <div class="prose-doc">
+
+        <span class="text-meta">Last updated: July 10, 2026</span>
+
+        <h2>1. Who we are</h2>
+        <p>
+          DinaBridge is a US-based IT consulting firm specializing in observability,
+          search, and security data platforms. In this policy, &ldquo;DinaBridge,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo;
+          and &ldquo;our&rdquo; refer to DinaBridge and its personnel. If you have any privacy
+          questions, email <a href="mailto:privacy@dinabridge.com">privacy@dinabridge.com</a>.
+        </p>
+
+        <h2>2. Information we collect</h2>
+        <p>We collect only what we need to run the business, and only in these situations:</p>
+        <ul>
+          <li><strong>You contact us.</strong> Name, work email, company, role, and the content of your message &mdash; collected via our contact form (processed by Formspree) or by direct email.</li>
+          <li><strong>You apply for a role.</strong> R&eacute;sum&eacute;, professional history, certifications, and anything else you choose to send us.</li>
+          <li><strong>You become a client or partner.</strong> Contract, billing, and project-delivery data required to perform the engagement.</li>
+          <li><strong>You visit the website.</strong> Standard server logs (IP address, user agent, referrer, timestamp) and analytics used to understand aggregate traffic patterns.</li>
+        </ul>
+        <p>We do not knowingly collect information from anyone under 16.</p>
+
+        <h2>3. How we use it</h2>
+        <ul>
+          <li>To reply to your inquiry and, if we agree to work together, to deliver the engagement.</li>
+          <li>To evaluate and communicate with candidates for full-time and internship roles.</li>
+          <li>To keep our own books, meet legal obligations, and defend our rights.</li>
+          <li>To operate and improve the website &mdash; never to build advertising profiles.</li>
+        </ul>
+        <p>We do not sell personal information. We do not share it with advertisers.</p>
+
+        <h2>4. Legal bases (for visitors in the EEA / UK)</h2>
+        <p>
+          Where applicable, we rely on your consent (marketing communications), the
+          performance of a contract (delivery of services), our legitimate interests
+          (running the business, security, replying to inbound inquiries), and legal
+          obligations (tax, accounting).
+        </p>
+
+        <h2>5. Sub-processors we rely on</h2>
+        <p>
+          We use a short list of well-known providers to run the site and the business.
+          Each is bound by its own data-processing agreement:
+        </p>
+        <ul>
+          <li><strong>Formspree</strong> &mdash; contact-form submission processing.</li>
+          <li><strong>Google Workspace</strong> &mdash; email and internal documents.</li>
+          <li><strong>GitHub Pages</strong> &mdash; website hosting and delivery. GitHub Pages may log visitor IP addresses for security purposes.</li>
+          <li><strong>Accounting and payment providers</strong> &mdash; client billing and financial record-keeping.</li>
+        </ul>
+        <p>We will update this list when it materially changes.</p>
+
+        <h2>6. Retention</h2>
+        <p>
+          We keep inquiry and marketing data for up to 24 months after last contact,
+          candidate data for up to 24 months after the last interaction unless you
+          ask us to delete it sooner, and client-engagement records for the period
+          required by US tax and contract law (typically 7 years).
+        </p>
+
+        <h2>7. Security</h2>
+        <p>
+          We follow standard-industry practices: access controls, encryption in transit,
+          and least-privilege access to client data. No system is perfectly secure,
+          and we will notify affected parties promptly if a breach materially affects them.
+        </p>
+
+        <h2>8. Your rights</h2>
+        <p>
+          Depending on where you live, you may have the right to access, correct,
+          delete, port, or object to certain uses of your personal information &mdash; including
+          California (CCPA/CPRA), Virginia, Colorado, Connecticut, Utah, and the EEA/UK.
+          To exercise any right, email <a href="mailto:privacy@dinabridge.com">privacy@dinabridge.com</a>.
+          We respond within the period required by applicable law.
+        </p>
+
+        <h2>9. International transfers</h2>
+        <p>
+          DinaBridge operates from the United States. If you contact us from outside
+          the US, your information will be transferred to and processed in the US
+          under appropriate safeguards.
+        </p>
+
+        <h2>10. Cookies and analytics</h2>
+        <p>
+          This website uses Google Analytics to understand aggregate usage patterns.
+          Google Analytics may set first-party cookies or use similar technologies
+          to collect anonymised information about how visitors interact with the site.
+          This data is used solely to improve the website experience; it is not used
+          to sell personal information or to build advertising profiles.
+        </p>
+        <p>
+          You can manage or block cookies through your browser settings without
+          affecting the core functionality of the site. Where required by applicable
+          law, a consent mechanism will be implemented on the site.
+        </p>
+
+        <h2>11. Changes</h2>
+        <p>
+          We update this policy when our practices change. Material updates are
+          reflected in the &ldquo;Last updated&rdquo; date at the top.
+        </p>
+
+        <h2>12. Contact</h2>
+        <p>
+          DinaBridge &mdash; privacy inquiries: <a href="mailto:privacy@dinabridge.com">privacy@dinabridge.com</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer></footer>
+</body>
+</html>
