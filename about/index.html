@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About — DinaBridge, a boutique infrastructure engineering firm</title>
+<meta name="description" content="DinaBridge is a boutique engineering firm for search, observability, and security data platforms. Senior-only bench, direct delivery." />
+<meta name="author" content="DinaBridge" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#1a1918" />
+<link rel="canonical" href="https://dinabridge.com/about/" />
+
+<!-- OG -->
+<meta property="og:title" content="About DinaBridge" />
+<meta property="og:description" content="Senior-only engineering bench. Search, observability, security. No juniors, no layers." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dinabridge.com/about/" />
+<meta property="og:site_name" content="DinaBridge" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="About DinaBridge" />
+<meta name="twitter:description" content="Senior-only engineering bench. Search, observability, security. No juniors, no layers." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<style>
+/* ── Design tokens (locked — identical to platforms, solutions, partners) ── */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --radius: 0.5rem;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* ── Reset / base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans);font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
+
+/* ── Layout utilities ── */
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
+
+.section{padding-block:3rem}
+@media(min-width:640px){.section{padding-block:4rem}}
+@media(min-width:1024px){.section{padding-block:7rem}}
+
+.section.cream{background:var(--cream);color:var(--ink)}
+
+/* ── Typography ── */
+.eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.muted{color:var(--muted-fg)}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;border:1px solid var(--hairline-strong);color:inherit;font-weight:500;font-size:.95rem;transition:background 150ms,border-color 150ms}
+.btn-ghost:hover{background:oklch(1 0 0 / 6%);border-color:oklch(1 0 0 / 40%)}
+.btn-sm{padding:.5rem 1rem;font-size:.85rem}
+
+/* cream-section ghost button override */
+.section.cream .btn-ghost{border-color:oklch(0 0 0 / 20%);color:var(--ink)}
+.section.cream .btn-ghost:hover{background:oklch(0 0 0 / 6%);border-color:oklch(0 0 0 / 35%)}
+
+/* ── Section head ── */
+.section-head{max-width:700px;margin-bottom:0}
+.section-head .eyebrow{display:block}
+.section-head .title{margin-top:1.25rem;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em}
+.section-head .subtitle{margin-top:1rem;font-size:1rem;line-height:1.7;color:var(--muted-fg)}
+.section.cream .section-head .title{color:var(--ink)}
+.section.cream .section-head .subtitle{color:oklch(0.42 0.008 260)}
+
+/* ════════════════ HEADER ════════════════ */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
+
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
+
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover{color:var(--cream)}
+.dropdown-btn.active{color:var(--cream)}
+.dropdown-btn.active::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(1)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover{background:var(--secondary);color:var(--cream)}
+.dropdown-item.active{background:var(--secondary);color:var(--cream)}
+
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
+
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
+
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
+
+/* ════════════════ HERO ════════════════ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairline)}
+.hero-glow{pointer-events:none;position:absolute;inset:0;opacity:.7}
+.hero-glow::before{content:'';position:absolute;top:-10rem;left:50%;transform:translateX(-50%);width:880px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(closest-side,oklch(0.78 0.16 65 / 22%),transparent 70%)}
+.hero-grid{pointer-events:none;position:absolute;inset:0;opacity:.035;background-image:linear-gradient(var(--cream) 1px,transparent 1px),linear-gradient(90deg,var(--cream) 1px,transparent 1px);background-size:56px 56px}
+.hero-content{position:relative;padding-top:5rem;padding-bottom:5rem}
+@media(min-width:1024px){.hero-content{padding-top:8rem;padding-bottom:8rem}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.hero-h1{margin-top:1.5rem;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-0.02em;max-width:900px}
+.hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
+
+/* ════════════════ ABOUT — page-specific layout only ════════════════ */
+
+/* Story + credentials two-column grid */
+.about-story-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.about-story-grid{grid-template-columns:1.4fr 1fr;align-items:start}}
+
+.about-story-body{margin-top:2rem;display:flex;flex-direction:column;gap:1.25rem;color:oklch(0.955 0.012 85 / 75%);font-size:1.0625rem;line-height:1.75;max-width:42rem}
+
+/* Credential cards */
+.about-creds{display:grid;gap:1rem;align-content:start}
+
+.about-cred-card{border-radius:.75rem;border:1px solid var(--hairline);padding:1.5rem}
+.about-cred-num{font-family:var(--font-display);font-size:clamp(2rem,5vw,2.5rem);font-weight:600;color:var(--signal);letter-spacing:-0.02em;line-height:1}
+.about-cred-label{margin-top:.5rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 70%)}
+
+/* Practice cards — 3-column cream section */
+.about-practice-grid{display:grid;gap:1.25rem;margin-top:3rem}
+@media(min-width:1024px){.about-practice-grid{grid-template-columns:repeat(3,1fr)}}
+
+.about-practice-card{border-radius:.75rem;border:1px solid var(--hairline-strong);background:var(--card);padding:1.75rem}
+.about-practice-icon{width:2.5rem;height:2.5rem;border-radius:50%;background:oklch(0.78 0.16 65 / 15%);display:grid;place-items:center}
+.about-practice-dot{width:.625rem;height:.625rem;border-radius:50%;background:var(--signal)}
+.about-practice-title{margin-top:1.25rem;font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--ink)}
+.about-practice-role{margin-top:.5rem;font-size:.875rem;color:oklch(0.42 0.008 260);line-height:1.7}
+
+/* Final CTA row */
+.about-cta-row{display:flex;flex-direction:column;gap:1.5rem}
+@media(min-width:1024px){.about-cta-row{flex-direction:row;align-items:center;justify-content:space-between}}
+.about-cta-h3{font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,1.875rem);font-weight:600;letter-spacing:-0.02em;line-height:1.2;max-width:42rem;color:var(--ink)}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+.social-row{display:flex;align-items:center;gap:.5rem}
+.social-btn{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid var(--hairline);color:oklch(0.955 0.012 85 / 70%);transition:color 150ms,border-color 150ms}
+.social-btn:hover{color:var(--cream);border-color:var(--hairline-strong)}
+.social-btn svg{width:16px;height:16px}
+
+.text-signal{color:var(--signal)}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header id="site-header">
+  <div class="cx header-inner">
+    <a href="/" class="logo">Dina<span>Bridge</span></a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/platforms/" class="nav-link">Platforms</a>
+      <a href="/solutions/" class="nav-link">Solutions</a>
+      <div class="dropdown">
+        <button class="dropdown-btn active" aria-expanded="false">About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/about/" class="dropdown-item active">About us</a>
+          <a href="/careers/" class="dropdown-item">Careers</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn">Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/learning.html" class="dropdown-item">Learning</a>
+          <a href="/glossary.html" class="dropdown-item">Glossary</a>
+          <a href="/blog.html" class="dropdown-item">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="nav-link">Partners</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <a href="/#contact" class="btn-primary btn-sm header-cta">Contact</a>
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav cx" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms/" class="mobile-link">Platforms</a>
+      <a href="/solutions/" class="mobile-link">Solutions</a>
+      <div>
+        <button class="mobile-dropdown-btn open" data-mobile-drop>About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub open">
+          <a href="/about/" class="mobile-link">About us</a>
+          <a href="/careers/" class="mobile-link">Careers</a>
+        </div>
+      </div>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/learning.html" class="mobile-link">Learning</a>
+          <a href="/glossary.html" class="mobile-link">Glossary</a>
+          <a href="/blog.html" class="mobile-link">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="mobile-link">Partners</a>
+      <a href="/#contact" class="btn-primary" style="margin-top:.75rem;font-size:.875rem" id="mobile-cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="cx hero-content">
+    <div class="hero-eyebrow">About &middot; DinaBridge</div>
+    <h1 class="hero-h1">A small firm built to do <span class="text-signal">one thing well.</span></h1>
+    <p class="hero-lead">DinaBridge exists because the platforms that run modern software &mdash; search, observability, security data &mdash; are too specialised for generalist consultancies and too infrastructural to hand to junior engineers.</p>
+  </div>
+</section>
+
+<!-- ════════════════ OUR STORY ════════════════ -->
+<section class="section">
+  <div class="cx">
+    <div class="about-story-grid">
+
+      <!-- Left: SectionHead + story copy -->
+      <div>
+        <div class="section-head">
+          <div class="eyebrow">Our story</div>
+          <h2 class="title" style="margin-top:1.25rem;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em">Built by engineers who kept getting called in to fix the same problems.</h2>
+        </div>
+        <div class="about-story-body">
+          <p>DinaBridge started with a pattern we kept seeing: search clusters that collapsed under real traffic, observability stacks that showed everything except the incident, SIEM deployments that never quite made it to production. Every time, the fix was the same &mdash; put senior engineers on it who&rsquo;d done it before.</p>
+          <p>So we built the firm around that. No junior bench, no software to sell, no partnership tiers to protect. Just a small group of specialists who deliver directly, behind our partners&rsquo; brands, or embed inside teams that need depth fast.</p>
+        </div>
+      </div>
+
+      <!-- Right: credential cards -->
+      <div class="about-creds">
+        <div class="about-cred-card">
+          <div class="about-cred-num">12+</div>
+          <div class="about-cred-label">years average team experience</div>
+        </div>
+        <div class="about-cred-card">
+          <div class="about-cred-num">3</div>
+          <div class="about-cred-label">core disciplines, senior-only</div>
+        </div>
+        <div class="about-cred-card">
+          <div class="about-cred-num">0</div>
+          <div class="about-cred-label">junior hand-offs, ever</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ TEAM / THREE PRACTICES (cream) ════════════════ -->
+<section class="section cream">
+  <div class="cx">
+    <div class="section-head">
+      <div class="eyebrow" style="color:oklch(0.42 0.008 260 / 80%)">Team</div>
+      <h2 style="margin-top:1.25rem;font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:var(--ink)">Three practices. One senior bench.</h2>
+      <p style="margin-top:1rem;font-size:1rem;line-height:1.7;color:oklch(0.42 0.008 260)">We&rsquo;re organised by discipline, not by role. Every engagement is led by a practitioner who&rsquo;s shipped the same kind of system to production before.</p>
+    </div>
+    <div class="about-practice-grid">
+
+      <div class="about-practice-card">
+        <div class="about-practice-icon"><span class="about-practice-dot"></span></div>
+        <h3 class="about-practice-title">Search practice</h3>
+        <p class="about-practice-role">Elasticsearch, OpenSearch, Algolia, vector infra</p>
+      </div>
+
+      <div class="about-practice-card">
+        <div class="about-practice-icon"><span class="about-practice-dot"></span></div>
+        <h3 class="about-practice-title">Observability practice</h3>
+        <p class="about-practice-role">Grafana, Datadog, Dynatrace, Elastic Observability</p>
+      </div>
+
+      <div class="about-practice-card">
+        <div class="about-practice-icon"><span class="about-practice-dot"></span></div>
+        <h3 class="about-practice-title">Security data practice</h3>
+        <p class="about-practice-role">Splunk, Elastic Security, ClickHouse ingestion</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CAREERS ════════════════ -->
+<section class="section" id="careers">
+  <div class="cx">
+    <div class="section-head">
+      <div class="eyebrow">Careers</div>
+      <h2 style="margin-top:1.25rem;font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em">We hire senior engineers, quietly. And we host interns.</h2>
+      <p style="margin-top:1rem;font-size:1rem;line-height:1.7;color:var(--muted-fg)">Certified specialists in our practice areas, and interns taking their first structured step into corporate America. Full details, tracks, and how to apply live on our Careers page.</p>
+    </div>
+    <div style="margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:.75rem">
+      <a href="/careers/" class="btn-primary">See Careers
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="mailto:careers@dinabridge.com" class="btn-ghost">careers@dinabridge.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FINAL CTA (cream) ════════════════ -->
+<section class="section cream">
+  <div class="cx">
+    <div class="about-cta-row">
+      <h3 class="about-cta-h3">Have a platform problem? Talk to a senior engineer.</h3>
+      <a href="/#contact" class="btn-primary" style="flex-shrink:0">Start a conversation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>
+        <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>
+        <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions/">Team augmentation</a></li>
+          <li><a href="/partners/">Partner delivery</a></li>
+          <li><a href="/#contact">Direct engagement</a></li>
+          <li><a href="/platforms/">All platforms</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/learning.html">Learning</a></li>
+          <li><a href="/glossary.html">Glossary</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DinaBridge. We build platforms that work.</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="RSS">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var h = document.getElementById('site-header');
+  function onScroll(){ h.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var nav = document.getElementById('mobile-nav');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconClose = document.getElementById('icon-close');
+  var mobileCta = document.getElementById('mobile-cta');
+
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+
+  mobileCta.addEventListener('click', function(){
+    nav.classList.remove('open');
+    iconMenu.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+
+  document.querySelectorAll('[data-mobile-drop]').forEach(function(dropBtn){
+    dropBtn.addEventListener('click', function(){
+      var sub = dropBtn.nextElementSibling;
+      var open = sub.classList.toggle('open');
+      dropBtn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
