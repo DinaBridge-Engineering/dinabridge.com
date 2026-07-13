@@ -1,5 +1,5 @@
 /* ============================================================
-   DinaBridge Global Design System — v7.0.1
+   DinaBridge Global Design System — v7.0.2
    Lovable Palette — Charcoal / Warm Cream / Amber
    ============================================================
    Palette
@@ -446,19 +446,46 @@ p { max-width: 72ch; color: oklch(0.955 0.012 85 / 70%); font-family: var(--font
   opacity: 1;
 }
 
-/* ── Dropdown panel ── */
+/* ── Dropdown panel ──
+   top: 100% — panel starts immediately below the trigger with
+   NO gap. Visual breathing room is provided by padding-top
+   inside the panel (see below). This eliminates the dead zone
+   that previously caused premature closes.
+
+   The ::before pseudo-element is an invisible hover bridge:
+   10px tall, full width, sitting exactly between the trigger
+   bottom and the panel top edge. pointer-events: auto on the
+   bridge means the browser never sees the pointer leave the
+   .nav-dropdown container while crossing that gap.
+── */
 .nav-dropdown-panel {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;          /* flush — no gap between trigger and panel */
   left: 0;
   min-width: 172px;
   border-radius: var(--radius-lg);
   border: 1px solid oklch(1 0 0 / 12%);
   background: oklch(0.19 0.008 260);
-  padding: 6px;
+  padding: 6px;       /* visual internal spacing (was achieved via margin-top) */
+  padding-top: 16px;  /* extra breathing room at the top of the panel */
   box-shadow: 0 16px 48px rgba(0,0,0,.55);
   z-index: 201;
+}
+/* Hover bridge — invisible block that fills the space between
+   the trigger's bottom edge and the panel's visible border.
+   Height matches the removed margin-top (6px) plus safety
+   margin = 10px total. pointer-events: auto keeps the
+   .nav-dropdown mouseleave from firing mid-crossing. */
+.nav-dropdown-panel::before {
+  content: '';
+  position: absolute;
+  top: -10px;           /* reaches up 10px above the panel border */
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: transparent;
+  pointer-events: auto; /* catches the pointer in transit */
 }
 .nav-dropdown.is-open .nav-dropdown-panel {
   display: block;

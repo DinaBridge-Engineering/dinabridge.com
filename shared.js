@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v7.0.1
+/* DinaBridge Shared Components — v7.0.2
    Single source of truth for:
    - Global nav (header + dropdowns + drawer + overlay + burger)
    - Global footer
@@ -11,15 +11,22 @@
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
 
-   v7.0.1: Full nav rebuild:
-            - About and Resources dropdowns (click-to-open, Escape closes)
-            - Desktop nav visible at 1024px+, mobile drawer below 1024px
-            - Compact inline-flex desktop Contact CTA → /#contact
-            - Full-width Contact only in mobile drawer
-            - Idempotency guards on nav, footer, drawer, event listeners
-            - All .html routes removed from nav and footer
-            - Footer links corrected (/#contact, /privacy/, /blog/)
-            - LinkedIn + GitHub social links only
+   v7.0.2: Dropdown interaction fix:
+            - Removed immediate mouseleave close (was firing before
+              pointer could cross into the panel).
+            - Panel starts at top:100% (no gap); visual space is
+              created by padding-top inside the panel.
+            - Invisible hover bridge (10px tall pseudo-block) covers
+              the space between trigger bottom and panel top so the
+              pointer never exits the interaction zone.
+            - 250ms close delay; cancelled when pointer re-enters
+              trigger or panel.
+            - Click state is authoritative: a clicked-open dropdown
+              is not closed by mouseleave (only by click-outside,
+              Escape, or a second click on the trigger).
+            - Listeners bound once; timers cleared before each state
+              change; aria-expanded preserved.
+            - Mobile submenu behaviour unchanged.
 */
 
 (function () {
@@ -251,47 +258,136 @@
         });
       });
 
-      /* ── Desktop dropdown toggles ──────────────────── */
+      /* ══════════════════════════════════════════════════
+         DESKTOP DROPDOWN INTERACTION — v7.0.2
+
+         Key design decisions:
+         1. Panel is positioned at top:100% (no CSS gap).
+            Visual breathing room comes from padding-top on
+            the panel itself (see global.css .nav-dropdown-panel).
+         2. An invisible hover bridge — a ::before pseudo-element
+            10px tall sitting between the trigger bottom edge and
+            the panel — keeps pointer-events alive so the browser
+            never fires mouseleave while the pointer is in transit.
+         3. Close delay: 250ms. Timer is cleared on mouseenter
+            of either the trigger button or the panel.
+         4. Click authority: clicking the trigger sets
+            dd._clickedOpen = true. While that flag is set,
+            mouseleave cannot close the dropdown. Only a second
+            click on the trigger, a click outside, or Escape
+            clears the flag and closes the dropdown.
+         ══════════════════════════════════════════════════ */
+
+      var CLOSE_DELAY = 250; /* ms */
+
       navEl.querySelectorAll('.nav-dropdown').forEach(function (dd) {
         var btn   = dd.querySelector('.nav-dropdown-btn');
         var panel = dd.querySelector('.nav-dropdown-panel');
 
+        /* Per-dropdown close timer handle */
+        dd._closeTimer    = null;
+        dd._clickedOpen   = false;
+
+        /* ── helpers ──────────────────────────────────── */
+        function cancelClose() {
+          if (dd._closeTimer) {
+            clearTimeout(dd._closeTimer);
+            dd._closeTimer = null;
+          }
+        }
+
         function openDD() {
+          /* Cancel any pending close for this dropdown */
+          cancelClose();
+          /* Close other open dropdowns immediately */
+          navEl.querySelectorAll('.nav-dropdown').forEach(function (other) {
+            if (other !== dd && other.classList.contains('is-open')) {
+              if (other._closeTimer) { clearTimeout(other._closeTimer); other._closeTimer = null; }
+              other._clickedOpen = false;
+              other.classList.remove('is-open');
+              other.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+              other.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true');
+            }
+          });
           dd.classList.add('is-open');
           btn.setAttribute('aria-expanded', 'true');
           panel.setAttribute('aria-hidden', 'false');
         }
-        function closeDD() {
-          dd.classList.remove('is-open');
-          btn.setAttribute('aria-expanded', 'false');
-          panel.setAttribute('aria-hidden', 'true');
+
+        function closeDD(immediate) {
+          cancelClose();
+          if (immediate) {
+            dd._clickedOpen = false;
+            dd.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('aria-hidden', 'true');
+          } else {
+            dd._closeTimer = setTimeout(function () {
+              dd._clickedOpen = false;
+              dd.classList.remove('is-open');
+              btn.setAttribute('aria-expanded', 'false');
+              panel.setAttribute('aria-hidden', 'true');
+            }, CLOSE_DELAY);
+          }
         }
 
-        /* Initialize closed */
+        /* ── Initialize closed ────────────────────────── */
         panel.setAttribute('aria-hidden', 'true');
 
+        /* ── Click on trigger ─────────────────────────── */
         btn.addEventListener('click', function (e) {
           e.stopPropagation();
-          if (dd.classList.contains('is-open')) { closeDD(); } else {
-            /* Close other open dropdowns first */
-            navEl.querySelectorAll('.nav-dropdown.is-open').forEach(function (other) {
-              if (other !== dd) {
-                other.classList.remove('is-open');
-                other.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
-                other.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true');
-              }
-            });
+          if (dd.classList.contains('is-open')) {
+            dd._clickedOpen = false;
+            closeDD(true);
+          } else {
+            dd._clickedOpen = true;
             openDD();
           }
         });
 
-        /* Keep open while pointer is inside the dropdown */
-        dd.addEventListener('mouseleave', function () { closeDD(); });
+        /* ── Hover: enter trigger ─────────────────────── */
+        btn.addEventListener('mouseenter', function () {
+          cancelClose();
+          if (!dd.classList.contains('is-open')) {
+            openDD();
+          }
+        });
+
+        /* ── Hover: enter panel ───────────────────────── */
+        panel.addEventListener('mouseenter', function () {
+          cancelClose();
+        });
+
+        /* ── Hover: leave trigger ─────────────────────── */
+        btn.addEventListener('mouseleave', function () {
+          /* If the user clicked it open, do not start a close timer.
+             The dropdown will only close via click-outside / Escape. */
+          if (!dd._clickedOpen) {
+            closeDD(false);
+          }
+        });
+
+        /* ── Hover: leave panel ───────────────────────── */
+        panel.addEventListener('mouseleave', function () {
+          if (!dd._clickedOpen) {
+            closeDD(false);
+          }
+        });
+
+        /* ── Select a link inside the panel ──────────── */
+        panel.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            closeDD(true);
+          });
+        });
       });
 
       /* ── Global close: click outside or Escape ─────── */
       document.addEventListener('click', function () {
         navEl.querySelectorAll('.nav-dropdown.is-open').forEach(function (dd) {
+          if (dd._closeTimer) { clearTimeout(dd._closeTimer); dd._closeTimer = null; }
+          dd._clickedOpen = false;
           dd.classList.remove('is-open');
           dd.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
           dd.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true');
@@ -300,6 +396,8 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' || e.key === 'Esc') {
           navEl.querySelectorAll('.nav-dropdown.is-open').forEach(function (dd) {
+            if (dd._closeTimer) { clearTimeout(dd._closeTimer); dd._closeTimer = null; }
+            dd._clickedOpen = false;
             dd.classList.remove('is-open');
             dd.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
             dd.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true');
