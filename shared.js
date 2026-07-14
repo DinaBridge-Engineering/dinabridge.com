@@ -349,9 +349,6 @@
         /* ── Hover: enter trigger ─────────────────────── */
         btn.addEventListener('mouseenter', function () {
           cancelClose();
-          if (!dd.classList.contains('is-open')) {
-            openDD();
-          }
         });
 
         /* ── Hover: enter panel ───────────────────────── */
