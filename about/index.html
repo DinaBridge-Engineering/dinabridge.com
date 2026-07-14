@@ -530,16 +530,18 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
       isOpen() ? closeIt() : openIt();
     });
 
-    wrapper.addEventListener('mouseleave', function(){
-      clearTimeout(leaveTimer);
-      leaveTimer = setTimeout(function(){
-        if(!wrapper.contains(document.activeElement)) closeIt();
-      }, 250);
-    });
-    wrapper.addEventListener('mouseenter', function(){
-      clearTimeout(leaveTimer);
-    });
-    wrapper.addEventListener('focusin', function(){ clearTimeout(leaveTimer); });
+    if(key !== 'about'){
+      wrapper.addEventListener('mouseleave', function(){
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(function(){
+          if(!wrapper.contains(document.activeElement)) closeIt();
+        }, 250);
+      });
+      wrapper.addEventListener('mouseenter', function(){
+        clearTimeout(leaveTimer);
+      });
+      wrapper.addEventListener('focusin', function(){ clearTimeout(leaveTimer); });
+    }
 
     document.addEventListener('click', function(e){
       if(!wrapper.contains(e.target)) closeIt();
