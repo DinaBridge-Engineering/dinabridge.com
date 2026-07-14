@@ -124,6 +124,12 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
 .dropdown-item:hover{background:var(--secondary);color:var(--cream)}
 .dropdown-item.active{color:var(--cream)}
 
+/* ── Desktop nav dropdowns: click/touch interaction (about/index.html only) ── */
+[data-nav-dropdown] .dropdown-btn{min-height:44px}
+[data-nav-dropdown] .dropdown-panel{margin-top:0;top:100%}
+[data-nav-dropdown]:hover .dropdown-panel{display:none}
+[data-nav-dropdown].is-open .dropdown-panel{display:block}
+
 /* Header CTA */
 .header-cta{display:none}
 @media(min-width:1024px){.header-cta{display:inline-flex}}
@@ -221,20 +227,20 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
       <a href="/" class="nav-link">Home</a>
       <a href="/platforms" class="nav-link">Platforms</a>
       <a href="/solutions" class="nav-link">Solutions</a>
-      <div class="dropdown">
-        <button class="dropdown-btn">About
+      <div class="dropdown" data-nav-dropdown="about">
+        <button class="dropdown-btn" type="button" id="nav-about-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-about-panel">About
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
         </button>
-        <div class="dropdown-panel">
+        <div class="dropdown-panel" id="nav-about-panel">
           <a href="/about" class="dropdown-item active">About us</a>
           <a href="/careers" class="dropdown-item">Careers</a>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropdown-btn">Resources
+      <div class="dropdown" data-nav-dropdown="resources">
+        <button class="dropdown-btn" type="button" id="nav-resources-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-resources-panel">Resources
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
         </button>
-        <div class="dropdown-panel">
+        <div class="dropdown-panel" id="nav-resources-panel">
           <a href="/resources/learning" class="dropdown-item">Learning</a>
           <a href="/resources/glossary" class="dropdown-item">Glossary</a>
           <a href="/resources/blog" class="dropdown-item">Blog</a>
@@ -493,6 +499,58 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
       var sub = btn.nextElementSibling;
       var open = sub.classList.toggle('open');
       btn.classList.toggle('open', open);
+    });
+  });
+})();
+
+/* ── Desktop nav dropdowns: click/touch interaction (about/index.html only) ── */
+(function(){
+  var dropdowns = Array.from(document.querySelectorAll('[data-nav-dropdown]'));
+  dropdowns.forEach(function(wrapper){
+    var key = wrapper.getAttribute('data-nav-dropdown');
+    var btn = document.getElementById('nav-' + key + '-btn');
+    var panel = document.getElementById('nav-' + key + '-panel');
+    var leaveTimer = null;
+
+    function openIt(){
+      dropdowns.forEach(function(w){ if(w !== wrapper) closeIt(w); });
+      wrapper.classList.add('is-open');
+      btn.setAttribute('aria-expanded','true');
+    }
+    function closeIt(w){
+      w = w || wrapper;
+      w.classList.remove('is-open');
+      var b = document.getElementById('nav-' + w.getAttribute('data-nav-dropdown') + '-btn');
+      if(b) b.setAttribute('aria-expanded','false');
+    }
+    function isOpen(){ return wrapper.classList.contains('is-open'); }
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      isOpen() ? closeIt() : openIt();
+    });
+
+    wrapper.addEventListener('mouseleave', function(){
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(function(){
+        if(!wrapper.contains(document.activeElement)) closeIt();
+      }, 250);
+    });
+    wrapper.addEventListener('mouseenter', function(){
+      clearTimeout(leaveTimer);
+    });
+    wrapper.addEventListener('focusin', function(){ clearTimeout(leaveTimer); });
+
+    document.addEventListener('click', function(e){
+      if(!wrapper.contains(e.target)) closeIt();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && isOpen()){ closeIt(); btn.focus(); }
+    });
+
+    panel.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ closeIt(); });
     });
   });
 })();
