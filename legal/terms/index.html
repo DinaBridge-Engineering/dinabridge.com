@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Terms of Use &#x2014; DinaBridge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Terms governing access to and use of the DinaBridge website." />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Terms of Use &#x2014; DinaBridge" />
+<meta property="og:description" content="Terms governing access to and use of the DinaBridge website." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dinabridge.com/legal/terms/" />
+<meta property="og:image" content="https://dinabridge.com/og-image.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Terms of Use &#x2014; DinaBridge" />
+<meta name="twitter:description" content="Terms governing access to and use of the DinaBridge website." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.svg" />
+<link rel="canonical" href="https://dinabridge.com/legal/terms/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* &#x2500;&#x2500; Design tokens &#x2500;&#x2500; */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* &#x2500;&#x2500; Reset / base &#x2500;&#x2500; */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans)}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
+
+/* &#x2500;&#x2500; Layout utility &#x2500;&#x2500; */
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
+
+/* &#x2500;&#x2500; Buttons &#x2500;&#x2500; */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-sm{padding:.5rem 1rem;font-size:.85rem}
+
+/* &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; HEADER &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
+
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
+
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover,.dropdown-btn.active{color:var(--cream)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover{background:var(--secondary);color:var(--cream)}
+
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
+
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
+
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
+
+/* &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; FOOTER &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; */
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+.social-row{display:flex;align-items:center;gap:.5rem}
+.social-btn{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid var(--hairline);color:oklch(0.955 0.012 85 / 70%);transition:color 150ms,border-color 150ms}
+.social-btn:hover{color:var(--cream);border-color:var(--hairline-strong)}
+.social-btn svg{width:16px;height:16px}
+
+/* &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; TERMS &#x2014; page-specific &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; */
+.priv-main {
+  background-color: var(--ink);
+  color: var(--cream);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.priv-hero {
+  position: relative;
+  border-bottom: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.priv-hero-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.60;
+}
+.priv-hero-orb {
+  position: absolute;
+  top: -10rem;
+  right: 0;
+  width: 720px;
+  height: 420px;
+  border-radius: 9999px;
+  filter: blur(48px);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--signal) 18%, transparent),
+    transparent 70%
+  );
+}
+.priv-hero-inner {
+  position: relative;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+}
+@media (min-width: 1024px) {
+  .priv-hero-inner {
+    padding-inline: 4rem;
+    padding-top: 7rem;
+    padding-bottom: 6rem;
+  }
+}
+.priv-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-fg);
+}
+.priv-hero-h1 {
+  margin-top: 1.5rem;
+  max-width: 56rem;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+@media (min-width: 640px)  { .priv-hero-h1 { font-size: 3rem; } }
+@media (min-width: 1024px) { .priv-hero-h1 { font-size: 3.75rem; } }
+.priv-hero-h1 .text-signal { color: var(--signal); }
+.priv-hero-sub {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--cream) 70%, transparent);
+}
+@media (min-width: 640px) { .priv-hero-sub { font-size: 1.125rem; } }
+
+.priv-section {
+  padding-block: 3rem;
+  background-color: var(--ink);
+}
+@media (min-width: 640px)  { .priv-section { padding-block: 4rem; } }
+@media (min-width: 1024px) { .priv-section { padding-block: 7rem; } }
+.priv-section-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 1024px) { .priv-section-inner { padding-inline: 4rem; } }
+
+.prose-doc { max-width: 48rem; }
+.prose-doc h2 {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--cream);
+}
+.prose-doc p,
+.prose-doc li {
+  color: color-mix(in oklab, var(--cream) 78%, transparent);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.prose-doc p { margin-bottom: 1rem; }
+.prose-doc ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.prose-doc li { margin-bottom: 0.4rem; }
+.prose-doc a {
+  color: var(--signal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-doc strong { color: var(--cream); font-weight: 600; }
+.prose-doc .text-meta {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--cream) 50%, transparent);
+  margin-bottom: 2rem;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<!-- &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; HEADER &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; -->
+<header id="site-header">
+  <div class="cx header-inner">
+    <a href="/" class="logo">Dina<span>Bridge</span></a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/platforms/" class="nav-link">Platforms</a>
+      <a href="/solutions/" class="nav-link">Solutions</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/about/" class="dropdown-item">About us</a>
+          <a href="/careers/" class="dropdown-item">Careers</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn">Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/learning/" class="dropdown-item">Learning</a>
+          <a href="/glossary/" class="dropdown-item">Glossary</a>
+          <a href="/blog/" class="dropdown-item">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="nav-link">Partners</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <a href="/#contact" class="btn-primary btn-sm header-cta">Contact</a>
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav cx" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms/" class="mobile-link">Platforms</a>
+      <a href="/solutions/" class="mobile-link">Solutions</a>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/about/" class="mobile-link">About us</a>
+          <a href="/careers/" class="mobile-link">Careers</a>
+        </div>
+      </div>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/learning/" class="mobile-link">Learning</a>
+          <a href="/glossary/" class="mobile-link">Glossary</a>
+          <a href="/blog/" class="mobile-link">Blog</a>
+        </div>
+      </div>
+      <a href="/partners/" class="mobile-link">Partners</a>
+      <a href="/#contact" class="btn-primary" style="margin-top:.75rem;font-size:.875rem" id="mobile-cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main class="priv-main">
+
+  <!-- HERO -->
+  <section class="priv-hero">
+    <div class="priv-hero-glow">
+      <div class="priv-hero-orb"></div>
+    </div>
+    <div class="priv-hero-inner">
+      <div class="priv-eyebrow">Legal</div>
+      <h1 class="priv-hero-h1">Terms of <span class="text-signal">Use</span></h1>
+      <p class="priv-hero-sub">These Terms of Use govern your access to and use of the DinaBridge website at <a href="https://dinabridge.com/">https://dinabridge.com/</a>. By accessing or using the website, you agree to these Terms. If you do not agree, do not use the website.</p>
+    </div>
+  </section>
+
+  <!-- TERMS BODY -->
+  <section class="priv-section">
+    <div class="priv-section-inner">
+      <div class="prose-doc">
+
+        <span class="text-meta">Last updated: July 15, 2026</span>
+
+        <h2>1. Acceptance of the Terms</h2>
+        <p>By using this website, you agree to these Terms of Use and to the <a href="/privacy/">DinaBridge Privacy Policy</a>. These Terms apply only to the public website and its content. They do not replace any separately signed agreement between you and DinaBridge.</p>
+
+        <h2>2. About DinaBridge</h2>
+        <p>DinaBridge LLC is a limited liability company organized under the laws of Wyoming and provides consulting and professional services focused on Search, Observability, Security, and Data Infrastructure. DinaBridge is not a staffing agency, recruiting company, employment agency, or marketplace.</p>
+
+        <h2>3. Website purpose</h2>
+        <p>The website is informational and promotional. It exists to describe DinaBridge&#x2019;s work, share educational material, present company information, and provide a way to contact us. Browsing the website, submitting a form, sending an email, applying for a role, requesting an internship, or discussing a possible project does not by itself create a client relationship, employment relationship, internship, partnership, agency relationship, or consulting engagement.</p>
+
+        <h2>4. Eligibility</h2>
+        <p>The website is intended for users who are 18 years of age or older. By using the website, you represent that you meet that age requirement and that you are legally able to agree to these Terms.</p>
+
+        <h2>5. No automatic business or employment relationship</h2>
+        <p>Submitting information through the website does not require DinaBridge to accept your inquiry, respond to your message, interview you, offer you a role, approve an internship, enter into a partnership, or begin a professional-services engagement.</p>
+        <p>A relationship with DinaBridge becomes legally binding only when authorized representatives of the relevant parties sign a separate written agreement, such as a master services agreement, statement of work, order form, subcontract, partner agreement, training agreement, or another written contract.</p>
+        <p>If a signed agreement conflicts with these Terms, the signed agreement controls for that engagement.</p>
+
+        <h2>6. Consulting and professional-services agreements</h2>
+        <p>Website content may describe services, capabilities, and engagement models, but those descriptions are informational only. Any actual consulting or professional-services relationship must be set out in a separate written agreement signed by authorized representatives.</p>
+
+        <h2>7. Permitted use</h2>
+        <p>You may use the website for lawful personal, informational, educational, evaluation, career and placement inquiries, and business purposes. You may view, reference, and make limited internal copies of public website content for legitimate evaluation or internal discussion, provided you keep any copyright, trademark, and attribution notices intact.</p>
+        <p>Except as allowed by law or by written permission from DinaBridge, you may not otherwise reproduce, republish, distribute, sell, sublicense, or commercially exploit the website or its materials.</p>
+
+        <h2>8. Prohibited use</h2>
+        <p>You may not use the website to:</p>
+        <ul>
+          <li>do anything unlawful, fraudulent, deceptive, or harmful;</li>
+          <li>impersonate another person or organization;</li>
+          <li>submit false, misleading, or incomplete information;</li>
+          <li>interfere with the operation, security, availability, or performance of the website;</li>
+          <li>attempt unauthorized access to any system, account, form, repository, or infrastructure;</li>
+          <li>introduce malware, malicious code, or harmful data;</li>
+          <li>scrape, crawl, harvest, or systematically extract content by automated means without permission;</li>
+          <li>bypass rate limits, access controls, or other technical restrictions;</li>
+          <li>overload forms, pages, or infrastructure;</li>
+          <li>conduct penetration testing, vulnerability testing, or security research without written authorization;</li>
+          <li>create a misleading competing copy of the website or its content;</li>
+          <li>infringe intellectual-property, privacy, publicity, or other rights;</li>
+          <li>use the website to recruit, solicit, or spam DinaBridge personnel or applicants;</li>
+          <li>misuse careers, internship, partner, or contact forms.</li>
+        </ul>
+        <p>Reasonable indexing by legitimate search engines is permitted.</p>
+
+        <h2>9. Intellectual property</h2>
+        <p>Unless otherwise stated, the website and all original content on it, including branding, logos, copy, articles, diagrams, graphics, downloads, training materials, technical content, design, code, and other published materials, are owned by or licensed to DinaBridge and protected by applicable intellectual-property laws.</p>
+        <p>You receive no ownership rights in the website or its content by using it. You may not use DinaBridge&#x2019;s name, logos, or related branding in a way that suggests endorsement, sponsorship, affiliation, or authorization unless DinaBridge gives written permission.</p>
+        <p>Third-party trademarks, product names, and platform names belong to their respective owners.</p>
+
+        <h2>10. User submissions and applications</h2>
+        <p>If you submit a resume, application, project description, document, inquiry, or other materials through the website, you keep ownership of your submission. You give DinaBridge permission to use that material only for the purposes reasonably needed to respond to your inquiry, evaluate a possible engagement, evaluate a role, internship, partner, or contractor inquiry, operate the requested process, and meet legal or administrative requirements.</p>
+        <p>Submitting materials does not guarantee that DinaBridge will accept the submission, offer a role, approve an internship, enter into a partnership, or begin a commercial engagement.</p>
+        <p>Do not submit confidential, regulated, export-controlled, privileged, or client-sensitive information unless DinaBridge has agreed in writing to receive it securely.</p>
+
+        <h2>11. Feedback</h2>
+        <p>If you send DinaBridge general suggestions, comments, or other non-confidential feedback about the website or our services, DinaBridge may use that feedback without payment or obligation to you. This section does not apply to resumes, applications, project documents, or confidential business information.</p>
+
+        <h2>12. Third-party services and links</h2>
+        <p>The website may link to or rely on third-party services, including hosting providers, analytics tools, social platforms, forms, repositories, and external websites. DinaBridge does not control those third-party services and is not responsible for their availability, security, content, terms, or privacy practices.</p>
+        <p>A reference to a third-party product, service, company, or platform does not imply ownership, endorsement, certification, or partnership unless DinaBridge says so expressly.</p>
+
+        <h2>13. Informational content and no professional advice</h2>
+        <p>The website is provided for general information only. Nothing on the website is legal, tax, financial, security, compliance, or other professional advice, and nothing on the website should be treated as a substitute for a scoped professional engagement or a qualified advisor&#x2019;s judgment.</p>
+        <p>Website information may change over time and may not always reflect the latest facts, capabilities, availability, or practices.</p>
+
+        <h2>14. Disclaimers</h2>
+        <p>To the maximum extent permitted by law, the website and all public materials are provided on an &#x201C;as is&#x201D; and &#x201C;as available&#x201D; basis.</p>
+        <p>DinaBridge does not guarantee that:</p>
+        <ul>
+          <li>the website will always be available, uninterrupted, or error-free;</li>
+          <li>the website will be secure in every circumstance;</li>
+          <li>all information will be complete, current, or free of errors;</li>
+          <li>every service or capability will be available in every geography;</li>
+          <li>every inquiry will receive a response;</li>
+          <li>every role, internship, placement, partnership, or project opportunity will remain available.</li>
+        </ul>
+        <p>Some laws do not allow certain warranty exclusions, so some of the above disclaimers may not apply to you to the extent prohibited by law.</p>
+
+        <h2>15. Limitation of liability</h2>
+        <p>To the maximum extent permitted by law, DinaBridge and its members, officers, personnel, contractors, and representatives will not be liable for any indirect, incidental, special, punitive, exemplary, or consequential damages, or for any loss of profits, revenue, opportunities, goodwill, business interruption, or data, arising out of or relating to your use of the public website or your inability to use it.</p>
+        <p>These limitations do not apply where liability cannot lawfully be excluded or limited. They also do not override the liability terms in any separately signed client, partner, contractor, employment, internship, or other written agreement.</p>
+
+        <h2>16. Careers, internships, and partner inquiries</h2>
+        <p>The website does not guarantee employment, interviews, internships, academic credit, compensation, sponsorship, immigration support, conversion to employment, or future project participation.</p>
+        <p>Any internship, placement, partner relationship, or similar arrangement depends on the applicable separate written agreement and any terms in that arrangement. Eligibility, compensation, credit, duration, supervision, access, and other conditions are determined by that separate arrangement.</p>
+        <p>Interns and placement participants do not perform client engineering delivery and do not access client data, credentials, systems, infrastructure, or production environments unless they later enter a separate lawful role and receive specific written authorization.</p>
+        <p>Submitting a partner inquiry does not create a partnership, reseller relationship, referral agreement, subcontract, exclusivity obligation, or authority to represent DinaBridge.</p>
+
+        <h2>17. Privacy</h2>
+        <p>Your use of the website is also governed by the <a href="/privacy/">DinaBridge Privacy Policy</a>. The Privacy Policy explains how DinaBridge handles personal information collected through the website.</p>
+
+        <h2>18. Changes, termination, severability, and waiver</h2>
+        <p>DinaBridge may update these Terms from time to time. If the Terms change in a material way, DinaBridge will update the &#x201C;Last updated&#x201D; date at the top of this page.</p>
+        <p>Your continued use of the website after updated Terms are posted means you accept the revised Terms to the extent permitted by applicable law.</p>
+        <p>DinaBridge may suspend, restrict, or discontinue any part of the website at any time.</p>
+        <p>These Terms constitute the entire agreement between you and DinaBridge regarding use of the public website. They do not replace or modify any separately signed agreement.</p>
+        <p>If any part of these Terms is held invalid or unenforceable, the rest will remain in effect. DinaBridge&#x2019;s failure to enforce any part of these Terms is not a waiver of that part or of any other right.</p>
+
+        <h2>19. Governing law, courts, and contact information</h2>
+        <p>These Terms and any dispute relating to the public website are governed by the laws of the State of Wyoming, without regard to conflict-of-law principles. Unless a separately signed agreement requires a different forum or dispute-resolution process, the state and federal courts located in Wyoming will have jurisdiction over disputes relating to these Terms or the public website.</p>
+        <p>Questions about these Terms of Use may be sent to DinaBridge at:</p>
+        <ul>
+          <li>Legal notices: <a href="mailto:partners@dinabridge.com">partners@dinabridge.com</a></li>
+          <li>General inquiries: <a href="mailto:hello@dinabridge.com">hello@dinabridge.com</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; FOOTER &#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550; -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>
+        <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>
+        <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions/">Team augmentation</a></li>
+          <li><a href="/partners/">Partner delivery</a></li>
+          <li><a href="/#contact">Direct engagement</a></li>
+          <li><a href="/platforms/">All platforms</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/glossary/">Glossary</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/legal/terms/">Terms of Use</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DinaBridge. We build platforms that work.</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* &#x2500;&#x2500; Header scroll class &#x2500;&#x2500; */
+(function(){
+  var h = document.getElementById('site-header');
+  function onScroll(){ h.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* &#x2500;&#x2500; Mobile menu toggle &#x2500;&#x2500; */
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var nav = document.getElementById('mobile-nav');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconClose = document.getElementById('icon-close');
+  var mobileCta = document.getElementById('mobile-cta');
+
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+
+  mobileCta.addEventListener('click', function(){
+    nav.classList.remove('open');
+    iconMenu.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+
+  document.querySelectorAll('[data-mobile-drop]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sub = btn.nextElementSibling;
+      var open = sub.classList.toggle('open');
+      btn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
