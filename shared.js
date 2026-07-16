@@ -452,6 +452,7 @@
         '      <div class="footer-col-title">Legal</div>\n' +
         '      <ul>\n' +
         '        <li><a href="/privacy/">Privacy</a></li>\n' +
+        '        <li><a href="/legal/terms/">Terms of Use</a></li>\n' +
         '        <li><a href="/#contact">Contact</a></li>\n' +
         '      </ul>\n' +
         '    </div>\n' +
