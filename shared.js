@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v7.0.2
+/* DinaBridge Shared Components — v7.0.3
    Single source of truth for:
    - Global nav (header + dropdowns + drawer + overlay + burger)
    - Global footer
@@ -10,6 +10,8 @@
    Idempotency guard prevents double-injection on any page.
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
+
+   v7.0.3: Added Terms link to footer Legal column → /legal/terms/
 
    v7.0.2: Dropdown interaction fix:
             - Removed immediate mouseleave close (was firing before
@@ -452,6 +454,7 @@
         '      <div class="footer-col-title">Legal</div>\n' +
         '      <ul>\n' +
         '        <li><a href="/privacy/">Privacy</a></li>\n' +
+        '        <li><a href="/legal/terms/">Terms</a></li>\n' +
         '        <li><a href="/#contact">Contact</a></li>\n' +
         '      </ul>\n' +
         '    </div>\n' +
