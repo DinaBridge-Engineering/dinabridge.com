@@ -11,7 +11,7 @@
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
 
-   v7.0.3: Added Terms link to footer Legal column → /legal/terms/
+   v7.0.3: Footer Legal column — Terms link points to /terms/ (canonical page)
 
    v7.0.2: Dropdown interaction fix:
             - Removed immediate mouseleave close (was firing before
@@ -262,46 +262,23 @@
 
       /* ══════════════════════════════════════════════════
          DESKTOP DROPDOWN INTERACTION — v7.0.2
-
-         Key design decisions:
-         1. Panel is positioned at top:100% (no CSS gap).
-            Visual breathing room comes from padding-top on
-            the panel itself (see global.css .nav-dropdown-panel).
-         2. An invisible hover bridge — a ::before pseudo-element
-            10px tall sitting between the trigger bottom edge and
-            the panel — keeps pointer-events alive so the browser
-            never fires mouseleave while the pointer is in transit.
-         3. Close delay: 250ms. Timer is cleared on mouseenter
-            of either the trigger button or the panel.
-         4. Click authority: clicking the trigger sets
-            dd._clickedOpen = true. While that flag is set,
-            mouseleave cannot close the dropdown. Only a second
-            click on the trigger, a click outside, or Escape
-            clears the flag and closes the dropdown.
          ══════════════════════════════════════════════════ */
 
-      var CLOSE_DELAY = 250; /* ms */
+      var CLOSE_DELAY = 250;
 
       navEl.querySelectorAll('.nav-dropdown').forEach(function (dd) {
         var btn   = dd.querySelector('.nav-dropdown-btn');
         var panel = dd.querySelector('.nav-dropdown-panel');
 
-        /* Per-dropdown close timer handle */
         dd._closeTimer    = null;
         dd._clickedOpen   = false;
 
-        /* ── helpers ──────────────────────────────────── */
         function cancelClose() {
-          if (dd._closeTimer) {
-            clearTimeout(dd._closeTimer);
-            dd._closeTimer = null;
-          }
+          if (dd._closeTimer) { clearTimeout(dd._closeTimer); dd._closeTimer = null; }
         }
 
         function openDD() {
-          /* Cancel any pending close for this dropdown */
           cancelClose();
-          /* Close other open dropdowns immediately */
           navEl.querySelectorAll('.nav-dropdown').forEach(function (other) {
             if (other !== dd && other.classList.contains('is-open')) {
               if (other._closeTimer) { clearTimeout(other._closeTimer); other._closeTimer = null; }
@@ -333,56 +310,22 @@
           }
         }
 
-        /* ── Initialize closed ────────────────────────── */
         panel.setAttribute('aria-hidden', 'true');
 
-        /* ── Click on trigger ─────────────────────────── */
         btn.addEventListener('click', function (e) {
           e.stopPropagation();
-          if (dd.classList.contains('is-open')) {
-            dd._clickedOpen = false;
-            closeDD(true);
-          } else {
-            dd._clickedOpen = true;
-            openDD();
-          }
+          if (dd.classList.contains('is-open')) { dd._clickedOpen = false; closeDD(true); }
+          else { dd._clickedOpen = true; openDD(); }
         });
-
-        /* ── Hover: enter trigger ─────────────────────── */
-        btn.addEventListener('mouseenter', function () {
-          cancelClose();
-        });
-
-        /* ── Hover: enter panel ───────────────────────── */
-        panel.addEventListener('mouseenter', function () {
-          cancelClose();
-        });
-
-        /* ── Hover: leave trigger ─────────────────────── */
-        btn.addEventListener('mouseleave', function () {
-          /* If the user clicked it open, do not start a close timer.
-             The dropdown will only close via click-outside / Escape. */
-          if (!dd._clickedOpen) {
-            closeDD(false);
-          }
-        });
-
-        /* ── Hover: leave panel ───────────────────────── */
-        panel.addEventListener('mouseleave', function () {
-          if (!dd._clickedOpen) {
-            closeDD(false);
-          }
-        });
-
-        /* ── Select a link inside the panel ──────────── */
+        btn.addEventListener('mouseenter', function () { cancelClose(); });
+        panel.addEventListener('mouseenter', function () { cancelClose(); });
+        btn.addEventListener('mouseleave', function () { if (!dd._clickedOpen) closeDD(false); });
+        panel.addEventListener('mouseleave', function () { if (!dd._clickedOpen) closeDD(false); });
         panel.querySelectorAll('a').forEach(function (link) {
-          link.addEventListener('click', function () {
-            closeDD(true);
-          });
+          link.addEventListener('click', function () { closeDD(true); });
         });
       });
 
-      /* ── Global close: click outside or Escape ─────── */
       document.addEventListener('click', function () {
         navEl.querySelectorAll('.nav-dropdown.is-open').forEach(function (dd) {
           if (dd._closeTimer) { clearTimeout(dd._closeTimer); dd._closeTimer = null; }
@@ -454,7 +397,7 @@
         '      <div class="footer-col-title">Legal</div>\n' +
         '      <ul>\n' +
         '        <li><a href="/privacy/">Privacy</a></li>\n' +
-        '        <li><a href="/legal/terms/">Terms</a></li>\n' +
+        '        <li><a href="/terms/">Terms</a></li>\n' +
         '        <li><a href="/#contact">Contact</a></li>\n' +
         '      </ul>\n' +
         '    </div>\n' +
