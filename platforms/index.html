@@ -147,6 +147,71 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
 .hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
 .hero-actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem}
 
+/* ════════════════ CATEGORY NAVIGATOR ════���═══════════ */
+.cat-nav-wrap{
+  position:sticky;
+  /* sits just below the site header (4rem tall) */
+  top:4rem;
+  z-index:40;
+  background:var(--ink);
+  border-bottom:1px solid var(--hairline);
+  /* subtle blur so content scrolling underneath doesn't feel jarring */
+  backdrop-filter:blur(8px);
+  background:oklch(0.16 0.008 260 / 92%);
+}
+.cat-nav{
+  display:flex;
+  gap:0;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  /* hide scrollbar on desktop, keep usable on mobile */
+  scrollbar-width:none;
+}
+.cat-nav::-webkit-scrollbar{display:none}
+.cat-nav-item{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.875rem 1.25rem;
+  white-space:nowrap;
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.06em;
+  color:oklch(0.955 0.012 85 / 55%);
+  border-bottom:2px solid transparent;
+  transition:color 150ms,border-color 150ms;
+  cursor:pointer;
+  background:none;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  /* bottom border is the active indicator — keep it sharp */
+  margin-bottom:-1px;
+}
+.cat-nav-item:hover{
+  color:oklch(0.955 0.012 85 / 90%);
+}
+.cat-nav-item.active{
+  color:var(--cream);
+  border-bottom-color:var(--signal);
+}
+.cat-nav-item:focus-visible{
+  outline:2px solid var(--signal);
+  outline-offset:-2px;
+  border-radius:.25rem;
+}
+.cat-nav-num{
+  color:var(--signal);
+  opacity:.8;
+}
+.cat-nav-item.active .cat-nav-num{
+  opacity:1;
+}
+@media(min-width:640px){
+  .cat-nav-item{padding:.875rem 1.5rem;font-size:.75rem}
+}
+
 /* ════════════════ PLATFORM CATEGORIES ════════════════ */
 .plat-categories{display:flex;flex-direction:column;gap:5rem}
 
@@ -172,6 +237,28 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
 .plat-row-tag{margin-top:.25rem;font-family:var(--font-mono);font-size:.75rem;color:oklch(0.78 0.16 65 / 90%)}
 .plat-row-body{margin-top:1rem;color:oklch(0.955 0.012 85 / 75%);line-height:1.7;max-width:48rem}
 @media(min-width:1024px){.plat-row-body{margin-top:.25rem}}
+
+/* ════════════════ CONTEXTUAL CTA ════════════════ */
+.cat-cta{
+  display:block;
+  margin-top:2rem;
+  font-family:var(--font-sans);
+  font-size:.875rem;
+  color:oklch(0.955 0.012 85 / 55%);
+  transition:color 150ms;
+  width:fit-content;
+}
+.cat-cta:hover{
+  color:var(--cream);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.cat-cta:focus-visible{
+  outline:2px solid var(--signal);
+  outline-offset:3px;
+  border-radius:.125rem;
+  color:var(--cream);
+}
 
 /* ════════════════ ASSESSMENT CTA ════════════════ */
 .assessment-card{border-radius:1rem;border:1px solid var(--hairline-strong);background:var(--ink);color:var(--cream);padding:2rem;display:flex;flex-direction:column;gap:2rem}
@@ -295,13 +382,33 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
   </div>
 </section>
 
+<!-- ════════════════ CATEGORY NAVIGATOR ════════════════ -->
+<div class="cat-nav-wrap" aria-label="Platform categories" role="navigation">
+  <div class="cx">
+    <div class="cat-nav" role="list">
+      <button class="cat-nav-item active" data-target="cat-observability" role="listitem" aria-current="true">
+        <span class="cat-nav-num">01</span> Observability
+      </button>
+      <button class="cat-nav-item" data-target="cat-search" role="listitem">
+        <span class="cat-nav-num">02</span> Search
+      </button>
+      <button class="cat-nav-item" data-target="cat-security" role="listitem">
+        <span class="cat-nav-num">03</span> Security Data
+      </button>
+      <button class="cat-nav-item" data-target="cat-vector" role="listitem">
+        <span class="cat-nav-num">04</span> Vector Infrastructure
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ════════════════ PLATFORM CATEGORIES ════════════════ -->
 <section class="section">
   <div class="cx">
     <div class="plat-categories">
 
       <!-- 01 OBSERVABILITY -->
-      <div>
+      <div id="cat-observability">
         <div class="plat-cat-header">
           <div class="plat-cat-left">
             <div class="plat-cat-meta">
@@ -351,10 +458,11 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
             <p class="plat-row-body">Wide-event instrumentation and BubbleUp workflows for teams that debug in production rather than staring at dashboards.</p>
           </div>
         </div>
+        <a href="/#contact" class="cat-cta">Discuss your observability environment &rarr;</a>
       </div>
 
       <!-- 02 SEARCH -->
-      <div>
+      <div id="cat-search">
         <div class="plat-cat-header">
           <div class="plat-cat-left">
             <div class="plat-cat-meta">
@@ -387,10 +495,11 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
             <p class="plat-row-body">Document architecture and performance tuning for applications where search and complex document models sit side by side.</p>
           </div>
         </div>
+        <a href="/#contact" class="cat-cta">Discuss your search platform &rarr;</a>
       </div>
 
       <!-- 03 SECURITY DATA -->
-      <div>
+      <div id="cat-security">
         <div class="plat-cat-header">
           <div class="plat-cat-left">
             <div class="plat-cat-meta">
@@ -423,10 +532,11 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
             <p class="plat-row-body">Wazuh deployments for teams that need open-source security monitoring alongside a commercial SIEM.</p>
           </div>
         </div>
+        <a href="/#contact" class="cat-cta">Discuss your security data challenge &rarr;</a>
       </div>
 
       <!-- 04 VECTOR & AI INFRASTRUCTURE -->
-      <div>
+      <div id="cat-vector">
         <div class="plat-cat-header">
           <div class="plat-cat-left">
             <div class="plat-cat-meta">
@@ -460,6 +570,7 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
             <p class="plat-row-body">Vector and lexical search combined inside OpenSearch &mdash; one cluster, one relevance model, one operations story.</p>
           </div>
         </div>
+        <a href="/#contact" class="cat-cta">Discuss your retrieval architecture &rarr;</a>
       </div>
 
     </div><!-- /.plat-categories -->
@@ -585,6 +696,60 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
       btn.classList.toggle('open', open);
     });
   });
+})();
+
+/* ── Category navigator: scroll-to + active highlight ── */
+(function(){
+  var navItems = document.querySelectorAll('.cat-nav-item');
+  var sections = [
+    document.getElementById('cat-observability'),
+    document.getElementById('cat-search'),
+    document.getElementById('cat-security'),
+    document.getElementById('cat-vector')
+  ];
+
+  /* Click: smooth-scroll to section */
+  navItems.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = document.getElementById(btn.getAttribute('data-target'));
+      if (!target) return;
+      /* Offset for sticky header (4rem) + navigator bar (~45px) */
+      var offset = 64 + 45;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  /* IntersectionObserver: highlight active category */
+  var activeIndex = 0;
+  function setActive(index){
+    if (index === activeIndex) return;
+    activeIndex = index;
+    navItems.forEach(function(btn, i){
+      var isActive = i === index;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+    /* Scroll active pill into view on mobile */
+    if (navItems[index]){
+      navItems[index].scrollIntoView({ inline: 'nearest', behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  /* Use a rootMargin so section activates when its top reaches ~30% of viewport */
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        var idx = sections.indexOf(entry.target);
+        if (idx !== -1) setActive(idx);
+      }
+    });
+  }, {
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(function(sec){ if (sec) observer.observe(sec); });
 })();
 </script>
 
