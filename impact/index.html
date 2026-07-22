@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DinaBridge Impact | Talent, Technology and Opportunity</title>
+<meta name="description" content="DinaBridge Impact connects universities, nonprofits, and enterprise partners to develop emerging technical talent and apply expertise to social challenges." />
+<meta name="author" content="DinaBridge" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="DinaBridge Impact | Talent, Technology and Opportunity" />
+<meta property="og:description" content="DinaBridge Impact connects universities, nonprofits, and enterprise partners to develop emerging technical talent and apply expertise to social challenges." />
+<meta property="og:url" content="https://dinabridge.com/impact/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="DinaBridge Impact | Talent, Technology and Opportunity" />
+<meta name="twitter:description" content="DinaBridge Impact connects universities, nonprofits, and enterprise partners to develop emerging technical talent and apply expertise to social challenges." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
+<link rel="canonical" href="https://dinabridge.com/impact/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ── Design tokens ── */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --charcoal: oklch(0.16 0.008 260);
+  --rule: oklch(1 0 0 / 8%);
+  --rule-strong: oklch(1 0 0 / 16%);
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans);font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
+
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
+
+.btn-primary,.btn.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover,.btn.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-sm{padding:.5rem 1rem;font-size:.85rem}
+
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover,.dropdown-btn.active{color:var(--cream)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-btn.active::after{content:'';display:block;position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal)}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover{background:var(--secondary);color:var(--cream)}
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
+
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+.social-row{display:flex;align-items:center;gap:.5rem}
+.social-btn{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid var(--hairline);color:oklch(0.955 0.012 85 / 70%);transition:color 150ms,border-color 150ms}
+.social-btn:hover{color:var(--cream);border-color:var(--hairline-strong)}
+.social-btn svg{width:16px;height:16px}
+
+/* ════════════════ IMPACT — page-specific ════════════════ */
+.page-hero{position:relative;border-bottom:1px solid var(--rule);overflow:hidden;background:var(--charcoal,#0F0F0F)}
+.page-hero-glow{pointer-events:none;position:absolute;inset:0;opacity:.55}
+.page-hero-glow-orb{position:absolute;top:-160px;right:0;height:480px;width:800px;border-radius:50%;filter:blur(90px);background:radial-gradient(closest-side,rgba(245,158,11,.14),transparent 70%)}
+.page-hero-inner{position:relative;max-width:1280px;margin:0 auto;padding:80px 40px 64px}
+@media(min-width:1024px){.page-hero-inner{padding:112px 40px 96px}}
+@media(max-width:640px){.page-hero-inner{padding:64px 20px 48px}}
+.hero-eyebrow{display:inline-block;font-family:var(--font-body);font-size:0.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--signal);margin-bottom:24px}
+.hero-h1{max-width:860px;font-family:var(--font-heading);font-size:clamp(2.25rem,5vw,3.75rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--cream);margin-bottom:24px}
+.hero-h1 .text-signal{color:var(--signal)}
+.hero-subtitle{max-width:680px;font-family:var(--font-body);font-size:clamp(1rem,1.5vw,1.125rem);color:rgba(250,248,242,.70);line-height:1.75;margin-bottom:36px}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:1rem}
+
+.section{max-width:1280px;margin:0 auto;padding:80px 40px}
+@media(max-width:640px){.section{padding:56px 20px}}
+.section-wrap--cream{background:#FAF9F7}
+.section-wrap--cream .section-eyebrow{color:var(--signal)}
+.section-wrap--cream .section-h2{color:#1A1A1A}
+.section-wrap--cream .section-sub{color:rgba(26,26,26,.70)}
+.section-eyebrow{display:inline-block;font-family:var(--font-body);font-size:0.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--signal)}
+.section-h2{font-family:var(--font-heading);font-size:clamp(1.75rem,3.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:20px;max-width:48rem;color:var(--cream)}
+.section-sub{margin-top:20px;font-family:var(--font-body);font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.75;max-width:48rem;color:rgba(250,248,242,.70)}
+
+/* Commitment list grid */
+.commitment-grid{display:grid;gap:20px;margin-top:48px}
+@media(min-width:768px){.commitment-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.commitment-grid{grid-template-columns:repeat(3,1fr)}}
+.commitment-card{border-radius:12px;border:1px solid var(--rule,rgba(255,255,255,.07));padding:28px}
+.commitment-card-icon{width:24px;height:24px;color:var(--signal);display:block;margin-bottom:20px}
+.commitment-card-h3{font-family:var(--font-heading);font-size:1rem;font-weight:700;letter-spacing:-.02em;color:var(--cream);margin-bottom:10px}
+.commitment-card-body{font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.70);line-height:1.75}
+
+/* Talent development */
+.talent-grid{display:grid;gap:32px;margin-top:48px}
+@media(min-width:1024px){.talent-grid{grid-template-columns:1.1fr 1fr;align-items:start}}
+.wlf-h3{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:var(--cream);margin-bottom:20px}
+.check-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.check-item{display:flex;align-items:flex-start;gap:12px;font-family:var(--font-body);font-size:.875rem;line-height:1.65}
+.check-item--dark{color:rgba(250,248,242,.80)}
+.check-item--cream{color:rgba(26,26,26,.80)}
+.check-icon{flex-shrink:0;margin-top:2px;width:16px;height:16px;color:var(--signal);display:block}
+.panel-card{border-radius:12px;border:1px solid var(--rule,rgba(255,255,255,.07));padding:28px}
+.panel-card-icon{width:24px;height:24px;color:var(--signal);display:block}
+.panel-card-h3{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:var(--cream);margin-top:20px;margin-bottom:12px}
+.panel-card-desc{font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.70);line-height:1.75;margin-bottom:24px}
+
+/* Enterprise partnerships */
+.enterprise-grid{display:grid;gap:20px;margin-top:48px}
+@media(min-width:768px){.enterprise-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.enterprise-grid{grid-template-columns:repeat(4,1fr)}}
+.enterprise-card{border-radius:12px;border:1px solid rgba(26,26,26,.14);background:#ffffff;padding:24px}
+.enterprise-card-icon{width:24px;height:24px;color:var(--signal);display:block;margin-bottom:16px}
+.enterprise-card-h3{font-family:var(--font-heading);font-size:1rem;font-weight:700;letter-spacing:-.02em;color:#1A1A1A;margin-bottom:8px}
+.enterprise-card-body{font-family:var(--font-body);font-size:.875rem;color:rgba(26,26,26,.65);line-height:1.75}
+
+/* Nonprofit */
+.nonprofit-grid{display:grid;gap:20px;margin-top:48px}
+@media(min-width:768px){.nonprofit-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.nonprofit-grid{grid-template-columns:repeat(4,1fr)}}
+.nonprofit-card{border-radius:12px;border:1px solid var(--rule,rgba(255,255,255,.07));padding:24px}
+.nonprofit-card-h3{font-family:var(--font-heading);font-size:.9rem;font-weight:700;letter-spacing:-.01em;color:var(--cream);margin-bottom:6px}
+.nonprofit-card-body{font-family:var(--font-mono);font-size:.75rem;color:rgba(250,248,242,.50);line-height:1.6}
+
+/* Process steps */
+.process-grid{display:grid;gap:20px;margin-top:48px}
+@media(min-width:768px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.process-grid{grid-template-columns:repeat(4,1fr)}}
+.process-step{border-radius:12px;border:1px solid var(--rule,rgba(255,255,255,.07));padding:28px}
+.process-step-num{font-family:var(--font-mono);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--signal);margin-bottom:16px}
+.process-step-h3{font-family:var(--font-heading);font-size:1.125rem;font-weight:700;letter-spacing:-.02em;color:var(--cream);margin-bottom:12px}
+.process-step-body{font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.70);line-height:1.75}
+
+/* Responsible learning */
+.access-grid{display:grid;gap:32px;margin-top:48px}
+@media(min-width:1024px){.access-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.access-no-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.access-no-item{display:flex;align-items:flex-start;gap:12px;font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.75);line-height:1.65}
+.access-no-icon{flex-shrink:0;margin-top:2px;width:16px;height:16px;color:oklch(0.65 0.15 25);display:block}
+
+/* Closing CTA */
+.cta-inner{max-width:1280px;margin:0 auto;padding:80px 40px;display:flex;flex-direction:column;gap:24px}
+@media(min-width:1024px){.cta-inner{flex-direction:row;align-items:center;justify-content:space-between}}
+@media(max-width:640px){.cta-inner{padding:56px 20px}}
+.cta-heading{font-family:var(--font-heading);font-size:clamp(1.4rem,2.5vw,1.875rem);font-weight:800;letter-spacing:-.025em;color:var(--cream);max-width:560px;line-height:1.2}
+.cta-support{margin-top:12px;font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.60);line-height:1.65;max-width:480px}
+
+/* Partners welcome */
+.welcome-grid{display:grid;gap:20px;margin-top:40px}
+@media(min-width:768px){.welcome-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.welcome-grid{grid-template-columns:repeat(4,1fr)}}
+.welcome-card{border-radius:12px;border:1px solid rgba(26,26,26,.14);background:#ffffff;padding:24px}
+.welcome-card-icon{width:20px;height:20px;color:var(--signal);display:block;margin-bottom:14px}
+.welcome-card-h3{font-family:var(--font-heading);font-size:.9rem;font-weight:700;letter-spacing:-.01em;color:#1A1A1A}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1)}
+.reveal.is-visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header id="site-header">
+  <div class="cx header-inner">
+    <a href="/" class="logo">Dina<span>Bridge</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/platforms" class="nav-link">Platforms</a>
+      <a href="/solutions" class="nav-link">Solutions</a>
+      <div class="dropdown">
+        <button class="dropdown-btn" style="position:relative">About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/about" class="dropdown-item">About us</a>
+          <a href="/careers" class="dropdown-item">Careers</a>
+          <a href="/impact" class="dropdown-item">Impact</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn">Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="/resources/learning" class="dropdown-item">Learning</a>
+          <a href="/resources/glossary" class="dropdown-item">Glossary</a>
+          <a href="/resources/blog" class="dropdown-item">Blog</a>
+        </div>
+      </div>
+      <a href="/partners" class="nav-link">Partners</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <a href="/#contact" class="btn-primary btn-sm header-cta">Contact</a>
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav cx" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms" class="mobile-link">Platforms</a>
+      <a href="/solutions" class="mobile-link">Solutions</a>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>About
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/about" class="mobile-link">About us</a>
+          <a href="/careers" class="mobile-link">Careers</a>
+          <a href="/impact" class="mobile-link">Impact</a>
+        </div>
+      </div>
+      <div>
+        <button class="mobile-dropdown-btn" data-mobile-drop>Resources
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 6l4 4 4-4"/></svg>
+        </button>
+        <div class="mobile-sub">
+          <a href="/resources/learning" class="mobile-link">Learning</a>
+          <a href="/resources/glossary" class="mobile-link">Glossary</a>
+          <a href="/resources/blog" class="mobile-link">Blog</a>
+        </div>
+      </div>
+      <a href="/partners" class="mobile-link">Partners</a>
+      <a href="/#contact" class="btn-primary" style="margin-top:.75rem;font-size:.875rem" id="mobile-cta">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-glow"><div class="page-hero-glow-orb"></div></div>
+    <div class="page-hero-inner">
+      <span class="hero-eyebrow">DinaBridge Impact</span>
+      <h1 class="hero-h1">Technology expertise should <span class="text-signal">create opportunity.</span></h1>
+      <p class="hero-subtitle">DinaBridge Impact brings together universities, nonprofits, enterprises, and experienced professionals to create responsible pathways into technology. Through structured development, skills-based support, and knowledge sharing, we help emerging talent build practical experience while contributing to stronger communities and a more inclusive technology workforce.</p>
+      <div class="hero-cta-row">
+        <a href="#partner" class="btn-primary">
+          Partner with us
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR COMMITMENT -->
+  <section id="commitment">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Our commitment</span>
+        <h2 class="section-h2">Strong technology companies should strengthen the communities around them.</h2>
+        <p class="section-sub">Technology can solve complex operational problems, improve access to information, and create new economic opportunities. Its value, however, also depends on how responsibly knowledge is shared and how deliberately future talent is developed. DinaBridge Impact is our commitment to applying technical expertise beyond traditional commercial delivery.</p>
+      </div>
+      <div class="commitment-grid">
+        <div class="commitment-card reveal">
+          <svg class="commitment-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="commitment-card-h3">Structured talent development</h3>
+          <p class="commitment-card-body">Structured development for students and emerging professionals, with clear objectives and appropriate supervision.</p>
+        </div>
+        <div class="commitment-card reveal">
+          <svg class="commitment-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3 class="commitment-card-h3">Institutional partnerships</h3>
+          <p class="commitment-card-body">Relationships with universities, nonprofits, and educational programs to reach and support eligible participants.</p>
+        </div>
+        <div class="commitment-card reveal">
+          <svg class="commitment-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <h3 class="commitment-card-h3">Skills-based support</h3>
+          <p class="commitment-card-body">Knowledge-based support for selected organizations facing defined technical or operational challenges.</p>
+        </div>
+        <div class="commitment-card reveal">
+          <svg class="commitment-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          <h3 class="commitment-card-h3">Enterprise workforce development</h3>
+          <p class="commitment-card-body">Enterprise collaboration around future workforce development and responsible hiring pipelines.</p>
+        </div>
+        <div class="commitment-card reveal">
+          <svg class="commitment-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h3 class="commitment-card-h3">Responsible pathways</h3>
+          <p class="commitment-card-body">Responsible pathways from learning to meaningful technical careers, led with the same discipline we apply to consulting work.</p>
+        </div>
+        <div class="commitment-card reveal">
+          <svg class="commitment-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <h3 class="commitment-card-h3">Practical outcomes</h3>
+          <p class="commitment-card-body">Clear objectives, controlled access, and respect for every partner and participant — at every stage of every initiative.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE TALENT DEVELOPMENT -->
+  <section class="section-wrap--cream" id="talent">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Future talent development</span>
+        <h2 class="section-h2">Creating the first meaningful step into technology.</h2>
+        <p class="section-sub">Many capable people face the same barrier: they need practical experience to secure an opportunity, but they need an opportunity to gain practical experience. DinaBridge Impact helps close that gap through structured, supervised technical development.</p>
+      </div>
+      <div class="talent-grid">
+        <div class="reveal">
+          <h3 class="wlf-h3" style="color:#1A1A1A">Participants may develop experience by</h3>
+          <ul class="check-list">
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Building internal tools and applications</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Working in controlled technical laboratories</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Completing practical engineering assignments</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Producing technical documentation</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Participating in planning and review sessions</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Presenting their work and explaining technical decisions</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Receiving feedback from experienced professionals</span>
+            </li>
+            <li class="check-item check-item--cream">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Learning professional communication and delivery standards</span>
+            </li>
+          </ul>
+          <p style="margin-top:24px;font-family:var(--font-body);font-size:.875rem;color:rgba(26,26,26,.65);line-height:1.75">Universities, nonprofits, and educational organizations may refer eligible participants. Admission depends on program capacity, suitability, available supervision, and the requirements of each initiative. We value potential, curiosity, accountability, and the willingness to learn.</p>
+        </div>
+        <div class="panel-card reveal" style="border-color:rgba(26,26,26,.14);background:#fff">
+          <svg class="panel-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="panel-card-h3" style="color:#1A1A1A">Discuss a participant referral</h3>
+          <p class="panel-card-desc" style="color:rgba(26,26,26,.65)">We currently support a small group of emerging professionals through structured and supervised development. The objective is not to create artificial assignments or observation-only placements &mdash; participants should gain a clearer understanding of how professional technology teams operate.</p>
+          <a href="mailto:impact@dinabridge.com?subject=Participant%20referral" class="btn-primary">
+            Discuss a referral
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE TALENT PARTNERSHIPS -->
+  <section id="enterprise">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Enterprise talent partnerships</span>
+        <h2 class="section-h2">Developing stronger pathways into the technology workforce.</h2>
+        <p class="section-sub">DinaBridge works with organizations interested in developing emerging technical talent responsibly. These partnerships help enterprises engage individuals who have completed structured, supervised development &mdash; not solely candidates assessed through academic credentials or conventional interviews.</p>
+      </div>
+      <div class="enterprise-grid">
+        <div class="enterprise-card reveal">
+          <svg class="enterprise-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <h3 class="enterprise-card-h3">Sponsored development programs</h3>
+          <p class="enterprise-card-body">Partner-funded technical development tracks built around your workforce priorities.</p>
+        </div>
+        <div class="enterprise-card reveal">
+          <svg class="enterprise-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+          <h3 class="enterprise-card-h3">Summer learning programs</h3>
+          <p class="enterprise-card-body">Structured summer cohorts with defined technical learning objectives and practical assessments.</p>
+        </div>
+        <div class="enterprise-card reveal">
+          <svg class="enterprise-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="enterprise-card-h3">Internships &amp; apprenticeships</h3>
+          <p class="enterprise-card-body">Formal pathways from structured development into internship and apprenticeship arrangements.</p>
+        </div>
+        <div class="enterprise-card reveal">
+          <svg class="enterprise-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3 class="enterprise-card-h3">University-to-employer pathways</h3>
+          <p class="enterprise-card-body">Structured pipelines from educational programs directly toward your organization&rsquo;s technical roles.</p>
+        </div>
+      </div>
+      <div style="margin-top:48px" class="reveal">
+        <p style="font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.60);line-height:1.75;max-width:720px">Partners may gain a better understanding of how participants learn, communicate, solve problems, and respond to professional feedback before making any longer-term decision. Participation does not guarantee employment. Every opportunity remains subject to organizational needs, individual performance, eligibility, program terms, and available roles.</p>
+        <div style="margin-top:28px">
+          <a href="mailto:impact@dinabridge.com?subject=Talent-development%20partnership" class="btn-primary">
+            Explore a talent-development partnership
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS AND KNOWLEDGE FOR NONPROFITS -->
+  <section class="section-wrap--cream" id="nonprofits">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Skills &amp; knowledge for nonprofits</span>
+        <h2 class="section-h2">Applying technical expertise where it can create meaningful value.</h2>
+        <p class="section-sub">DinaBridge provides selected nonprofit and social-impact organizations with skills-based and knowledge-based support around defined technical or operational challenges. Support is selective and individually scoped. It may be provided on a pro bono, sponsored, or otherwise agreed basis.</p>
+      </div>
+      <div class="nonprofit-grid">
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Technical diagnostic</h3>
+          <p class="nonprofit-card-body">A focused review of your current technical environment and challenges.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Architecture &amp; platform guidance</h3>
+          <p class="nonprofit-card-body">Expert input on system design, infrastructure, and platform decisions.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Search, observability &amp; security</h3>
+          <p class="nonprofit-card-body">Specialist knowledge in our core practice areas applied to your context.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Internal tool guidance</h3>
+          <p class="nonprofit-card-body">Practical recommendations for internal applications and operational tooling.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Technical workshops</h3>
+          <p class="nonprofit-card-body">Structured sessions to build knowledge and capability within your team.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Documentation &amp; recommendations</h3>
+          <p class="nonprofit-card-body">Clear written output your team can act on independently.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--secondary)">
+          <h3 class="nonprofit-card-h3">Challenge review</h3>
+          <p class="nonprofit-card-body">A structured review of a defined technical challenge with practical next steps.</p>
+        </div>
+        <div class="nonprofit-card reveal" style="background:var(--card);border-color:var(--signal);display:flex;flex-direction:column;justify-content:center;align-items:flex-start">
+          <p style="font-family:var(--font-body);font-size:.8rem;color:rgba(250,248,242,.55);line-height:1.7;margin-bottom:16px">Some DinaBridge Impact partnerships are confidential. We do not publish partner names, participant information, or project details without permission.</p>
+          <a href="mailto:impact@dinabridge.com?subject=Nonprofit%20technical%20support" class="btn-primary" style="font-size:.85rem;padding:.7rem 1.2rem">
+            Discuss nonprofit support
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSIBLE LEARNING ENVIRONMENT -->
+  <section id="responsible">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">A responsible learning environment</span>
+        <h2 class="section-h2">Development should never come at the expense of client trust.</h2>
+        <p class="section-sub">DinaBridge separates talent development from client delivery. Commercial client engagements continue to be led and delivered by experienced professionals.</p>
+      </div>
+      <div class="access-grid">
+        <div class="reveal">
+          <h3 class="wlf-h3">Participants do not receive access to</h3>
+          <ul class="access-no-list">
+            <li class="access-no-item">
+              <svg class="access-no-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+              <span>Client data or client systems</span>
+            </li>
+            <li class="access-no-item">
+              <svg class="access-no-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+              <span>Client repositories</span>
+            </li>
+            <li class="access-no-item">
+              <svg class="access-no-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+              <span>Confidential client information</span>
+            </li>
+            <li class="access-no-item">
+              <svg class="access-no-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+              <span>Production environments</span>
+            </li>
+            <li class="access-no-item">
+              <svg class="access-no-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+              <span>Restricted internal infrastructure</span>
+            </li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <h3 class="wlf-h3">Learning activities use</h3>
+          <ul class="check-list">
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Internal tools and controlled applications</span>
+            </li>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Synthetic data and technical exercises</span>
+            </li>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Sandbox environments</span>
+            </li>
+            <li class="check-item check-item--dark">
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span>Projects created specifically for education and development</span>
+            </li>
+          </ul>
+          <p style="margin-top:24px;font-family:var(--font-body);font-size:.875rem;color:rgba(250,248,242,.60);line-height:1.75">Access is role-based, limited, supervised, and reviewed according to the requirements of the program.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE-LED IMPACT -->
+  <section class="section-wrap--cream" id="leadership">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Executive-led impact</span>
+        <h2 class="section-h2">Responsibility starts with leadership.</h2>
+        <p class="section-sub">DinaBridge Impact operates under the company&rsquo;s professional standards. Its direction, partnerships, safeguards, and development priorities are shaped at the leadership level. Senior professionals may contribute through mentorship, technical review, program design, knowledge sharing, and partnership development.</p>
+      </div>
+      <div style="margin-top:48px" class="reveal">
+        <h3 style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:#1A1A1A;margin-bottom:24px">This involvement helps ensure</h3>
+        <div style="display:grid;gap:16px" class="commitment-grid">
+          <div class="commitment-card" style="border-color:rgba(26,26,26,.14);background:#fff">
+            <h3 class="commitment-card-h3" style="color:#1A1A1A">Defined purpose</h3>
+            <p class="commitment-card-body" style="color:rgba(26,26,26,.65)">Every initiative has a defined purpose and is evaluated against it throughout.</p>
+          </div>
+          <div class="commitment-card" style="border-color:rgba(26,26,26,.14);background:#fff">
+            <h3 class="commitment-card-h3" style="color:#1A1A1A">Meaningful guidance</h3>
+            <p class="commitment-card-body" style="color:rgba(26,26,26,.65)">Participants receive meaningful guidance from professionals who understand what the work requires.</p>
+          </div>
+          <div class="commitment-card" style="border-color:rgba(26,26,26,.14);background:#fff">
+            <h3 class="commitment-card-h3" style="color:#1A1A1A">Understood expectations</h3>
+            <p class="commitment-card-body" style="color:rgba(26,26,26,.65)">Partner expectations are understood and commitments reflect DinaBridge&rsquo;s available capacity.</p>
+          </div>
+          <div class="commitment-card" style="border-color:rgba(26,26,26,.14);background:#fff">
+            <h3 class="commitment-card-h3" style="color:#1A1A1A">Appropriate scope</h3>
+            <p class="commitment-card-body" style="color:rgba(26,26,26,.65)">Technical work is appropriately scoped and security and confidentiality controls are maintained.</p>
+          </div>
+          <div class="commitment-card" style="border-color:rgba(26,26,26,.14);background:#fff">
+            <h3 class="commitment-card-h3" style="color:#1A1A1A">Real professional standards</h3>
+            <p class="commitment-card-body" style="color:rgba(26,26,26,.65)">Learning remains connected to real professional standards, not artificial assignments.</p>
+          </div>
+          <div class="commitment-card" style="border-color:rgba(26,26,26,.14);background:#fff">
+            <h3 class="commitment-card-h3" style="color:#1A1A1A">Meaningful opportunities</h3>
+            <p class="commitment-card-body" style="color:rgba(26,26,26,.65)">Our objective is to create meaningful opportunities responsibly &mdash; not simply increase participation numbers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW OUR PARTNERSHIPS WORK -->
+  <section id="process">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">How our partnerships work</span>
+        <h2 class="section-h2">Every initiative begins with a defined need.</h2>
+        <p class="section-sub">DinaBridge does not apply one program structure to every partner or participant. Every initiative is shaped by its context.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-step-num">01 &mdash; Understand</div>
+          <h3 class="process-step-h3">Understand</h3>
+          <p class="process-step-body">We begin by understanding the organization, participants, technical context, and intended outcome.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">02 &mdash; Define</div>
+          <h3 class="process-step-h3">Define</h3>
+          <p class="process-step-body">We establish the scope, responsibilities, learning objectives, supervision model, access boundaries, and expected deliverables.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">03 &mdash; Develop</div>
+          <h3 class="process-step-h3">Develop</h3>
+          <p class="process-step-body">Participants, mentors, technical specialists, and partners work through the agreed initiative.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">04 &mdash; Review</div>
+          <h3 class="process-step-h3">Review</h3>
+          <p class="process-step-body">We assess the work, document lessons, collect feedback, and identify appropriate next steps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDING STRONGER PATHWAYS -->
+  <section class="section-wrap--cream" id="pathways">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Building stronger pathways into technology</span>
+        <h2 class="section-h2">Talent is everywhere. Access to opportunity is not.</h2>
+        <p class="section-sub">A first technical opportunity can change the direction of someone&rsquo;s career. It can help a student understand where they belong. It can give an emerging professional evidence of what they are capable of. It can help an organization recognize potential that a conventional recruitment process might overlook.</p>
+        <p style="margin-top:20px;font-family:var(--font-body);font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.75;max-width:48rem;color:rgba(26,26,26,.70)">DinaBridge Impact exists to help create those first steps &mdash; responsibly, practically, and with the involvement of professionals who understand what high-quality technology work requires. By combining technical knowledge, structured development, and institutional partnerships, we aim to help more emerging professionals move from learning toward meaningful contribution.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER WITH DINABRIDGE IMPACT -->
+  <section id="partner">
+    <div class="section">
+      <div class="reveal">
+        <span class="section-eyebrow">Partner with DinaBridge Impact</span>
+        <h2 class="section-h2">Build a responsible pathway with us.</h2>
+        <p class="section-sub">We welcome conversations with universities, nonprofits, enterprises, and program partners. Every partnership begins with a clear discussion of the need, the intended outcome, and what DinaBridge can responsibly contribute.</p>
+      </div>
+      <div class="welcome-grid">
+        <div class="welcome-card reveal">
+          <svg class="welcome-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3 class="welcome-card-h3" style="color:#1A1A1A">Universities &amp; educational institutions</h3>
+        </div>
+        <div class="welcome-card reveal">
+          <svg class="welcome-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h3 class="welcome-card-h3" style="color:#1A1A1A">Nonprofit &amp; social-impact organizations</h3>
+        </div>
+        <div class="welcome-card reveal">
+          <svg class="welcome-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <h3 class="welcome-card-h3" style="color:#1A1A1A">Enterprises investing in future technical talent</h3>
+        </div>
+        <div class="welcome-card reveal">
+          <svg class="welcome-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3 class="welcome-card-h3" style="color:#1A1A1A">Internship &amp; apprenticeship programs</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="cta-inner">
+      <div>
+        <h3 class="cta-heading">Partner with DinaBridge Impact</h3>
+        <p class="cta-support">Tell us about your organization, technical challenge, or talent-development initiative. We will assess whether there is a practical and responsible way to collaborate.</p>
+      </div>
+      <a href="mailto:impact@dinabridge.com?subject=DinaBridge%20Impact%20partnership" class="btn-primary">
+        Partner with DinaBridge Impact
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>
+        <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>
+        <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions/">Team augmentation</a></li>
+          <li><a href="/partners/">Partner delivery</a></li>
+          <li><a href="/#contact">Direct engagement</a></li>
+          <li><a href="/platforms/">All platforms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/learning/">Learning</a></li>
+          <li><a href="/glossary/">Glossary</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/impact/">Impact</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 DinaBridge. We build platforms that work.</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var h = document.getElementById('site-header');
+  function onScroll(){ h.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var nav = document.getElementById('mobile-nav');
+  var iconMenu = document.getElementById('icon-menu');
+  var iconClose = document.getElementById('icon-close');
+  var mobileCta = document.getElementById('mobile-cta');
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    iconMenu.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+  mobileCta.addEventListener('click', function(){
+    nav.classList.remove('open');
+    iconMenu.style.display = 'block';
+    iconClose.style.display = 'none';
+  });
+  document.querySelectorAll('[data-mobile-drop]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sub = btn.nextElementSibling;
+      var open = sub.classList.toggle('open');
+      btn.classList.toggle('open', open);
+    });
+  });
+})();
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
