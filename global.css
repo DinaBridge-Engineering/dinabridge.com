@@ -146,6 +146,12 @@
   --ease-out: cubic-bezier(0,.55,.45,1);
   --t-base:   200ms;
   --t-slow:   320ms;
+
+  /* ── Tiffany link palette ── */
+  --tiffany-base:   #007C78;
+  --tiffany-dark:   #005F5C;
+  --tiffany-mid:    #0ABAB5;
+  --tiffany-light:  #6FE3DD;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -955,4 +961,113 @@ footer {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   15. TIFFANY LINK & HIGHLIGHT STYLING
+   Applies to: inline text links, nav text, dropdown items,
+   footer text links, blog prose links, blog TOC links,
+   email links, social-link hover/focus states.
+   Palette only: #007C78  #005F5C  #0ABAB5  #6FE3DD
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Inline text links (prose body copy) ── */
+p a,
+li a,
+td a,
+th a,
+label a,
+blockquote a,
+.text-link {
+  color: #0ABAB5;
+  text-decoration: underline;
+  text-decoration-color: rgba(10, 186, 181, 0.40);
+  text-underline-offset: 3px;
+  transition: color var(--t-base) var(--ease),
+              text-decoration-color var(--t-base) var(--ease);
+}
+p a:hover,
+li a:hover,
+td a:hover,
+th a:hover,
+label a:hover,
+blockquote a:hover,
+.text-link:hover {
+  color: #6FE3DD;
+  text-decoration-color: rgba(111, 227, 221, 0.70);
+}
+p a:focus-visible,
+li a:focus-visible,
+td a:focus-visible,
+th a:focus-visible,
+label a:focus-visible,
+blockquote a:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Navigation text links (desktop top-level) ── */
+.nav-links > a:hover,
+.nav-links > a:focus-visible {
+  color: #0ABAB5;
+}
+.nav-links > a:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* ── Dropdown items ── */
+.nav-dropdown-item:hover,
+.nav-dropdown-item:focus-visible {
+  color: #0ABAB5;
+  background: rgba(10, 186, 181, 0.08);
+}
+.nav-dropdown-item:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: -2px;
+  border-radius: var(--radius);
+}
+
+/* ── Footer text links ── */
+.footer-col a:hover,
+.footer-col a:focus-visible {
+  color: #0ABAB5;
+}
+.footer-col a:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Email / mailto links ── */
+a[href^="mailto:"] {
+  color: #0ABAB5;
+  text-decoration: underline;
+  text-decoration-color: rgba(10, 186, 181, 0.40);
+  text-underline-offset: 3px;
+  transition: color var(--t-base) var(--ease),
+              text-decoration-color var(--t-base) var(--ease);
+}
+a[href^="mailto:"]:hover {
+  color: #6FE3DD;
+  text-decoration-color: rgba(111, 227, 221, 0.70);
+}
+a[href^="mailto:"]:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Social link hover and keyboard-focus states ── */
+.social-btn:hover,
+.social-btn:focus-visible {
+  color: #0ABAB5;
+  border-color: #007C78;
+}
+.social-btn:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
 }
