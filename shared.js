@@ -1,4 +1,4 @@
-/* DinaBridge Shared Components — v7.0.3
+/* DinaBridge Shared Components — v7.0.4
    Single source of truth for:
    - Global nav (header + dropdowns + drawer + overlay + burger)
    - Global footer
@@ -10,6 +10,9 @@
    Idempotency guard prevents double-injection on any page.
    Active link is auto-detected from window.location.pathname.
    No nav HTML should exist in individual HTML files.
+
+   v7.0.4: About dropdown + footer Company — add DinaBridge Impact
+            (/impact/) between About us and Careers.
 
    v7.0.3: Footer Legal column — Terms link points to /terms/ (canonical page)
 
@@ -96,9 +99,9 @@
 
   /* ── About dropdown items ────────────────────────────── */
   var ABOUT_ITEMS = [
-    { href: '/about/',   label: 'About us'         },
-    { href: '/impact/',  label: 'DinaBridge Impact' },
-    { href: '/careers/', label: 'Careers'           }
+    { href: '/about/',   label: 'About us'          },
+    { href: '/impact/',  label: 'DinaBridge Impact'  },
+    { href: '/careers/', label: 'Careers'            }
   ];
 
   /* ── Resources dropdown items ────────────────────────── */
@@ -333,4 +336,107 @@
           dd._clickedOpen = false;
           dd.classList.remove('is-open');
           dd.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
-          dd.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true
+          dd.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true');
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+          navEl.querySelectorAll('.nav-dropdown.is-open').forEach(function (dd) {
+            if (dd._closeTimer) { clearTimeout(dd._closeTimer); dd._closeTimer = null; }
+            dd._clickedOpen = false;
+            dd.classList.remove('is-open');
+            dd.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+            dd.querySelector('.nav-dropdown-panel').setAttribute('aria-hidden', 'true');
+          });
+          if (burger.classList.contains('is-open')) closeDrawer();
+        }
+      });
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    var footerEl = document.querySelector('footer');
+    if (footerEl && !footerEl.dataset.sharedInjected) {
+      footerEl.dataset.sharedInjected = '1';
+      footerEl.innerHTML =
+        '<div class="cx footer-inner">\n' +
+        '  <div class="footer-grid">\n' +
+
+        '    <div class="footer-brand">\n' +
+        '      <a href="/" class="logo">Dina<span>Bridge</span></a>\n' +
+        '      <p>Senior engineers building search, observability, and security platforms at scale. Directly, under your brand, or embedded in your team.</p>\n' +
+        '      <a href="mailto:hello@dinabridge.com" class="footer-email">hello@dinabridge.com</a>\n' +
+        '      <a href="mailto:partners@dinabridge.com" class="footer-email">partners@dinabridge.com</a>\n' +
+        '    </div>\n' +
+
+        '    <div class="footer-col">\n' +
+        '      <div class="footer-col-title">Services</div>\n' +
+        '      <ul>\n' +
+        '        <li><a href="/solutions/">Team augmentation</a></li>\n' +
+        '        <li><a href="/partners/">Partner delivery</a></li>\n' +
+        '        <li><a href="/#contact">Direct engagement</a></li>\n' +
+        '        <li><a href="/platforms/">All platforms</a></li>\n' +
+        '      </ul>\n' +
+        '    </div>\n' +
+
+        '    <div class="footer-col">\n' +
+        '      <div class="footer-col-title">Learn</div>\n' +
+        '      <ul>\n' +
+        '        <li><a href="/learning/">Learning</a></li>\n' +
+        '        <li><a href="/glossary/">Glossary</a></li>\n' +
+        '        <li><a href="/blog/">Blog</a></li>\n' +
+        '        <li><a href="/#faq">FAQ</a></li>\n' +
+        '      </ul>\n' +
+        '    </div>\n' +
+
+        '    <div class="footer-col">\n' +
+        '      <div class="footer-col-title">Company</div>\n' +
+        '      <ul>\n' +
+        '        <li><a href="/about/">About us</a></li>\n' +
+        '        <li><a href="/impact/">DinaBridge Impact</a></li>\n' +
+        '        <li><a href="/careers/">Careers</a></li>\n' +
+        '        <li><a href="/partners/">Partners</a></li>\n' +
+        '      </ul>\n' +
+        '    </div>\n' +
+
+        '    <div class="footer-col">\n' +
+        '      <div class="footer-col-title">Legal</div>\n' +
+        '      <ul>\n' +
+        '        <li><a href="/privacy/">Privacy</a></li>\n' +
+        '        <li><a href="/terms/">Terms</a></li>\n' +
+        '        <li><a href="/#contact">Contact</a></li>\n' +
+        '      </ul>\n' +
+        '    </div>\n' +
+
+        '  </div>\n' +
+
+        '  <div class="footer-bottom">\n' +
+        '    <p class="footer-copy">&copy; 2026 DinaBridge. We build platforms that work.</p>\n' +
+        '    <div class="social-row">\n' +
+        '      <a href="https://www.linkedin.com/company/dinabridge" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">\n' +
+        '        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>\n' +
+        '      </a>\n' +
+        '      <a href="https://github.com/DinaBridge-Engineering" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">\n' +
+        '        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>\n' +
+        '      </a>\n' +
+        '    </div>\n' +
+        '  </div>\n' +
+        '</div>';
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────── */
+    var revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    }
+
+  });
+
+}());
