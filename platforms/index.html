@@ -147,15 +147,12 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
 .hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
 .hero-actions{margin-top:2.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem}
 
-/* ════════════════ CATEGORY NAVIGATOR ════���═══════════ */
+/* ════════════════ CATEGORY NAVIGATOR ════════════════ */
 .cat-nav-wrap{
   position:sticky;
-  /* sits just below the site header (4rem tall) */
   top:4rem;
   z-index:40;
-  background:var(--ink);
   border-bottom:1px solid var(--hairline);
-  /* subtle blur so content scrolling underneath doesn't feel jarring */
   backdrop-filter:blur(8px);
   background:oklch(0.16 0.008 260 / 92%);
 }
@@ -164,7 +161,6 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
   gap:0;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
-  /* hide scrollbar on desktop, keep usable on mobile */
   scrollbar-width:none;
 }
 .cat-nav::-webkit-scrollbar{display:none}
@@ -186,31 +182,14 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
   border-top:none;
   border-left:none;
   border-right:none;
-  /* bottom border is the active indicator — keep it sharp */
   margin-bottom:-1px;
 }
-.cat-nav-item:hover{
-  color:oklch(0.955 0.012 85 / 90%);
-}
-.cat-nav-item.active{
-  color:var(--cream);
-  border-bottom-color:var(--signal);
-}
-.cat-nav-item:focus-visible{
-  outline:2px solid var(--signal);
-  outline-offset:-2px;
-  border-radius:.25rem;
-}
-.cat-nav-num{
-  color:var(--signal);
-  opacity:.8;
-}
-.cat-nav-item.active .cat-nav-num{
-  opacity:1;
-}
-@media(min-width:640px){
-  .cat-nav-item{padding:.875rem 1.5rem;font-size:.75rem}
-}
+.cat-nav-item:hover{color:oklch(0.955 0.012 85 / 90%)}
+.cat-nav-item.active{color:var(--cream);border-bottom-color:var(--signal)}
+.cat-nav-item:focus-visible{outline:2px solid var(--signal);outline-offset:-2px;border-radius:.25rem}
+.cat-nav-num{color:var(--signal);opacity:.8}
+.cat-nav-item.active .cat-nav-num{opacity:1}
+@media(min-width:640px){.cat-nav-item{padding:.875rem 1.5rem;font-size:.75rem}}
 
 /* ════════════════ PLATFORM CATEGORIES ════════════════ */
 .plat-categories{display:flex;flex-direction:column;gap:5rem}
@@ -234,6 +213,10 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
 .plat-row-num{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-fg);margin-top:.25rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 .plat-row-name{font-family:var(--font-display);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--cream);line-height:1.2}
 @media(min-width:1024px){.plat-row-name{font-size:1.5rem}}
+/* Platform name external link — inherits all name styles, underline on hover only */
+.plat-row-name a{color:inherit;text-decoration:none;transition:text-decoration-color 150ms}
+.plat-row-name a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-color:oklch(0.955 0.012 85 / 40%)}
+.plat-row-name a:focus-visible{outline:2px solid var(--signal);outline-offset:2px;border-radius:.125rem}
 .plat-row-tag{margin-top:.25rem;font-family:var(--font-mono);font-size:.75rem;color:oklch(0.78 0.16 65 / 90%)}
 .plat-row-body{margin-top:1rem;color:oklch(0.955 0.012 85 / 75%);line-height:1.7;max-width:48rem}
 @media(min-width:1024px){.plat-row-body{margin-top:.25rem}}
@@ -248,17 +231,8 @@ header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px
   transition:color 150ms;
   width:fit-content;
 }
-.cat-cta:hover{
-  color:var(--cream);
-  text-decoration:underline;
-  text-underline-offset:4px;
-}
-.cat-cta:focus-visible{
-  outline:2px solid var(--signal);
-  outline-offset:3px;
-  border-radius:.125rem;
-  color:var(--cream);
-}
+.cat-cta:hover{color:var(--cream);text-decoration:underline;text-underline-offset:4px}
+.cat-cta:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:.125rem;color:var(--cream)}
 
 /* ════════════════ ASSESSMENT CTA ════════════════ */
 .assessment-card{border-radius:1rem;border:1px solid var(--hairline-strong);background:var(--ink);color:var(--cream);padding:2rem;display:flex;flex-direction:column;gap:2rem}
@@ -422,39 +396,39 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
         </div>
         <div class="plat-grid">
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elastic Observability</div><div class="plat-row-tag">Elastic Stack &middot; APM</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name"><a href="https://www.elastic.co/observability" target="_blank" rel="noopener noreferrer">Elastic Observability</a></div><div class="plat-row-tag">Elastic Stack &middot; APM</div></div></div>
             <p class="plat-row-body">Elasticsearch-backed observability at scale &mdash; ingest pipelines, APM, and Kibana dashboards tuned for real incident response, not just uptime charts.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Datadog</div><div class="plat-row-tag">Full-stack observability</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name"><a href="https://www.datadoghq.com" target="_blank" rel="noopener noreferrer">Datadog</a></div><div class="plat-row-tag">Full-stack observability</div></div></div>
             <p class="plat-row-body">Metrics, logs, traces, and RUM wired together for fast root-cause analysis. Custom detectors, SLOs, and cost engineering on high-cardinality accounts.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">Dynatrace</div><div class="plat-row-tag">APM &middot; AIOps</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name"><a href="https://www.dynatrace.com" target="_blank" rel="noopener noreferrer">Dynatrace</a></div><div class="plat-row-tag">APM &middot; AIOps</div></div></div>
             <p class="plat-row-body">OneAgent deployments, Smartscape topology, and Davis AI tuning for distributed systems where a slow trace is a business problem.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">Grafana</div><div class="plat-row-tag">Visualization &middot; LGTM stack</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name"><a href="https://grafana.com" target="_blank" rel="noopener noreferrer">Grafana</a></div><div class="plat-row-tag">Visualization &middot; LGTM stack</div></div></div>
             <p class="plat-row-body">Grafana, Loki, Tempo, and Mimir engineered as a coherent open-source observability layer &mdash; dashboards built for the questions your team asks under pressure.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">Prometheus</div><div class="plat-row-tag">Metrics &middot; Alerting</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name"><a href="https://prometheus.io" target="_blank" rel="noopener noreferrer">Prometheus</a></div><div class="plat-row-tag">Metrics &middot; Alerting</div></div></div>
             <p class="plat-row-body">Prometheus and Thanos at production scale. Recording rules, alertmanager routing, and long-term storage strategies that hold up under real query load.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">06</span><div><div class="plat-row-name">Loki</div><div class="plat-row-tag">Log aggregation</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">06</span><div><div class="plat-row-name"><a href="https://grafana.com/oss/loki/" target="_blank" rel="noopener noreferrer">Loki</a></div><div class="plat-row-tag">Log aggregation</div></div></div>
             <p class="plat-row-body">Grafana Loki as a cost-effective log backend &mdash; label design, chunk tuning, and multi-tenant deployments that don&rsquo;t collapse at volume.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">07</span><div><div class="plat-row-name">Tempo</div><div class="plat-row-tag">Distributed tracing</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">07</span><div><div class="plat-row-name"><a href="https://grafana.com/oss/tempo/" target="_blank" rel="noopener noreferrer">Tempo</a></div><div class="plat-row-tag">Distributed tracing</div></div></div>
             <p class="plat-row-body">Grafana Tempo for high-throughput tracing, wired into your existing metrics and logs for true correlation across services.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">08</span><div><div class="plat-row-name">OpenTelemetry</div><div class="plat-row-tag">Vendor-neutral telemetry</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">08</span><div><div class="plat-row-name"><a href="https://opentelemetry.io" target="_blank" rel="noopener noreferrer">OpenTelemetry</a></div><div class="plat-row-tag">Vendor-neutral telemetry</div></div></div>
             <p class="plat-row-body">OTel Collector rollouts, instrumentation standards, and vendor migrations that give you back control over your telemetry pipeline.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">09</span><div><div class="plat-row-name">Honeycomb</div><div class="plat-row-tag">Observability 2.0</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">09</span><div><div class="plat-row-name"><a href="https://www.honeycomb.io" target="_blank" rel="noopener noreferrer">Honeycomb</a></div><div class="plat-row-tag">Observability 2.0</div></div></div>
             <p class="plat-row-body">Wide-event instrumentation and BubbleUp workflows for teams that debug in production rather than staring at dashboards.</p>
           </div>
         </div>
@@ -475,23 +449,23 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
         </div>
         <div class="plat-grid">
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elasticsearch</div><div class="plat-row-tag">Search &middot; Analytics</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name"><a href="https://www.elastic.co/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a></div><div class="plat-row-tag">Search &middot; Analytics</div></div></div>
             <p class="plat-row-body">Relevance tuning, sharding strategy, and cluster performance at high query volume &mdash; from product search to enterprise knowledge bases.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">OpenSearch</div><div class="plat-row-tag">Open-source search</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name"><a href="https://opensearch.org" target="_blank" rel="noopener noreferrer">OpenSearch</a></div><div class="plat-row-tag">Open-source search</div></div></div>
             <p class="plat-row-body">Fully open-source distributed search &mdash; cluster sizing, ingest pipelines, and query performance that hold up under production traffic.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">Algolia</div><div class="plat-row-tag">Application search</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name"><a href="https://www.algolia.com" target="_blank" rel="noopener noreferrer">Algolia</a></div><div class="plat-row-tag">Application search</div></div></div>
             <p class="plat-row-body">Instant, relevance-tuned product and content search &mdash; index design, ranking rules, and frontend integration that ship in weeks, not quarters.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">ClickHouse</div><div class="plat-row-tag">Columnar analytics</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name"><a href="https://clickhouse.com" target="_blank" rel="noopener noreferrer">ClickHouse</a></div><div class="plat-row-tag">Columnar analytics</div></div></div>
             <p class="plat-row-body">High-volume log, event, and search-adjacent analytics at a scale where traditional databases fall over.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">MongoDB</div><div class="plat-row-tag">Document store</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name"><a href="https://www.mongodb.com" target="_blank" rel="noopener noreferrer">MongoDB</a></div><div class="plat-row-tag">Document store</div></div></div>
             <p class="plat-row-body">Document architecture and performance tuning for applications where search and complex document models sit side by side.</p>
           </div>
         </div>
@@ -512,23 +486,23 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
         </div>
         <div class="plat-grid">
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Elastic Security</div><div class="plat-row-tag">SIEM &middot; XDR</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name"><a href="https://www.elastic.co/security" target="_blank" rel="noopener noreferrer">Elastic Security</a></div><div class="plat-row-tag">SIEM &middot; XDR</div></div></div>
             <p class="plat-row-body">End-to-end SIEM on the Elastic Stack &mdash; detection rules, threat hunting workflows, and ingestion at security-team volumes.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Splunk</div><div class="plat-row-tag">SIEM &middot; Security data</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name"><a href="https://www.splunk.com" target="_blank" rel="noopener noreferrer">Splunk</a></div><div class="plat-row-tag">SIEM &middot; Security data</div></div></div>
             <p class="plat-row-body">Splunk Enterprise Security and Splunk Cloud engineering &mdash; SPL tuning, data model acceleration, and migrations off legacy deployments.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">CrowdStrike</div><div class="plat-row-tag">EDR &middot; Threat intel</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name"><a href="https://www.crowdstrike.com" target="_blank" rel="noopener noreferrer">CrowdStrike</a></div><div class="plat-row-tag">EDR &middot; Threat intel</div></div></div>
             <p class="plat-row-body">Falcon platform integration, telemetry routing, and detection pipelines that connect endpoint signal to your broader SecOps stack.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">Cribl</div><div class="plat-row-tag">Observability &amp; security routing</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name"><a href="https://cribl.io" target="_blank" rel="noopener noreferrer">Cribl</a></div><div class="plat-row-tag">Observability &amp; security routing</div></div></div>
             <p class="plat-row-body">Cribl Stream and Edge deployments to control, shape, and route security and observability data before it hits your SIEM bill.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">Wazuh</div><div class="plat-row-tag">Open-source SIEM</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name"><a href="https://wazuh.com" target="_blank" rel="noopener noreferrer">Wazuh</a></div><div class="plat-row-tag">Open-source SIEM</div></div></div>
             <p class="plat-row-body">Wazuh deployments for teams that need open-source security monitoring alongside a commercial SIEM.</p>
           </div>
         </div>
@@ -550,23 +524,23 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
         </div>
         <div class="plat-grid">
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name">Qdrant</div><div class="plat-row-tag">Vector database</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">01</span><div><div class="plat-row-name"><a href="https://qdrant.tech" target="_blank" rel="noopener noreferrer">Qdrant</a></div><div class="plat-row-tag">Vector database</div></div></div>
             <p class="plat-row-body">Vector database engineering for semantic retrieval, hybrid search, and RAG pipelines that need to survive production traffic.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name">Redis (Vector)</div><div class="plat-row-tag">Vector &middot; Cache</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">02</span><div><div class="plat-row-name"><a href="https://redis.io" target="_blank" rel="noopener noreferrer">Redis (Vector)</a></div><div class="plat-row-tag">Vector &middot; Cache</div></div></div>
             <p class="plat-row-body">Redis Stack and Redis Vector for low-latency semantic search alongside your existing caching and realtime workloads.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name">pgvector</div><div class="plat-row-tag">Postgres vector</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">03</span><div><div class="plat-row-name"><a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener noreferrer">pgvector</a></div><div class="plat-row-tag">Postgres vector</div></div></div>
             <p class="plat-row-body">Vector search inside Postgres &mdash; schema, indexing, and hybrid retrieval strategies for teams that don&rsquo;t want another data store.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name">LangChain</div><div class="plat-row-tag">LLM pipelines</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">04</span><div><div class="plat-row-name"><a href="https://www.langchain.com" target="_blank" rel="noopener noreferrer">LangChain</a></div><div class="plat-row-tag">LLM pipelines</div></div></div>
             <p class="plat-row-body">LangChain and LangGraph pipelines integrated cleanly into your existing search, telemetry, and data infrastructure.</p>
           </div>
           <div class="plat-row">
-            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name">OpenSearch k-NN</div><div class="plat-row-tag">Hybrid search</div></div></div>
+            <div class="plat-row-identity"><span class="plat-row-num">05</span><div><div class="plat-row-name"><a href="https://opensearch.org/docs/latest/search-plugins/knn/" target="_blank" rel="noopener noreferrer">OpenSearch k-NN</a></div><div class="plat-row-tag">Hybrid search</div></div></div>
             <p class="plat-row-body">Vector and lexical search combined inside OpenSearch &mdash; one cluster, one relevance model, one operations story.</p>
           </div>
         </div>
@@ -708,19 +682,16 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
     document.getElementById('cat-vector')
   ];
 
-  /* Click: smooth-scroll to section */
   navItems.forEach(function(btn){
     btn.addEventListener('click', function(){
       var target = document.getElementById(btn.getAttribute('data-target'));
       if (!target) return;
-      /* Offset for sticky header (4rem) + navigator bar (~45px) */
       var offset = 64 + 45;
       var top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
 
-  /* IntersectionObserver: highlight active category */
   var activeIndex = 0;
   function setActive(index){
     if (index === activeIndex) return;
@@ -730,13 +701,11 @@ footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cr
       btn.classList.toggle('active', isActive);
       btn.setAttribute('aria-current', isActive ? 'true' : 'false');
     });
-    /* Scroll active pill into view on mobile */
     if (navItems[index]){
       navItems[index].scrollIntoView({ inline: 'nearest', behavior: 'smooth', block: 'nearest' });
     }
   }
 
-  /* Use a rootMargin so section activates when its top reaches ~30% of viewport */
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if (entry.isIntersecting){
