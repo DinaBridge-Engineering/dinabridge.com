@@ -1,7 +1,11 @@
 /* ============================================================
    DinaBridge Blog Component System — v2.0.0
    Scope: blog.html + all blog/* article pages
-   ─────────────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────
+   v2.0.1 — Tiffany link styling patch
+   — Blog prose links: #0ABAB5 base, #6FE3DD hover
+   — Blog TOC links: #007C78 base, #0ABAB5 hover + left-border
+
    v2.0.0 — Consolidation
    — Moved all article layout styles here from inline <style>
      blocks in individual post files. Single source of truth.
@@ -20,9 +24,9 @@
      .blog-card-cta, .blog-card-date: type hierarchy
    ============================================================ */
 
-/* ──────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────────
    BLOG INDEX — card grid
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-grid {
   display: flex;
   flex-direction: column;
@@ -162,9 +166,9 @@
   color: var(--blue);
 }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — hero
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-article-hero { padding: var(--sp-80) 0 var(--sp-48); }
 
 .blog-article-hero .article-label {
@@ -236,9 +240,9 @@
   padding: 3px 10px;
 }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — body layout
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-article-body { padding: var(--sp-48) 0 var(--sp-80); }
 
 .blog-layout {
@@ -251,9 +255,9 @@
 }
 @media(max-width:900px) { .blog-layout { grid-template-columns: 1fr; } }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — table of contents
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-toc { position: sticky; top: 88px; }
 .blog-toc nav {
   background: rgba(255,255,255,.80);
@@ -281,20 +285,30 @@
 .blog-toc ol li a {
   font-size: var(--text-sm);
   font-family: var(--font-body);
-  color: var(--ink-3);
+  color: #007C78;
   text-decoration: none;
   line-height: 1.4;
   display: block;
   padding-left: var(--sp-8);
   border-left: 2px solid transparent;
-  transition: all .18s;
+  transition: color .18s, border-left-color .18s;
 }
-.blog-toc ol li a:hover { color: var(--blue); border-left-color: var(--blue); }
+.blog-toc ol li a:hover {
+  color: #0ABAB5;
+  border-left-color: #0ABAB5;
+}
+.blog-toc ol li a:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
+  border-radius: 2px;
+  color: #0ABAB5;
+  border-left-color: #0ABAB5;
+}
 @media(max-width:900px) { .blog-toc { display: none; } }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — prose
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-prose h2 {
   font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2.5vw, 1.75rem);
@@ -348,17 +362,27 @@
   color: var(--navy);
 }
 
+/* Blog prose links — Tiffany palette */
 .blog-prose a {
-  color: var(--blue);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(26,115,232,.3);
-  transition: border-color .18s;
+  color: #0ABAB5;
+  text-decoration: underline;
+  text-decoration-color: rgba(10, 186, 181, 0.40);
+  text-underline-offset: 3px;
+  transition: color .18s, text-decoration-color .18s;
 }
-.blog-prose a:hover { border-bottom-color: var(--blue); }
+.blog-prose a:hover {
+  color: #6FE3DD;
+  text-decoration-color: rgba(111, 227, 221, 0.70);
+}
+.blog-prose a:focus-visible {
+  outline: 2px solid #0ABAB5;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — pull quote
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-pullquote {
   border-left: 3px solid var(--blue);
   padding: var(--sp-20) var(--sp-24);
@@ -375,9 +399,9 @@
   font-family: var(--font-body);
 }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — FAQ block
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-faq {
   display: flex;
   flex-direction: column;
@@ -405,9 +429,9 @@
   margin: 0;
 }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    BLOG ARTICLE — CTA strip
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 .blog-cta-strip {
   background: rgba(255,255,255,.80);
   border: 1px solid var(--rule);
@@ -436,9 +460,9 @@
 }
 .blog-cta-strip .blog-cta-actions { display: flex; gap: var(--sp-12); flex-wrap: wrap; }
 
-/* ──────────────────────────────────────────────────────────────
+/* ──────────────────────────────────────────────────────────────────
    RESPONSIVE
-   ────────────────────────────────────────────────────────────── */
+   ────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .blog-grid { gap: var(--sp-20); }
   .blog-card { padding: var(--sp-20); }
@@ -446,6 +470,7 @@
   .blog-cta-strip { padding: var(--sp-28) var(--sp-24); }
 }
 
+/* v2.0.1 — Tiffany link styling patch — July 2026 */
 /* v2.0.0 — Article styles consolidated from per-post inline blocks — June 2026 */
 /* v1.2.2 — Polish pass — June 2026 */
 /* v1.2.1 — Blog card component system — June 2026 */
