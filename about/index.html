@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About — DinaBridge, a boutique infrastructure engineering firm</title>
+<meta name="description" content="DinaBridge is a boutique engineering firm for search, observability, and security data platforms. Senior-only bench, direct delivery." />
+<meta name="author" content="DinaBridge" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#1a1918" />
+<link rel="canonical" href="https://dinabridge.com/about/" />
+
+<!-- OG -->
+<meta property="og:title" content="About DinaBridge" />
+<meta property="og:description" content="Senior-only engineering bench. Search, observability, security. No juniors, no layers." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dinabridge.com/about/" />
+<meta property="og:site_name" content="DinaBridge" />
+<meta property="og:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@dinabridge" />
+<meta name="twitter:title" content="About DinaBridge" />
+<meta name="twitter:description" content="Senior-only engineering bench. Search, observability, security. No juniors, no layers." />
+<meta name="twitter:image" content="https://dinabridge.com/og-image.png" />
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEWG10CXEK"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HEWG10CXEK');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<style>
+/* ── Design tokens ── */
+:root {
+  --ink: oklch(0.16 0.008 260);
+  --cream: oklch(0.955 0.012 85);
+  --signal: oklch(0.78 0.16 65);
+  --signal-fg: oklch(0.16 0.008 260);
+  --card: oklch(0.19 0.008 260);
+  --secondary: oklch(0.24 0.008 260);
+  --muted-fg: oklch(0.68 0.012 260);
+  --hairline: oklch(1 0 0 / 8%);
+  --hairline-strong: oklch(1 0 0 / 16%);
+  --radius: 0.5rem;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* ── Reset / base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-color:var(--hairline)}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-sans);font-feature-settings:"ss01","cv11"}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.02em}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+img,svg{display:block}
+ul{list-style:none}
+
+/* ── Layout utilities ── */
+.cx{width:100%;max-width:1280px;margin-inline:auto;padding-inline:1.5rem}
+@media(min-width:1024px){.cx{padding-inline:4rem}}
+
+.section{padding-block:3rem}
+@media(min-width:640px){.section{padding-block:4rem}}
+@media(min-width:1024px){.section{padding-block:7rem}}
+
+.section.cream{background:var(--cream);color:var(--ink)}
+
+/* ── Typography ── */
+.eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.muted{color:var(--muted-fg)}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--signal);color:var(--signal-fg);font-weight:600;font-size:.95rem;transition:filter 150ms,transform 150ms}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.4rem;border-radius:999px;border:1px solid var(--hairline-strong);color:inherit;font-weight:500;font-size:.95rem;transition:background 150ms,border-color 150ms}
+.btn-ghost:hover{background:oklch(1 0 0 / 6%);border-color:oklch(1 0 0 / 40%)}
+.btn-sm{padding:.5rem 1rem;font-size:.85rem}
+
+/* cream-section ghost button override */
+.section.cream .btn-ghost{border-color:oklch(0 0 0 / 20%);color:var(--ink)}
+.section.cream .btn-ghost:hover{background:oklch(0 0 0 / 6%);border-color:oklch(0 0 0 / 35%)}
+
+/* ── Section head ── */
+.section-head{max-width:700px;margin-bottom:0}
+.section-head .eyebrow{display:block}
+.section-head .title{margin-top:1.25rem;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em}
+.section-head .subtitle{margin-top:1rem;font-size:1rem;line-height:1.7;color:var(--muted-fg)}
+.section.cream .section-head .title{color:var(--ink)}
+.section.cream .section-head .subtitle{color:oklch(0.42 0.008 260)}
+
+/* ════════════════ HEADER ════════════════ */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;background:var(--ink);transition:background 200ms,border-color 200ms}
+header.scrolled{background:oklch(0.16 0.008 260 / 85%);backdrop-filter:blur(12px);border-color:var(--hairline)}
+.header-inner{display:flex;height:4rem;align-items:center;justify-content:space-between;gap:1.5rem}
+
+/* Logo */
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:-0.03em;color:var(--cream)}
+.logo span{color:var(--signal)}
+
+/* Desktop nav */
+.desktop-nav{display:none;align-items:center;gap:.25rem}
+@media(min-width:1024px){.desktop-nav{display:flex}}
+.nav-link{position:relative;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.nav-link:hover,.nav-link.active{color:var(--cream)}
+.nav-link::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:.25rem;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform 200ms}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+
+/* Dropdown */
+.dropdown{position:relative}
+.dropdown-btn{display:flex;align-items:center;gap:.25rem;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:color 150ms}
+.dropdown-btn:hover{color:var(--cream)}
+.dropdown-btn svg{width:14px;height:14px;opacity:.6}
+.dropdown-panel{display:none;position:absolute;left:0;top:100%;margin-top:.25rem;min-width:180px;border-radius:.5rem;border:1px solid var(--hairline);background:var(--card);padding:.375rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.dropdown:hover .dropdown-panel,.dropdown-panel:hover{display:block}
+.dropdown-item{display:block;padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 80%);transition:background 150ms,color 150ms}
+.dropdown-item:hover{background:var(--secondary);color:var(--cream)}
+.dropdown-item.active{color:var(--cream)}
+
+/* ── Desktop nav dropdowns: click/touch interaction (about/index.html only) ── */
+[data-nav-dropdown] .dropdown-btn{min-height:44px}
+[data-nav-dropdown] .dropdown-panel{margin-top:0;top:100%}
+[data-nav-dropdown]:hover .dropdown-panel{display:none}
+[data-nav-dropdown].is-open .dropdown-panel{display:block}
+
+/* Header CTA */
+.header-cta{display:none}
+@media(min-width:1024px){.header-cta{display:inline-flex}}
+
+/* Mobile toggle */
+.menu-btn{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:.375rem;border:1px solid var(--hairline);color:var(--cream)}
+@media(min-width:1024px){.menu-btn{display:none}}
+
+/* Mobile nav drawer */
+.mobile-nav{display:none;border-top:1px solid var(--hairline);background:var(--ink)}
+.mobile-nav.open{display:block}
+.mobile-nav-inner{padding:1rem 0;display:flex;flex-direction:column;gap:.25rem}
+.mobile-link{padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);display:block;transition:background 150ms}
+.mobile-link:hover{background:var(--secondary)}
+.mobile-dropdown-btn{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.75rem;border-radius:.375rem;font-size:.875rem;color:oklch(0.955 0.012 85 / 85%);transition:background 150ms}
+.mobile-dropdown-btn:hover{background:var(--secondary)}
+.mobile-dropdown-btn svg{width:16px;height:16px;transition:transform 200ms}
+.mobile-dropdown-btn.open svg{transform:rotate(180deg)}
+.mobile-sub{margin-left:.75rem;border-left:1px solid var(--hairline);padding-left:.75rem;display:none;flex-direction:column}
+.mobile-sub.open{display:flex}
+
+/* ════════════════ HERO ════════════════ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairline)}
+.hero-glow{pointer-events:none;position:absolute;inset:0;opacity:.7}
+.hero-glow::before{content:'';position:absolute;top:-10rem;left:50%;transform:translateX(-50%);width:880px;height:520px;border-radius:50%;filter:blur(80px);background:radial-gradient(closest-side,oklch(0.78 0.16 65 / 22%),transparent 70%)}
+.hero-grid{pointer-events:none;position:absolute;inset:0;opacity:.035;background-image:linear-gradient(var(--cream) 1px,transparent 1px),linear-gradient(90deg,var(--cream) 1px,transparent 1px);background-size:56px 56px}
+.hero-content{position:relative;padding-top:5rem;padding-bottom:5rem}
+@media(min-width:1024px){.hero-content{padding-top:8rem;padding-bottom:8rem}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500}
+.hero-h1{margin-top:1.5rem;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:600;line-height:1.02;letter-spacing:-0.02em;max-width:900px}
+.hero-lead{margin-top:1.75rem;max-width:640px;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.hero-actions{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem}
+
+/* ════════════════ ABOUT ════════════════ */
+.about-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.about-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.about-lead{font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.8;color:oklch(0.955 0.012 85 / 70%);margin-top:1.25rem}
+.about-detail{margin-top:1.5rem;font-size:.9rem;line-height:1.7;color:var(--muted-fg)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.stat-card{padding:1.5rem;background:var(--card);border-radius:.5rem;border:1px solid var(--hairline)}
+.stat-num{font-family:var(--font-display);font-size:2.25rem;font-weight:600;color:var(--signal);letter-spacing:-0.03em}
+.stat-label{margin-top:.375rem;font-size:.8rem;color:var(--muted-fg)}
+
+/* ════════════════ PRINCIPLES ════════════════ */
+.principles-grid{display:grid;gap:2rem;margin-top:3.5rem}
+@media(min-width:640px){.principles-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.principles-grid{grid-template-columns:1fr 1fr 1fr}}
+.principle-card{padding:2rem 1.75rem;background:var(--card);border-radius:.5rem;border:1px solid var(--hairline)}
+.principle-num{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;color:var(--signal);font-weight:500}
+.principle-title{margin-top:.875rem;font-family:var(--font-display);font-size:1.05rem;font-weight:600;line-height:1.3}
+.principle-body{margin-top:.625rem;font-size:.875rem;line-height:1.7;color:var(--muted-fg)}
+
+/* ════════════════ TEAM ════════════════ */
+.team-grid{display:grid;gap:2rem;margin-top:3.5rem}
+@media(min-width:640px){.team-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.team-grid{grid-template-columns:1fr 1fr 1fr}}
+.team-card{padding:2rem 1.75rem;background:var(--card);border-radius:.5rem;border:1px solid var(--hairline)}
+.team-name{font-family:var(--font-display);font-size:1.1rem;font-weight:600}
+.team-role{margin-top:.25rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--signal)}
+.team-bio{margin-top:.875rem;font-size:.875rem;line-height:1.7;color:var(--muted-fg)}
+
+/* ════════════════ ENGAGEMENTS ════════════════ */
+.eng-grid{display:grid;gap:2rem;margin-top:3.5rem}
+@media(min-width:640px){.eng-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.eng-grid{grid-template-columns:repeat(4,1fr)}}
+.eng-card{padding:1.75rem 1.5rem;background:var(--card);border-radius:.5rem;border:1px solid var(--hairline)}
+.eng-title{font-family:var(--font-display);font-weight:600;font-size:1rem}
+.eng-detail{margin-top:.5rem;font-size:.875rem;line-height:1.6;color:var(--muted-fg)}
+.eng-price{margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+
+/* ════════════════ CAREERS CALLOUT ════════════════ */
+.callout-strip{padding:3rem 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.callout-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem}
+.callout-text .eyebrow{display:block;margin-bottom:.75rem}
+.callout-text p{max-width:540px;font-size:.9375rem;line-height:1.7;color:oklch(0.955 0.012 85 / 70%)}
+
+/* ════════════════ FOOTER ════════════════ */
+footer{border-top:1px solid var(--hairline);background:var(--ink);color:var(--cream)}
+.footer-inner{padding-block:4rem}
+@media(min-width:1024px){.footer-inner{padding-block:5rem}}
+.footer-grid{display:grid;gap:3rem}
+@media(min-width:1024px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr 1fr}}
+.footer-brand p{margin-top:1.25rem;font-size:.875rem;line-height:1.7;color:oklch(0.955 0.012 85 / 65%)}
+.footer-email{display:block;margin-top:1.25rem;font-family:var(--font-mono);font-size:.875rem;color:var(--signal)}
+.footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-col-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-fg);font-weight:500;margin-bottom:1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.625rem}
+.footer-col a{font-size:.875rem;color:oklch(0.955 0.012 85 / 75%);transition:color 150ms}
+.footer-col a:hover{color:var(--cream)}
+.footer-bottom{margin-top:3.5rem;display:flex;flex-direction:column-reverse;gap:1.5rem;border-top:1px solid var(--hairline);padding-top:1.5rem}
+@media(min-width:640px){.footer-bottom{flex-direction:row;align-items:center;justify-content:space-between}}
+.footer-copy{font-size:.75rem;color:oklch(0.955 0.012 85 / 50%)}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header id="site-header">
+  <div class="cx">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="/" class="logo">Dina<span>Bridge</span></a>
+
+      <!-- Desktop nav -->
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/platforms/" class="nav-link">Platforms</a>
+        <a href="/solutions/" class="nav-link">Solutions</a>
+
+        <!-- About dropdown -->
+        <div class="dropdown" data-nav-dropdown>
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+            About
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown-panel" role="menu">
+          <a href="/about/" class="dropdown-item active">About us</a>
+          <a href="/impact/" class="dropdown-item">DinaBridge Impact</a>
+          <a href="/careers/" class="dropdown-item">Careers</a>
+          </div>
+        </div>
+
+        <!-- Resources dropdown -->
+        <div class="dropdown">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown-panel" role="menu">
+          <a href="/learning/" class="dropdown-item">Learning</a>
+          <a href="/glossary/" class="dropdown-item">Glossary</a>
+          <a href="/blog/" class="dropdown-item">Blog</a>
+          </div>
+        </div>
+
+        <a href="/partners/" class="nav-link">Partners</a>
+      </nav>
+
+      <a href="/contact/" class="btn-primary btn-sm header-cta">Get in touch</a>
+
+      <!-- Mobile hamburger -->
+      <button class="menu-btn" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <div class="cx">
+      <div class="mobile-nav-inner">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/platforms/" class="mobile-link">Platforms</a>
+      <a href="/solutions/" class="mobile-link">Solutions</a>
+
+      <!-- About submenu -->
+      <div>
+        <button class="mobile-dropdown-btn" aria-expanded="false">
+          About
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-sub" role="group">
+          <a href="/about/" class="mobile-link">About us</a>
+          <a href="/impact/" class="mobile-link">DinaBridge Impact</a>
+          <a href="/careers/" class="mobile-link">Careers</a>
+        </div>
+      </div>
+
+      <!-- Resources submenu -->
+      <div>
+        <button class="mobile-dropdown-btn" aria-expanded="false">
+          Resources
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-sub" role="group">
+          <a href="/learning/" class="mobile-link">Learning</a>
+          <a href="/glossary/" class="mobile-link">Glossary</a>
+          <a href="/blog/" class="mobile-link">Blog</a>
+        </div>
+      </div>
+
+      <a href="/partners/" class="mobile-link">Partners</a>
+      <a href="/contact/" class="btn-primary" style="margin-top:.5rem">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- ════ END HEADER ════ -->
+
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="cx hero-content">
+    <div class="eyebrow">About DinaBridge</div>
+    <h1 class="hero-h1">Built for engineers,<br>delivered by engineers</h1>
+    <p class="hero-lead">We are a boutique infrastructure firm specialising in Elasticsearch, OpenSearch, and the broader Elastic Stack. Senior-only delivery. No layers, no hand-offs.</p>
+    <div class="hero-actions">
+      <a href="/contact/" class="btn-primary">Work with us</a>
+      <a href="/solutions/" class="btn-ghost">Our solutions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section class="section">
+  <div class="cx">
+    <div class="about-grid">
+
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Who we are</span>
+          <h2 class="title">A senior-only bench,<br>nothing less</h2>
+        </div>
+        <p class="about-lead">DinaBridge is a boutique engineering firm for teams who need deep expertise in search, observability, and security data platforms — not a headcount swap.</p>
+        <p class="about-detail">Every engagement is staffed with senior engineers who have shipped production Elastic deployments. We work across Elasticsearch, OpenSearch, Elastic Cloud, and the full Elastic Stack — from index design and ingest pipelines to cluster operations and Kibana dashboards.</p>
+        <p class="about-detail" style="margin-top:.75rem">We partner with technology vendors, system integrators, and enterprise product teams to deliver engagements under their brand or alongside their teams.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Senior engineers — no juniors on any engagement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Continents — US, Europe, and South Asia delivery coverage</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">White-label</div>
+          <div class="stat-label">Partner-ready delivery under your brand</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Direct</div>
+          <div class="stat-label">No hand-offs, no account managers in the way</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ PRINCIPLES ════════════════ -->
+<section class="section" style="padding-top:0">
+  <div class="cx">
+    <div class="section-head">
+      <span class="eyebrow">How we work</span>
+      <h2 class="title">Engineering principles<br>that guide every project</h2>
+      <p class="subtitle">These are not values statements. They are operational rules we enforce on every engagement.</p>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-num">01</div>
+        <h3 class="principle-title">Senior engineers only</h3>
+        <p class="principle-body">We do not staff juniors on client work. Every engineer on your project has shipped production Elastic deployments at scale.</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">02</div>
+        <h3 class="principle-title">Direct delivery</h3>
+        <p class="principle-body">You work with the engineers, not account managers. No hand-offs, no telephone game between sales and delivery.</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">03</div>
+        <h3 class="principle-title">Transparent scope</h3>
+        <p class="principle-body">Fixed-scope or time-and-materials — we define deliverables clearly and flag scope changes immediately, not at invoice time.</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">04</div>
+        <h3 class="principle-title">Partner-ready</h3>
+        <p class="principle-body">White-label delivery is a core capability, not an afterthought. We support NDA-first engagements and brand-agnostic team structures.</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">05</div>
+        <h3 class="principle-title">Async-first operations</h3>
+        <p class="principle-body">We are built for remote-first, multi-timezone engagements. Documentation, handoffs, and status are written — not lost in calls.</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">06</div>
+        <h3 class="principle-title">Knowledge transfer included</h3>
+        <p class="principle-body">Every engagement ends with your team understanding what was built and why. We do not create dependency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ENGAGEMENTS ════════════════ */
+<section class="section" style="padding-top:0">
+  <div class="cx">
+    <div class="section-head">
+      <span class="eyebrow">Engagement types</span>
+      <h2 class="title">How teams engage<br>with DinaBridge</h2>
+      <p class="subtitle">We offer four structured engagement formats to match different project shapes and procurement preferences.</p>
+    </div>
+
+    <div class="eng-grid">
+      <div class="eng-card">
+        <h3 class="eng-title">Advisory retainer</h3>
+        <p class="eng-detail">Ongoing access to senior Elastic expertise. Architecture reviews, design decisions, incident guidance — on demand.</p>
+        <div class="eng-price">From $3,500 / mo</div>
+      </div>
+      <div class="eng-card">
+        <h3 class="eng-title">Fixed-scope project</h3>
+        <p class="eng-detail">Defined deliverables, defined timeline. Migration, implementation, or audit with a clear start and end.</p>
+        <div class="eng-price">From $12,000</div>
+      </div>
+      <div class="eng-card">
+        <h3 class="eng-title">Staff augmentation</h3>
+        <p class="eng-detail">Senior Elastic engineers embedded in your team. Weekly or monthly commitment with predictable capacity.</p>
+        <div class="eng-price">From $180 / hr</div>
+      </div>
+      <div class="eng-card">
+        <h3 class="eng-title">Partner delivery</h3>
+        <p class="eng-detail">White-label sub-contracting for technology partners and system integrators. NDA-first, brand-agnostic.</p>
+        <div class="eng-price">Custom pricing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CAREERS CALLOUT ════════════════ -->
+<section class="callout-strip">
+  <div class="cx callout-inner">
+    <div class="callout-text">
+      <div class="eyebrow">Careers</div>
+      <p>We hire senior Elasticsearch engineers on a project basis. If you have shipped production Elastic deployments and want flexible, high-quality work — we want to hear from you.</p>
+    </div>
+    <a href="/careers/" class="btn-primary">See Careers
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="cx footer-inner">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="/" class="logo">Dina<span>Bridge</span></a>
+        <p>Boutique Elasticsearch and data infrastructure engineering. Senior-only. Direct delivery.</p>
+        <a href="mailto:engineering@dinabridge.com" class="footer-email">engineering@dinabridge.com</a>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <ul>
+          <li><a href="/solutions/">Solutions overview</a></li>
+          <li><a href="/platforms/">Platforms</a></li>
+          <li><a href="/partners/">Partner delivery</a></li>
+          <li><a href="/contact/">Get in touch</a></li>
+        </ul>
+      </div>
+
+      <!-- Learn -->
+      <div class="footer-col">
+        <div class="footer-col-title">Learn</div>
+        <ul>
+          <li><a href="/learning/">Learning hub</a></li>
+          <li><a href="/glossary/">Glossary</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <ul>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/impact/">DinaBridge Impact</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <ul>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="/terms/">Terms of service</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 DinaBridge LLC. All rights reserved.</p>
+      <nav aria-label="Footer legal links" style="display:flex;gap:1.5rem">
+        <a href="/privacy/" style="font-size:.75rem;color:oklch(0.955 0.012 85 / 50%);transition:color 150ms">Privacy</a>
+        <a href="/terms/" style="font-size:.75rem;color:oklch(0.955 0.012 85 / 50%);transition:color 150ms">Terms</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Scroll header ──
+(function(){
+  var h=document.getElementById('site-header');
+  if(!h)return;
+  function upd(){h.classList.toggle('scrolled',window.scrollY>10);}
+  upd();
+  window.addEventListener('scroll',upd,{passive:true});
+})();
+
+// ── Mobile nav toggle ──
+(function(){
+  var btn=document.getElementById('menu-toggle');
+  var nav=document.getElementById('mobile-nav');
+  if(!btn||!nav)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+    btn.innerHTML=open
+      ?'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+      :'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  });
+})();
+
+// ── Mobile sub-menu toggles ──
+(function(){
+  document.querySelectorAll('.mobile-dropdown-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var sub=btn.nextElementSibling;
+      if(!sub)return;
+      var open=sub.classList.toggle('open');
+      btn.classList.toggle('open',open);
+      btn.setAttribute('aria-expanded',open);
+    });
+  });
+})();
+
+// ── Desktop About dropdown: click/keyboard open (data-nav-dropdown) ──
+(function(){
+  document.querySelectorAll('[data-nav-dropdown]').forEach(function(wrapper){
+    var btn=wrapper.querySelector('.dropdown-btn');
+    var panel=wrapper.querySelector('.dropdown-panel');
+    if(!btn||!panel)return;
+
+    function isOpen(){ return wrapper.classList.contains('is-open'); }
+    function openIt(){ wrapper.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); }
+    function closeIt(){ wrapper.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); }
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      isOpen() ? closeIt() : openIt();
+    });
+
+    var leaveTimer;
+    wrapper.addEventListener('mouseleave', function(){
+      leaveTimer = setTimeout(closeIt, 150);
+    });
+    wrapper.addEventListener('mouseenter', function(){
+      clearTimeout(leaveTimer);
+    });
+    wrapper.addEventListener('focusin', function(){ clearTimeout(leaveTimer); });
+
+    document.addEventListener('click', function(e){
+      if(!wrapper.contains(e.target)) closeIt();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && isOpen()){ closeIt(); btn.focus(); }
+    });
+
+    panel.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ closeIt(); });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
